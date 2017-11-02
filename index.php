@@ -1,337 +1,315 @@
+<?php
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @package	CodeIgniter
+ * @author	EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://codeigniter.com
+ * @since	Version 1.0.0
+ * @filesource
+ */
 
-		<?php include ("header.php"); ?>
+/*
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ */
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-			<!-- start page content -->
-            <div class="page-content-wrapper">
-                <div class="page-content">
-                    <div class="page-bar">
-                        <div class="page-title-breadcrumb">
-                            <div class=" pull-left">
-                                <div class="page-title">Dashboard</div>
-                            </div>
-                            <ol class="breadcrumb page-breadcrumb pull-right">
-                                <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                                </li>
-                                <li class="active">Dashboard</li>
-                            </ol>
-                        </div>
-                    </div>
-                   <!-- start widget -->
-					<div class="row">
-							<div class="state-overview">
-							<div class="col-lg-3 col-sm-6">
-								<div class="overview-panel purple">
-									<div class="symbol">
-										<i class="fa fa-users usr-clr"></i>
-									</div>
-									<div class="value white">
-										<p class="sbold addr-font-h1" data-counter="counterup" data-value="23">0</p>
-										<p>ORDERS</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="overview-panel green-bgcolor">
-									<div class="symbol">
-										<i class="fa fa-user"></i>
-									</div>
-									<div class="value white">
-										<p class="sbold addr-font-h1" data-counter="counterup" data-value="48">0</p>
-										<p>NEW CUSTOMERS</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="overview-panel orange">
-									<div class="symbol">
-										<i class="fa fa-heartbeat"></i>
-									</div>
-									<div class="value white">
-										<p class="sbold addr-font-h1" data-counter="counterup" data-value="14">0</p>
-										<p>TODAY'S RECIPIES</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-3 col-sm-6">
-								<div class="overview-panel blue-bgcolor">
-									<div class="symbol">
-										<i class="fa fa-money"></i>
-									</div>
-									<div class="value white">
-										<p class="sbold addr-font-h1" data-counter="counterup" data-value="3421">0</p><span>$</span>
-										<p>Total Earning</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						</div>
-					<!-- end widget -->
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+switch (ENVIRONMENT)
+{
+	case 'development':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+	break;
 
-                     <div class="row">
-                        <div class="col-md-12 col-sm-12">
-                            <div class="card  card-topline-green">
-                                <div class="card-head">
-                                    <header>Recent Orders</header>
-                                    <div class="tools">
-                                        <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-	                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-	                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                    </div>
-                                </div>
-                                <div class="card-body ">
-                                    <div class="row table-padding">
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="btn-group">
-                                                <button id="addRow" class="btn btn-info">
-                                                    Add New <i class="fa fa-plus"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                            <div class="btn-group pull-right">
-                                                <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                    <i class="fa fa-angle-down"></i>
-                                                </button>
-                                                <ul class="dropdown-menu pull-right">
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-print"></i> Print </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="javascript:;">
-                                                            <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive">
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="example4">
-                                        <thead>
-                                            <tr>
-                                                <th>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
-                                                        <span></span>
-                                                    </label>
-                                                </th>
-                                                <th>Patient Name</th>
-                                                <th>Assigned Doctor</th>
-                                                <th>Date</th>
-                                                <th>Time</th>
-                                                <th>Actions </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="odd gradeX">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Jayesh Patel </td>
-                                                <td>
-                                                    <a href="mailto:shuxer@gmail.com"> Dr.Rajesh </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 10:45 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-warning dropdown-toggle center no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu pull-left" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Pooja Patel </td>
-                                                <td>
-                                                    <a href="mailto:looper90@gmail.com"> Dr.Sarah Smith </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 10:55 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-info dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Pankaj Singh </td>
-                                                <td>
-                                                    <a href="mailto:userwow@yahoo.com"> Dr.Rajesh </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 11:15 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-success dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Raj Malhotra </td>
-                                                <td>
-                                                    <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 11:25 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-primary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Sneha Pandya </td>
-                                                <td>
-                                                    <a href="mailto:doctormail@gmail.com"> Dr.Sarah Smith </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 11:35 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-warning dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                          	<li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="odd gradeX ">
-                                                <td>
-                                                    <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                        <input type="checkbox" class="checkboxes" value="1" />
-                                                        <span></span>
-                                                    </label>
-                                                </td>
-                                                <td> Sameer Jain </td>
-                                                <td>
-                                                    <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
-                                                </td>
-                                                <td class="center"> 12/05/2016 </td>
-                                                <td class="center"> 11:45 </td>
-                                                <td class="center">
-                                                    <div class="btn-group">
-                                                        <button class="btn btn-xs btn-danger dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                        <ul class="dropdown-menu" role="menu">
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
- 
-                </div>
-            </div>
-            <!-- end page content -->
+	case 'testing':
+	case 'production':
+		ini_set('display_errors', 0);
+		if (version_compare(PHP_VERSION, '5.3', '>='))
+		{
+			error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+		}
+		else
+		{
+			error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_USER_NOTICE);
+		}
+	break;
 
-        </div>
-        <!-- end page container -->
-        
- 	<?php include ("footer.php"); ?>
+	default:
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'The application environment is not set correctly.';
+		exit(1); // EXIT_ERROR
+}
+
+/*
+ *---------------------------------------------------------------
+ * SYSTEM DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" directory.
+ * Set the path if it is not in the same directory as this file.
+ */
+	$system_path = 'system';
+
+/*
+ *---------------------------------------------------------------
+ * APPLICATION DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * directory than the default one you can set its name here. The directory
+ * can also be renamed or relocated anywhere on your server. If you do,
+ * use an absolute (full) server path.
+ * For more info please see the user guide:
+ *
+ * https://codeigniter.com/user_guide/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ */
+	$application_folder = 'application';
+
+/*
+ *---------------------------------------------------------------
+ * VIEW DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want to move the view directory out of the application
+ * directory, set the path to it here. The directory can be renamed
+ * and relocated anywhere on your server. If blank, it will default
+ * to the standard location inside your application directory.
+ * If you do move this, use an absolute (full) server path.
+ *
+ * NO TRAILING SLASH!
+ */
+	$view_folder = '';
+
+
+/*
+ * --------------------------------------------------------------------
+ * DEFAULT CONTROLLER
+ * --------------------------------------------------------------------
+ *
+ * Normally you will set your default controller in the routes.php file.
+ * You can, however, force a custom routing by hard-coding a
+ * specific controller class/function here. For most applications, you
+ * WILL NOT set your routing here, but it's an option for those
+ * special instances where you might want to override the standard
+ * routing in a specific front controller that shares a common CI installation.
+ *
+ * IMPORTANT: If you set the routing here, NO OTHER controller will be
+ * callable. In essence, this preference limits your application to ONE
+ * specific controller. Leave the function name blank if you need
+ * to call functions dynamically via the URI.
+ *
+ * Un-comment the $routing array below to use this feature
+ */
+	// The directory name, relative to the "controllers" directory.  Leave blank
+	// if your controller is not in a sub-directory within the "controllers" one
+	// $routing['directory'] = '';
+
+	// The controller class file name.  Example:  mycontroller
+	// $routing['controller'] = '';
+
+	// The controller function you wish to be called.
+	// $routing['function']	= '';
+
+
+/*
+ * -------------------------------------------------------------------
+ *  CUSTOM CONFIG VALUES
+ * -------------------------------------------------------------------
+ *
+ * The $assign_to_config array below will be passed dynamically to the
+ * config class when initialized. This allows you to set custom config
+ * items or override any default config values found in the config.php file.
+ * This can be handy as it permits you to share one application between
+ * multiple front controller files, with each file containing different
+ * config values.
+ *
+ * Un-comment the $assign_to_config array below to use this feature
+ */
+	// $assign_to_config['name_of_config_item'] = 'value of config item';
+
+
+
+// --------------------------------------------------------------------
+// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
+// --------------------------------------------------------------------
+
+/*
+ * ---------------------------------------------------------------
+ *  Resolve the system path for increased reliability
+ * ---------------------------------------------------------------
+ */
+
+	// Set the current directory correctly for CLI requests
+	if (defined('STDIN'))
+	{
+		chdir(dirname(__FILE__));
+	}
+
+	if (($_temp = realpath($system_path)) !== FALSE)
+	{
+		$system_path = $_temp.DIRECTORY_SEPARATOR;
+	}
+	else
+	{
+		// Ensure there's a trailing slash
+		$system_path = strtr(
+			rtrim($system_path, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		).DIRECTORY_SEPARATOR;
+	}
+
+	// Is the system path correct?
+	if ( ! is_dir($system_path))
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
+		exit(3); // EXIT_CONFIG
+	}
+
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+	// The name of THIS file
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// Path to the system directory
+	define('BASEPATH', $system_path);
+
+	// Path to the front controller (this file) directory
+	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+
+	// Name of the "system" directory
+	define('SYSDIR', basename(BASEPATH));
+
+	// The path to the "application" directory
+	if (is_dir($application_folder))
+	{
+		if (($_temp = realpath($application_folder)) !== FALSE)
+		{
+			$application_folder = $_temp;
+		}
+		else
+		{
+			$application_folder = strtr(
+				rtrim($application_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(BASEPATH.$application_folder.DIRECTORY_SEPARATOR))
+	{
+		$application_folder = BASEPATH.strtr(
+			trim($application_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
+
+	// The path to the "views" directory
+	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.'views';
+	}
+	elseif (is_dir($view_folder))
+	{
+		if (($_temp = realpath($view_folder)) !== FALSE)
+		{
+			$view_folder = $_temp;
+		}
+		else
+		{
+			$view_folder = strtr(
+				rtrim($view_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(APPPATH.$view_folder.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.strtr(
+			trim($view_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
