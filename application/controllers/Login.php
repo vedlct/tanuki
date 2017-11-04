@@ -33,11 +33,10 @@ class Login extends CI_Controller
             );
 
             $this->session->set_userdata($data);
-
             $this->session->userdata('id');
 
-
             $data1=array(
+
                 'sourceIp'=>$this->input->ip_address(),
                 'fkUserId'=>$result->userId,
                 'browser'=>$this->agent->browser()
@@ -64,6 +63,20 @@ class Login extends CI_Controller
         }
 
     }
+    public function logout()
+    {
+        $data = array(
+            'logOutTime'=>date('Y-m-d H:i:s')
+        );
+
+       // $data =date('Y-m-d h:i:s');
+        $id=$this->session->userdata('id');
+        $this->loginm->logout($id,$data);
+
+        $this->session->unset_userdata('id');
+        redirect('Login');
+    }
+
 
 
 
