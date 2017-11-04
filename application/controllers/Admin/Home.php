@@ -69,7 +69,6 @@ class Home extends CI_Controller {
             $data['catgory'] = $this->Categorym->get_all_catagory();
             $this->load->view('view_catagory', $data);
 
-
         } else {
             redirect('login');
 
@@ -87,9 +86,12 @@ class Home extends CI_Controller {
         if ($this->session->userdata('userType') == "Admin") {
             $id = $this->session->userdata('id');
             $cat_id = $this->input->post('id');
-            $data1 = $this->Categorym->find_category($cat_id);
-             $data['find']=$data1;
+            $data['find'] = $this->Categorym->find_category($cat_id);
+            // $data['find']=$data1;
+
             $this->load->view('update_catagory', $data);
+
+
 
         } else {
             redirect('login');
@@ -120,12 +122,25 @@ class Home extends CI_Controller {
         }
     }
 
-    public function delete_cat($id1)
-
+    public function delete_cat()
     {
-        $data['cat'] = $this->Categorym-> delete_cat($id1);
-        $this->load->view('delete_cat', $data);
+        if ($this->session->userdata('userType') == "Admin") {
+            $id = $this->input->post('id');
+            $del = $this->Categorym->delete_cat_by_id($id);
+
+            echo 1;
+
+
+        }
+        else{
+            redirect('login');
+        }
     }
+
+
+
+
+
 
 
 

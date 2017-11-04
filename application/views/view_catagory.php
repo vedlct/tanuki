@@ -111,7 +111,7 @@
 												<td class="center"><?php echo $catgory->insertDate; ?></td>
 
 												 <td>
-                                                     <button  class="btn btn-primary btn-xs"  data-panel-id="/<?php echo $catgory->id ?>" onclick="selectid9(this)" >
+                                                     <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $catgory->id ?>" onclick="selectid9(this)" >
 
                                                           <i class="fa fa-pencil"></i>
 													 </button>
@@ -186,7 +186,7 @@
 
                 $.ajax({
                     type:'POST',
-                    url:'<?php echo base_url("Admin/Home/find_category")?>'+btn9,
+                    url:'<?php echo base_url("Admin/Home/find_category")?>',
                     data:{id:btn9},
                     cache: false,
                     success:function(data) {
@@ -207,7 +207,7 @@
 
                 $.ajax({
                     type:'POST',
-                    url:'<?php echo base_url("Admin/Home/delete_cat/")?>'+btn4,
+                    url:'<?php echo base_url("Admin/Home/delete_cat")?>'+btn4,
                     data:{id:btn4},
                     cache: false,
                     success:function(data) {

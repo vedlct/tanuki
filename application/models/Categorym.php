@@ -28,7 +28,7 @@ class Categorym extends CI_Model{
          $this->db->from('catagory');
          $this->db->where('id',$cat_id)
                 ->select(['id','name']);
-          $query = $this->db->get();
+           $query = $this->db->get();
 
          return $query->result();
     }
@@ -43,13 +43,13 @@ class Categorym extends CI_Model{
           }
 
 
-    public function delete_cat($cat_id)
+    public function delete_cat_by_id($id)
     {
-        $find=$this->db->select(['id','name'])
-            ->where('id',$cat_id)
-            ->get('catagory');
-        return  $find->result();
+        $this->db->where('id',$id)
+            ->delete('catagory');
+
     }
+
 
 
 
