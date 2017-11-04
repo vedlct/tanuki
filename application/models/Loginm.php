@@ -27,17 +27,5 @@ class Loginm extends CI_Model{
 
 
 
-    public function logout($id,$data)
-    {
-        $this->db->where('id',$id);
-        $this->db->update('logininfo',$data);
-
-    }
-
-
-
-
-
-
 
 }

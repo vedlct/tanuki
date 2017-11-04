@@ -15,7 +15,7 @@
 	<!-- icons -->
     <link href="<?php echo base_url()?>public/js/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>public/css/modal.css " />
+    
 	<!--bootstrap -->
     <link href="<?php echo base_url()?>public/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/js/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
@@ -158,7 +158,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo base_url()?>login/logout">
+                                    <a href="login.html">
                                         <i class="icon-logout"></i> Log Out </a>
                                 </li>
                             </ul>
@@ -188,14 +188,14 @@
 	                        </li>
 	                        <li class="nav-item">
 	                            <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i> 
-	                            <span class="title">Catagor</span><span class="arrow"></span></a>
+	                            <span class="title">Orders</span><span class="arrow"></span></a>
 	                            <ul class="sub-menu">
-<!--	                                <li class="nav-item  ">-->
-<!--	                                    <a href="--><?php //echo base_url()?><!--Admin/Home/category" class="nav-link "> <span class="title">Category</span>-->
-<!--	                                    </a>-->
-<!--	                                </li>-->
 	                                <li class="nav-item  ">
-	                                    <a href="<?php echo base_url()?>Admin/Home/view_category" class="nav-link "> <span class="title">Manage All Catgory</span>
+	                                    <a href="Home/book_appointment" class="nav-link "> <span class="title">Place Order</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item  ">
+	                                    <a href="view_appointment.php" class="nav-link "> <span class="title">View All Orders</span>
 	                                    </a>
 	                                </li>
 	                            </ul>

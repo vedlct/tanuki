@@ -650,9 +650,9 @@
                             </a>
                         </li>
                     </ul>
-
+                    
                     <div class="tab-content">
-                        <!-- Start Doctor Chat -->
+                        <!-- Start Doctor Chat --> 
  						<div class="tab-pane active chat-sidebar-chat" id="quick_sidebar_tab_1">
                         	<div class="chat-sidebar-list">
 	                            <div class="chat-sidebar-chat-users slimscroll-style" data-rail-color="#ddd" data-wrapper-class="chat-sidebar-list">
@@ -822,8 +822,8 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Doctor Chat -->
- 						<!-- Start Setting Panel -->
+                        <!-- End Doctor Chat --> 
+ 						<!-- Start Setting Panel --> 
  						<div class="tab-pane chat-sidebar-settings" id="quick_sidebar_tab_3">
                             <div class="chat-sidebar-settings-list">
                                 <h3 class="list-heading">Layout Settings</h3>
@@ -892,7 +892,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                 </div>
             </div>
             <!-- end chat sidebar -->
