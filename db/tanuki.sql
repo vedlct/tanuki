@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2017 at 01:15 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: Nov 04, 2017 at 11:20 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -38,7 +40,7 @@ CREATE TABLE `catagory` (
 --
 
 INSERT INTO `catagory` (`id`, `name`, `fkInsertBy`, `insertDate`) VALUES
-(29, 'rumigfgfgf', 1, '2017-11-04 11:51:53');
+(48, 'r1', 1, '2017-11-04 22:20:26');
 
 -- --------------------------------------------------------
 
@@ -129,7 +131,12 @@ INSERT INTO `logininfo` (`id`, `loginTime`, `sourceIp`, `fkUserId`, `browser`, `
 (12, '2017-11-04 09:37:33', '::1', 1, 'Firefo', '0000-00-00 00:00:00'),
 (13, '2017-11-04 11:26:33', '::1', 1, 'Firefo', '0000-00-00 00:00:00'),
 (14, '2017-11-04 11:35:31', '::1', 1, 'Firefo', '0000-00-00 00:00:00'),
-(15, '2017-11-04 11:59:43', '::1', 1, 'Firefo', '0000-00-00 00:00:00');
+(15, '2017-11-04 11:59:43', '::1', 1, 'Firefo', '0000-00-00 00:00:00'),
+(16, '2017-11-04 19:23:02', '::1', 1, 'Chrome', '0000-00-00 00:00:00'),
+(17, '2017-11-04 19:55:59', '::1', 1, 'Chrome', '2017-11-04 19:55:59'),
+(18, '2017-11-04 19:57:04', '::1', 1, 'Chrome', '2017-11-04 19:57:04'),
+(19, '2017-11-04 20:02:24', '::1', 1, 'Chrome', '2017-11-04 20:02:24'),
+(20, '2017-11-04 20:02:36', '::1', 1, 'Chrome', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -447,7 +454,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `catagory`
 --
 ALTER TABLE `catagory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -467,7 +474,7 @@ ALTER TABLE `itemsizes`
 -- AUTO_INCREMENT for table `logininfo`
 --
 ALTER TABLE `logininfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `orders`
 --
@@ -593,6 +600,7 @@ ALTER TABLE `userfeedback`
 ALTER TABLE `users`
   ADD CONSTRAINT `FK_usersCity` FOREIGN KEY (`fkCity`) REFERENCES `city` (`id`),
   ADD CONSTRAINT `FK_usersUserType` FOREIGN KEY (`fkUserType`) REFERENCES `usertype` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

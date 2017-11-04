@@ -24,17 +24,6 @@ class Login extends CI_Controller
 
         if (!empty($result)) {
 
-            $data = array(
-                'name' => $result->name,
-                'email' => $result->email,
-                'id' => $result->userId,
-                'userType' => $result->userType,
-                'loggedin' => "true",
-            );
-
-            $this->session->set_userdata($data);
-            $this->session->userdata('id');
-
             $data1=array(
 
                 'sourceIp'=>$this->input->ip_address(),
@@ -42,14 +31,26 @@ class Login extends CI_Controller
                 'browser'=>$this->agent->browser()
 
             );
-            $this->loginm->loginInfo($data1);
+            $loginId=$this->loginm->loginInfo($data1);
+
+            $data = array(
+                'name' => $result->name,
+                'email' => $result->email,
+                'id' => $result->userId,
+                'userType' => $result->userType,
+                'loggedin' => "true",
+                'loginId'=>$loginId,
+            );
+
+            $this->session->set_userdata($data);
+
 
             if ($this->session->userdata('userType') == "Admin"){
-                redirect('Admin/Home');
+                redirect('Admin-Home');
             }
             elseif ($this->session->userdata('userType') == "Customer")
             {
-                redirect('Admin/Home');
+                redirect('Admin/Home/viewHome');
             }
 
         }
@@ -69,11 +70,10 @@ class Login extends CI_Controller
             'logOutTime'=>date('Y-m-d H:i:s')
         );
 
-       // $data =date('Y-m-d h:i:s');
-        $id=$this->session->userdata('id');
+        $id=$this->session->userdata('loginId');
         $this->loginm->logout($id,$data);
+        $this->session->sess_destroy();
 
-        $this->session->unset_userdata('id');
         redirect('Login');
     }
 

@@ -1,21 +1,38 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Category extends CI_Controller
-{
+class Category extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Categorym');
+        $this->load->model('Admin/Categorym');
 
     }
 
-    public function addCategory()
+    public function index()
+    {
+
+    }
+
+    public function allCategory()
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $this->load->view('addCategory');
+            $data['category'] = $this->Categorym->getAllCategory();
+            $this->load->view('Admin/allCategory', $data);
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function newCategory()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $this->load->view('Admin/newCategory');
         }
         else{
             redirect('Login');
@@ -23,87 +40,50 @@ class Category extends CI_Controller
 
     }
 
-    public  function  insertCategory()
+    public  function  addCategory()
     {
-        if ($this->session->userdata('userType') == "Admin") {
-            $id = $this->session->userdata('id');
-            $catagoryname = $this->input->post('catagoryname');
+        if ($this->session->userdata('userType') == "Admin")
+        {
+
+            $categoryName = $this->input->post('catagoryname');
+            $userId=$this->session->userdata('id');
 
             $data = array(
-
-                'name' => $catagoryname,
-                'fkInsertBy' => $id,
-
-
+                'name' => $categoryName,
+                'fkInsertBy' =>$userId,
             );
-            $cat_id= $this->Categorym->insertCategorym($data);
+            $this->data['error'] = $this->Categorym->insertCategory($data);
 
-            redirect('Admin/Category/allCategory');
+            if (empty($this->data['error'])) {
 
-        } else {
-            redirect('Login');
-        }
+                $this->session->set_flashdata('successMessage','Category Added Successfully');
+                redirect('Admin-Category');
 
+            } else {
 
-    }
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Category');
 
-
-    public function allCategory()
-    {
-        if ($this->session->userdata('userType') == "Admin") {
-
-            $data['catgory'] = $this->Categorym->getAllCategorym();
-            $this->load->view('allCategory', $data);
-
-        } else {
-            redirect('Login');
-
+            }
 
         }
-
-
-    }
-
-
-
-    public function manageCatagory()
-    {
-        if ($this->session->userdata('userType') == "Admin") {
-
-            $data['catgory'] = $this->Categorym->manageCatagorym();
-            $this->load->view('allCategory', $data);
-
-        } else {
+        else {
             redirect('Login');
-
-
         }
-
-
     }
 
-
-    public function getCatgoryById()
+    public function getCategoryById()
     {
-
-
         if ($this->session->userdata('userType') == "Admin") {
 
             $cat_id = $this->input->post('id');
-            $data['find'] = $this->Categorym->getCatgoryByIdm($cat_id);
-            $this->load->view('updateCategory', $data);
-
-
+            $data['categoryInfo'] = $this->Categorym->getCatgoryById($cat_id);
+            $this->load->view('Admin/updateCategory',$data);
 
         } else {
             redirect('Login');
-
-
         }
-
-
     }
-
 
     public function updateCategoryById($id)
     {
@@ -111,31 +91,38 @@ class Category extends CI_Controller
 
             $data = array(
                 'name' => $this->input->post('catagoryname')
-
             );
 
-            $this->Categorym->updateCategoryById($id, $data);
-            redirect('Admin/Category/allCategory');
+            $this->data['error'] = $this->Categorym->updateCategoryById($id, $data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','Category Updated Successfully');
+                redirect('Admin-Category');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Category');
+
+            }
 
         } else {
             redirect('login');
-
-
         }
     }
+
     public function deleteCategoryById()
     {
         if ($this->session->userdata('userType') == "Admin") {
-            $id = $this->input->post('id');
-            $del = $this->Categorym->deleteCategoryByIdm($id);
-            echo 1;
 
+            $id = $this->input->post('id');
+            $this->Categorym->deleteCategoryById($id);
 
         }
         else{
             redirect('Login');
         }
     }
-
 
 }
