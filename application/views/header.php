@@ -188,14 +188,14 @@
 	                        </li>
 	                        <li class="nav-item">
 	                            <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i> 
-	                            <span class="title">Catagor</span><span class="arrow"></span></a>
+	                            <span class="title">Catagory</span><span class="arrow"></span></a>
 	                            <ul class="sub-menu">
 <!--	                                <li class="nav-item  ">-->
 <!--	                                    <a href="--><?php //echo base_url()?><!--Admin/Home/category" class="nav-link "> <span class="title">Category</span>-->
 <!--	                                    </a>-->
 <!--	                                </li>-->
 	                                <li class="nav-item  ">
-	                                    <a href="<?php echo base_url()?>Admin/Home/view_category" class="nav-link "> <span class="title">Manage All Catgory</span>
+	                                    <a href="<?php echo base_url()?>Admin/Category/allCategory" class="nav-link "> <span class="title">Manage All Category</span>
 	                                    </a>
 	                                </li>
 	                            </ul>

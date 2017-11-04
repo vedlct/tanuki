@@ -4,7 +4,7 @@
 class Categorym extends CI_Model{
 
 
-      public function cateinsert($data)
+      public function insertCategorym($data)
 
       {
           $this->db->insert('catagory',$data);
@@ -14,7 +14,7 @@ class Categorym extends CI_Model{
 
 
 
-      public  function get_all_catagory()
+      public  function getAllCategorym()
 
       {
          $this->db->from('catagory');
@@ -22,7 +22,7 @@ class Categorym extends CI_Model{
          return $query->result();
       }
 
-    public function find_category($cat_id)
+    public function manageCatagorym($cat_id)
 
     {
          $this->db->from('catagory');
@@ -34,16 +34,16 @@ class Categorym extends CI_Model{
     }
 
 
-      public function update_cat($id, $data)
+      public function updateCategoryByIdm($id, $data)
           {
 
-              $this->db->where('id',$id);
-              $this->db->update('catagory',$data);
+              $this->db->where('id',$id)
+                       ->update('catagory',$data);
 
           }
 
 
-    public function delete_cat_by_id($id)
+    public function deleteCategoryByIdm($id)
     {
         $this->db->where('id',$id)
             ->delete('catagory');
