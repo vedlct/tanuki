@@ -86,10 +86,10 @@
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th class="center"> Sr.NO </th>
-                                        <th class="center"> Name </th>
-                                        <th class="center"> Category Add date(d-m-y)</th>
-                                        <th class="center"> Action </th>
+                                        <th width="10%"class="center"> Sr.NO </th>
+                                        <th width="50%"class="center"> Name </th>
+                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
+                                        <th width="10%"class="center"> Action </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -100,7 +100,7 @@
                                             <td><?php echo $i; ?></td>
                                             <td class="center"><?php echo $category->name; ?></td>
                                             <td class="center">
-                                                <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
+                                                <?php echo preg_replace("/ /"," Time :",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
                                             </td>
 
                                             <td class="center">
@@ -209,7 +209,7 @@
                 success: function (data) {
 
                     location.reload();
-                    //alert(data);
+                    
 
                 }
 
