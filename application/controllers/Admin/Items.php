@@ -42,7 +42,7 @@ class Items extends CI_Controller
 
             $textbox = $this->input->post('textbox[]');
             $textprice = $this->input->post('textprice[]');
-            $textstatus = $this->input->post('textstatus[]');
+            //$textstatus = $this->input->post('textstatus[]');
 
             $this->load->library('upload');
             $config = array(
@@ -58,44 +58,40 @@ class Items extends CI_Controller
             if ($this->upload->do_upload('itemPhoto')) {
                 // if something need after image upload
 
-                if(array_filter($textbox)==null && array_filter($textprice) ==null && array_filter($textstatus)==null) {
+                $itemdata = array(
+                    'fkCatagory' => $catId,
+                    'itemName' => $itemname,
+                    'image' => $itemImage,
+                    'description' => $itemDescription,
+                    'fkInsertBy' => $userid,
+                    'insertDate' => date('Y-m-d H:i:s'),
+                    'itemStatus' => $status,
+                );
+                $itemId= $this->Itemsm->insertItemdata($itemdata);
 
-                    $itemdata = array(
-                        'fkCatagory' => $catId,
-                        'itemName' => $itemname,
-                        'image' => $itemImage,
-                        'description' => $itemDescription,
-                        'fkInsertBy' => $userid,
-                        'insertDate' => date('Y-m-d H:i:s'),
-                        'itemStatus' => $status,
-                    );
+                if(array_filter($textbox)==null && array_filter($textprice) ==null) {
+
+
                     $itemSizedata = array(
+                        'fkItemId'=>$itemId,
                         'price' => $price,
 
                     );
 
-                    $this->data['error'] = $this->Itemsm->insertItem($itemdata,$itemSizedata);
+                    $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
 
                 }
                 else {
                     for ($i = 0; $i < count($textbox); $i++) {
 
-                        $itemdata = array(
-                            'fkCatagory' => $catId,
-                            'itemName' => $itemname,
-                            'image' => $itemImage,
-                            'description' => $itemDescription,
-                            'fkInsertBy' => $userid,
-                            'insertDate' => date('Y-m-d H:i:s'),
-                            'itemStatus' => $textstatus[$i],
-                        );
                         $itemSizedata = array(
+                            'fkItemId'=>$itemId,
                             'price' => $textprice[$i],
                             'itemSize'=>$textbox[$i],
 
                         );
 
-                        $this->data['error'] = $this->Itemsm->insertItem($itemdata,$itemSizedata);
+                        $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
 
                     }
                 }
@@ -103,12 +99,12 @@ class Items extends CI_Controller
                 if (empty($this->data['error'])) {
 
                     $this->session->set_flashdata('successMessage','Item Added Successfully');
-                    redirect('Admin-Category');
+                    redirect('Admin-addItems');
 
                 } else {
 
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
-                    redirect('Admin-Category');
+                    redirect('Admin-addItems');
 
                 }
 
@@ -118,7 +114,7 @@ class Items extends CI_Controller
                 $che = json_encode($error);
                 echo "<script>
                     alert($che.error);
-                    window.location.href= '" . base_url() . "Admin/Category/allCategory';
+                    window.location.href= '" . base_url() . "Admin/Items/addItems';
                     </script>";
                 return false;
             }
@@ -131,35 +127,36 @@ class Items extends CI_Controller
 
     }
 
-//    public function allItems()
-//    {
-//        if ($this->session->userdata('userType') == "Admin") {
-//
-//            $this->data['categoryNameId'] = $this->Categorym->getAllCategoryNameId();
-//            $this->load->view('Admin/allItems', $this->data);
-//
-//        }
-//        else
-//        {
-//            redirect('Login');
-//        }
-//
-//    }
+    public function allItems()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
 
-//    public function showItemsTable()
-//    {
-//        if ($this->session->userdata('userType') == "Admin") {
-//
-//            $id=$this->input->post('id');
-//
-//            $this->data['items'] = $this->Categorym->getAllItemsByCatId($id);
-//            $this->load->view('Admin/allItems', $this->data);
-//
-//        }
-//        else
-//        {
-//            redirect('Login');
-//        }
-//
-//    }
+            $this->data['categoryNameId'] = $this->Categorym->getAllCategoryNameId();
+            $this->load->view('Admin/allItems', $this->data);
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function showItemsTable()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id=$this->input->post('id');
+
+            $this->data['items'] = $this->Itemsm->getAllItemsByCatId($id);
+            $this->load->view('Admin/allItemsByCategory', $this->data);
+           // echo $this->data['items'];
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
 }

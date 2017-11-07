@@ -20,21 +20,6 @@
         <div class="page-content-wrapper">
             <div class="page-content">
 
-<!--                <div class="page-bar">-->
-<!--                    <div class="page-title-breadcrumb">-->
-<!--                        <div class=" pull-left">-->
-<!--                            <div class="page-title">Add Items</div>-->
-<!--                        </div>-->
-<!--                        <ol class="breadcrumb page-breadcrumb pull-right">-->
-<!--                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
-<!--                            </li>-->
-<!--                            <li><a class="parent-item" href="#">Item</a>&nbsp;<i class="fa fa-angle-right"></i>-->
-<!--                            </li>-->
-<!--                            <li class="active">Add Items</li>-->
-<!--                        </ol>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
                 <?php }
@@ -106,15 +91,6 @@
                                                 <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
                                                 </div>
-                                                <label class="control-label col-md-3">Status #1 : </label>
-                                                <div class="col-md-5">
-                                                    <select class="form-control input-height" name="textstatus[]">
-                                                        <option value="">Select...</option>
-                                                            <option value="1">Active</option>
-                                                            <option value="0">Inctive</option>
-
-                                                    </select>
-                                                </div>
                                             </div>
                                         </div>
                                         <div id="add_remove_button">
@@ -124,7 +100,7 @@
 
                                     </div>
 
-                                    <div id = "Item_priceand_Status" class="form-group">
+                                    <div id = "Item_price" class="form-group">
                                         <label class="control-label col-md-3"> Item Price<span class="required"> * </span></label>
                                         <div class="col-md-5">
                                             <input type="text" name="itemPrice" placeholder="Item Price"  class="form-control input-height" />
@@ -133,7 +109,7 @@
 
                                     </div>
 
-                                    <div id = "Item_priceand_Status" class="form-group">
+                                    <div id = "Item_Status" class="form-group">
                                     <label class="control-label col-md-3">Status: </label>
                                     <div class="col-md-5">
                                         <select class="form-control input-height"  name="itemStatus">
@@ -219,7 +195,8 @@
     function selectid2() {
 
         document.getElementById('showattr').style.display = "block";
-        document.getElementById('Item_priceand_Status').style.display = "none";
+        document.getElementById('Item_price').style.display = "none";
+//        document.getElementById('Item_Status').style.display = "none";
         document.getElementById('add_remove_button').style.display = "block";
         return false;
 
@@ -263,13 +240,7 @@
                     '" id="textbox' + counter + '" value="" >'+
                     '<label>Price #'+ counter + ' : </label>' +
                     '<input class="form-control" type="text" name="textprice[]' + counter +
-                    '" id="textprice' + counter + '" value="" >'+
-                    '<label>Status #'+ counter + ' : </label>' +
-                    '<select class="form-control input-height" required name="textstatus[]"' + counter +'>'+
-                    '<option value="">Select...</option>'+
-                    '<option value="1">Active</option>'+
-                    '<option value="0">Inctive</option>'+
-                    '</select>'
+                    '" id="textprice' + counter + '" value="" >'
 
                 );
 
@@ -282,7 +253,8 @@
 
                 if(counter==2){
                     alert(" textbox to remove");
-                    document.getElementById('Item_priceand_Status').style.display = "block";
+                    document.getElementById('Item_price').style.display = "block";
+//                    document.getElementById('Item_Status').style.display = "block";
                     document.getElementById('add_remove_button').style.display = "none";
                     document.getElementById('showattr').style.display = "none";
                     return false;
