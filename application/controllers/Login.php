@@ -46,7 +46,7 @@ class Login extends CI_Controller
 
 
             if ($this->session->userdata('userType') == "Admin"){
-                redirect('Admin-Home');
+                redirect('Admin/Home');
             }
             elseif ($this->session->userdata('userType') == "Customer")
             {
