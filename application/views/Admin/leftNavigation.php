@@ -23,7 +23,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <a href="all_doctors.php" class="nav-link "> <span class="title">All Customers</span>
+                            <a href="<?php echo base_url() ?>Admin/User/allUser" class="nav-link "> <span class="title">All Customers</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
