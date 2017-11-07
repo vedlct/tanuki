@@ -30,7 +30,6 @@ class Items extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-
             $catId=$this->input->post('categoryName');
             $itemname=$this->input->post('itemname');
             $itemDescription=$this->input->post('itemDescription');
@@ -113,8 +112,14 @@ class Items extends CI_Controller
 
                 }
 
-            } else {
 
+            } else {
+                $error = array('error' => $this->upload->display_errors());
+                $che = json_encode($error);
+                echo "<script>
+                    alert($che.error);
+                    window.location.href= '" . base_url() . "Admin/Category/allCategory';
+                    </script>";
                 return false;
             }
 
