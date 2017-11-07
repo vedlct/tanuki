@@ -58,3 +58,7 @@ $route['translate_uri_dashes'] = FALSE;
 $route['Admin-Home'] = 'Admin/Home/viewHome';
 $route['Admin-Category'] = 'Admin/Category/allCategory';
 $route['Admin-AddCategory'] = 'Admin/Category/addCategory';
+
+$route['Admin-Items'] = 'Admin/Items/allItems';
+$route['Admin-addItems'] = 'Admin/Items/addItems';
+$route['Admin-insertItem'] = 'Admin/Items/insertItem';

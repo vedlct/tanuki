@@ -9,6 +9,14 @@ class Categorym extends CI_Model
         return $query->result();
     }
 
+    public  function getAllCategoryNameId()
+    {
+        $this->db->select('id,name');
+        $this->db->from('catagory');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
 
     public function insertCategory($data)
     {

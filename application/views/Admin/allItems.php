@@ -14,7 +14,7 @@
     <!-- start page container -->
     <div class="page-container">
 
-    <?php include ('leftNavigation.php')?>
+        <?php include ('leftNavigation.php')?>
 
         <!-- start page content -->
         <div class="page-content-wrapper">
@@ -22,14 +22,15 @@
                 <div class="page-bar">
                     <div class="page-title-breadcrumb">
                         <div class=" pull-left">
-                            <div class="page-title">Category List</div>
+                            <div class="page-title">Item List</div>
+
                         </div>
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li><a class="parent-item" href="#">Category</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            <li><a class="parent-item" href="#">Item</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li class="active">Category List</li>
+                            <li class="active">Item List</li>
                         </ol>
                     </div>
                 </div>
@@ -45,14 +46,12 @@
                     <div class="col-md-12">
                         <div class="card card-topline-red">
                             <div class="card-head">
-                                <header>Category List</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+                                <header>Item List</header>
+
                             </div>
+
                             <div class="card-body ">
+
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group">
@@ -61,28 +60,27 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> Print </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Category<span class="required"> * </span></label>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-height" name="categoryName" required onchange="showtable()">
+                                                            <option value="">Select...</option>
+                                                            <?php foreach ($categoryNameId as $category) { ?>
+                                                                <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
+                                                                <?php } ?>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                <div id="tableid" style="display: none">
+
+                                </div>
+
+
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
@@ -116,7 +114,7 @@
                                             </td>
                                         </tr>
 
-                                    <?php $i++;} ?>
+                                        <?php $i++;} ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -235,4 +233,24 @@
     }
 
 
+</script>
+
+<script>
+    function showtable() {
+        var x = document.getElementById('categoryName').value;
+
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Items/showItemsTable")?>',
+            data:{id:x},
+            cache: false,
+            success:function(data)
+            {
+                $('#tableid').html(data);
+            }
+        });
+
+        document.getElementById("tableid").style.display ="block";
+    }
 </script>

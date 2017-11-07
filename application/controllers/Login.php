@@ -52,6 +52,7 @@ class Login extends CI_Controller
             {
                 redirect('Admin/Home/viewHome');
             }
+            //print_r($result);
 
         }
         else{
