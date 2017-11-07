@@ -24,9 +24,26 @@
 <!--                </li>-->
 
 
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                        <span class="title">Customer</span> <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <!--<a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>-->
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="add_doctor.php" class="nav-link "> <span class="title">Add Customer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="edit_doctor.php" class="nav-link "> <span class="title">Edit Customer</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
-
-                
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
                         <span class="title">Items</span> <span class="arrow"></span>
@@ -46,6 +63,7 @@
                         </li>
                     </ul>
                 </li>
+
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
                         <span class="title">Chefs</span> <span class="arrow"></span>

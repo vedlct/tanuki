@@ -19,20 +19,21 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <div class="page-bar">
-                    <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">Add Items</div>
-                        </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li><a class="parent-item" href="#">Item</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">Add Items</li>
-                        </ol>
-                    </div>
-                </div>
+
+<!--                <div class="page-bar">-->
+<!--                    <div class="page-title-breadcrumb">-->
+<!--                        <div class=" pull-left">-->
+<!--                            <div class="page-title">Add Items</div>-->
+<!--                        </div>-->
+<!--                        <ol class="breadcrumb page-breadcrumb pull-right">-->
+<!--                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--                            </li>-->
+<!--                            <li><a class="parent-item" href="#">Item</a>&nbsp;<i class="fa fa-angle-right"></i>-->
+<!--                            </li>-->
+<!--                            <li class="active">Add Items</li>-->
+<!--                        </ol>-->
+<!--                    </div>-->
+<!--                </div>-->
 
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
@@ -46,11 +47,7 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>New Item</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+
                             </div>
                             <div class="card-body ">
 
@@ -58,30 +55,33 @@
 
 
                                         <div class="form-group">
-                                            <label class="control-label col-md-2">Category
-                                                <span class="required"> * </span>
-                                            </label>
-                                            <div class="col-md-4">
-                                                <select class="form-control input-height" required name="categoryName">
-                                                    <option value="">Select...</option>
-                                                    <?php foreach ($categoryNameId as $category) { ?>
-                                                        <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
-                                                    <?php } ?>
-                                                </select>
-                                            </div>
-
-
-                                            <label class="control-label col-md-2"> Item Name<span class="required"> * </span></label>
-                                            <div class="col-md-4">
-                                                <input type="text" name="itemname" placeholder="Item name" required class="form-control input-height" />
-                                            </div>
-                                        </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-2">Item Description
+                                        <label class="control-label col-md-3">Category
                                             <span class="required"> * </span>
                                         </label>
-                                        <div class="col-md-10">
+                                        <div class="col-md-5">
+                                            <select class="form-control input-height" required name="categoryName">
+                                                <option value="">Select...</option>
+                                                <?php foreach ($categoryNameId as $category) { ?>
+                                                    <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+
+                                        <label class="control-label col-md-3"> Item Name<span class="required"> * </span></label>
+                                        <div class="col-md-5">
+                                            <input type="text" name="itemname" placeholder="Item name" required class="form-control input-height" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Item Description
+                                            <span class="required"> * </span>
+                                        </label>
+                                        <div class="col-md-5">
                                             <textarea name="itemDescription"  class="form-control-textarea" required placeholder=" address" rows="5" ></textarea>
                                         </div>
 
@@ -90,7 +90,7 @@
                                     <div class="form-group">
 
                                         <label class="control-label col-md-3">If you want to add any Size click </label>
-                                        <div class="col-md-8">
+                                        <div class="col-md-5">
                                         <input class="btn btn-success" type="button" name = 'add' value='Add' onclick="selectid2()">
                                         </div>
                                     </div>
@@ -98,19 +98,18 @@
                                     <div id="showattr" style="display: none">
                                         <div id='TextBoxesGroup'>
                                             <div id="TextBoxDiv1" class="form-group">
-                                                <label class="control-label col-md-2">Size/Extra #1 : </label>
-                                                <div class="col-md-4">
+                                                <label class="control-label col-md-3">Size/Extra #1 : </label>
+                                                <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textbox1' name="textbox[]" >
                                                 </div>
-                                                <label class="control-label col-md-2">Price #1 : </label>
-                                                <div class="col-md-4">
+                                                <label class="control-label col-md-3">Price #1 : </label>
+                                                <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
                                                 </div>
-                                                <label class="control-label col-md-2">Status #1 : </label>
-                                                <div class="col-md-4">
+                                                <label class="control-label col-md-3">Status #1 : </label>
+                                                <div class="col-md-5">
                                                     <select class="form-control input-height" name="textstatus[]">
                                                         <option value="">Select...</option>
-
                                                             <option value="1">Active</option>
                                                             <option value="0">Inctive</option>
 
@@ -126,22 +125,24 @@
                                     </div>
 
                                     <div id = "Item_priceand_Status" class="form-group">
-                                        <label class="control-label col-md-2"> Item Price<span class="required"> * </span></label>
-                                        <div class="col-md-4">
+                                        <label class="control-label col-md-3"> Item Price<span class="required"> * </span></label>
+                                        <div class="col-md-5">
                                             <input type="text" name="itemPrice" placeholder="Item Price"  class="form-control input-height" />
                                         </div>
 
-                                        <label class="control-label col-md-2">Status: </label>
-                                        <div class="col-md-4">
-                                            <select class="form-control input-height"  name="itemStatus">
-                                                <option value="">Select...</option>
 
-                                                <option value="1">Active</option>
-                                                <option value="0">Inctive</option>
+                                    </div>
 
-                                            </select>
-                                        </div>
+                                    <div id = "Item_priceand_Status" class="form-group">
+                                    <label class="control-label col-md-3">Status: </label>
+                                    <div class="col-md-5">
+                                        <select class="form-control input-height"  name="itemStatus">
+                                            <option value="">Select...</option>
+                                            <option value="1">Active</option>
+                                            <option value="0">Inctive</option>
 
+                                        </select>
+                                    </div>
                                     </div>
 
 
@@ -149,9 +150,9 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-2">Upload Photo<span class="required"> * </span>
+                                        <label class="control-label col-md-3">Upload Photo<span class="required"> * </span>
                                         </label>
-                                        <div class="col-md-10">
+                                        <div class="col-md-5">
                                             <input type="file" name="itemPhoto" placeholder="Item Image" required class="form-control input-height" />
                                         </div>
                                     </div>
