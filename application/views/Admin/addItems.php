@@ -67,7 +67,7 @@
                                             <span class="required"> * </span>
                                         </label>
                                         <div class="col-md-5">
-                                            <textarea name="itemDescription"  class="form-control-textarea" required placeholder=" address" rows="5" ></textarea>
+                                            <textarea name="itemDescription"  class="form-control-textarea" required rows="5" ></textarea>
                                         </div>
 
                                     </div>
@@ -82,20 +82,24 @@
 
                                     <div id="showattr" style="display: none">
                                         <div id='TextBoxesGroup'>
-                                            <div id="TextBoxDiv1" class="form-group">
+                                            <div id="TextBoxDiv1" >
+                                               <div class="form-group">
                                                 <label class="control-label col-md-3">Size/Extra #1 : </label>
                                                 <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textbox1' name="textbox[]" >
                                                 </div>
+                                               </div>
+                                                <div class="form-group">
                                                 <label class="control-label col-md-3">Price #1 : </label>
                                                 <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
                                                 </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div id="add_remove_button">
-                                            <input type='button' value='Add Button' id='addButton'>
-                                            <input type='button' value='Remove Button' id='removeButton'>
+                                        <div id="add_remove_button" class="form-group" style="margin-left: 230px">
+                                            <input class="btn btn-success" type='button' value='Add More' id='addButton'>
+                                            <input class="btn btn-danger" type='button' value='Remove' id='removeButton'>
                                         </div>
 
                                     </div>
@@ -234,15 +238,31 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
+//
+//                newTextBoxDiv.after().html('<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>' +
+//                    '<input class="form-control input-height" type="text" name="textbox[]' + counter +
+//                    '" id="textbox' + counter + '" value="" >'+
+//                    '<label>Price #'+ counter + ' : </label>' +
+//                    '<input class="form-control input-height" type="text" name="textprice[]' + counter +
+//                    '" id="textprice' + counter + '" value="" >'
+//
+//                );
 
-                newTextBoxDiv.after().html('<label class="control-label col-md-2">Size/Extra #'+ counter + ' : </label>' +
-                    '<input class="form-control" type="text" name="textbox[]' + counter +
-                    '" id="textbox' + counter + '" value="" >'+
-                    '<label>Price #'+ counter + ' : </label>' +
-                    '<input class="form-control" type="text" name="textprice[]' + counter +
-                    '" id="textprice' + counter + '" value="" >'
-
+                newTextBoxDiv.after().html('<div class="form-group">'+
+                    '<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>'+
+                '<div class="col-md-5">'+
+                    '<input class="form-control input-height" type="textbox" id="textbox1" name="textbox[]" >'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="form-group">'+
+                    '<label class="control-label col-md-3">Price #'+ counter + ' : </label>'+
+                '<div class="col-md-5">'+
+                    '<input class="form-control input-height" type="textbox" id="textimage1" name="textprice[]">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'
                 );
+
 
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
