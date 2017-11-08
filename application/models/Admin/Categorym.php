@@ -4,10 +4,10 @@
 class Categorym extends CI_Model
 {
     public  function getAllCategory()
-    {
-        $query=$this->db->get('catagory');
-        return $query->result();
-    }
+{
+    $query=$this->db->get('catagory');
+    return $query->result();
+}
 
     public  function getAllCategoryNameId()
     {
