@@ -4,6 +4,7 @@
 <head>
     <?php include("head.php"); ?>
 </head>
+
 <body class="page-header-fixed sidemenu-closed-hidelogo page-container-bg-solid page-content-white page-md">
 
 <div class="page-wrapper">
@@ -34,23 +35,7 @@
                             </div>
                             <div class="card-body ">
 
-                                <form action="<?php echo base_url()?>Admin-insertItem"  method="post" id="form_sample_1" enctype="multipart/form-data" class="form-horizontal">
-
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3">Category
-                                            <span class="required"> * </span>
-                                        </label>
-                                        <div class="col-md-5">
-                                            <select class="form-control input-height" required name="categoryName">
-                                                <option value="">Select...</option>
-                                                <?php foreach ($categoryNameId as $category) { ?>
-                                                    <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
-                                                <?php } ?>
-                                            </select>
-                                        </div>
-
-                                    </div>
+                                <form action="<?php echo base_url()?>Admin/Promotions/insertPromotions"  method="post" id="form_sample_1" enctype="multipart/form-data" class="form-horizontal">
 
                                     <div class="form-group">
 
@@ -67,10 +52,29 @@
                                             <input type="text" name="promocode" placeholder="Promo Code" required class="form-control input-height" />
                                         </div>
                                     </div>
+                                    <div class="form-group">
+
+                                        <label class="control-label col-md-3"> Start Date<span class="required"> * </span></label>
+                                        <div class="col-md-5">
+                                            <input type="text" name="promocode" placeholder="Promo Code" required class="form-control input-height" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <label class="control-label col-md-3"> End Date<span class="required"> * </span></label>
+                                        <div class="col-md-5">
+                                            <div class='input-group date datetimepicker' id='datetimepicker1'>
+                                                <input type='text' id="endDate" name="endDate" value="<?php echo set_value('endDate'); ?>" class="form-control" required/>
+                                                <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div id = "Item_Status" class="form-group">
                                         <label class="control-label col-md-3">Promotions Type: </label>
                                         <div class="col-md-5">
-                                            <select class="form-control input-height"  id="promotype" name="itemStatus" onchange="selectid2()">
+                                            <select class="form-control input-height"  id="promotype" name="promotype" onchange="selectid2()">
                                                 <option value="">Select...</option>
                                                 <option value="1">All Item</option>
                                                 <option value="0">Selected Item</option>
@@ -92,16 +96,18 @@
                                         <div id='TextBoxesGroup'>
                                             <div id="TextBoxDiv1" >
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3">Size/Extra #1 : </label>
+                                                    <label class="control-label col-md-3">Item #1:
+                                                        <span class="required"> * </span>
+                                                    </label>
                                                     <div class="col-md-5">
-                                                        <input class="form-control input-height" type='textbox' id='textbox1' name="textbox[]" >
+                                                        <select class="form-control input-height" id="itemlist" required name="itemlist">
+                                                            <option value="">Select...</option>
+                                                            <?php foreach ($allItem as $item) { ?>
+                                                                <option value="<?php echo $item->id?>"><?php echo $item->itemName?></option>
+                                                            <?php } ?>
+                                                        </select>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">Price #1 : </label>
-                                                    <div class="col-md-5">
-                                                        <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
-                                                    </div>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -113,9 +119,9 @@
                                     </div>
 
                                     <div id = "Item_price" class="form-group">
-                                        <label class="control-label col-md-3"> Item Price<span class="required"> * </span></label>
+                                        <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <input type="text" name="itemPrice" placeholder="Item Price"  class="form-control input-height" />
+                                            <input type="text" name="itemPrice" placeholder="Discount(%)"  class="form-control input-height" />
                                         </div>
 
 
@@ -216,40 +222,27 @@
     }
 </script>
 
+<script type="text/javascript" src="<?php echo base_url()?>public/js/datepicker.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function(){
         var counter = 2;
         $("#addButton").click(function () {
-            if(counter>10){
-                alert("Only 10 textboxes allow");
+            if(counter>100){
+                alert("Only 100 textboxes allow");
                 return false;
             }
             var newTextBoxDiv = $(document.createElement('div'))
                 .attr("id", 'TextBoxDiv' + counter);
-//
-//                newTextBoxDiv.after().html('<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>' +
-//                    '<input class="form-control input-height" type="text" name="textbox[]' + counter +
-//                    '" id="textbox' + counter + '" value="" >'+
-//                    '<label>Price #'+ counter + ' : </label>' +
-//                    '<input class="form-control input-height" type="text" name="textprice[]' + counter +
-//                    '" id="textprice' + counter + '" value="" >'
-//
-//                );
-            newTextBoxDiv.after().html('<div class="form-group">'+
-                '<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>'+
-                '<div class="col-md-5">'+
-                '<input class="form-control input-height" type="textbox" id="textbox1" name="textbox[]" >'+
-                '</div>'+
-                '</div>'+
-                '<div class="form-group">'+
-                '<label class="control-label col-md-3">Price #'+ counter + ' : </label>'+
-                '<div class="col-md-5">'+
-                '<input class="form-control input-height" type="textbox" id="textimage1" name="textprice[]">'+
-                '</div>'+
-                '</div>'+
-                '</div>'
+
+            newTextBoxDiv.after().html('<div class="form-group">'+'<label class="control-label col-md-3">Item #'+ counter + ' : </label>' +
+                '<div class="control-label col-md-5">'+'<select class="form-control input-height"  name="itemlist[] '+ counter +
+                '" id="itemlist' + counter +'" data-panel-id="'+ counter+'" value="" required>'+'<option selected value="" >'+'<?php echo "select" ?>'+'</option>'+
+                '<?php foreach($allItem as $it){ ?>'+'<option value="<?php echo $it->itemName ?>" ><?php echo $it->itemName ?>'+'</option>'+'<?php }?>'+
+                '</select>'+'</div>'+'</div>'
             );
+
+
             newTextBoxDiv.appendTo("#TextBoxesGroup");
             counter++;
         });
@@ -266,4 +259,7 @@
             $("#TextBoxDiv" + counter).remove();
         });
     });
+
+
 </script>
+
