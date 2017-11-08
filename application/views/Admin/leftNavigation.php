@@ -77,22 +77,19 @@
                 </li>
 
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
-                        <span class="title">Chefs</span> <span class="arrow"></span>
+                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-gift"></i>
+                        <span class="title">Promotions</span> <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">All Chefs</span>
+                            <a href="<?php echo base_url()?>Admin/Promotions/addPromotions" class="nav-link "> <span class="title">Add Promotion</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">Add Chef</span>
+                            <a href="#" class="nav-link "> <span class="title">All Promotion</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">Edit Chef</span>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </li>
