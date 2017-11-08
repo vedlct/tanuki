@@ -72,6 +72,7 @@ class Category extends CI_Controller {
         }
     }
 
+
     public function getCategoryById()
     {
         if ($this->session->userdata('userType') == "Admin") {

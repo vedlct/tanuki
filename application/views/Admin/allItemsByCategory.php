@@ -1,14 +1,14 @@
 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
     <thead>
     <tr >
-        <th width="10%"class="center"> Sr.NO </th>
-        <th width="50%"class="center"> Item Image </th>
-        <th width="50%"class="center"> Item Name </th>
-        <th width="50%"class="center"> Item Size & Price </th>
+        <th width=""class="center"> Sr.NO </th>
+        <th width=""class="center"> Item Image </th>
+        <th width=""class="center"> Item Name </th>
+        <th width=""class="center"> Item Size & Price </th>
 
 
-        <th width="30%"class="center"> Status</th>
-        <th width="10%"class="center"> Action </th>
+        <th width=""class="center"> Status</th>
+        <th width=""class="center"> Action </th>
     </tr>
     </thead>
     <tbody>
@@ -20,7 +20,7 @@
             <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>"></td>
             <td class="center"><?php echo $items->itemName; ?></td>
             <td class="center">
-                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                 <?php
 
                 //echo $s->type_id;
@@ -29,10 +29,22 @@
                 <tr>
                     <td><?php echo $res->itemSize?></td>
                     <td><?php echo $res->price?></td>
+                    <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $items->id ?>" onclick="selectid2(this)">
+
+                            <i class="fa fa-edit"></i>
+                        </button>
+
+                        <button type="button" data-panel-id="<?php echo $items->id ?>" onclick="selectid3(this)"class="btn btn-danger btn-xs">
+
+                            <i class="fa fa-trash "></i>
+                        </button></td>
+
+
                 </tr>
                 <?php }?>
-                </table>
 
+                </table>
+                <button style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
             </td>
 
             <td class="center">
