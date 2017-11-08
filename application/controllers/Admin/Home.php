@@ -12,7 +12,6 @@ class Home extends CI_Controller {
     {
 
     }
-
     public function viewHome()
     {
         $this->load->view('Admin/home');

@@ -45,6 +45,16 @@
                                                                     Add  New  User<i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
+                                                            <div class="btn-group">
+                                                                <button id="addRow" onclick="" class="btn btn-success">
+                                                                    Customer<i class="fa fa-cubes"></i>
+                                                                </button>
+                                                            </div>
+                                                            <div class="btn-group">
+                                                                <button id="addRow" onclick="" class="btn btn-warning">
+                                                                    Admintration<i class="fa fa-anchor"></i>
+                                                                </button>
+                                                            </div>
                                                         </div>
                                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                                             <div class="btn-group pull-right">
