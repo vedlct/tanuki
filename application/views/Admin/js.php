@@ -21,5 +21,4 @@
 <script src="<?php echo base_url()?>public/js/form-wizard.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>public/js/layout.js" type="text/javascript"></script>
 
-
 <!-- end js include path -->

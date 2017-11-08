@@ -41,13 +41,12 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-
-                                                    <select required name="city">
+                                                    <select class="form-control input-height" required name="city">
                                                         <option value="">select the  City</option>
                                                         <?php foreach ($city as $city) { ?>
-                                                        <option value="<?php echo $city->id ?>"><?php echo $city->name ?></option>
+                                                            <option value="<?php echo $city->id ?>"><?php echo $city->name ?></option>
 
-                                           <?php } ?>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
@@ -56,7 +55,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" required class="form-control input-height" placeholder="enter MemberCardNumber" name="membercardnumber" />
+                                                    <input type="text" required class="form-control input-height" placeholder="Enter MemberCardNumber" name="membercardnumber" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -64,7 +63,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" required class="form-control input-height" placeholder="enter ContactNo" name="contactno" />
+                                                    <input type="text" required class="form-control input-height" placeholder="Enter ContactNo" name="contactno" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -72,7 +71,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="email" required class="form-control input-height" placeholder="enter Email" name="email" />
+                                                    <input type="email" required class="form-control input-height" placeholder="Enter Email" name="email" />
 
                                                 </div>
                                             </div>
@@ -81,7 +80,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="password" required class="form-control input-height" placeholder="enter Password" name="password" />
+                                                    <input type="password" required class="form-control input-height" placeholder="Enter Password" name="password" />
                                                 </div>
                                             </div>
 

@@ -6,7 +6,11 @@ class Userm extends CI_Model
 
     public function getUser()
     {
-        $query = $this->db->get('users');
+        $this->db->select('u.id,u.name,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email,u.password,u.userActivationStatus,u.fkUserType, c.name as fkcity');
+        $this->db->from('users u');
+        $this->db->join('city c','c.id = u.fkCity', 'left');
+        $this->db->order_by('u.id','desc');
+        $query = $this->db->get();
         return $query->result();
     }
 
@@ -21,11 +25,7 @@ class Userm extends CI_Model
     public function user($data)
     {
         $this->security->xss_clean($data);
-        $this->db->from('users' );
-        //$this->db->select('u.id as id','u.fkCity as city');
-
         $error = $this->db->insert('users', $data);
-
         if (empty($error)) {
             return $this->db->error();
         } else {
@@ -36,13 +36,13 @@ class Userm extends CI_Model
 
     public function getuserById($userid)
     {
-        $this->db->from('users u');
-        $this->db->where('u.id',$userid)->select(['u.id as id','u.name as  name','u.address  as address','u.postalCode as postalCode','u.fkCity as fkCity','u.memberCardNo as memberCardNo','u.contactNo as contactNo ','u.email as email ','u.password as password ','userActivationStatus']);
-
+        $this->db->from('users ');
+        $this->db->where('id',$userid)->select(['id','name','address',' postalCode',' fkCity','memberCardNo',' contactNo ','email ','password ','userActivationStatus']);
         $query = $this->db->get();
         return $query->result();
     }
-//
+
+
 public function updateUserById($id, $data)
 {
 
@@ -61,10 +61,9 @@ public function updateUserById($id, $data)
 
     public function deleteUserById($id)
     {
-        $this->db->where('id',$id)->delete('Users');
+        $this->db->where('id',$id)->delete('users');
 
     }
-
 
 
 

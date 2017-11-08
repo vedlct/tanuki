@@ -10,20 +10,14 @@ class User extends CI_Controller {
 
 
 
-//  public  function index()
-//  {
-//
-//
-//
-// }
-
-
+//showing  All city for showing  the city in insert  form and update form
     public function allUser()
     {
         if ($this->session->userdata('userType') == "Admin") {
 
             $data['user'] = $this->Userm->getUser();
-            $this->load->view('Admin/User', $data);
+            //print_r($data);
+            $this->load->view('Admin/allUser', $data);
         }
         else
         {
@@ -32,6 +26,7 @@ class User extends CI_Controller {
 
     }
 
+    //User Adding View form
     public  function newUser()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -42,8 +37,10 @@ class User extends CI_Controller {
         {
             redirect('Login');
         }
-    }
 
+
+    }
+//Inserting User  from value into database
     public function insertUser()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -70,9 +67,18 @@ class User extends CI_Controller {
                 'fkUserType' => $userId
             );
 
-            $this->Userm->user($data);
+            $this->data['error'] = $this->Userm->user($data);
 
-            redirect('Admin/User/allUser');
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','User Added Successfully');
+                redirect('Admin/user/allUser');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin/user/allUser');
+            }
         }
 
         else
@@ -83,21 +89,20 @@ class User extends CI_Controller {
     }
 
 
-
+//Calling particular User detail in view form
     public function getUserById()
     {
         if ($this->session->userdata('userType') == "Admin") {
             $userid = $this->input->post('id');
             $data['city']=$this->Userm->getAllCity();
             $data['userInfo'] = $this->Userm->getuserById($userid);
-            //print_r($data['userInfo']);
             $this->load->view("Admin/updateUser",$data);
         } else {
             redirect('Login');
         }
     }
 
-
+//Updating Particular User Detail
     public function updateUserById($id)
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -123,12 +128,7 @@ class User extends CI_Controller {
 
 
             );
-
-           // print_r($data ,$id );
-
             $data['error']= $this->Userm->updateUserById($id, $data);
-
-           // print_r($data);
 
             if (empty($this->data['error'])) {
 
@@ -139,31 +139,27 @@ class User extends CI_Controller {
 
                 $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
                 redirect('Admin/User/allUser');
-
             }
-
         } else {
             redirect('login');
         }
 
-
     }
 
+//Deleting Particular User id
+      public function deleteUseryById()
+   {
 
-    public function deleteUseryById()
-{
 
+            if ($this->session->userdata('userType') == "Admin") {
 
-    if ($this->session->userdata('userType') == "Admin") {
-
-        $id = $this->input->post('id');
-        $this->Userm->deleteUserById($id);
-
-    }
-    else{
-        redirect('Login');
-    }
-}
+            $id = $this->input->post('id');
+             $this->Userm->deleteUserById($id);
+         }
+         else{
+           redirect('Login');
+           }
+  }
 
 
 

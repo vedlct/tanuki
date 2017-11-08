@@ -39,21 +39,22 @@
                                                     <input type="text" n class="form-control input-height" value="<?php echo $u->postalCode; ?>" name="postcode" />
                                                 </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label class="control-label col-md-3">City
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <select name="city">
-
+                                                    <select class="form-control input-height" required name="city">
                                                         <?php foreach ($city as $cityinfo ) { ?>
-                                                        <option value="<?php echo $cityinfo->id ?>"<?php if (!empty($u->fkCity) && $cityinfo->id==$u->fkCity) echo 'selected="selected"'?> ><?php echo $cityinfo->name ?></option>
+                                                            <option value="<?php echo $cityinfo->id ?>"<?php if (!empty($u->fkCity) && $cityinfo->id==$u->fkCity) echo 'selected="selected"'?> ><?php echo $cityinfo->name ?></option>
 
 
-                                                    <?php } ?>
+                                                        <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
+
 
 
                                             <div class="form-group">

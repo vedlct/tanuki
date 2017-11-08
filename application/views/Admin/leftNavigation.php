@@ -17,15 +17,25 @@
                         <span class="title">Category</span>
                     </a>
                 </li>
+
+                
+                <li class="nav-item">
+                    <a href="<?php echo base_url() ?>Admin/User/allUser" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                        <span class="title">Users</span> <span class="arrow"></span>
+                    </a>
+                </li>
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
-                        <span class="title">Customers</span> <span class="arrow"></span>
+                        <span class="title">Items</span> <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <a href="<?php echo base_url() ?>Admin/User/allUser" class="nav-link "> <span class="title">All Customers</span>
-                            </a>
+
+                                <a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>
+
+                                </a>
                         </li>
+
                         <li class="nav-item  ">
                             <a href="add_doctor.php" class="nav-link "> <span class="title">Add Customer</span>
                             </a>
