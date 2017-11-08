@@ -54,7 +54,7 @@
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="add_doctor.php" class="nav-link "> <span class="title">Add Customer</span>
+                            <a href="<?php echo base_url()?>Admin-Items" class="nav-link "> <span class="title">All Items</span>
                             </a>
                         </li>
                         <li class="nav-item  ">

@@ -20,21 +20,6 @@
         <div class="page-content-wrapper">
             <div class="page-content">
 
-<!--                <div class="page-bar">-->
-<!--                    <div class="page-title-breadcrumb">-->
-<!--                        <div class=" pull-left">-->
-<!--                            <div class="page-title">Add Items</div>-->
-<!--                        </div>-->
-<!--                        <ol class="breadcrumb page-breadcrumb pull-right">-->
-<!--                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>-->
-<!--                            </li>-->
-<!--                            <li><a class="parent-item" href="#">Item</a>&nbsp;<i class="fa fa-angle-right"></i>-->
-<!--                            </li>-->
-<!--                            <li class="active">Add Items</li>-->
-<!--                        </ol>-->
-<!--                    </div>-->
-<!--                </div>-->
-
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
                 <?php }
@@ -82,7 +67,7 @@
                                             <span class="required"> * </span>
                                         </label>
                                         <div class="col-md-5">
-                                            <textarea name="itemDescription"  class="form-control-textarea" required placeholder=" address" rows="5" ></textarea>
+                                            <textarea name="itemDescription"  class="form-control-textarea" required rows="5" ></textarea>
                                         </div>
 
                                     </div>
@@ -97,34 +82,29 @@
 
                                     <div id="showattr" style="display: none">
                                         <div id='TextBoxesGroup'>
-                                            <div id="TextBoxDiv1" class="form-group">
+                                            <div id="TextBoxDiv1" >
+                                               <div class="form-group">
                                                 <label class="control-label col-md-3">Size/Extra #1 : </label>
                                                 <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textbox1' name="textbox[]" >
                                                 </div>
+                                               </div>
+                                                <div class="form-group">
                                                 <label class="control-label col-md-3">Price #1 : </label>
                                                 <div class="col-md-5">
                                                 <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
                                                 </div>
-                                                <label class="control-label col-md-3">Status #1 : </label>
-                                                <div class="col-md-5">
-                                                    <select class="form-control input-height" name="textstatus[]">
-                                                        <option value="">Select...</option>
-                                                            <option value="1">Active</option>
-                                                            <option value="0">Inctive</option>
-
-                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="add_remove_button">
-                                            <input type='button' value='Add Button' id='addButton'>
-                                            <input type='button' value='Remove Button' id='removeButton'>
+                                        <div id="add_remove_button" class="form-group" style="margin-left: 230px">
+                                            <input class="btn btn-success" type='button' value='Add More' id='addButton'>
+                                            <input class="btn btn-danger" type='button' value='Remove' id='removeButton'>
                                         </div>
 
                                     </div>
 
-                                    <div id = "Item_priceand_Status" class="form-group">
+                                    <div id = "Item_price" class="form-group">
                                         <label class="control-label col-md-3"> Item Price<span class="required"> * </span></label>
                                         <div class="col-md-5">
                                             <input type="text" name="itemPrice" placeholder="Item Price"  class="form-control input-height" />
@@ -133,7 +113,7 @@
 
                                     </div>
 
-                                    <div id = "Item_priceand_Status" class="form-group">
+                                    <div id = "Item_Status" class="form-group">
                                     <label class="control-label col-md-3">Status: </label>
                                     <div class="col-md-5">
                                         <select class="form-control input-height"  name="itemStatus">
@@ -219,7 +199,8 @@
     function selectid2() {
 
         document.getElementById('showattr').style.display = "block";
-        document.getElementById('Item_priceand_Status').style.display = "none";
+        document.getElementById('Item_price').style.display = "none";
+//        document.getElementById('Item_Status').style.display = "none";
         document.getElementById('add_remove_button').style.display = "block";
         return false;
 
@@ -257,21 +238,31 @@
                 var newTextBoxDiv = $(document.createElement('div'))
                     .attr("id", 'TextBoxDiv' + counter);
 
+//
+//                newTextBoxDiv.after().html('<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>' +
+//                    '<input class="form-control input-height" type="text" name="textbox[]' + counter +
+//                    '" id="textbox' + counter + '" value="" >'+
+//                    '<label>Price #'+ counter + ' : </label>' +
+//                    '<input class="form-control input-height" type="text" name="textprice[]' + counter +
+//                    '" id="textprice' + counter + '" value="" >'
+//
+//                );
 
-                newTextBoxDiv.after().html('<label class="control-label col-md-2">Size/Extra #'+ counter + ' : </label>' +
-                    '<input class="form-control" type="text" name="textbox[]' + counter +
-                    '" id="textbox' + counter + '" value="" >'+
-                    '<label>Price #'+ counter + ' : </label>' +
-                    '<input class="form-control" type="text" name="textprice[]' + counter +
-                    '" id="textprice' + counter + '" value="" >'+
-                    '<label>Status #'+ counter + ' : </label>' +
-                    '<select class="form-control input-height" required name="textstatus[]"' + counter +'>'+
-                    '<option value="">Select...</option>'+
-                    '<option value="1">Active</option>'+
-                    '<option value="0">Inctive</option>'+
-                    '</select>'
-
+                newTextBoxDiv.after().html('<div class="form-group">'+
+                    '<label class="control-label col-md-3">Size/Extra #'+ counter + ' : </label>'+
+                '<div class="col-md-5">'+
+                    '<input class="form-control input-height" type="textbox" id="textbox1" name="textbox[]" >'+
+                    '</div>'+
+                    '</div>'+
+                    '<div class="form-group">'+
+                    '<label class="control-label col-md-3">Price #'+ counter + ' : </label>'+
+                '<div class="col-md-5">'+
+                    '<input class="form-control input-height" type="textbox" id="textimage1" name="textprice[]">'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'
                 );
+
 
                 newTextBoxDiv.appendTo("#TextBoxesGroup");
 
@@ -282,7 +273,8 @@
 
                 if(counter==2){
                     alert(" textbox to remove");
-                    document.getElementById('Item_priceand_Status').style.display = "block";
+                    document.getElementById('Item_price').style.display = "block";
+//                    document.getElementById('Item_Status').style.display = "block";
                     document.getElementById('add_remove_button').style.display = "none";
                     document.getElementById('showattr').style.display = "none";
                     return false;
