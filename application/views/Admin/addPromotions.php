@@ -56,19 +56,26 @@
 
                                         <label class="control-label col-md-3"> Start Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <input type="text" name="promocode" placeholder="Promo Code" required class="form-control input-height" />
+                                            <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <input class="form-control input-height" name="startdate" value="" placeholder="Start Date" size="16" type="text" >
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                            </div>
+                                            <input type="hidden" id="dtp_input5" name="startdate" value="" />
                                         </div>
                                     </div>
                                     <div class="form-group">
 
                                         <label class="control-label col-md-3"> End Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <div class='input-group date datetimepicker' id='datetimepicker1'>
-                                                <input type='text' id="endDate" name="endDate" value="<?php echo set_value('endDate'); ?>" class="form-control" required/>
-                                                <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
+
+                                                <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                    <input class="form-control input-height" name="enddate" value="" placeholder="End Date" size="16" type="text" >
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
+                                                <input type="hidden" id="dtp_input5" name="enddate" value="" />
+
                                         </div>
                                     </div>
                                     <div id = "Item_Status" class="form-group">
@@ -100,7 +107,7 @@
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-5">
-                                                        <select class="form-control input-height" id="itemlist" required name="itemlist">
+                                                        <select class="form-control input-height" id="itemlist"  name="itemlist[]">
                                                             <option value="">Select...</option>
                                                             <?php foreach ($allItem as $item) { ?>
                                                                 <option value="<?php echo $item->id?>"><?php echo $item->itemName?></option>
@@ -109,7 +116,15 @@
                                                     </div>
 
                                                 </div>
+                                                <div id = "discount" class="form-group">
+                                                    <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
+                                                    <div class="col-md-5">
+                                                        <input type="text" name="itemDiscount[]" placeholder="Discount(%)"  class="form-control input-height" />
+                                                    </div>
+
+                                                </div>
                                             </div>
+
                                         </div>
                                         <div id="add_remove_button" class="form-group" style="margin-left: 230px">
                                             <input class="btn btn-success" type='button' value='Add More' id='addButton'>
@@ -121,9 +136,8 @@
                                     <div id = "Item_price" class="form-group">
                                         <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <input type="text" name="itemPrice" placeholder="Discount(%)"  class="form-control input-height" />
+                                            <input type="text" name="discount" placeholder="Discount(%)"  class="form-control input-height" />
                                         </div>
-
 
                                     </div>
 
@@ -222,7 +236,7 @@
     }
 </script>
 
-<script type="text/javascript" src="<?php echo base_url()?>public/js/datepicker.min.js"></script>
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -239,7 +253,14 @@
                 '<div class="control-label col-md-5">'+'<select class="form-control input-height"  name="itemlist[] '+ counter +
                 '" id="itemlist' + counter +'" data-panel-id="'+ counter+'" value="" required>'+'<option selected value="" >'+'<?php echo "select" ?>'+'</option>'+
                 '<?php foreach($allItem as $it){ ?>'+'<option value="<?php echo $it->itemName ?>" ><?php echo $it->itemName ?>'+'</option>'+'<?php }?>'+
-                '</select>'+'</div>'+'</div>'
+                '</select>'+'</div>'+'</div>'+
+                '<div id = "discount" class="form-group">'+
+                '<label class="control-label col-md-3"> Discount(%):'+'<span class="required"> * '+'</span>'+'</label>'+
+                '<div class="col-md-5">'+
+                '<input type="text" name="itemDiscount[]" placeholder="Discount(%)"  class="form-control input-height" />'+
+                '</div>'+
+
+                '</div>'
             );
 
 
