@@ -54,9 +54,6 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-
-
                                             <div class="form-group">
                                                 <label class="control-label col-md-3"> MemberCardNumber
                                                     <span class="required"> * </span>
@@ -96,24 +93,31 @@
                                                 <label class="control-label col-md-3">User Activation Status
                                                     <span class="required"> * </span>
                                                 </label>
-                                                <div class="col-md-5">
-<!--                                                    <select name="status">-->
-<!--                                                        <option value="0">In-Active</option>-->
-<!--                                                        <option value="--><?php //echo $u->userActivationStatus  ?><!--"> --><?php //if($u->userActivationStatus==1)
-//                                                            {
-//                                                                echo "active";
-//                                                            }
-//                                                            ?><!--</option>-->
-<!--                                                    </select>-->
-
-                                                    <div class="col-md-5">
-                                                        <select name="status">
+                                                    <div  class="col-md-5">
+                                                        <select class="form-control input-height" name="status">
                                                             <option <?php echo ($u->userActivationStatus=='1')?'selected="selected"':''; ?>>active</option>
                                                             <option <?php echo ($u->userActivationStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
                                                         </select>
 
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">City
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" required name="usertype">
+                                                        <?php foreach ($userTypeinfo as $userTypeinfo ) { ?>
+                                                            <option value="<?php echo $userTypeinfo->id ?>"<?php if (!empty($u->fkUserType) && $userTypeinfo->id==$u->fkUserType) echo 'selected="selected"'?> ><?php echo $userTypeinfo->typeTitle ?></option>
+
+
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
                                             <div class="form-group">
                                                 <label class="control-label col-md-3">
                                                 </label>

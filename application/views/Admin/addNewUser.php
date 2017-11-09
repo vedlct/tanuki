@@ -83,21 +83,34 @@
                                                     <input type="password" required class="form-control input-height" placeholder="Enter Password" name="password" />
                                                 </div>
                                             </div>
-
-
                                             <div class="form-group">
                                                 <label class="control-label col-md-3">User Activation Status
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
 
-                                                    <select required name="status">
+                                                    <select class="form-control input-height"  required name="status">
                                                         <option value="1">Active</option>
                                                         <option value="0">In-Active</option>
                                                     </select>
 
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3">User TYpe
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-5">
+                                                    <select class="form-control input-height" required name="usertype">
+                                                        <option value="">select User Type</option>
+                                                        <?php foreach ($userTypeinfo as $userTypeinfo) { ?>
+                                                            <option value="<?php echo $userTypeinfo->id ?>"><?php echo $userTypeinfo->typeTitle ?></option>
+
+                                                        <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label class="control-label col-md-3">
                                                 </label>

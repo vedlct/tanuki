@@ -51,10 +51,13 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48">0</p>
-                                    <p>NEW CUSTOMERS</p>
+                                    <p class="sbold addr-font-h1"   id="btn" data-counter="counterup" data-value="48"></p>
+                                    <p>All  CUSTOMERS</p>
+
+                                    <h4 class="qr-title" id="status"></h4>
                                 </div>
                             </div>
+
                         </div>
                         <div class="col-lg-3 col-sm-6">
                             <div class="overview-panel orange">
@@ -357,3 +360,23 @@
 </body>
 
 </html>
+<script>
+var username = <?php echo(json_encode($username)); ?>;
+
+function checkAuthStatus() {
+setInterval(getStatus, 1000);
+}
+
+function getStatus() {
+var isAuth = <?php echo(json_encode($isAuth)); ?>;
+$.ajax({
+url: '<?php echo base_url('auth/listen_auth'); ?>',
+type: 'post',
+data: {username:username},
+success: function(data){
+console.log(data);
+}
+});
+document.getElementById("status").innerHTML = isAuth;
+}
+</script>

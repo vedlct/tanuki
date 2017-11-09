@@ -65,4 +65,6 @@ class Categorym extends CI_Model
     }
 
 
+
+
 }
