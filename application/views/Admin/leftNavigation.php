@@ -26,11 +26,6 @@
                     </a>
                 </li>
 
-<!--                <li class="nav-item">-->
-<!--                    <a href="--><?php //echo base_url()?><!--Admin-Items" class="nav-link nav-toggle"><i class="fa fa-book"></i>-->
-<!--                        <span class="title">Items</span>-->
-<!--                    </a>-->
-<!--                </li>-->
 
 
                 <li class="nav-item  ">
@@ -39,7 +34,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <!--<a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>-->
+                            <a href="#" class="nav-link "> <span class="title">Add Customer</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
@@ -58,6 +53,12 @@
                         <span class="title">Items</span> <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin-Items" class="nav-link "> <span class="title">All Items</span>
+                            </a>
+                        </li>
+
                         <li class="nav-item  ">
 
                                 <a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>
@@ -65,10 +66,6 @@
                                 </a>
                         </li>
 
-                        <li class="nav-item  ">
-                            <a href="<?php echo base_url()?>Admin-Items" class="nav-link "> <span class="title">All Items</span>
-                            </a>
-                        </li>
                         <li class="nav-item  ">
                             <a href="edit_doctor.php" class="nav-link "> <span class="title">Edit Customer</span>
                             </a>

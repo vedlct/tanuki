@@ -142,15 +142,15 @@ class Items extends CI_Controller
 
     }
 
-    public function showItemsTable()
+    public function showItemsTable($id)
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $id=$this->input->post('id');
+           // $id=$this->input->post('id');
 
             $this->data['items'] = $this->Itemsm->getAllItemsByCatId($id);
             $this->load->view('Admin/allItemsByCategory', $this->data);
-           // echo $this->data['items'];
+
 
         }
         else
@@ -158,5 +158,112 @@ class Items extends CI_Controller
             redirect('Login');
         }
 
+    }
+
+    public function getItemById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id=$this->input->post('id');
+            $this->data['categoryNameId'] = $this->Categorym->getAllCategoryNameId();
+            $this->data['iteminfo'] = $this->Itemsm->getItemInfoById($id);
+            $this->load->view('Admin/itemInfo', $this->data);
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function editItem($id)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $catId=$this->input->post('categoryName');
+            $itemName=$this->input->post('itemName');
+            $itemDescription=$this->input->post('itemDescription');
+            $itemStatus=$this->input->post('itemStatus');
+
+            $itemImage = $_FILES["itemPhoto"]["name"];
+
+            if ($itemImage!=null){
+
+                $this->load->library('upload');
+                $config = array(
+                    'upload_path' => "images/itemImages/",
+                    'allowed_types' => "jpg|png|jpeg|gif",
+                    'max_size' => "1024*4",
+                    'overwrite' => TRUE,
+                    'remove_spaces' => FALSE,
+                    'mod_mime_fix' => FALSE,
+                );
+                $this->upload->initialize($config);
+
+                if ($this->upload->do_upload('itemPhoto')) {
+
+                    $itemdata = array(
+                        'fkCatagory' => $catId,
+                        'itemName' => $itemName,
+                        'image' => $itemImage,
+                        'description' => $itemDescription,
+                        'itemStatus' => $itemStatus,
+                    );
+                    $items= $this->Itemsm->updateItemdataWithImage($id,$itemdata);
+
+                }
+
+
+            }
+            else{
+
+                $itemdata = array(
+                    'fkCatagory' => $catId,
+                    'itemName' => $itemName,
+                    'description' => $itemDescription,
+                    'itemStatus' => $itemStatus,
+                );
+                $items= $this->Itemsm->updateItemdataWithoutImage($id,$itemdata);
+
+            }
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','Item Updated Successfully');
+                $this->session->set_flashdata('catData',$catId);
+                redirect('Admin-Items');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Items');
+            }
+
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function deleteItemById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id = $this->input->post('id');
+            $catId = $this->input->post('catId');
+            $this->Itemsm->deleteItemById($id);
+            $this->session->set_flashdata('successMessage','Item Updated Successfully');
+            $this->session->set_flashdata('catData',$catId);
+
+
+
+        }
+        else{
+            redirect('Login');
+        }
     }
 }

@@ -62,3 +62,6 @@ $route['Admin-AddCategory'] = 'Admin/Category/addCategory';
 $route['Admin-Items'] = 'Admin/Items/allItems';
 $route['Admin-addItems'] = 'Admin/Items/addItems';
 $route['Admin-insertItem'] = 'Admin/Items/insertItem';
+
+
+$route['Admin-EditItem/(:any)'] = 'Admin/Items/editItem/$1';

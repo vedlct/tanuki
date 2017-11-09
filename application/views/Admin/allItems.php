@@ -26,6 +26,7 @@
                 elseif($this->session->flashdata('successMessage')!=null){?>
                     <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
                 <?php }?>
+                <?php $catData = $this->session->flashdata('catData');?>
 
                 <div class="row">
                     <div class="col-md-12">
@@ -46,13 +47,13 @@
                                                         <select class="form-control input-height" id="categoryName" name="categoryName" required onchange="showtable(this)">
                                                             <option value="">Select...</option>
                                                             <?php foreach ($categoryNameId as $category) { ?>
-                                                                <option value="<?php echo $category->id?>"><?php echo $category->name?></option>
+                                                                <option <?php if (!empty($catData) && $catData==$category->id) echo 'selected = "selected"';?>value="<?php echo $category->id?>"><?php echo $category->name?></option>
                                                                 <?php } ?>
                                                         </select>
                                                     </div>
                                                 </div>
 
-                                <div id="tableid" style="display: none">
+                                <div  class="form-group" id="tableid" style="display: none">
 
                                 </div>
 
@@ -60,29 +61,26 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- end page content -->
+
+                <div id="myModal" class="modal">
+                    <br/><br/><br/>
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <span class="close">×</span>
+
+                        <div id="txtHint"></div>
+
+                    </div>
+                </div>
+
+            </div>
+
             </div>
         </div>
 
 
-
-
-
-        <!-- end page content -->
-
-        <div id="myModal" class="modal">
-            <br/><br/><br/>
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">×</span>
-
-                <div id="txtHint"></div>
-
-            </div>
-
-
-        </div>
-
-    </div>
     <!-- end page container -->
 
     <?php include ("footer.php") ?>
@@ -95,9 +93,23 @@
 </html>
 <?php include ("js.php") ?>
 
+<script>
+    $('document').ready(function(){
 
+        var catId= '<?php echo $catData?>';
+
+        if (catId != null){
+            showtable2(catId);
+        }else {
+
+        }
+
+
+    });
+</script>
 
 <script>
+
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
 
@@ -125,7 +137,7 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Category/getCategoryById")?>',
+            url:'<?php echo base_url("Admin/Items/getItemById")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {
@@ -141,19 +153,22 @@
     function selectid3(x)
     {
 
-        if (confirm("are you sure to delete this Category?"))
+        if (confirm("are you sure to delete this Item ?"))
         {
 
             btn = $(x).data('panel-id');
+            var catId= document.getElementById('categoryName').value;
+
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Category/deleteCategoryById")?>',
-                data: {id: btn},
+                url: '<?php echo base_url("Admin/Items/deleteItemById")?>',
+                data: {id: btn,catId:catId},
                 cache: false,
                 success: function (data) {
-                    alert('Category deleted Successfully');
+
                     location.reload();
+
                 }
 
             });
@@ -180,7 +195,27 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Items/showItemsTable")?>',
+            url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
+            data:{id:x},
+            cache: false,
+            success:function(data)
+            {
+                $('#tableid').html(data);
+
+            }
+        });
+
+        document.getElementById("tableid").style.display ="block";
+    }
+</script>
+
+<script>
+    function showtable2(x) {
+       // var x = document.getElementById('categoryName').value;
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
             data:{id:x},
             cache: false,
             success:function(data)
