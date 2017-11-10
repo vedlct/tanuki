@@ -9,7 +9,7 @@ class Promotions extends CI_Controller
         $this->load->model('Admin/Promotionsm');
 
     }
-    public function index(){ echo 23434;}
+    public function index(){}
     public function addPromotions(){
 
         if ($this->session->userdata('userType') == "Admin") {
@@ -38,27 +38,12 @@ class Promotions extends CI_Controller
 
             $itemlist = $this->input->post('itemlist[]');
             $itemDiscount = $this->input->post('itemDiscount[]');
-            if ($promotype == "All Item"){
+            if ($promotype = "All Item"){
                 $promotype="a";
             }else{
                 $promotype="s";
             }
-            //$textstatus = $this->input->post('textstatus[]');
 
-
-
-                // if something need after image upload
-
-//            $promotiondata = array(
-//                    'campainTitle' => $campain,
-//                    'promoCode' => $promocode,
-//                    'startDate' => $startdate,
-//                    'endDate' => $enddate,
-//                    'promoType' => $promotype,
-//                    'discountAmount' => $discount,
-//                    'activationStatus' => $status,
-//                );
-//                $promotionId= $this->Promotionsm->insertPromotion($promotiondata);
 
                 if(array_filter($itemlist)==null && array_filter($itemDiscount) ==null) {
 
@@ -123,6 +108,29 @@ class Promotions extends CI_Controller
         else
         {
             redirect('Login');
+        }
+    }
+
+    public function allPromotions(){
+        if ($this->session->userdata('userType') == "Admin") {
+            $this->load->view('Admin/allPromotions');
+        }else{
+
+        redirect('Login');
+
+        }
+
+    }
+    public function getAllPromotions($type)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
+            $this->load->view('Admin/allItemsByCategory', $this->data);
+        }else {
+
+            redirect('Login');
+
         }
     }
 }

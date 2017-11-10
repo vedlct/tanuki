@@ -56,7 +56,7 @@
 
                                         <label class="control-label col-md-3"> Start Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                            <div class="input-group date form_date " data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                 <input class="form-control input-height" name="startdate" value="" placeholder="Start Date" size="16" type="text" >
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -69,7 +69,7 @@
                                         <label class="control-label col-md-3"> End Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
 
-                                                <div class="input-group date form_date " data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                                <div class="input-group date form_date " data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
                                                     <input class="form-control input-height" name="enddate" value="" placeholder="End Date" size="16" type="text" >
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                                                     <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
@@ -221,6 +221,12 @@
             document.getElementById('Item_price').style.display = "none";
 //        document.getElementById('Item_Status').style.display = "none";
             document.getElementById('add_remove_button').style.display = "block";
+            return false;
+        }else {
+            document.getElementById('showattr').style.display = "none";
+            document.getElementById('Item_price').style.display = "block";
+//        document.getElementById('Item_Status').style.display = "none";
+            document.getElementById('add_remove_button').style.display = "none";
             return false;
         }
         // When the user clicks * of the modal, close it
