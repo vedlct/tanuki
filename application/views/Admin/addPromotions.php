@@ -252,7 +252,7 @@
             newTextBoxDiv.after().html('<div class="form-group">'+'<label class="control-label col-md-3">Item #'+ counter + ' : </label>' +
                 '<div class="control-label col-md-5">'+'<select class="form-control input-height"  name="itemlist[] '+ counter +
                 '" id="itemlist' + counter +'" data-panel-id="'+ counter+'" value="" required>'+'<option selected value="" >'+'<?php echo "select" ?>'+'</option>'+
-                '<?php foreach($allItem as $it){ ?>'+'<option value="<?php echo $it->itemName ?>" ><?php echo $it->itemName ?>'+'</option>'+'<?php }?>'+
+                '<?php foreach($allItem as $it){ ?>'+'<option value="<?php echo $it->id ?>" ><?php echo $it->itemName ?>'+'</option>'+'<?php }?>'+
                 '</select>'+'</div>'+'</div>'+
                 '<div id = "discount" class="form-group">'+
                 '<label class="control-label col-md-3"> Discount(%):'+'<span class="required"> * '+'</span>'+'</label>'+

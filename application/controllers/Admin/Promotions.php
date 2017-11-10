@@ -93,6 +93,8 @@ class Promotions extends CI_Controller
 
                         );
 
+                       // print_r($promotionItemdata);
+
                         $this->data['error'] = $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
 
                     }
