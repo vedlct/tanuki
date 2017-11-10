@@ -83,7 +83,7 @@
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">All Promotion</span>
+                            <a href="<?php echo base_url()?>Admin/Promotions/allPromotions" class="nav-link "> <span class="title">All Promotion</span>
                             </a>
                         </li>
 

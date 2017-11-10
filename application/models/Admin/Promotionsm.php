@@ -24,6 +24,10 @@ class Promotionsm extends CI_Model
         $this->db->insert('promotiondetail', $promotionItemdata);
     }
 
+    public function getAllPromotionsByType($type){
+
+    }
+
 
 
 }
