@@ -22,3 +22,12 @@
 <script src="<?php echo base_url()?>public/js/layout.js" type="text/javascript"></script>
 
 <!-- end js include path -->
+
+<!-- date picker  -->
+
+
+
+<script src="<?php echo base_url()?>public/js/datepicker.js"></script>
+<script src="<?php echo base_url()?>public/js/main.js"></script>
+
+<!-- date picker  -->
