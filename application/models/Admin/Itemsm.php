@@ -26,4 +26,106 @@ class Itemsm extends CI_Model
 
 
     }
+
+    public function getItemInfoById($id)
+    {
+        $this->db->select('i.id,i.image,i.itemName,i.itemStatus,i.fkCatagory as category,i.description');
+        $this->db->from('items i');
+        $this->db->where('i.id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getItemSizePriceInfoById($id)
+    {
+        $this->db->select('is.id,is.itemSize,is.price');
+        $this->db->from('itemsizes is');
+        $this->db->where('is.id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function updateItemdataWithImage($id,$itemdata)
+    {
+
+        $this->db->select('image');
+        $this->db->where('id',$id);
+        $this->db->from('items');
+        $query = $this->db->get();
+        foreach ($query->result() as $itemImage){
+            $oldImage = $itemImage->image;
+        }
+
+        $path   = 'images/itemImages/'.$oldImage;
+        if (!file_exists($path)){
+
+            $this->db->where('id',$id);
+            $this->db->update('items', $itemdata);
+            //return 0;
+        }
+        else{
+
+            unlink(FCPATH.$path);
+            $this->db->where('id',$id);
+            $this->db->update('items', $itemdata);
+
+        }
+
+    }
+
+    public function updateItemdataWithoutImage($id,$itemdata)
+    {
+
+      $this->db->where('id',$id);
+      $this->db->update('items', $itemdata);
+
+    }
+
+    public function updateItemSizePriceById($id,$data)
+    {
+
+        $this->security->xss_clean($data);
+        $this->db->where('id',$id);
+        $error=$this->db->update('itemsizes', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
+
+    }
+
+    public function deleteItemById($id)
+    {
+
+        $this->db->where('fkItemId',$id)->delete('itemsizes');
+        $this->db->where('id',$id)->delete('items');
+
+    }
+
+    public function deleteItemSizePriceById($id)
+    {
+
+        $this->db->where('id',$id)->delete('itemsizes');
+
+    }
+
+    public function insertItemSizePriceByItemId($data)
+    {
+
+
+        $error=$this->db->insert('itemsizes', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
+
+    }
+
 }

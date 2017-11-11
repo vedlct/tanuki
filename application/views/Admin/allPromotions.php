@@ -32,28 +32,26 @@
                     <div class="col-md-12">
                         <div class="card card-topline-red">
                             <div class="card-head">
-                                <header>Item List</header>
+                                <header>Promotions List</header>
 
                             </div>
 
                             <div class="card-body ">
 
 
+                                <div id = "promotypediv" class="form-group">
+                                    <label class="control-label col-md-3">Promotions Type: </label>
+                                    <div class="col-md-5">
+                                        <select class="form-control input-height"  id="promotype" name="promotype" onchange="promotypefync()">
+                                            <option value="">Select...</option>
+                                            <option value="a">All Item</option>
+                                            <option value="s">Selected Item</option>
 
+                                        </select>
+                                    </div>
+                                </div>
 
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">Category<span class="required"> * </span></label>
-                                                    <div class="col-md-5">
-                                                        <select class="form-control input-height" id="categoryName" name="categoryName" required onchange="showtable(this)">
-                                                            <option value="">Select...</option>
-                                                            <?php foreach ($categoryNameId as $category) { ?>
-                                                                <option <?php if (!empty($catData) && $catData==$category->id) echo 'selected = "selected"';?>value="<?php echo $category->id?>"><?php echo $category->name?></option>
-                                                                <?php } ?>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                <div  class="form-group" id="tableid" style="display: none">
+                                <div  class="form-group" id="tableid" style="display: block">
 
                                 </div>
 
@@ -63,7 +61,6 @@
                 </div>
 
                 <!-- end page content -->
-
                 <div id="myModal" class="modal">
                     <br/><br/><br/>
                     <!-- Modal content -->
@@ -77,8 +74,8 @@
 
             </div>
 
-            </div>
         </div>
+    </div>
 
 
     <!-- end page container -->
@@ -92,21 +89,27 @@
 
 </html>
 <?php include ("js.php") ?>
-
 <script>
-    $(document).ready(function(){
+   function promotypefync(){
+       var type = document.getElementById('promotype').value;
+ //alert(type);
+          $.ajax({
+              type:'POST',
+              url:'<?php echo base_url("Admin/Promotions/getAllPromotions/")?>'+type,
+              data:{type:type},
+              cache: false,
+              success:function(data) {
 
-        var catId= '<?php echo $catData?>';
+                  $('#tableid').html(data);
+               // alert(data);
+              }
+          });
 
-        if (catId != ''){
-            showtable2(catId);
-        }else {
+   }
 
-        }
-
-
-    });
 </script>
+
+
 
 <script>
 
@@ -115,13 +118,11 @@
 
     function selectid1(x)
     {
-        btn = $(x).data('panel-id');
-        var catId= document.getElementById('categoryName').value;
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Items/getItemSizePriceById" )?>',
-            data:{id:btn,catId:catId},
+            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
+            data:{},
             cache: false,
             success:function(data)
             {
@@ -130,7 +131,6 @@
 
         });
         modal.style.display = "block";
-
     }
 
     function selectid2(x)
@@ -160,75 +160,24 @@
         {
 
             btn = $(x).data('panel-id');
-            var catId= document.getElementById('categoryName').value;
+//            var catId= document.getElementById('categoryName').value;
 
+            //alert(btn);
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Items/deleteItemById")?>',
-                data: {id: btn,catId:catId},
+                url: '<?php echo base_url("Admin/Promotions/deletePromotionById")?>',
+                data: {id: btn},
                 cache: false,
                 success: function (data) {
 
                     location.reload();
-                   // alert(data);
+
                 }
 
             });
         }
     }
-
-    function selectid4(x)
-    {
-
-        if (confirm("are you sure to delete this Items Size/Price ?"))
-        {
-
-            btn = $(x).data('panel-id');
-            var catId= document.getElementById('categoryName').value;
-
-
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url("Admin/Items/deleteItemSizePriceById")?>',
-                data: {id: btn,catId:catId},
-                cache: false,
-                success: function (data) {
-
-                    location.reload();
-                    // alert(data);
-                }
-
-            });
-        }
-    }
-
-    function selectid5(x)
-    {
-
-        if (confirm("are you sure to Add an Size for this Item ?"))
-        {
-
-            btn = $(x).data('panel-id');
-            var catId= document.getElementById('categoryName').value;
-
-
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url("Admin/Items/addItemSizePriceById")?>',
-                data: {id: btn,catId:catId},
-                cache: false,
-                success: function (data) {
-
-                    $('#txtHint').html(data);
-
-                }
-
-            });
-            modal.style.display = "block";
-        }
-    }
-
     // When the user clicks * of the modal, close it
     span.onclick = function() {
         modal.style.display = "none";
@@ -266,11 +215,12 @@
 
 <script>
     function showtable2(x) {
+        // var x = document.getElementById('categoryName').value;
 
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
-            data:{},
+            data:{id:x},
             cache: false,
             success:function(data)
             {

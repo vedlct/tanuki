@@ -24,17 +24,17 @@
                 <?php
 
                 //echo $s->type_id;
-                $query1= $this->db->query("select `id`,`itemSize`,`price` from `itemsizes` WHERE `fkItemId` ='$items->id'");
+                $query1= $this->db->query("select `id` AS itemSizeId ,`itemSize`,`price` from `itemsizes` WHERE `fkItemId` ='$items->id'");
                 foreach ( $query1->result() as $res ) {?>
                 <tr>
                     <td><?php echo $res->itemSize?></td>
                     <td><?php echo $res->price?></td>
-                    <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $items->id ?>" onclick="selectid2(this)">
+                    <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $res->itemSizeId ?>" onclick="selectid1(this)">
 
                             <i class="fa fa-edit"></i>
                         </button>
 
-                        <button type="button" data-panel-id="<?php echo $items->id ?>" onclick="selectid3(this)"class="btn btn-danger btn-xs">
+                        <button type="button" data-panel-id="<?php echo $res->itemSizeId ?>" onclick="selectid4(this)"class="btn btn-danger btn-xs">
 
                             <i class="fa fa-trash "></i>
                         </button></td>
@@ -44,7 +44,7 @@
                 <?php }?>
 
                 </table>
-                <button style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                <button data-panel-id="<?php echo $items->id ?>" onclick="selectid5(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
             </td>
 
             <td class="center">

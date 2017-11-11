@@ -26,11 +26,6 @@
                     </a>
                 </li>
 
-<!--                <li class="nav-item">-->
-<!--                    <a href="--><?php //echo base_url()?><!--Admin-Items" class="nav-link nav-toggle"><i class="fa fa-book"></i>-->
-<!--                        <span class="title">Items</span>-->
-<!--                    </a>-->
-<!--                </li>-->
 
 
                 <li class="nav-item  ">
@@ -39,7 +34,7 @@
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <!--<a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>-->
+                            <a href="#" class="nav-link "> <span class="title">Add Customer</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
@@ -58,41 +53,41 @@
                         <span class="title">Items</span> <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
+
                         <li class="nav-item  ">
 
-                                <a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>
-
-                                </a>
+                            <a href="<?php echo base_url()?>Admin-addItems" class="nav-link "> <span class="title">Add Items</span>
+                            </a>
                         </li>
 
                         <li class="nav-item  ">
                             <a href="<?php echo base_url()?>Admin-Items" class="nav-link "> <span class="title">All Items</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="edit_doctor.php" class="nav-link "> <span class="title">Edit Customer</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
 
+                <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin-Orders" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Order</span>
+                    </a>
+                </li>
+
                 <li class="nav-item  ">
-                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
-                        <span class="title">Chefs</span> <span class="arrow"></span>
+                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-gift"></i>
+                        <span class="title">Promotions</span> <span class="arrow"></span>
                     </a>
                     <ul class="sub-menu">
                         <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">All Chefs</span>
+                            <a href="<?php echo base_url()?>Admin/Promotions/addPromotions" class="nav-link "> <span class="title">Add Promotion</span>
                             </a>
                         </li>
                         <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">Add Chef</span>
+                            <a href="<?php echo base_url()?>Admin/Promotions/allPromotions" class="nav-link "> <span class="title">All Promotion</span>
                             </a>
                         </li>
-                        <li class="nav-item  ">
-                            <a href="#" class="nav-link "> <span class="title">Edit Chef</span>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </li>
