@@ -146,7 +146,7 @@ class Items extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-           // $id=$this->input->post('id');
+            //$id=$this->input->post('id');
 
             $this->data['items'] = $this->Itemsm->getAllItemsByCatId($id);
             $this->load->view('Admin/allItemsByCategory', $this->data);
@@ -160,6 +160,7 @@ class Items extends CI_Controller
 
     }
 
+
     public function getItemById()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -168,6 +169,60 @@ class Items extends CI_Controller
             $this->data['categoryNameId'] = $this->Categorym->getAllCategoryNameId();
             $this->data['iteminfo'] = $this->Itemsm->getItemInfoById($id);
             $this->load->view('Admin/itemInfo', $this->data);
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function getItemSizePriceById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id=$this->input->post('id');
+            $this->data['catId'] = $this->input->post('catId');
+
+            $this->data['itemSizePriceInfo'] = $this->Itemsm->getItemSizePriceInfoById($id);
+            $this->load->view('Admin/itemSizePriceInfo', $this->data);
+
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
+
+    public function editItemSizePriceById($id)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $catId = $this->input->post('catId');
+
+            $itemSize=$this->input->post('itemSize');
+            $itemPrice=$this->input->post('itemPrice');
+            $data = array(
+                'itemSize' => $itemSize,
+                'price' => $itemPrice,
+
+            );
+
+            $this->data['error'] = $this->Itemsm->updateItemSizePriceById($id,$data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','Item Updated Successfully');
+                $this->session->set_flashdata('catData',$catId);
+                redirect('Admin-Items');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Items');
+            }
 
         }
         else
@@ -212,6 +267,7 @@ class Items extends CI_Controller
                     );
                     $items= $this->Itemsm->updateItemdataWithImage($id,$itemdata);
 
+
                 }
 
 
@@ -253,12 +309,77 @@ class Items extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
+
+
             $id = $this->input->post('id');
             $catId = $this->input->post('catId');
             $this->Itemsm->deleteItemById($id);
-            $this->session->set_flashdata('successMessage','Item Updated Successfully');
+            $this->session->set_flashdata('successMessage','Item Deleted Successfully');
             $this->session->set_flashdata('catData',$catId);
 
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
+    public function addItemSizePriceById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $this->data['itemId'] = $this->input->post('id');
+            $this->data['catId'] = $this->input->post('catId');
+            $this->load->view('Admin/addNewSizePriceForItem',$this->data);
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
+    public function insertItemSizePrice($catId,$itemId)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $itemSize = $this->input->post('itemSize');
+            $itemPrice = $this->input->post('itemPrice');
+            $data = array(
+                'itemSize' => $itemSize,
+                'price' => $itemPrice,
+                'fkItemId'=>$itemId,
+
+            );
+            $this->data['error']=$this->Itemsm->insertItemSizePriceByItemId($data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','Item Updated Successfully');
+                $this->session->set_flashdata('catData',$catId);
+                redirect('Admin-Items');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Items');
+            }
+
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
+    public function deleteItemSizePriceById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id = $this->input->post('id');
+            $catId = $this->input->post('catId');
+            $this->Itemsm->deleteItemSizePriceById($id);
+            $this->session->set_flashdata('successMessage','Item Updated Successfully');
+            $this->session->set_flashdata('catData',$catId);
 
 
         }

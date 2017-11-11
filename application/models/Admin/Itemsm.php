@@ -35,8 +35,16 @@ class Itemsm extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function getItemSizePriceInfoById($id)
+    {
+        $this->db->select('is.id,is.itemSize,is.price');
+        $this->db->from('itemsizes is');
+        $this->db->where('is.id',$id);
+        $query = $this->db->get();
+        return $query->result();
+    }
 
-    public function updateItemdata($id,$itemdata)
+    public function updateItemdataWithImage($id,$itemdata)
     {
 
         $this->db->select('image');
@@ -49,9 +57,13 @@ class Itemsm extends CI_Model
 
         $path   = 'images/itemImages/'.$oldImage;
         if (!file_exists($path)){
-            return 0;
+
+            $this->db->where('id',$id);
+            $this->db->update('items', $itemdata);
+            //return 0;
         }
         else{
+
             unlink(FCPATH.$path);
             $this->db->where('id',$id);
             $this->db->update('items', $itemdata);
@@ -68,10 +80,51 @@ class Itemsm extends CI_Model
 
     }
 
+    public function updateItemSizePriceById($id,$data)
+    {
+
+        $this->security->xss_clean($data);
+        $this->db->where('id',$id);
+        $error=$this->db->update('itemsizes', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
+
+    }
+
     public function deleteItemById($id)
     {
-        $this->db->where('id',$id)->delete('items');
+
         $this->db->where('fkItemId',$id)->delete('itemsizes');
+        $this->db->where('id',$id)->delete('items');
+
+    }
+
+    public function deleteItemSizePriceById($id)
+    {
+
+        $this->db->where('id',$id)->delete('itemsizes');
+
+    }
+
+    public function insertItemSizePriceByItemId($data)
+    {
+
+
+        $error=$this->db->insert('itemsizes', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
 
     }
 

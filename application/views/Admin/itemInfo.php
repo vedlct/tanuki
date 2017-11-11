@@ -1,5 +1,5 @@
 <?php foreach ($iteminfo as $itemInfo){?>
-<form action="<?php echo base_url()?>Admin-EditItem/<?php echo $itemInfo->id?>"  method="post" id="form_sample_1" class="form-horizontal">
+<form action="<?php echo base_url()?>Admin-EditItem/<?php echo $itemInfo->id?>"  method="post" id="form_sample_1" enctype="multipart/form-data" class="form-horizontal">
     <div class="form-body">
 
         <div class="form-group">
@@ -49,7 +49,7 @@
             <label class="control-label col-md-3">Upload Photo<span class="required"> * </span>
             </label>
             <div class="col-md-5">
-                <input type="file" name="itemPhoto" placeholder="Item Image"class="form-control input-height" />
+                <input type="file" name="itemPhoto"placeholder="Item Image"class="form-control input-height" />
             </div>
         </div>
 
