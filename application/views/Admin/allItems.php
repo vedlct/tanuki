@@ -94,11 +94,11 @@
 <?php include ("js.php") ?>
 
 <script>
-    $('document').ready(function(){
+    $(document).ready(function(){
 
         var catId= '<?php echo $catData?>';
 
-        if (catId != null){
+        if (catId != ''){
             showtable2(catId);
         }else {
 
@@ -115,11 +115,13 @@
 
     function selectid1(x)
     {
+        btn = $(x).data('panel-id');
+        var catId= document.getElementById('categoryName').value;
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
-            data:{},
+            url:'<?php echo base_url("Admin/Items/getItemSizePriceById" )?>',
+            data:{id:btn,catId:catId},
             cache: false,
             success:function(data)
             {
@@ -128,6 +130,7 @@
 
         });
         modal.style.display = "block";
+
     }
 
     function selectid2(x)
@@ -168,12 +171,64 @@
                 success: function (data) {
 
                     location.reload();
-
+                   // alert(data);
                 }
 
             });
         }
     }
+
+    function selectid4(x)
+    {
+
+        if (confirm("are you sure to delete this Items Size/Price ?"))
+        {
+
+            btn = $(x).data('panel-id');
+            var catId= document.getElementById('categoryName').value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Items/deleteItemSizePriceById")?>',
+                data: {id: btn,catId:catId},
+                cache: false,
+                success: function (data) {
+
+                    location.reload();
+                    // alert(data);
+                }
+
+            });
+        }
+    }
+
+    function selectid5(x)
+    {
+
+        if (confirm("are you sure to Add an Size for this Item ?"))
+        {
+
+            btn = $(x).data('panel-id');
+            var catId= document.getElementById('categoryName').value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Items/addItemSizePriceById")?>',
+                data: {id: btn,catId:catId},
+                cache: false,
+                success: function (data) {
+
+                    $('#txtHint').html(data);
+
+                }
+
+            });
+            modal.style.display = "block";
+        }
+    }
+
     // When the user clicks * of the modal, close it
     span.onclick = function() {
         modal.style.display = "none";
@@ -211,12 +266,11 @@
 
 <script>
     function showtable2(x) {
-       // var x = document.getElementById('categoryName').value;
 
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
-            data:{id:x},
+            data:{},
             cache: false,
             success:function(data)
             {
