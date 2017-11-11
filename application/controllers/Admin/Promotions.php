@@ -38,7 +38,7 @@ class Promotions extends CI_Controller
 
             $itemlist = $this->input->post('itemlist[]');
             $itemDiscount = $this->input->post('itemDiscount[]');
-            if ($promotype = "All Item"){
+            if ($promotype == "All Item"){
                 $promotype="a";
             }else{
                 $promotype="s";
@@ -125,8 +125,19 @@ class Promotions extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
-            $this->load->view('Admin/allItemsByCategory', $this->data);
+            if ($type == "a"){
+
+
+                $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
+                $this->load->view('Admin/allPromotionsByType', $this->data);
+
+            }else{
+
+                $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
+                $this->data['promotionsItem'] = $this->Promotionsm->getAllPromotionsByTypeForItem();
+                $this->load->view('Admin/allPromotionsByTypeForItem', $this->data);
+
+                }
         }else {
 
             redirect('Login');

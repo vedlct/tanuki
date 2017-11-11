@@ -53,7 +53,7 @@
                                     </div>
                                 </div>
 
-                                <div  class="form-group" id="tableid" style="display: none">
+                                <div  class="form-group" id="tableid" style="display: block">
 
                                 </div>
 
@@ -94,39 +94,25 @@
 <?php include ("js.php") ?>
 <script>
    function promotypefync(){
-       var  type = document.getElementById('promotype').value;
-      if (type == 'a'){
+       var type = document.getElementById('promotype').value;
+ //alert(type);
           $.ajax({
               type:'POST',
-              url:'<?php echo base_url("Admin/Promotions/getAllPromotions")?>'+type,
+              url:'<?php echo base_url("Admin/Promotions/getAllPromotions/")?>'+type,
               data:{type:type},
               cache: false,
               success:function(data) {
 
-                  $('#txtHint').html(data);
-
+                  $('#tableid').html(data);
+               // alert(data);
               }
           });
-      }
+
    }
 
 </script>
 
 
-<script>
-    $('document').ready(function(){
-
-        var catId= '<?php echo $catData?>';
-
-        if (catId != null){
-            showtable2(catId);
-        }else {
-
-        }
-
-
-    });
-</script>
 
 <script>
 

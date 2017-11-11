@@ -26,8 +26,19 @@ class Promotionsm extends CI_Model
 
     public function getAllPromotionsByType($type){
 
+        $this->db->where('promoType=' , $type);
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
     }
+    public function getAllPromotionsByTypeForItem(){
 
+        $this->db->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount  ');
+        $this->db->join('items', 'items.id = promotiondetail.fkItemId','left');
+        $this->db->from('promotiondetail');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 }
