@@ -9,7 +9,7 @@
                     </div>
                 </li>
                 <li class="nav-item start active open">
-                    <a href="index.php" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
+                    <a href="<?php echo base_url() ?>Admin/Home" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
                     </a>
                 </li>
                 <li class="nav-item">

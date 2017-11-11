@@ -10,7 +10,7 @@ class User extends CI_Controller {
 
 
 
-//showing  All city for showing  the city in insert  form and update form
+//showing  All user info  for showing  the city in insert  form and update form
     public function allUser()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -31,6 +31,7 @@ class User extends CI_Controller {
     {
         if ($this->session->userdata('userType') == "Admin") {
             $data['city']=$this->Userm->getAllCity();
+            $data['userTypeinfo']=$this->Userm->getuserType();
          $this->load->view('Admin/addNewUser',$data);
         }
         else
@@ -54,6 +55,7 @@ class User extends CI_Controller {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             $status = $this->input->post('status');
+            $usertype=$this->input->post('usertype');
             $data = array(
                 'name' => $username,
                 'address' => $address,
@@ -64,7 +66,7 @@ class User extends CI_Controller {
                 'email' => $email,
                 'password' => $password,
                 'userActivationStatus' => $status,
-                'fkUserType' => $userId
+                'fkUserType' => $usertype
             );
 
             $this->data['error'] = $this->Userm->user($data);
@@ -95,6 +97,7 @@ class User extends CI_Controller {
         if ($this->session->userdata('userType') == "Admin") {
             $userid = $this->input->post('id');
             $data['city']=$this->Userm->getAllCity();
+            $data['userTypeinfo']=$this->Userm->getuserType();
             $data['userInfo'] = $this->Userm->getuserById($userid);
             $this->load->view("Admin/updateUser",$data);
         } else {
@@ -115,6 +118,7 @@ class User extends CI_Controller {
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             $status = $this->input->post('status');
+            $usertype=$this->input->post('usertype');
             $data = array(
                 'name' => $username,
                 'address' => $address,
@@ -125,8 +129,7 @@ class User extends CI_Controller {
                 'email' => $email,
                 'password' => $password,
                 'userActivationStatus' => $status,
-
-
+                'fkUserType'=> $usertype
             );
             $data['error']= $this->Userm->updateUserById($id, $data);
 
@@ -162,6 +165,40 @@ class User extends CI_Controller {
   }
 
 
+    public function  allAdmin()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+            $data['city']=$this->Userm->getAllCity();
+            $data['userTypeinfo']=$this->Userm->getuserType();
+            $data['user'] = $this->Userm-> getAdmin();
+            $this->load->view('Admin/allAdmin', $data);
+        }
 
+        else{
+            redirect('Login');
+        }
+    }
+
+    public  function allCustomer()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $data['city']=$this->Userm->getAllCity();
+            $data['userTypeinfo']=$this->Userm->getuserType();
+            $data['user'] = $this->Userm->getCustomer();
+            $this->load->view('Admin/allcustomer', $data);
+        }
+
+        else{
+            redirect('Login');
+        }
+
+    }
+
+    public function getTotalUser()
+    {
+        echo $result = $this->Userm->getTotalUser();
+
+    }
 
 }

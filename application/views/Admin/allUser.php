@@ -46,13 +46,14 @@
                                                                 </button>
                                                             </div>
                                                             <div class="btn-group">
-                                                                <button id="addRow" onclick="" class="btn btn-success">
-                                                                    Customer<i class="fa fa-cubes"></i>
+                                                                <button id="id" onclick="showCustomer()" class="btn btn-success">
+                                                                   Customer <i class="fa fa-cubes"></i>
                                                                 </button>
                                                             </div>
                                                             <div class="btn-group">
-                                                                <button id="addRow" onclick="" class="btn btn-warning">
-                                                                    Admintration<i class="fa fa-anchor"></i>
+                                                                <button id="addRow"   onclick="showAdmin()"  class="btn btn-warning">
+                                                                    Admintration  <i class="fa fa-anchor">
+                                                                    </i>
                                                                 </button>
                                                             </div>
                                                         </div>
@@ -243,3 +244,41 @@
     }
 
 </script>
+<script>
+    function showCustomer(){
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url()?>Admin/User/allCustomer',
+            data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#example4').html(data);
+
+            }
+
+        });
+    }
+
+
+    function showAdmin(){
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url(); ?>Admin/User/allAdmin',
+            data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#example4').html(data);
+
+            }
+
+        });
+    }
+
+
+
+
+</script>
+
+

@@ -51,8 +51,8 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48">0</p>
-                                    <p>NEW CUSTOMERS</p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="results" style="font-size: 90%"></span></p>
+                                    <p>CUSTOMERS</p>
                                 </div>
                             </div>
                         </div>
@@ -357,3 +357,14 @@
 </body>
 
 </html>
+<script>
+    var i = setInterval(function(){
+        $.ajax({
+            url: "<?php echo base_url('Admin/User/getTotalUser') ?>",
+            cache: false,
+            success: function (data) {
+                $("#results").text(data);
+            },
+        });
+    },100)
+    </script>

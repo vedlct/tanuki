@@ -38,10 +38,14 @@ class Promotions extends CI_Controller
 
             $itemlist = $this->input->post('itemlist[]');
             $itemDiscount = $this->input->post('itemDiscount[]');
-            if ($promotype = "All Item"){
+            if ($promotype == "1"){
+
                 $promotype="a";
+
             }else{
+
                 $promotype="s";
+
             }
 
 
@@ -93,22 +97,13 @@ class Promotions extends CI_Controller
 
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
                     redirect('Admin/Promotions/addPromotions');
-
                 }
 
-
-
-
-
-
-
-
-
         }
-        else
-        {
-            redirect('Login');
-        }
+           else
+         {
+             redirect('Login');
+         }
     }
 
     public function allPromotions(){
@@ -121,16 +116,46 @@ class Promotions extends CI_Controller
         }
 
     }
+
+
+
+
+
     public function getAllPromotions($type)
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
-            $this->load->view('Admin/allItemsByCategory', $this->data);
+            if ($type == "a"){
+
+
+                $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
+                $this->load->view('Admin/allPromotionsByType', $this->data);
+
+            }else{
+
+                $this->data['promotions'] = $this->Promotionsm->getAllPromotionsByType($type);
+                $this->data['promotionsItem'] = $this->Promotionsm->getAllPromotionsByTypeForItem();
+                $this->load->view('Admin/allPromotionsByTypeForItem', $this->data);
+
+                }
         }else {
 
             redirect('Login');
 
         }
     }
+
+    public function deletePromotionById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id = $this->input->post('id');
+            $this->Promotionsm->deletePromotionById($id);
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
 }
