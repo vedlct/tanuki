@@ -126,14 +126,4 @@ class Category extends CI_Controller {
         }
     }
 
-//    public function listen_auth(){
-//        $username = $this->input->post('username');
-//        $isApproved = $this->catagory->get_auth($username);
-//        if($isApproved == 1){
-//            return 1;
-//        } else{
-//            return 0;
-//        }
-//    }
-
 }

@@ -195,4 +195,10 @@ class User extends CI_Controller {
 
     }
 
+    public function getTotalUser()
+    {
+        echo $result = $this->Userm->getTotalUser();
+
+    }
+
 }

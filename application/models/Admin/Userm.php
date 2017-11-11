@@ -94,6 +94,12 @@ class Userm extends CI_Model
 
     }
 
+    public  function getTotalUser()
+    {
+        $this->db->where("fkUserType", 'cus');
+        $query = $this->db->get('users');
+        return $query->num_rows();
+    }
 
 
 }

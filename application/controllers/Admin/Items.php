@@ -147,7 +147,6 @@ class Items extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $id=$this->input->post('id');
-
             $this->data['items'] = $this->Itemsm->getAllItemsByCatId($id);
             $this->load->view('Admin/allItemsByCategory', $this->data);
            // echo $this->data['items'];
