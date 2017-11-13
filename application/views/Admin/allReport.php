@@ -33,14 +33,11 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>Report</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+
                             </div>
                             <div class="card-body ">
                                 <div class="row">
+                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
                                     <div class="col-md-3 col-sm-3" >
                                         <div class="form-group" >
 
@@ -64,6 +61,7 @@
                                            submit
                                         </button>
                                     </div>
+                                    </form>
 
                                 </div>
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
@@ -79,13 +77,33 @@
                                     </thead>
                                     <tbody>
                                     <tr>
+                                        <?php $count = 1; foreach ($allreport as $ar) {  ?>
+                                        <td><?php echo $count ?></td>
+                                        <td><?php echo $ar->id ?></td>
+                                        <td>
+                                            <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+
+
+                                                    <?php foreach ($allItemreport as $air) {
+                                                        if ($air->itemsizeid == $ar->titemsizeid) {
+                                                        ?>
+                                                <tr>
+                                                        <td><?php echo $air->itemname ?></td>
+                                                        <td><?php echo $air->itemSize ?></td>
+                                                        <td ><?php echo  $air->price?></td>
+                                                </tr>
+                                                    <?php } }?>
+
+
+
+
+                                            </table>
+                                        </td>
+                                        <td><?php echo $ar->discount ?></td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td><?php echo $ar->transDate ?></td>
+
+                                        <?php  $count++;} ?>
                                     </tr>
                                     </tbody>
                                 </table>

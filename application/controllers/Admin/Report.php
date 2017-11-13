@@ -10,7 +10,12 @@ class Report extends CI_Controller
     }
 
     public function viewReport(){
-        $this->load->view('Admin/allReport');
+        $this->data['allreport']= $this->Reportm->viewAllReport();
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
+    }
+    public function searchByDate(){
+
     }
 }
 ?>
