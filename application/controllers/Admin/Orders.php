@@ -29,4 +29,22 @@ class Orders extends CI_Controller
         }
 
     }
+
+    public function showOrdersByDate()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $dateFrom=$this->input->post('date_from');
+            $dateTo=$this->input->post('date_to');
+
+            //$this->data['orders'] = $this->Ordersm->getAllOrdersByDate($dateFrom,$dateTo);
+
+            //$this->load->view('Admin/allOrders', $this->data);
+        }
+        else
+        {
+            redirect('Login');
+        }
+
+    }
 }

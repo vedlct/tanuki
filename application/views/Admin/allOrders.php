@@ -32,7 +32,7 @@
                     <div class="col-md-12">
                         <div class="card card-topline-red">
                             <div class="card-head">
-                                <header>Category List</header>
+                                <header>Order List</header>
                                 <div class="tools">
                                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -41,20 +41,38 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
+<!--                                    <div class="col-md-6 col-sm-6 col-xs-6">-->
+<!--                                        <div class="btn-group">-->
+<!--                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">-->
+<!--                                                Add New <i class="fa fa-plus"></i>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group">
-                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
-                                                Add New <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6" >
-                                        <div class="form-group" >
+                                    <form method="post" action="<?php echo base_url()?>Admin-OrdersByDate">
+                                        <div class="col-md-3 col-sm-6" >
+                                            <div class="form-group" >
 
-                                            <label for="date">From</label>
-                                            <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
-                                        </div >
+                                                <label for="date">From</label>
+                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
+                                            </div >
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-6" >
+                                            <div class="form-group" >
+
+                                                <label for="date">To</label>
+                                                <input type="text" class="form-control docs-date" name="date_to" placeholder="Pick a date">
+                                            </div >
+                                        </div>
+
+
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                                        <input style="margin-top: 44px;margin-left: 50px" type="submit" name="generate" class="btn btn-success" value="Generate">
+
+                                    </form>
                                     </div>
+
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group pull-right">
                                             <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools

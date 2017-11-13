@@ -73,4 +73,8 @@ $route['Admin-insertItemSizePrice/(:any)/(:any)'] = 'Admin/Items/insertItemSizeP
 
 $route['Admin-Orders'] = 'Admin/Orders/allOrders';
 
+
 $route['Admin-Report'] = 'Admin/Report/viewReport';
+
+$route['Admin-OrdersByDate'] = 'Admin/Orders/showOrdersByDate';
+
