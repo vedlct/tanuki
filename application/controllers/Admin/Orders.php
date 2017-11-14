@@ -20,6 +20,8 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $this->data['orders'] = $this->Ordersm->getAllOrders();
+            $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+            //print_r($this->data['orders']);
 
             $this->load->view('Admin/allOrders', $this->data);
         }
@@ -34,8 +36,7 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $dateFrom=$this->input->post('date_from');
-            $dateTo=$this->input->post('date_to');
+
 
             //$this->data['orders'] = $this->Ordersm->getAllOrdersByDate($dateFrom,$dateTo);
 
