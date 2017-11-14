@@ -17,5 +17,11 @@ class Report extends CI_Controller
     public function searchByDate(){
 
     }
+
+    public function filterByCustomer(){
+        $this->data['allreportcus']= $this->Reportm->filterByCustomer();
+        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/ReportFilterByCustomer', $this->data);
+    }
 }
 ?>

@@ -74,9 +74,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url()?>Admin-Report" class="nav-link nav-toggle"><i class="fa fa-book"></i>
-                        <span class="title">Report</span>
+                    <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Report</span> <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin-Report" class="nav-link "> <span class="title">Filter By Date</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin/Report/filterByCustomer" class="nav-link "> <span class="title">Filter By Customer</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
                 </li>
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-gift"></i>
