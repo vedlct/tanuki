@@ -133,14 +133,14 @@
         modal.style.display = "block";
     }
 
-    function selectid2(x)
+    function selectid4(x)
     {
 
         btn = $(x).data('panel-id');
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Items/getItemById")?>',
+            url:'<?php echo base_url("Admin/Promotions/getPromotionById")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {

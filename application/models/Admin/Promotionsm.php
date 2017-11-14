@@ -26,7 +26,15 @@ class Promotionsm extends CI_Model
         $this->db->insert('promotiondetail', $promotionItemdata);
     }
 
-
+//public  function getPromotionitemdataId($promotionItemdata)
+//{
+////    $this->db->select(['id',]);
+////    $this->db->from('promotiondetail');
+//    $this->db->select('promotiondetail', $promotionItemdata);
+//    $promotionId = $this->db->insert_id();
+//    return $promotionId;
+//
+//}
 
     public function getAllPromotionsByType($type)
     {
@@ -36,6 +44,43 @@ class Promotionsm extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function getPromotionById($promotionId)
+    {
+        $this->db->from('promotions');
+        $this->db->where('id', $promotionId)->select(['id', 'campainTitle', 'promoCode', ' startDate', ' endDate', 'promoType', ' discountAmount ', 'activationStatus']);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
+
+    public function updatePromotionById($id,$promotiondata)
+    {
+
+        $error = $this->db->where('id',$id)->update('promotions', $promotiondata);
+
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+public function  updatePromotionItemdata($id,$promotionItemdata)
+{
+    $error= $this->db->where('id', $id)->update('promotiondetail', $promotionItemdata);
+
+    if (empty($error)) {
+        return $this->db->error();
+    } else {
+
+        return $error = null;
+    }
+
+}
+
 
     public function getAllPromotionsByTypeForItem()
     {

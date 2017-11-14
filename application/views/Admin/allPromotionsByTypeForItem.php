@@ -31,7 +31,7 @@
                         <tr>
                             <td><?php echo $pitem->itname ?></td>
                             <td><?php echo $pitem->discountAmount ?></td>
-                            <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $pitem->pitemId ?>" onclick="selectid2(this)">
+                            <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $pitem->pitemId ?>" onclick="selectid4(this)">
 
                                     <i class="fa fa-edit"></i>
                                 </button>
@@ -55,7 +55,7 @@
             </td>
 
             <td class="center">
-                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid2(this)">
+                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid4(this)">
 
                     <i class="fa fa-pencil"></i>
                 </button>
