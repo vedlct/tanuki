@@ -76,8 +76,9 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+
                                         <?php $count = 1; foreach ($allreport as $ar) {  ?>
+                                            <tr>
                                         <td><?php echo $count ?></td>
                                         <td><?php echo $ar->id ?></td>
                                         <td>
@@ -85,8 +86,7 @@
 
 
                                                     <?php foreach ($allItemreport as $air) {
-                                                        if ($air->itemsizeid == $ar->titemsizeid) {
-                                                        ?>
+                                                        if ( $ar->titemsizeid == $air->itemsizeid) { ?>
                                                 <tr>
                                                         <td><?php echo $air->itemname ?></td>
                                                         <td><?php echo $air->itemSize ?></td>
@@ -102,9 +102,9 @@
                                         <td><?php echo $ar->discount ?></td>
                                         <td></td>
                                         <td><?php echo $ar->transDate ?></td>
-
-                                        <?php  $count++;} ?>
                                     </tr>
+                                        <?php  $count++;} ?>
+
                                     </tbody>
                                 </table>
                             </div>
