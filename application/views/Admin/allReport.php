@@ -63,50 +63,60 @@
                                     </div>
                                     </form>
 
-                                </div>
+
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="" class="center"> SL </th>
                                         <th width="" class="center"> OrderId </th>
-                                        <th width="" class="center"> Item , Size & Price</th>
-                                        <th width="" class="center"> Discount</th>
+                                        <th width="" class="center"> Items </th>
                                         <th width="" class="center"> Total Amount</th>
+                                        <th width="" class="center"> Customer</th>
+                                        <th width="" class="center"> Order Taken</th>
                                         <th width="" class="center"> Date</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+
                                         <?php $count = 1; foreach ($allreport as $ar) {  ?>
-                                        <td><?php echo $count ?></td>
-                                        <td><?php echo $ar->id ?></td>
-                                        <td>
+                                        <tr>
+                                        <td class="center"><?php echo $count ?></td>
+                                        <td class="center"><?php echo $ar->id ?></td>
+                                        <td class="center">
                                             <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
 
-
-                                                    <?php foreach ($allItemreport as $air) {
-                                                        if ($air->itemsizeid == $ar->titemsizeid) {
-                                                        ?>
                                                 <tr>
-                                                        <td><?php echo $air->itemname ?></td>
-                                                        <td><?php echo $air->itemSize ?></td>
-                                                        <td ><?php echo  $air->price?></td>
+                                                    <th>Name</th>
+                                                    <th>Size</th>
+                                                    <th>Quantity</th>
+                                                    <th>Discount</th>
+                                                    <th >total</th>
                                                 </tr>
-                                                    <?php } }?>
 
-
+                                                    <?php $sumtotal = 0; foreach ($allItemreport as $air) {
+                                                        if ( $ar->tid == $air->fkTransId) { ?>
+                                                <tr>
+                                                        <td><?php echo  $air->itemName ?></td>
+                                                        <td><?php echo  $air->itemSize ?></td>
+                                                        <td><?php echo  $air->quantity ?></td>
+                                                        <td ><?php echo $air->discount?></td>
+                                                        <td ><?php echo $total=$air->quantity * $air->rate?></td>
+                                                </tr>
+                                                    <?php } $sumtotal = $sumtotal+$total; }?>
 
 
                                             </table>
                                         </td>
-                                        <td><?php echo $ar->discount ?></td>
-                                        <td></td>
-                                        <td><?php echo $ar->transDate ?></td>
-
+                                        <td class="center"><?php echo $sumtotal ?></td>
+                                        <td class="center"><?php echo $ar->customer ?></td>
+                                        <td class="center"><?php echo $ar->waiter ?></td>
+                                        <td class="center"><?php echo $ar->transDate ?></td>
+                                        </tr>
                                         <?php  $count++;} ?>
-                                    </tr>
+
                                     </tbody>
                                 </table>
+                            </div>
                             </div>
                         </div>
                     </div>
