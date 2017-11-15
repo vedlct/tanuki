@@ -86,7 +86,14 @@
                             <a href="<?php echo base_url()?>Admin/Report/filterByCustomer" class="nav-link "> <span class="title">Filter By Customer</span>
                             </a>
                         </li>
-
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin/Report/filterByEmployee" class="nav-link "> <span class="title">Filter By Employee</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin/Report/filterByItems" class="nav-link "> <span class="title">Filter By Items</span>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>

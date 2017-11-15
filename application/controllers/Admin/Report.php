@@ -23,5 +23,17 @@ class Report extends CI_Controller
         //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
         $this->load->view('Admin/ReportFilterByCustomer', $this->data);
     }
+    public function filterByEmployee(){
+        $this->data['allreportemp']= $this->Reportm->filterByEmployee();
+        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/ReportFilterByEmployee', $this->data);
+    }
+
+    public function filterByItems(){
+        $this->data['allreportitem']= $this->Reportm->filterByItems();
+        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/ReportFilterByItems', $this->data);
+    }
+
 }
 ?>
