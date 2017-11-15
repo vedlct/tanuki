@@ -13,6 +13,8 @@
     <link href="<?php echo base_url()?>public/js/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
 
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>public/css/modal.css " />
+
 	<!--bootstrap -->
     <link href="<?php echo base_url()?>public/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/js/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
@@ -23,7 +25,7 @@
     <link href="<?php echo base_url()?>public/css/style.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/css/responsive.css" rel="stylesheet" type="text/css" />
 
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>public/css/modal.css " />
+
 
 	<!-- favicon -->
     <link rel="shortcut icon" href="<?php echo base_url()?>img/favicon.ico" />

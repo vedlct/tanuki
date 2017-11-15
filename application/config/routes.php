@@ -78,3 +78,6 @@ $route['Admin-Report'] = 'Admin/Report/viewReport';
 
 $route['Admin-OrdersByDate'] = 'Admin/Orders/showOrdersByDate';
 
+
+$route['Admin-EditOrderItem/(:any)'] = 'Admin/Orders/updateOrderItemById/$1';
+

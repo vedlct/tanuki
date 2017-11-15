@@ -48,30 +48,6 @@
                                             </button>
                                         </div>
                                     </div>
-<!--                                    <div class="col-md-6 col-sm-6 col-xs-6">-->
-<!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin-OrdersByDate">-->
-<!--                                        <div class="col-md-3 col-sm-6" >-->
-<!--                                            <div class="form-group" >-->
-<!---->
-<!--                                                <label for="date">From</label>-->
-<!--                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">-->
-<!--                                            </div >-->
-<!--                                        </div>-->
-<!---->
-<!--                                        <div class="col-md-3 col-sm-6" >-->
-<!--                                            <div class="form-group" >-->
-<!---->
-<!--                                                <label for="date">To</label>-->
-<!--                                                <input type="text" class="form-control docs-date" name="date_to" placeholder="Pick a date">-->
-<!--                                            </div >-->
-<!--                                        </div>-->
-<!---->
-<!---->
-<!--                                        <input type="hidden" name="--><?php //echo $this->security->get_csrf_token_name();?><!--" value="--><?php //echo $this->security->get_csrf_hash();?><!--">-->
-<!--                                        <input style="margin-top: 44px;margin-left: 50px" type="submit" name="generate" class="btn btn-success" value="Generate">-->
-<!---->
-<!--                                    </form>-->
-<!--                                    </div>-->
 
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group pull-right">
@@ -115,14 +91,15 @@
                                         <tr class="odd gradeX">
 
                                             <td><?php echo $i;?></td>
-                                            <td class="center"><?php echo $orders->name; ?>
+                                            <td class="center"><?php echo $orders->userName; ?>
 
                                                 <div class="btn-group">
                                                     <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>" onclick="selectidShowUser(this)">
-                                                        <i class="fa fa-plus"></i>
+                                                        <i class="fa fa-info"></i>
                                                     </button>
-                                                </div>
+                                                </div><hr>
 
+                                               <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
                                             </td>
                                             <td class="center"><?php echo $orders->orderType; ?></td>
                                             <td class="center">
@@ -142,31 +119,31 @@
                                                         <th width="10%"class="center">Action</th >
                                                     </tr>
                                                     <?php
+                                                        foreach ($ordersItems as $orderItem){
 
-                                                    if ($orders->id=$orders->fkOrderId){
-                                                        $this->db->select('oi.fkItemSizeId,oi.quantity,oi.rate,oi.discount,is.itemSize,i.itemName');
-                                                        $this->db->from('orderitems oi');
-                                                        $this->db->Where('oi.fkItemSizeId',$orders->fkItemSizeId);
-                                                        $this->db->join('itemsizes is','is.id = oi.fkItemSizeId','left');
+                                                    if ($orders->id==$orderItem->fkOrderId){
+
+                                                        $this->db->select('is.itemSize,i.itemName');
+                                                        $this->db->from('itemsizes is');
+                                                        $this->db->Where('is.id',$orderItem->fkItemSizeId);
                                                         $this->db->join('items i','i.id = is.fkItemId','left');
-
                                                         $query1=$this->db->get();
+                                                        foreach ( $query1->result() as $res ) {?>
 
-                                                    foreach ( $query1->result() as $res ) {?>
                                                         <tr>
                                                             <td><?php echo $res->itemName?></td>
                                                             <td><?php echo $res->itemSize?></td>
-                                                            <td><?php echo $res->quantity?></td>
-                                                            <td><?php echo $res->rate?></td>
-                                                            <td><?php echo $res->discount?></td>
-                                                            <td><?php echo (($res->quantity*$res->rate)-$res->discount)?></td>
+                                                            <td><?php echo $orderItem->quantity?></td>
+                                                            <td><?php echo $orderItem->rate?></td>
+                                                            <td><?php echo $orderItem->discount?></td>
+                                                            <td><?php echo (($orderItem->quantity*$orderItem->rate)-$orderItem->discount)?></td>
                                                             <td width="20%">
-                                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orders->fkItemSizeId ?>" onclick="selectid1(this)">
+                                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
 
                                                                     <i class="fa fa-edit"></i>
                                                                 </button>
 
-                                                                <button type="button" data-panel-id="<?php echo $orders->fkItemSizeId ?>" onclick="selectid4(this)"class="btn btn-danger btn-xs">
+                                                                <button type="button" data-panel-id="<?php echo $orderItem->id?>" onclick="deleteOrderItemsId(this)"class="btn btn-danger btn-xs">
 
                                                                     <i class="fa fa-trash "></i>
                                                                 </button>
@@ -174,9 +151,10 @@
 
 
                                                         </tr>
-                                                    <?php }}?>
+                                                    <?php }}}?>
 
                                                 </table>
+                                                    <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
                                                 </div>
 
                                             </td>
@@ -184,14 +162,10 @@
                                             <td class="center"><?php echo $orders->deliveryfee; ?></td>
                                             <td class="center">
 
-
-
-
-
-                                                            <select class="form-control input-height" id="orderStatus" name="orderStatus" required onchange="showtable(this)">
+                                                            <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                                                                 <option value="">Select</option>
-                                                                <?php foreach ($ordersStatus as $ordersStatus) { ?>
-                                                                    <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$ordersStatus->id) echo 'selected = "selected"';?>value="<?php echo $ordersStatus->id?>"><?php echo $ordersStatus->statusTitle?></option>
+                                                                <?php foreach ($ordersStatus as $Status) { ?>
+                                                                    <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
                                                                 <?php } ?>
                                                             </select>
 
@@ -250,13 +224,14 @@
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
 
-    function selectid1(x)
+    function editOrderItemsId(x)
     {
+        btn = $(x).data('panel-id');
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
-            data:{},
+            url:'<?php echo base_url("Admin/Orders/editOrderItems" )?>',
+            data:{id:btn},
             cache: false,
             success:function(data)
             {
@@ -267,47 +242,107 @@
         modal.style.display = "block";
     }
 
-    function selectid2(x)
+    function deleteOrderItemsId(x)
     {
+        if (confirm("are you sure to delete this Category?"))
+        {
+            btn = $(x).data('panel-id');
 
-        btn = $(x).data('panel-id');
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Orders/deleteOrderedItemsId")?>',
+                data: {id: btn},
+                cache: false,
+                success: function (data) {
+                    alert(' Selected Order Item deleted Successfully');
+                    location.reload();
 
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Category/getCategoryById")?>',
-            data:{id:btn},
-            cache: false,
-            success:function(data) {
+                }
+            });
+        }
 
-                $('#txtHint').html(data);
-
-            }
-        });
-        modal.style.display = "block";
 
     }
 
-    function selectid3(x)
+    function addNewItemOrder(x)
     {
-
-        if (confirm("are you sure to delete this Category?"))
-        {
 
             btn = $(x).data('panel-id');
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Category/deleteCategoryById")?>',
+                url: '<?php echo base_url("Admin/Orders/NewOrderItems")?>',
                 data: {id: btn},
                 cache: false,
                 success: function (data) {
-                    alert('Category deleted Successfully');
-                    location.reload();
+                    $('#txtHint').html(data);
                 }
 
             });
-        }
+        modal.style.display = "block";
+
     }
+
+    function showItemByCategory(x)
+    {
+
+        var catId=document.getElementById('categoryName').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getAllItemsByCategory")?>',
+            data: {id: catId},
+            cache: false,
+            success: function (data) {
+
+                document.getElementById("itemId").innerHTML = data;
+
+            }
+
+        });
+    }
+
+    function showItemSizesByItem(x)
+    {
+
+        var itemId=document.getElementById('itemId').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getAllItemSizesByItem")?>',
+            data: {id: itemId},
+            cache: false,
+            success: function (data) {
+
+                document.getElementById("itemSizeId").innerHTML = data;
+
+            }
+
+        });
+    }
+
+    function showItemPriceByItemSizeId(x)
+    {
+
+        var itemSizeId=document.getElementById('itemSizeId').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getItemPriceByItemSize")?>',
+            data: {id: itemSizeId},
+            cache: false,
+            success: function (data) {
+
+
+                var quantity=document.getElementById("ItemQuantity").value = "1";
+                document.getElementById("ItemPrice").value = (quantity*data);
+
+            }
+
+        });
+    }
+
+
     // When the user clicks * of the modal, close it
     span.onclick = function() {
         modal.style.display = "none";
@@ -321,4 +356,28 @@
     }
 
 
+</script>
+
+<script>
+    function changeStatus(v) {
+
+        if (confirm("are you sure to Change this Oder Status?")) {
+
+            var option = document.getElementById(v).value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Orders/changeOrderStatus/")?>' + v,
+                data: {status: option},
+                cache: false,
+                success: function (data) {
+
+                    location.reload();
+
+                }
+            });
+        }
+
+    }
 </script>
