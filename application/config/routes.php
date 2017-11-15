@@ -81,3 +81,5 @@ $route['Admin-OrdersByDate'] = 'Admin/Orders/showOrdersByDate';
 
 $route['Admin-EditOrderItem/(:any)'] = 'Admin/Orders/updateOrderItemById/$1';
 
+$route['Admin-AddOrderedItem/(:any)'] = 'Admin/Orders/addNewOrderItems/$1';
+

@@ -47,6 +47,7 @@
                                                 Add New <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
+                                 </div>
 
 
                                     <div class="col-md-6 col-sm-6 col-xs-6">
@@ -71,13 +72,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="table table-responsive">
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Name </th>
-                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
-                                        <th width="10%"class="center"> Action </th>
+                                        <th width="3%"class="center"> Sr.NO </th>
+                                        <th width="15%"class="center"> User & Order Tacker Name</th>
+                                        <th width="3%"class="center"> Order Type</th>
+                                        <th width="13%"class="center"> Order Date </th>
+                                        <th width="5%"class="center"> Payment Type </th>
+                                        <th width="41%"class="center"> Items </th>
+                                        <th width="5%"class="center"> Delivery Fee </th>
+                                        <th width="15%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -106,13 +112,13 @@
                                                 <div class="table table-responsive">
                                                 <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
-                                                        <th width="40%"class="center">Name</th >
+                                                        <th width="50%"class="center">Name</th >
                                                         <th width="10%"class="center">Size</th >
                                                         <th width="10%"class="center">Quantity</th >
                                                         <th width="10%"class="center">Rate</th >
                                                         <th width="10%"class="center">Discount</th >
                                                         <th width="10%"class="center">Total</th >
-                                                        <th width="10%"class="center">Action</th >
+                                                        <th width="5%"class="center">Action</th >
                                                     </tr>
                                                     <?php
                                                         foreach ($ordersItems as $orderItem){
@@ -175,6 +181,7 @@
 
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -331,7 +338,8 @@
 
 
                 var quantity=document.getElementById("ItemQuantity").value = "1";
-                document.getElementById("ItemPrice").value = (quantity*data);
+
+                document.getElementById("ItemRate").value = (quantity*data);
 
             }
 

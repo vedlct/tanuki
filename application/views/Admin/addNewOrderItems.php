@@ -1,4 +1,4 @@
-<form action="<?php echo base_url()?>Admin-AddCategory"  method="post" id="form_sample_1" class="form-horizontal">
+<form action="<?php echo base_url()?>Admin-AddOrderedItem/<?php echo $orderId?>"  method="post" id="form_sample_1" class="form-horizontal">
     <div class="form-body">
 
         <div class="form-group">
@@ -35,15 +35,24 @@
 
             <label class="control-label col-md-3"> Item Quantity<span class="required"> * </span></label>
             <div class="col-md-5">
-                <input type="text" id="ItemQuantity" name="ItemQuantity" placeholder="Please Select an Item Size" required class="form-control input-height" />
+                <input type="number" id="ItemQuantity" name="ItemQuantity" placeholder="Please Select an Item Size" required class="form-control input-height" />
             </div>
         </div>
 
         <div class="form-group">
 
-            <label class="control-label col-md-3"> Item price<span class="required"> * </span></label>
+            <label class="control-label col-md-3"> Item Rate<span class="required"> * </span></label>
             <div class="col-md-5">
-                <input type="text" readonly id="ItemPrice" name="ItemPrice" placeholder="Please Select an Item Size" required class="form-control input-height" />
+
+                <input type="text" readonly id="ItemRate" name="ItemRate"  placeholder="Please Select an Item Size" required class="form-control input-height" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-3"> Discount<span class="required"> * </span></label>
+            <div class="col-md-5">
+                <input type="number" id="ItemDiscount" name="ItemDiscount" placeholder="Please give a Discount" required class="form-control input-height" />
             </div>
         </div>
 

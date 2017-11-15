@@ -137,11 +137,50 @@ class Orders extends CI_Controller
 
             $this->data['orderId']=$this->input->post('id');
             $this->data['categoryInfo'] = $this->Categorym->getAllCategoryNameId();
-//            $this->data['categoryInfo'] = $this->Categorym->getAllItemsNameIdByCategory($id);
-          //  $this->data['allItems'] = $this->Ordersm->getOrderItemForEdit($itemId);
 
 
             $this->load->view('Admin/addNewOrderItems',$this->data);
+        }
+        else{
+            redirect('Login');
+        }
+
+    }
+
+    public function addNewOrderItems($orderId)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+//            $categoryId=$this->input->post('categoryName');
+//            $itemId=$this->input->post('itemId');
+            $itemSizeId=$this->input->post('itemSizeId');
+            $ItemQuantity=$this->input->post('ItemQuantity');
+            $ItemRate=$this->input->post('ItemRate');
+            $ItemDiscount=$this->input->post('ItemDiscount');
+
+            $data = array(
+                'fkOrderId' => $orderId,
+                'fkItemSizeId' => $itemSizeId,
+                'quantity' => $ItemQuantity,
+                'rate' => $ItemRate,
+                'discount' => $ItemDiscount,
+
+            );
+
+            $this->data['error'] = $this->Ordersm->addNewOrderItems($data);
+
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage','Item Ordered Successfully');
+
+                redirect('Admin-Orders');
+
+            } else {
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Orders');
+            }
+
         }
         else{
             redirect('Login');
