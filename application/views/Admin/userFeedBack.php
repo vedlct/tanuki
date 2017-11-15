@@ -19,7 +19,20 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-
+                <div class="page-bar">
+                    <div class="page-title-breadcrumb">
+                        <div class=" pull-left">
+                            <div class="page-title">UserFeedback</div>
+                        </div>
+                        <ol class="breadcrumb page-breadcrumb pull-right">
+                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            </li>
+                            <li><a class="parent-item" href="#">Category</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            </li>
+                            <li class="active">Category List</li>
+                        </ol>
+                    </div>
+                </div>
 
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
@@ -32,7 +45,7 @@
                     <div class="col-md-12">
                         <div class="card card-topline-red">
                             <div class="card-head">
-                                <header>Order List</header>
+                                <header>User Feedback</header>
                                 <div class="tools">
                                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
@@ -41,38 +54,6 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-<!--                                    <div class="col-md-6 col-sm-6 col-xs-6">-->
-<!--                                        <div class="btn-group">-->
-<!--                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">-->
-<!--                                                Add New <i class="fa fa-plus"></i>-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <form method="post" action="<?php echo base_url()?>Admin-OrdersByDate">
-                                        <div class="col-md-3 col-sm-6" >
-                                            <div class="form-group" >
-
-                                                <label for="date">From</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
-                                            </div >
-                                        </div>
-
-                                        <div class="col-md-3 col-sm-6" >
-                                            <div class="form-group" >
-
-                                                <label for="date">To</label>
-                                                <input type="text" class="form-control docs-date" name="date_to" placeholder="Pick a date">
-                                            </div >
-                                        </div>
-
-
-                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                                        <input style="margin-top: 44px;margin-left: 50px" type="submit" name="generate" class="btn btn-success" value="Generate">
-
-                                    </form>
-                                    </div>
-
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group pull-right">
                                             <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
@@ -95,42 +76,48 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Name </th>
-                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
-                                        <th width="10%"class="center"> Action </th>
+                                        <th width="10%"class="center">Item Name </th>
+                                        <th width="20%"class="center">Customer Name </th>
+                                        <th width="20%"class="center"> Feedback Detail</th>
+                                        <th width="20%"class="center"> Feedback Time date(d-m-y)</th>
+                                        <th width="20%"class="center"> Action </th>
                                     </tr>
                                     </thead>
+
                                     <tbody>
-<!--                                    --><?php //$i=1;foreach($category as $category) { ?>
-<!---->
-<!--                                        <tr class="odd gradeX">-->
-<!---->
-<!--                                            <td>--><?php //echo $i; ?><!--</td>-->
-<!--                                            <td class="center">--><?php //echo $category->name; ?><!--</td>-->
-<!--                                            <td class="center">-->
-<!--                                                --><?php //echo preg_replace("/ /"," Time: ",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
-<!--                                            </td>-->
-<!---->
-<!--                                            <td class="center">-->
-<!--                                                <button  class="btn btn-primary btn-xs"  data-panel-id="--><?php //echo $category->id ?><!--" onclick="selectid2(this)">-->
-<!---->
-<!--                                                    <i class="fa fa-pencil"></i>-->
-<!--                                                </button>-->
-<!---->
-<!--                                                <button type="button" data-panel-id="--><?php //echo $category->id ?><!--" onclick="selectid3(this)"class="btn btn-danger btn-xs">-->
-<!---->
-<!--                                                    <i class="fa fa-trash-o "></i>-->
-<!--                                                </button>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!---->
-<!--                                        --><?php //$i++;} ?>
+
+                                    <?php $i=1; foreach($userFeedback as $f) { ?>
+                                        <tr class="odd gradeX">
+
+                                            <td> <?php echo $i?></td>
+                                            <td class="center"> <?php echo $f->itemName?> </td>
+                                            <td class="center"> <?php echo $f->name ?></td>
+                                            <td class="center"> <?php echo $f->feedback ?></td>
+<!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
+                                            <td class="center"> <?php echo $f->feedbackTime ?></td>
+<!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
+
+                                            <td class="center">
+                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $f->fid ?>" onclick="selectid2(this)">
+
+                                                    <i class="fa fa-pencil"></i>
+                                                </button>
+
+                                                <button type="button" data-panel-id="<?php echo $f->fid ?> " onclick="selectid8(this)"class="btn btn-danger btn-xs">
+
+                                                    <i class="fa fa-trash-o "></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                        <?php  $i++;}	?>
                                     </tbody>
                                 </table>
+
                             </div>
                         </div>
                     </div>
@@ -176,22 +163,6 @@
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
 
-    function selectid1(x)
-    {
-
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
-            data:{},
-            cache: false,
-            success:function(data)
-            {
-                $('#txtHint').html(data);
-            }
-
-        });
-        modal.style.display = "block";
-    }
 
     function selectid2(x)
     {
@@ -200,7 +171,7 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Category/getCategoryById")?>',
+            url:'<?php echo base_url("Admin/Userfeedback/updateUserFeedback")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {
@@ -213,21 +184,21 @@
 
     }
 
-    function selectid3(x)
+    function selectid8(x)
     {
 
-        if (confirm("are you sure to delete this Category?"))
+        if (confirm("are you sure to delete this Feedback?"))
         {
 
             btn = $(x).data('panel-id');
-
+            alert(btn);
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Category/deleteCategoryById")?>',
+                url: '<?php echo base_url("Admin/Userfeedback/deleteUserfeedbackById")?>',
                 data: {id: btn},
                 cache: false,
                 success: function (data) {
-                    alert('Category deleted Successfully');
+                    alert('feedback deleted Successfully');
                     location.reload();
                 }
 

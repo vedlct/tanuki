@@ -79,10 +79,14 @@
                                                     <th>Item Size</th>
                                                     <th>Total Order</th>
                                                 </tr>
+                                                <?php foreach ($allreportitemsize as $ris){
+                                                    if ($ar->itemid == $ris->itemid){
+                                                    ?>
                                                 <tr>
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td><?php echo $ris->itemsize?></td>
+                                                    <td><?php echo $ris->totalsize?></td>
                                                 </tr>
+                                                <?php } }?>
                                             </table>
                                             </td>
                                             <td class="center"><?php echo $ar->totalitem ?></td>

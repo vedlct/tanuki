@@ -25,7 +25,7 @@
             <td class="center"><?php if ($promotion->activationStatus==1){echo "Active";} elseif ($promotion->activationStatus==0){echo "InActive";}?></td>
 
             <td class="center">
-                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid2(this)">
+                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid4(this)">
 
                     <i class="fa fa-pencil"></i>
                 </button>

@@ -31,7 +31,7 @@ class Report extends CI_Controller
 
     public function filterByItems(){
         $this->data['allreportitem']= $this->Reportm->filterByItems();
-        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
         $this->load->view('Admin/ReportFilterByItems', $this->data);
     }
 
