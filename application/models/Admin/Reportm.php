@@ -20,7 +20,7 @@ class Reportm extends CI_Model
     }
     public function filterByCustomer(){
 
-        $this->db->select('transactionmaster.id as tid, users.name as customer  , paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
+        $this->db->select('transactionmaster.id as tid, users.name as customer  ,users.id as uid, paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
         $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
@@ -67,6 +67,29 @@ class Reportm extends CI_Model
         $query = $this->db->get();
         return $query->result();
 
+    }
+
+    public function  getTotalorderCustomer(){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkUserId  = users.id', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function  getTotalorderEmployee(){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkOrderTaker  = users.id', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType !=' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
     }
 
     public function pointcount()

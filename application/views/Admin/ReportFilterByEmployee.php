@@ -75,7 +75,11 @@
                                             <td class="center"><?php echo $count ?></td>
                                             <td class="center"><?php echo $ar->employee ?></td>
                                             <td class="center"><?php echo $ar->uid ?></td>
-                                            <td class="center"><?php echo $ar->totalorder ?></td>
+                                            <td class="center"><?php foreach ($allorder as $ao){
+                                                    if ($ar->uid == $ao->uid){
+                                                        echo $ao->totalorder ;
+                                                    }
+                                                }?></td>
                                             <td class="center"><?php echo $ar->totalitem?></td>
                                             <td class="center"><?php echo $ar->totalammount?></td>
 

@@ -20,12 +20,12 @@ class Report extends CI_Controller
 
     public function filterByCustomer(){
         $this->data['allreportcus']= $this->Reportm->filterByCustomer();
-        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->data['allorder']= $this->Reportm->getTotalorderCustomer();
         $this->load->view('Admin/ReportFilterByCustomer', $this->data);
     }
     public function filterByEmployee(){
         $this->data['allreportemp']= $this->Reportm->filterByEmployee();
-        //$this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->data['allorder']= $this->Reportm->getTotalorderEmployee();
         $this->load->view('Admin/ReportFilterByEmployee', $this->data);
     }
 
