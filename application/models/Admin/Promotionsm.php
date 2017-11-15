@@ -23,7 +23,7 @@ class Promotionsm extends CI_Model
     public function insertPromotionItemdata($promotionItemdata)
     {
 
-        $this->db->insert('promotiondetail', $promotionItemdata);
+        $this->db->insert('promotiondetail',$promotionItemdata);
     }
 
 //public  function getPromotionitemdataId($promotionItemdata)
@@ -70,7 +70,7 @@ class Promotionsm extends CI_Model
     }
 public function  updatePromotionItemdata($id,$promotionItemdata)
 {
-    $error= $this->db->where('id', $id)->update('promotiondetail', $promotionItemdata);
+    $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
 
     if (empty($error)) {
         return $this->db->error();
@@ -85,7 +85,7 @@ public function  updatePromotionItemdata($id,$promotionItemdata)
     public function getAllPromotionsByTypeForItem()
     {
 
-        $this->db->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount  ');
+        $this->db->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount');
         $this->db->join('items', 'items.id = promotiondetail.fkItemId', 'left');
         $this->db->from('promotiondetail');
         $query = $this->db->get();
@@ -98,6 +98,45 @@ public function  updatePromotionItemdata($id,$promotionItemdata)
 
 
     }
+
+    public function insertSelctionItemdata($data)
+    {
+        $error=$this->db->insert('promotiondetail',$data);
+
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+
+
+public function PromotionItemGetselectId($id)
+{    $this->db->where('promotiondetail.id',$id)->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount');
+    $this->db->from('promotiondetail');
+    $this->db->join('items', 'items.id = promotiondetail.fkItemId', 'left');
+    $query = $this->db->get();
+    return $query->result();
+
+}
+    public function updateSelectionById($id,$data)
+    {
+        $error = $this->db->where('id',$id)->update('promotiondetail', $data);
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+
+
+   public  function deleteSelectedById($id)
+   {
+       $this->db->where('id',$id)->delete('promotiondetail');
+   }
+
 
 
 }

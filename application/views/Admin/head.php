@@ -28,4 +28,9 @@
 	<!-- favicon -->
     <link rel="shortcut icon" href="<?php echo base_url()?>img/favicon.ico" />
 
+    <!-- date picker      -->
+    <link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
+
+    <!-- date picker      -->
+
 

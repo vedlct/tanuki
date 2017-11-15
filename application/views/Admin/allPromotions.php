@@ -153,7 +153,32 @@
 
     }
 
-    function selectid3(x)
+
+    function selectid2(x)
+    {
+
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Promotions/PromotionItemGetselectId")?>',
+            data:{id:btn},
+            cache: false,
+            success:function(data) {
+
+                $('#txtHint').html(data);
+
+            }
+        });
+        modal.style.display = "block";
+
+    }
+
+
+
+
+
+    function selectid5(x)
     {
 
         if (confirm("are you sure to delete this Item ?"))
@@ -162,17 +187,62 @@
             btn = $(x).data('panel-id');
 //            var catId= document.getElementById('categoryName').value;
 
-            //alert(btn);
 
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Promotions/deleteSelectedById")?>',
+                data: {id: btn},
+                cache: false,
+                success: function (data) {
+                    location.reload();
+                }
+
+            });
+        }
+    }
+
+
+
+    function selectid6(x)
+    {
+
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            async: true,
+            type:'POST',
+            url:'<?php echo base_url("Admin/Promotions/addNewselectId")?>',
+            data:{id:btn},
+            cache: false,
+            success:function(data) {
+
+                $('#txtHint').html(data);
+
+            }
+        });
+        modal.style.display = "block";
+
+    }
+
+
+
+
+
+    function selectid3(x)
+    {
+
+        if (confirm("are you sure to delete this Item ?"))
+        {
+
+            btn = $(x).data('panel-id');
+//            var catId= document.getElementById('categoryName').value;
             $.ajax({
                 type: 'POST',
                 url: '<?php echo base_url("Admin/Promotions/deletePromotionById")?>',
                 data: {id: btn},
                 cache: false,
                 success: function (data) {
-
                     location.reload();
-
                 }
 
             });

@@ -32,16 +32,13 @@
                                             <input type="text" name="promocode" placeholder="Promo Code" required value="<?php echo $p->promoCode ?>" class="form-control input-height" />
                                         </div>
                                     </div>
+
                                     <div class="form-group">
 
                                         <label class="control-label col-md-3"> Start Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
-                                            <div class="input-group date form_date " data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control input-height" name="startdate" value="<?php echo $p->startDate ?>" placeholder="Start Date" size="16" type="text" >
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            </div>
-                                            <input type="hidden" id="dtp_input5" name="startdate1" value="" />
+                                            <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date" value="<?php echo $p->startDate ?>">
+
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -49,15 +46,11 @@
                                         <label class="control-label col-md-3"> End Date<span class="required"> * </span></label>
                                         <div class="col-md-5">
 
-                                            <div class="input-group date form_date " data-date="" data-date-format="dd mm yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-                                                <input class="form-control input-height" name="enddate" value="<?php echo $p->endDate ?>"  size="16" type="text" >
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
-                                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                            </div>
-                                            <input type="hidden" id="dtp_input5" name="enddate2" value="" />
+                                            <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date" value="<?php echo $p->endDate ?>">
 
                                         </div>
                                     </div>
+
                                     <div id = "Item_Status" class="form-group">
                                         <label class="control-label col-md-3">Promotions Type: </label>
                                         <div class="col-md-5">

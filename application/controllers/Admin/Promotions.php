@@ -86,11 +86,11 @@ class Promotions extends CI_Controller
                            'discountAmount' => $itemDiscount[$i],
                     );
 
-                         print_r( $promotiondata);
-                         print_r( $promotionItemdata);
+                         //print_r( $promotiondata);
+                        // print_r( $promotionItemdata);
 
                     $data = $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
-                    print_r($data);
+                   // print_r($data);
 
 
                 }
@@ -149,8 +149,6 @@ class Promotions extends CI_Controller
             $promotype = $this->input->post('promotype');
             $discount = $this->input->post('discount');
             $status = $this->input->post('itemStatus');
-            $itemlist = $this->input->post('itemlist[]');
-            $itemDiscount = $this->input->post('itemDiscount[]');
             $promotiondata = array(
                 'campainTitle' => $campainTitle,
                 'promoCode' => $promocode,
@@ -161,51 +159,25 @@ class Promotions extends CI_Controller
                 'activationStatus' => $status,
             );
 
-            //print_r($startdate);
+            $this->data['error']= $this->Promotionsm->updatePromotionById($id,$promotiondata);
 
-             $this->Promotionsm->updatePromotionById($id,$promotiondata);
-//            $promotionId = $this->Promotionsm->insertPromotion($promotiondata);
-//            if (array_filter($itemlist) == null && array_filter($itemDiscount) == null) {
-//                for ($i = 0; $i < count($itemlist); $i++) {
-//                    $promotionItemdata = array(
-//                        'fkPromotionId' => $promotionId,
-//                        'fkItemId' => $itemlist[$i],
-//                        'discountAmount' => $itemDiscount[$i],
-//
-//                    );
-//
-//                    $this->data['error'] = $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
-//                }
-//            } else {
-//                for ($i = 0; $i < count($itemlist); $i++) {
-//                    $promotionItemdata = array(
-//                   'fkPromotionId' => $promotionId,
-//                        'fkItemId' => $itemlist[$i],
-//                        'discountAmount' => $itemDiscount[$i],
-//
-//                    );
-//
-//                    $this->data['error'] = $this->Promotionsm->updatePromotionItemdata($id, $promotionItemdata);
-//                }
-//            }
-//
-//            if (empty($this->data['error'])) {
-//
-//                $this->session->set_flashdata('successMessage', 'Promotions Update  Successfully');
-//                redirect('Admin/Promotions/allPromotions');
-//            } else {
-//
-//                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
-//                redirect('Admin/Promotions/allPromotions');
-//            }
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'Promotions Update  Successfully');
+                redirect('Admin/Promotions/allPromotions');
+            } else {
+
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin/Promotions/allPromotions');
+            }
         } else {
 
             redirect('Login');
 
         }
+
+
     }
-
-
 
 
     public function getAllPromotions($type)
@@ -244,5 +216,119 @@ class Promotions extends CI_Controller
             redirect('Login');
         }
     }
+
+    public  function addNewselectId()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+            $this->data['promotionId']=$this->input->post('id');
+
+            $this->data['allItem'] = $this->Promotionsm->getAllItem();
+
+            $this->load->view('Admin/addNewItemSelection',$this->data);
+        }
+        else{
+            redirect('Login');
+        }
+
+
+    }
+
+
+    public  function addNewselectIdinsert($promotionId)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+
+            $ItemId=$this->input->post('itemlist');
+            $discount=$this->input->post('discount');
+
+            $data = array(
+               'fkPromotionId'=>$promotionId,
+                'fkItemId' => $ItemId,
+                'discountAmount' => $discount
+
+            );
+            $this->data['error'] = $this->Promotionsm->insertSelctionItemdata($data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'Selected items Promotion  added  Successfully');
+                redirect('Admin/Promotions/allPromotions');
+            } else {
+
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin/Promotions/allPromotions');
+            }
+
+
+        } else {
+            redirect('Login');
+        }
+    }
+
+    public function PromotionItemGetselectId()
+    {
+
+
+        if ($this->session->userdata('userType') == "Admin") {
+           $data['itemsinfo']=$this->Promotionsm->getAllItem();
+            $id = $this->input->post('id');
+            $data['PromotionSelected'] = $this->Promotionsm->PromotionItemGetselectId($id);
+            $this->load->view('Admin/updateSelectionItemByid',$data);
+//        $this->data['promotioninfo'] = $this->Promotionsm->getPromotionById($id);
+//        $this->load->view('Admin/updatePromotion', $this->data);
+        } else {
+            redirect('Login');
+        }
+    }
+
+
+
+
+
+    public  function  updateSelectionId($id)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+            $fkItemId = $this->input->post('itemlist');
+            $discount = $this->input->post('discount');
+
+            $data=array(
+                'fkItemId'=>$fkItemId,
+                'discountAmount'=>$discount
+
+            );
+            $this->data['error']= $this->Promotionsm->updateSelectionById($id,$data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'Selected items  Update  Successfully');
+                redirect('Admin/Promotions/allPromotions');
+            } else {
+
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin/Promotions/allPromotions');
+            }
+        } else {
+
+            redirect('Login');
+
+        }
+
+
+    }
+
+    public  function deleteSelectedById()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $id = $this->input->post('id');
+            $this->Promotionsm->deleteSelectedById($id);
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
+
 
 }

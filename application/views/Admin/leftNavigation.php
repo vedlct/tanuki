@@ -73,7 +73,16 @@
                         <span class="title">Order</span>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin/Userfeedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">User Feedback</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin-Report" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Report</span>
+                    </a>
+                </li>
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-gift"></i>
                         <span class="title">Promotions</span> <span class="arrow"></span>
