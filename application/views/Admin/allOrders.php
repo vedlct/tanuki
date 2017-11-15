@@ -41,13 +41,13 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group">
                                             <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
                                                 Add New <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
-                                    </div>
+
 
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group pull-right">
@@ -71,21 +71,17 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class=" table table-responsive">
-                                <table class="table table-responsive table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th width="3%"class="center"> Sr.NO </th>
-                                        <th width="7%"class="center"> User Name </th>
-                                        <th width="5%"class="center"> order Type </th>
-                                        <th width="15%"class="center"> order Date</th>
-                                        <th width="5%"class="center"> payment Type </th>
-                                        <th width="45%"class="center"> Items </th>
-                                        <th width="5%"class="center"> delivery fee </th>
-                                        <th width="15%"class="center"> status </th>
+                                        <th width="10%"class="center"> Sr.NO </th>
+                                        <th width="50%"class="center"> Name </th>
+                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
+                                        <th width="10%"class="center"> Action </th>
                                     </tr>
                                     </thead>
                                     <tbody>
+
                                     <?php $i=1;foreach($orders as $orders) { ?>
 
                                         <tr class="odd gradeX">
@@ -176,9 +172,9 @@
                                         </tr>
 
                                         <?php $i++;} ?>
+
                                     </tbody>
                                 </table>
-                                </div>
                             </div>
                         </div>
                     </div>

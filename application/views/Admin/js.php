@@ -25,6 +25,8 @@
 
 <!-- date picker  -->
 
+
+
 <script src="<?php echo base_url()?>public/js/datepicker.js"></script>
 <script src="<?php echo base_url()?>public/js/main.js"></script>
 

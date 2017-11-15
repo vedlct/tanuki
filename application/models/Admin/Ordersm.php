@@ -15,6 +15,7 @@ class Ordersm extends CI_Model
 //    }
     public  function getAllOrders()
     {
+
         $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.delivery fee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.orderDate BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
@@ -23,6 +24,7 @@ class Ordersm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+
 
     public  function getAllOrdersItems()
     {
@@ -39,6 +41,21 @@ class Ordersm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+
+//    public  function getAllOrdersByDate($dateFrom,$dateTo)
+//
+//    {
+//        $this->db->select('o.id,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.fkUserId,oi.fkItemSizeId,oi.quantity,oi.rate,oi.discount,is.id,is.itemSize,is.price,u.name,u.memberCardNo,u.contactNo,u.email');
+//        $this->db->from('orders o');
+//        //$this->db->where('');
+//        $this->db->join('orderitems oi','oi.fkOrderId = o.id','left');
+//        $this->db->join('itemsizes is','is.id = oi.fkItemSizeId','left');
+//        $this->db->join('users u','u.id = o.fkUserId','left');
+//
+//        $query=$this->db->get();
+//        return $query->result();
+//    }
+
 
     public  function changeOrderStatus($orderId,$data)
     {
@@ -86,5 +103,4 @@ class Ordersm extends CI_Model
         $this->db->where('id',$id)->delete('orderitems');
 
     }
-
 }

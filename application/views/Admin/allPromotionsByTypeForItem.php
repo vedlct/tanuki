@@ -36,7 +36,7 @@
                                     <i class="fa fa-edit"></i>
                                 </button>
 
-                                <button type="button" data-panel-id="<?php echo $pitem->pitemId ?>" onclick="selectid3(this)"class="btn btn-danger btn-xs">
+                                <button type="button" data-panel-id="<?php echo $pitem->pitemId ?>" onclick="selectid5(this)"class="btn btn-danger btn-xs">
 
                                     <i class="fa fa-trash "></i>
                                 </button></td>
@@ -46,7 +46,7 @@
                     <?php } }?>
 
                 </table>
-                <button style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                <button style="width: 100%; margin:0 auto"  class="btn btn-success " data-panel-id="<?php echo $promotion->id?>" onclick="selectid6(this)"><i style="font-size: 30px; margin-top: 5px;"   class="fa fa-plus-circle"></i></button>
             </td>
 
             <td class="center">
@@ -55,7 +55,7 @@
             </td>
 
             <td class="center">
-                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid2(this)">
+                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $promotion->id ?>" onclick="selectid4(this)">
 
                     <i class="fa fa-pencil"></i>
                 </button>

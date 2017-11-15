@@ -23,10 +23,18 @@ class Promotionsm extends CI_Model
     public function insertPromotionItemdata($promotionItemdata)
     {
 
-        $this->db->insert('promotiondetail', $promotionItemdata);
+        $this->db->insert('promotiondetail',$promotionItemdata);
     }
 
-
+//public  function getPromotionitemdataId($promotionItemdata)
+//{
+////    $this->db->select(['id',]);
+////    $this->db->from('promotiondetail');
+//    $this->db->select('promotiondetail', $promotionItemdata);
+//    $promotionId = $this->db->insert_id();
+//    return $promotionId;
+//
+//}
 
     public function getAllPromotionsByType($type)
     {
@@ -37,10 +45,47 @@ class Promotionsm extends CI_Model
         return $query->result();
     }
 
+    public function getPromotionById($promotionId)
+    {
+        $this->db->from('promotions');
+        $this->db->where('id', $promotionId)->select(['id', 'campainTitle', 'promoCode', ' startDate', ' endDate', 'promoType', ' discountAmount ', 'activationStatus']);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
+
+    public function updatePromotionById($id,$promotiondata)
+    {
+
+        $error = $this->db->where('id',$id)->update('promotions', $promotiondata);
+
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+public function  updatePromotionItemdata($id,$promotionItemdata)
+{
+    $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
+
+    if (empty($error)) {
+        return $this->db->error();
+    } else {
+
+        return $error = null;
+    }
+
+}
+
+
     public function getAllPromotionsByTypeForItem()
     {
 
-        $this->db->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount  ');
+        $this->db->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount');
         $this->db->join('items', 'items.id = promotiondetail.fkItemId', 'left');
         $this->db->from('promotiondetail');
         $query = $this->db->get();
@@ -53,6 +98,45 @@ class Promotionsm extends CI_Model
 
 
     }
+
+    public function insertSelctionItemdata($data)
+    {
+        $error=$this->db->insert('promotiondetail',$data);
+
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+
+
+public function PromotionItemGetselectId($id)
+{    $this->db->where('promotiondetail.id',$id)->select('items.itemName as itname , promotiondetail.id as pitemId,promotiondetail.fkPromotionId,promotiondetail.discountAmount');
+    $this->db->from('promotiondetail');
+    $this->db->join('items', 'items.id = promotiondetail.fkItemId', 'left');
+    $query = $this->db->get();
+    return $query->result();
+
+}
+    public function updateSelectionById($id,$data)
+    {
+        $error = $this->db->where('id',$id)->update('promotiondetail', $data);
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+
+
+   public  function deleteSelectedById($id)
+   {
+       $this->db->where('id',$id)->delete('promotiondetail');
+   }
+
 
 
 }
