@@ -7,7 +7,7 @@ class Ordersm extends CI_Model
     public  function getAllOrders()
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.delivery fee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.orderDate BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
         $this->db->join('users u','u.id = o.fkUserId','left');
