@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a href="<?php echo base_url()?>Admin/Userfeedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                    <a href="<?php echo base_url()?>Admin/Feedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">User Feedback</span>
                     </a>
                 </li>

@@ -149,38 +149,6 @@
                                                     <span></span>
                                                 </label>
                                             </td>
-                                            <td> Jayesh Patel </td>
-                                            <td>
-                                                <a href="mailto:shuxer@gmail.com"> Dr.Rajesh </a>
-                                            </td>
-                                            <td class="center"> 12/05/2016 </td>
-                                            <td class="center"> 10:45 </td>
-                                            <td class="center">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-warning dropdown-toggle center no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu pull-left" role="menu">
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="odd gradeX">
-                                            <td>
-                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                    <input type="checkbox" class="checkboxes" value="1" />
-                                                    <span></span>
-                                                </label>
-                                            </td>
                                             <td> Pooja Patel </td>
                                             <td>
                                                 <a href="mailto:looper90@gmail.com"> Dr.Sarah Smith </a>
@@ -302,38 +270,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr class="odd gradeX ">
-                                            <td>
-                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
-                                                    <input type="checkbox" class="checkboxes" value="1" />
-                                                    <span></span>
-                                                </label>
-                                            </td>
-                                            <td> Sameer Jain </td>
-                                            <td>
-                                                <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
-                                            </td>
-                                            <td class="center"> 12/05/2016 </td>
-                                            <td class="center"> 11:45 </td>
-                                            <td class="center">
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-danger dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
-                                                        <i class="fa fa-angle-down"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -364,7 +301,7 @@
             cache: false,
             success: function (data) {
                 $("#results").text(data);
-            },
+            }
         });
-    },100)
+    },100);
     </script>
