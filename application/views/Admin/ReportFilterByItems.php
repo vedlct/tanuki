@@ -35,7 +35,7 @@
                             <div class="card-body ">
                                 <div class="row">
                                     <form method="post" action="<?php echo base_url()?>Report/searchByDate">
-                                        <div class="col-md-3 col-sm-3" >
+                                        <div class="col-md-6 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Search For Details</label>
@@ -44,7 +44,7 @@
                                         </div>
 
                                 </div>
-                                <div class="btn-group col-md-3 col-sm-3">
+                                <div class="btn-group col-md-6 col-sm-3">
 
                                     <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
                                         submit

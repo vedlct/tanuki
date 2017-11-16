@@ -42,15 +42,11 @@
                                                 <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
                                             </div >
                                         </div>
+                                        <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                            submit
+                                        </button>
 
                                 </div>
-                                <div class="btn-group col-md-3 col-sm-3">
-
-                                    <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
-                                        submit
-                                    </button>
-                                </div>
-
 
                                 </form>
 
