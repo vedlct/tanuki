@@ -121,15 +121,22 @@
                                                         <th width="5%"class="center">Action</th >
                                                     </tr>
                                                     <?php
+                                                    $total=0;
                                                         foreach ($ordersItems as $orderItem){
 
+
                                                     if ($orders->id==$orderItem->fkOrderId){
+
+
 
                                                         $this->db->select('is.itemSize,i.itemName');
                                                         $this->db->from('itemsizes is');
                                                         $this->db->Where('is.id',$orderItem->fkItemSizeId);
                                                         $this->db->join('items i','i.id = is.fkItemId','left');
                                                         $query1=$this->db->get();
+
+
+
                                                         foreach ( $query1->result() as $res ) {?>
 
                                                         <tr>
@@ -138,7 +145,7 @@
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
                                                             <td><?php echo $orderItem->discount?></td>
-                                                            <td><?php echo (($orderItem->quantity*$orderItem->rate)-$orderItem->discount)?></td>
+                                                            <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$orderItem->discount)?></td>
                                                             <td width="20%">
                                                                 <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
 
@@ -153,7 +160,11 @@
 
 
                                                         </tr>
-                                                    <?php }}}?>
+                                                    <?php $total=$total+$price;}}}?>
+                                                    <tr>
+                                                        <td colspan="5">Total:</td>
+                                                        <td colspan="1"><?php echo $total;?></td>
+                                                    </tr>
 
                                                 </table>
                                                     <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
