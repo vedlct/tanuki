@@ -110,7 +110,7 @@
                                             <td class="center"><?php echo $orders->paymentType; ?></td>
                                             <td class="center">
                                                 <div class="table table-responsive">
-                                                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                    <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
                                                         <th width="50%"class="center">Name</th >
                                                         <th width="10%"class="center">Size</th >
