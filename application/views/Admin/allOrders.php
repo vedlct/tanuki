@@ -41,16 +41,8 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group">
-                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
-                                                Add New <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                 </div>
 
-
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="btn-group pull-right">
                                             <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                                 <i class="fa fa-angle-down"></i>
@@ -78,11 +70,11 @@
                                     <tr >
                                         <th width="3%"class="center"> Sr.NO </th>
                                         <th width="15%"class="center"> User & Order Tacker Name</th>
-                                        <th width="3%"class="center"> Order Type</th>
+                                        <th width="8%"class="center"> Order Type</th>
                                         <th width="13%"class="center"> Order Date </th>
                                         <th width="5%"class="center"> Payment Type </th>
                                         <th width="41%"class="center"> Items </th>
-                                        <th width="5%"class="center"> Delivery Fee </th>
+<!--                                        <th width="10%"class="center"> Delivery Fee & Final Amount </th>-->
                                         <th width="15%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
@@ -162,8 +154,8 @@
                                                         </tr>
                                                     <?php $total=$total+$price;}}}?>
                                                     <tr>
-                                                        <td colspan="5">Total:</td>
-                                                        <td colspan="1"><?php echo $total;?></td>
+                                                        <td style="color: red" colspan="5">Total-(including delevery fee: <?php echo $orders->deliveryfee; ?>$) : </td>
+                                                        <td colspan="1"><?php echo $totalWithDelevery=$total+$orders->deliveryfee?></td>
                                                     </tr>
 
                                                 </table>
@@ -172,7 +164,7 @@
 
                                             </td>
 
-                                            <td class="center"><?php echo $orders->deliveryfee; ?></td>
+<!--                                            <td class="center">--><?php //echo $orders->deliveryfee; ?><!--</td>-->
                                             <td class="center">
 
                                                             <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
