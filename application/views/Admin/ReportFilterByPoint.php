@@ -42,83 +42,79 @@
                                                 <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
                                             </div >
                                         </div>
+                                        <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                            submit
+                                        </button>
 
-                                        </div>
-                                        <div class="btn-group col-md-3 col-sm-3">
+                                </div>
 
-                                            <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
-                                                submit
-                                            </button>
-                                        </div>
-
-
-                                    </form>
+                                </form>
 
 
-                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
-                                        <thead>
-                                        <tr >
-                                            <th width="" class="center"> SL </th>
-                                            <th width="" class="center"> Customer Name </th>
-                                            <th width="" class="center"> Membership ID</th>
-                                            <th width="" class="center"> Total Order </th>
-                                            <th width="" class="center"> Total Item </th>
-                                            <th width="" class="center"> Total Amount</th>
-                                           
+                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                    <thead>
+                                    <tr>
+                                        <th width="" class="center"> SL </th>
+                                        <th width="" class="center"> Customer Name </th>
+                                        <th width="" class="center"> Membership No </th>
+                                        <th width="" class="center"> Earn Point</th>
+                                        <th width="" class="center"> Expense Point </th>
+                                        <th width="" class="center"> Left Point </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php $count = 1; ;$qun= 0; $rate=0;$discount=0; foreach ($allreportearnpoint as $er) {  ?>
+
+                                        <tr>
+                                            <td class="center"><?php echo $count ?></td>
+                                            <td class="center"><?php echo $er->username ?></td>
+                                            <td class="center"><?php echo $er->memberCardNo ?></td>
+                                            <td class="center"><?php echo $earnpoint = $er->earnpoint ?></td>
+                                            <td class="center"><?php foreach ($allreportexpensepoint as $en){
+                                                    if ($er->uid == $en->uid){
+                                                        echo $expensepoint = $en->expensepoint ;
+                                                    }
+                                                }?></td>
+                                            <td class="center"><?php echo $earnpoint - $expensepoint?></td>
+
 
                                         </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php $count = 1; ;$qun= 0; $rate=0;$discount=0; foreach ($allreportcus as $ar) {  ?>
+                                        <?php  $count++;} ?>
 
-                                            <tr>
-                                                <td class="center"><?php echo $count ?></td>
-                                                <td class="center"><?php echo $ar->customer ?></td>
-                                                <td class="center"><?php echo $ar->memberCardNo ?></td>
-                                                <td class="center"><?php foreach ($allorder as $ao){
-                                                        if ($ar->uid == $ao->uid){
-                                                            echo $ao->totalorder ;
-                                                        }
-                                                    }?></td>
-                                                <td class="center"><?php echo $ar->totalitem?></td>
-                                                <td class="center"><?php  echo $ar->totalammount?></td>
-
-                                            </tr>
-                                            <?php  $count++;} ?>
-
-                                        </tbody>
-                                    </table>
-                                </div>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
 
 
 
 
-        <!-- end page content -->
+    <!-- end page content -->
 
-        <div id="myModal" class="modal">
-            <br/><br/><br/>
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">×</span>
+    <div id="myModal" class="modal">
+        <br/><br/><br/>
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">×</span>
 
-                <div id="txtHint"></div>
-
-            </div>
-
+            <div id="txtHint"></div>
 
         </div>
 
-    </div>
-    <!-- end page container -->
 
-    <?php include ("footer.php") ?>
+    </div>
+
+</div>
+<!-- end page container -->
+
+<?php include ("footer.php") ?>
 
 </div>
 

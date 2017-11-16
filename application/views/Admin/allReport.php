@@ -103,7 +103,7 @@
                                                                     <td ><?php echo $air->discount?></td>
                                                                     <td ><?php echo $total=$air->quantity * $air->rate?></td>
                                                                 </tr>
-                                                            <?php } $sumtotal = $sumtotal+$total; }?>
+                                                            <?php  $sumtotal = $sumtotal+$total;  } }?>
 
 
                                                     </table>

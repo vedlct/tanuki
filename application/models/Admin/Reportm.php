@@ -19,7 +19,9 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function filterByCustomer(){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer  , paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder');
+
+        $this->db->select('transactionmaster.id as tid, users.name as customer  ,users.id as uid, paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
+        $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->from('transactionmaster');
@@ -28,4 +30,90 @@ class Reportm extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function filterByEmployee(){
+
+        $this->db->select('users.id as uid, users.name as employee  , paymentType , orderType , memberCardNo, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount  ');
+        $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
+        $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
+        $this->db->join('users', 'orders.fkOrderTaker = users.id ', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('orderType =' ,'have');
+        $this->db->group_by('users.name');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+    public function filterByItems()
+    {
+        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem');
+        $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
+        $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
+        $this->db->from('transactiondetail');
+        $this->db->group_by('items.id');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    public function filterByItemsSize()
+    {
+        $this->db->select('COUNT(fkItemSizeId) as totalsize, itemsizes.fkItemId as itemid, itemsizes.itemSize as itemsize');
+        $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
+        $this->db->from('transactiondetail');
+        $this->db->group_by('fkItemSizeId');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    public function  getTotalorderCustomer(){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkUserId  = users.id', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function  getTotalorderEmployee(){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkOrderTaker  = users.id', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType !=' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function earnPointCount()
+    {
+        $this->db->select('users.name as username,memberCardNo, users.id as uid,  SUM(earnedPoints) as earnpoint');
+        $this->db->join('users', 'users.id = points.fkUserId', 'left');
+        $this->db->from('points');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    public function expensePointCount()
+    {
+        $this->db->select('users.name as username , users.id as uid,  SUM(expedPoints) as expensepoint');
+        $this->db->join('users', 'users.id = pointdeduct.fkUserId', 'left');
+        $this->db->from('pointdeduct');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
 }

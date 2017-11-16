@@ -212,10 +212,12 @@
             document.getElementById('add_remove_button').style.display = "none";
             return false;
         }
+
         // When the user clicks * of the modal, close it
         span.onclick = function () {
             modal.style.display = "none";
         }
+
         // When the user clicks anywhere outside of the modal, close it
         window.onclick = function (event) {
             if (event.target == modal) {

@@ -41,39 +41,8 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-<!--                                    <div class="col-md-6 col-sm-6 col-xs-6">-->
-<!--                                        <div class="btn-group">-->
-<!--                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">-->
-<!--                                                Add New <i class="fa fa-plus"></i>-->
-<!--                                            </button>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <form method="post" action="<?php echo base_url()?>Admin-OrdersByDate">
-                                        <div class="col-md-3 col-sm-6" >
-                                            <div class="form-group" >
 
-                                                <label for="date">From</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
-                                            </div >
-                                        </div>
-
-                                        <div class="col-md-3 col-sm-6" >
-                                            <div class="form-group" >
-
-                                                <label for="date">To</label>
-                                                <input type="text" class="form-control docs-date" name="date_to" placeholder="Pick a date">
-                                            </div >
-                                        </div>
-
-
-                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                                        <input style="margin-top: 44px;margin-left: 50px" type="submit" name="generate" class="btn btn-success" value="Generate">
-
-                                    </form>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="btn-group pull-right">
                                             <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                                 <i class="fa fa-angle-down"></i>
@@ -95,42 +64,127 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="table table-responsive">
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Name </th>
-                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
-                                        <th width="10%"class="center"> Action </th>
+                                        <th width="3%"class="center"> Sr.NO </th>
+                                        <th width="15%"class="center"> User & Order Tacker Name</th>
+                                        <th width="8%"class="center"> Order Type</th>
+                                        <th width="13%"class="center"> Order Date </th>
+                                        <th width="5%"class="center"> Payment Type </th>
+                                        <th width="41%"class="center"> Items </th>
+<!--                                        <th width="10%"class="center"> Delivery Fee & Final Amount </th>-->
+                                        <th width="15%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-<!--                                    --><?php //$i=1;foreach($category as $category) { ?>
-<!---->
-<!--                                        <tr class="odd gradeX">-->
-<!---->
-<!--                                            <td>--><?php //echo $i; ?><!--</td>-->
-<!--                                            <td class="center">--><?php //echo $category->name; ?><!--</td>-->
-<!--                                            <td class="center">-->
-<!--                                                --><?php //echo preg_replace("/ /"," Time: ",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
-<!--                                            </td>-->
-<!---->
-<!--                                            <td class="center">-->
-<!--                                                <button  class="btn btn-primary btn-xs"  data-panel-id="--><?php //echo $category->id ?><!--" onclick="selectid2(this)">-->
-<!---->
-<!--                                                    <i class="fa fa-pencil"></i>-->
-<!--                                                </button>-->
-<!---->
-<!--                                                <button type="button" data-panel-id="--><?php //echo $category->id ?><!--" onclick="selectid3(this)"class="btn btn-danger btn-xs">-->
-<!---->
-<!--                                                    <i class="fa fa-trash-o "></i>-->
-<!--                                                </button>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-<!---->
-<!--                                        --><?php //$i++;} ?>
+
+                                    <?php $i=1;foreach($orders as $orders) { ?>
+
+                                        <tr class="odd gradeX">
+
+                                            <td><?php echo $i;?></td>
+                                            <td class="center"><?php echo $orders->userName; ?>
+
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>" onclick="selectidShowUser(this)">
+                                                        <i class="fa fa-info"></i>
+                                                    </button>
+                                                </div><hr>
+
+                                               <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
+                                            </td>
+                                            <td class="center"><?php echo $orders->orderType; ?></td>
+                                            <td class="center">
+                                                <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
+                                            </td>
+                                            <td class="center"><?php echo $orders->paymentType; ?></td>
+                                            <td class="center">
+                                                <div class="table table-responsive">
+                                                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                    <tr>
+                                                        <th width="50%"class="center">Name</th >
+                                                        <th width="10%"class="center">Size</th >
+                                                        <th width="10%"class="center">Quantity</th >
+                                                        <th width="10%"class="center">Rate</th >
+                                                        <th width="10%"class="center">Discount</th >
+                                                        <th width="10%"class="center">Total</th >
+                                                        <th width="5%"class="center">Action</th >
+                                                    </tr>
+                                                    <?php
+                                                    $total=0;
+                                                        foreach ($ordersItems as $orderItem){
+
+
+                                                    if ($orders->id==$orderItem->fkOrderId){
+
+
+
+                                                        $this->db->select('is.itemSize,i.itemName');
+                                                        $this->db->from('itemsizes is');
+                                                        $this->db->Where('is.id',$orderItem->fkItemSizeId);
+                                                        $this->db->join('items i','i.id = is.fkItemId','left');
+                                                        $query1=$this->db->get();
+
+
+
+                                                        foreach ( $query1->result() as $res ) {?>
+
+                                                        <tr>
+                                                            <td><?php echo $res->itemName?></td>
+                                                            <td><?php echo $res->itemSize?></td>
+                                                            <td><?php echo $orderItem->quantity?></td>
+                                                            <td><?php echo $orderItem->rate?></td>
+                                                            <td><?php echo $orderItem->discount?></td>
+                                                            <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$orderItem->discount)?></td>
+                                                            <td width="20%">
+                                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
+
+                                                                    <i class="fa fa-edit"></i>
+                                                                </button>
+
+                                                                <button type="button" data-panel-id="<?php echo $orderItem->id?>" onclick="deleteOrderItemsId(this)"class="btn btn-danger btn-xs">
+
+                                                                    <i class="fa fa-trash "></i>
+                                                                </button>
+                                                            </td>
+
+
+                                                        </tr>
+                                                    <?php $total=$total+$price;}}}?>
+                                                    <tr>
+                                                        <td style="color: red" colspan="5">Total-(including delevery fee: <?php echo $orders->deliveryfee; ?>$) : </td>
+                                                        <td colspan="1"><?php echo $totalWithDelevery=$total+$orders->deliveryfee?></td>
+                                                    </tr>
+
+                                                </table>
+                                                    <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                                                </div>
+
+                                            </td>
+
+<!--                                            <td class="center">--><?php //echo $orders->deliveryfee; ?><!--</td>-->
+                                            <td class="center">
+
+                                                            <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
+                                                                <option value="">Select</option>
+                                                                <?php foreach ($ordersStatus as $Status) { ?>
+                                                                    <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
+                                                                <?php } ?>
+                                                            </select>
+
+
+
+                                            </td>
+
+                                        </tr>
+
+                                        <?php $i++;} ?>
+
                                     </tbody>
                                 </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -176,13 +230,14 @@
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
 
-    function selectid1(x)
+    function editOrderItemsId(x)
     {
+        btn = $(x).data('panel-id');
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
-            data:{},
+            url:'<?php echo base_url("Admin/Orders/editOrderItems" )?>',
+            data:{id:btn},
             cache: false,
             success:function(data)
             {
@@ -193,47 +248,108 @@
         modal.style.display = "block";
     }
 
-    function selectid2(x)
+    function deleteOrderItemsId(x)
     {
+        if (confirm("are you sure to delete this Category?"))
+        {
+            btn = $(x).data('panel-id');
 
-        btn = $(x).data('panel-id');
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Orders/deleteOrderedItemsId")?>',
+                data: {id: btn},
+                cache: false,
+                success: function (data) {
+                    alert(' Selected Order Item deleted Successfully');
+                    location.reload();
 
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Category/getCategoryById")?>',
-            data:{id:btn},
-            cache: false,
-            success:function(data) {
+                }
+            });
+        }
 
-                $('#txtHint').html(data);
-
-            }
-        });
-        modal.style.display = "block";
 
     }
 
-    function selectid3(x)
+    function addNewItemOrder(x)
     {
-
-        if (confirm("are you sure to delete this Category?"))
-        {
 
             btn = $(x).data('panel-id');
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Category/deleteCategoryById")?>',
+                url: '<?php echo base_url("Admin/Orders/NewOrderItems")?>',
                 data: {id: btn},
                 cache: false,
                 success: function (data) {
-                    alert('Category deleted Successfully');
-                    location.reload();
+                    $('#txtHint').html(data);
                 }
 
             });
-        }
+        modal.style.display = "block";
+
     }
+
+    function showItemByCategory(x)
+    {
+
+        var catId=document.getElementById('categoryName').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getAllItemsByCategory")?>',
+            data: {id: catId},
+            cache: false,
+            success: function (data) {
+
+                document.getElementById("itemId").innerHTML = data;
+
+            }
+
+        });
+    }
+
+    function showItemSizesByItem(x)
+    {
+
+        var itemId=document.getElementById('itemId').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getAllItemSizesByItem")?>',
+            data: {id: itemId},
+            cache: false,
+            success: function (data) {
+
+                document.getElementById("itemSizeId").innerHTML = data;
+
+            }
+
+        });
+    }
+
+    function showItemPriceByItemSizeId(x)
+    {
+
+        var itemSizeId=document.getElementById('itemSizeId').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/getItemPriceByItemSize")?>',
+            data: {id: itemSizeId},
+            cache: false,
+            success: function (data) {
+
+
+                var quantity=document.getElementById("ItemQuantity").value = "1";
+
+                document.getElementById("ItemRate").value = (quantity*data);
+
+            }
+
+        });
+    }
+
+
     // When the user clicks * of the modal, close it
     span.onclick = function() {
         modal.style.display = "none";
@@ -247,4 +363,28 @@
     }
 
 
+</script>
+
+<script>
+    function changeStatus(v) {
+
+        if (confirm("are you sure to Change this Oder Status?")) {
+
+            var option = document.getElementById(v).value;
+
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Admin/Orders/changeOrderStatus/")?>' + v,
+                data: {status: option},
+                cache: false,
+                success: function (data) {
+
+                    location.reload();
+
+                }
+            });
+        }
+
+    }
 </script>
