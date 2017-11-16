@@ -75,7 +75,7 @@
                 </li>
                 <li class="nav-item">
 
-                    <a href="<?php echo base_url()?>Admin/Userfeedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                    <a href="<?php echo base_url()?>Admin/Feedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">User Feedback</span>
                     </a>
                 </li>
@@ -101,7 +101,10 @@
                             <a href="<?php echo base_url()?>Admin/Report/filterByItems" class="nav-link "> <span class="title">Filter By Items</span>
                             </a>
                         </li>
-
+                        <li class="nav-item">
+                            <a href="<?php echo base_url()?>Admin/Report/filterByPoints" class="nav-link"><span class="title">Filter By Points</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item  ">
@@ -121,6 +124,7 @@
 
                     </ul>
                 </li>
+
                 <li class="heading">
                     <h3 class="uppercase">Extra Components</h3>
                 </li>

@@ -35,5 +35,11 @@ class Report extends CI_Controller
         $this->load->view('Admin/ReportFilterByItems', $this->data);
     }
 
+    public function filterByPoints(){
+        $this->data['allreportearnpoint']= $this->Reportm->earnPointCount();
+        $this->data['allreportexpensepoint']= $this->Reportm->expensePointCount();
+        $this->load->view('Admin/ReportFilterByPoint', $this->data);
+    }
+
 }
 ?>

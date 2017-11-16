@@ -51,51 +51,6 @@
                                         </div>
                                     </div>
 
-                                    <div id = "Item_Status" class="form-group">
-                                        <label class="control-label col-md-3">Promotions Type: </label>
-                                        <div class="col-md-5">
-
-                                            <select class="form-control input-height"  id="promotype"  name="promotype" onchange="selectid2()">
-                                                    <option value="a" <?php echo ($p->promoType=="a")?'selected="selected"':''; ?>>All Item</option>
-                                                    <option value="s" <?php echo ($p->promoType=="s")?'selected="selected"':''; ?>>Selected Item</option>
-                                                </select>
-                                        </div>
-                                    </div>
-
-                                    <div id="showattr" style="display: none">
-                                        <div id='TextBoxesGroup'>
-                                            <div id="TextBoxDiv1" >
-                                                <div class="form-group">
-                                                    <label class="control-label col-md-3">Item #1:
-                                                        <span class="required"> * </span>
-                                                    </label>
-                                                    <div class="col-md-5">
-                                                        <select class="form-control input-height" id="itemlist"  name="itemlist[]">
-                                                            <option value="">Select...</option>
-                                                            <?php foreach ($allItem as $item) { ?>
-                                                                <option value="<?php echo $item->id?>"><?php echo $item->itemName?></option>
-                                                            <?php } ?>
-                                                        </select>
-                                                    </div>
-
-                                                </div>
-                                                <div id = "discount" class="form-group">
-                                                    <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
-                                                    <div class="col-md-5">
-                                                        <input type="text" name="itemDiscount[]" placeholder="Discount(%)"  value="" class="form-control input-height" />
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div id="add_remove_button" class="form-group" style="margin-left: 230px">
-                                            <input class="btn btn-success" type='button' value='Add More' id='addButton'>
-                                            <input class="btn btn-danger" type='button' value='Remove' id='removeButton'>
-                                        </div>
-
-                                    </div>
-
                                     <div id = "Item_price" class="form-group">
                                         <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
                                         <div class="col-md-5">
