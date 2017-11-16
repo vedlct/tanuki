@@ -101,5 +101,17 @@ class Userm extends CI_Model
         return $query->num_rows();
     }
 
+    public function getAllInfoUser($userId)
+
+    {
+        $this->db->select('u.id,u.name,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        $this->db->from('users u');
+        $this->db->where('u.id',$userId);
+        $this->db->join('city c', 'c.id = u.fkCity', 'left');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
 
 }

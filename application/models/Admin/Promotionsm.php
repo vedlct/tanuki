@@ -68,18 +68,18 @@ class Promotionsm extends CI_Model
             return $error = null;
         }
     }
-public function  updatePromotionItemdata($id,$promotionItemdata)
-{
-    $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
+    public function  updatePromotionItemdata($id,$promotionItemdata)
+    {
+        $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
 
-    if (empty($error)) {
-        return $this->db->error();
-    } else {
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
 
         return $error = null;
-    }
+        }
 
-}
+    }
 
 
     public function getAllPromotionsByTypeForItem()
@@ -136,6 +136,17 @@ public function PromotionItemGetselectId($id)
    {
        $this->db->where('id',$id)->delete('promotiondetail');
    }
+
+    public function getPromotionType()
+    {
+
+        $this->db->select('promoType');
+        $this->db->where('startDate <',CURDATE());
+        $this->db->where('endDate >',CURDATE());
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 
