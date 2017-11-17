@@ -96,7 +96,7 @@
                                                <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
                                             </td>
                                             <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
-                                                                elseif($orders->orderType=="taking"){echo "Take Away";}
+                                                                elseif($orders->orderType=="take"){echo "Take Away";}
                                                                 elseif($orders->orderType=="home"){echo "Online";}?>
                                             </td>
                                             <td class="center">

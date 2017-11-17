@@ -24,7 +24,7 @@ class Feedback extends CI_Controller
         }
     }
 
-//$data['PromotionSelected'] = $this->Promotionsm->PromotionItemGetselectId($id);
+
     public  function updateUserFeedback()
     {
         if ($this->session->userdata('userType') == "Admin") {
