@@ -34,19 +34,19 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
+                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByDate">
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Start Date</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date">
                                             </div >
                                         </div>
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">End Date</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date">
                                             </div>
 
 
