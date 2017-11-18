@@ -141,7 +141,7 @@
                                                             <td><?php echo $res->itemSize?></td>
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
-<!--                                                            <td>--><?php //echo $orderItem->discount?><!--</td>-->
+
                                                             <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
                                                             <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
@@ -341,8 +341,8 @@
             cache: false,
             success: function (data) {
 
-                alert(data)
-               // document.getElementById("itemSizeId").innerHTML = data;
+               // alert(data)
+                document.getElementById("ItemDiscount").value = data;
 
             }
 
@@ -421,6 +421,7 @@
                 success: function (data) {
 
                     location.reload();
+                    //alert(data);
 
                 }
             });

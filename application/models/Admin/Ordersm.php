@@ -95,9 +95,10 @@ class Ordersm extends CI_Model
             return $error=null;
         }
     }
+
     public function getPromoType(){
 
-        $this->db->select('promoType');
+        $this->db->select('promoType, discountAmount');
         $this->db->where('startDate <',date('Y-m-d'));
         $this->db->where('endDate >',date('Y-m-d'));
         $this->db->from('promotions');
@@ -116,26 +117,85 @@ class Ordersm extends CI_Model
         return $query->result();
 
     }
-     public function setDiscount($itemId){
+     public function setDiscountforSelectItem($itemId){
 
-         $this->db->select('promoType, discountAmount');
+         $this->db->select('promotiondetail.discountAmount as itemdiscount');
+         $this->db->join('promotiondetail','promotiondetail.fkPromotionId = promotions.id','left');
+         $this->db->where('fkItemId =',$itemId);
          $this->db->where('startDate <',date('Y-m-d'));
          $this->db->where('endDate >',date('Y-m-d'));
+         $this->db->where('promoType =','s');
          $this->db->from('promotions');
-         $query = $this->db->get();
-         return $query->result();
-         foreach ($query->result() as $promotype){
-             if (!empty($promotype)){
-                 return $query->result();
-             }else {
-                 $this->db->select('discountAmount');
-                 $this->db->where('fkItemId =',$itemId);
-                 $this->db->from('promotiondetail');
-                 $query1 = $this->db->get();
-                 return $query1->result();
-
-             }
-         }
+         $this->db->limit(1);
+         $query1 = $this->db->get();
+         return $query1->result();
 
      }
+
+
+
+
+
+    public  function getDeliveredOrderInfo($orderId)
+    {
+        $this->db->select('orders.id,orders.vat');
+        $this->db->from('orders');
+        $this->db->where('orders.id',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    public  function getDeliveredOrderItemsInfo($orderId)
+    {
+        $this->db->select('os.id,os.fkItemSizeId,os.quantity,os.rate,os.discount');
+        $this->db->from('orderitems os');
+        $this->db->where('os.fkOrderId',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    public  function insertdeliveredOrdered($data)
+    {
+        $this->security->xss_clean($data);
+
+        $error=$this->db->insert('transactionmaster', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $id=$this->db->insert_id();
+        }
+    }
+
+    public  function insertdeliveredOrderedItemsToTransection($data2)
+    {
+        $this->security->xss_clean($data2);
+
+        $error=$this->db->insert('transactiondetail', $data2);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
+    }
+
+    public  function checkDelivery($orderStatus)
+    {
+        $this->db->select('statusTitle');
+        $this->db->from('orderstatus');
+        $this->db->where('id',$orderStatus);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+
+
 }
