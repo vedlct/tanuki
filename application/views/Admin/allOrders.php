@@ -71,11 +71,11 @@
                                         <th width="3%"class="center"> Sr.NO </th>
                                         <th width="15%"class="center"> User & Order Tacker Name</th>
                                         <th width="8%"class="center"> Order Type</th>
-                                        <th width="13%"class="center"> Order Date </th>
+                                        <th width="8%"class="center"> Order Date </th>
                                         <th width="5%"class="center"> Payment Type </th>
                                         <th width="41%"class="center"> Items </th>
 
-                                        <th width="15%"class="center"> Order Status </th>
+                                        <th width="20%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -329,6 +329,20 @@
             success: function (data) {
 
                 document.getElementById("itemSizeId").innerHTML = data;
+
+            }
+
+        });
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/setDiscount")?>',
+            data: {id: itemId},
+            cache: false,
+            success: function (data) {
+
+                alert(data)
+               // document.getElementById("itemSizeId").innerHTML = data;
 
             }
 

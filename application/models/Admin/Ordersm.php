@@ -95,4 +95,47 @@ class Ordersm extends CI_Model
             return $error=null;
         }
     }
+    public function getPromoType(){
+
+        $this->db->select('promoType');
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+    public function setDiscountForAll(){
+
+        $this->db->select('promoType, discountAmount');
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoType =','a');
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+     public function setDiscount($itemId){
+
+         $this->db->select('promoType, discountAmount');
+         $this->db->where('startDate <',date('Y-m-d'));
+         $this->db->where('endDate >',date('Y-m-d'));
+         $this->db->from('promotions');
+         $query = $this->db->get();
+         return $query->result();
+         foreach ($query->result() as $promotype){
+             if (!empty($promotype)){
+                 return $query->result();
+             }else {
+                 $this->db->select('discountAmount');
+                 $this->db->where('fkItemId =',$itemId);
+                 $this->db->from('promotiondetail');
+                 $query1 = $this->db->get();
+                 return $query1->result();
+
+             }
+         }
+
+     }
 }
