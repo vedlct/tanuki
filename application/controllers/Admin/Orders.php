@@ -46,6 +46,7 @@ class Orders extends CI_Controller
 
             $orderStatus=$this->input->post('status');
 
+
             $data = array(
                 'fkOrderStatus' => $orderStatus,
 
@@ -153,8 +154,7 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-//            $categoryId=$this->input->post('categoryName');
-//            $itemId=$this->input->post('itemId');
+
             $itemSizeId=$this->input->post('itemSizeId');
             $ItemQuantity=$this->input->post('ItemQuantity');
             $ItemRate=$this->input->post('ItemRate');
