@@ -16,6 +16,11 @@ class Report extends CI_Controller
     }
     public function searchByDate(){
 
+        $startdate= $this->input->post('startdate');
+        $enddate= $this->input->post('enddate');
+        $this->data['allreport']= $this->Reportm->viewAllReportBydate($startdate, $enddate);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
     }
 
     public function filterByCustomer(){

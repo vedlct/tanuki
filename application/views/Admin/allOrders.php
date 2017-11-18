@@ -107,7 +107,7 @@
                                             </td>
                                             <td class="center">
                                                 <div class="table table-responsive">
-                                                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                    <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
                                                         <th width="50%"class="center">Name</th >
                                                         <th width="10%"class="center">Size</th >
@@ -162,10 +162,13 @@
                                                     <tr>
                                                         <td style="color: red" colspan="5">Total-(including delevery fee: <?php echo $orders->deliveryfee; ?>$) : </td>
                                                         <td colspan="1"><?php echo $totalWithDelevery=$total+$orders->deliveryfee?></td>
+                                                        <td>
+                                                            <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
+                                                        </td>
                                                     </tr>
 
                                                 </table>
-                                                    <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                                                    
                                                 </div>
 
                                             </td>
