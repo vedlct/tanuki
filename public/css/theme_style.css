@@ -6735,3 +6735,10 @@ th>.rt-radio.rt-radio-single {
 .orderexmple td {
     padding: 3px !important;
 }
+.orderexmples td {
+    padding: 2px !important;
+}
+
+.btnorder {
+    padding: 5px !important;
+}
