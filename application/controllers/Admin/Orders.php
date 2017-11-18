@@ -9,6 +9,8 @@ class Orders extends CI_Controller
         $this->load->model('Admin/Ordersm');
         $this->load->model('Admin/Itemsm');
         $this->load->model('Admin/Categorym');
+        $this->load->model('Admin/Userm');
+        $this->load->model('Admin/Promotionsm');
 
     }
 
@@ -218,6 +220,10 @@ class Orders extends CI_Controller
 
             $itemId=$this->input->post('id');
             $this->data['itemSizeInfo'] = $this->Itemsm->getAllItemSizesNameIdByItem($itemId);
+//            $this->data['promotionType'] = $this->Promotionsm->getPromotionType();
+////            if (empty($this->data['promotionType'])){
+////
+////            }
 
             if (empty($this->data['itemSizeInfo'])) {
 
@@ -251,6 +257,21 @@ class Orders extends CI_Controller
                     echo $itemPrice->price;
                 }
             }
+        }
+        else{
+            redirect('Login');
+        }
+
+    }
+
+    public function showAllInfo()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $userId=$this->input->post('id');
+            $this->data['userInfo'] = $this->Userm->getAllInfoUser($userId);
+
+            $this->load->view('Admin/userInfoForOder',$this->data);
         }
         else{
             redirect('Login');

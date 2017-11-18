@@ -76,7 +76,7 @@ class Userm extends CI_Model
         $this->db->select('u.id,u.name,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email,u.password,u.userActivationStatus,u.fkUserType, c.name as fkcity');
         $this->db->from('users u');
         $this->db->join('city c', 'c.id = u.fkCity', 'left');
-        $this->db->where("fkUserType", 'Admin');
+        $this->db->where("fkUserType=", 'Admin');
         $query = $this->db->get();
         return $query->result();
 
@@ -99,6 +99,18 @@ class Userm extends CI_Model
         $this->db->where("fkUserType", 'cus');
         $query = $this->db->get('users');
         return $query->num_rows();
+    }
+
+    public function getAllInfoUser($userId)
+
+    {
+        $this->db->select('u.id,u.name,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        $this->db->from('users u');
+        $this->db->where('u.id',$userId);
+        $this->db->join('city c', 'c.id = u.fkCity', 'left');
+        $query = $this->db->get();
+        return $query->result();
+
     }
 
 

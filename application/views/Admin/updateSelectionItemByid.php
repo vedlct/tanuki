@@ -22,12 +22,10 @@
                                                     </label>
                                                     <div class="col-md-5">
                                                         <select class="form-control input-height" id="itemlist"  name="itemlist">
-<!--                                                            <option value="--><?php //echo $s->itname ?><!--">--><?php //echo $s->itname ?><!--</option>-->
                                                                 <?php foreach ($itemsinfo as $itemsinfo ) { ?>
-                                                                    <option value="<?php echo $itemsinfo->id ?>"<?php if (!empty($s->itname) && $itemsinfo->id==$s->itname) echo 'selected="selected"'?> ><?php echo $itemsinfo->itemName ?></option>
-
-                                                            <?php } ?>
-                                                            </select>
+                                                                    <option value="<?php echo $itemsinfo->id ?>"<?php if (!empty($s->itname) && $itemsinfo->itemName==$s->itname) echo 'selected="selected"'?> ><?php echo $itemsinfo->itemName ?></option>
+                                                                <?php } ?>
+                                                        </select>
 
                                                 </div>
                                                 </div>

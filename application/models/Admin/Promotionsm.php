@@ -5,7 +5,7 @@ class Promotionsm extends CI_Model
 {
     public function insertPromotion($promotiondata)
     {
-
+        $this->security->xss_clean($promotiondata);
         $this->db->insert('promotions', $promotiondata);
         $promotionId = $this->db->insert_id();
         return $promotionId;
@@ -22,23 +22,12 @@ class Promotionsm extends CI_Model
 
     public function insertPromotionItemdata($promotionItemdata)
     {
-
         $this->db->insert('promotiondetail',$promotionItemdata);
     }
 
-//public  function getPromotionitemdataId($promotionItemdata)
-//{
-////    $this->db->select(['id',]);
-////    $this->db->from('promotiondetail');
-//    $this->db->select('promotiondetail', $promotionItemdata);
-//    $promotionId = $this->db->insert_id();
-//    return $promotionId;
-//
-//}
 
     public function getAllPromotionsByType($type)
     {
-
         $this->db->where('promoType=', $type);
         $this->db->from('promotions');
         $query = $this->db->get();
@@ -48,7 +37,7 @@ class Promotionsm extends CI_Model
     public function getPromotionById($promotionId)
     {
         $this->db->from('promotions');
-        $this->db->where('id', $promotionId)->select(['id', 'campainTitle', 'promoCode', ' startDate', ' endDate', 'promoType', ' discountAmount ', 'activationStatus']);
+        $this->db->where('id', $promotionId)->select(['id', 'campainTitle', 'promoCode', ' startDate', ' endDate', ' discountAmount ', 'activationStatus']);
         $query = $this->db->get();
         return $query->result();
     }
@@ -68,18 +57,18 @@ class Promotionsm extends CI_Model
             return $error = null;
         }
     }
-public function  updatePromotionItemdata($id,$promotionItemdata)
-{
-    $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
+    public function  updatePromotionItemdata($id,$promotionItemdata)
+    {
+        $error= $this->db->where('id',$id)->update('promotiondetail', $promotionItemdata);
 
-    if (empty($error)) {
-        return $this->db->error();
-    } else {
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
 
         return $error = null;
-    }
+        }
 
-}
+    }
 
 
     public function getAllPromotionsByTypeForItem()
@@ -101,6 +90,7 @@ public function  updatePromotionItemdata($id,$promotionItemdata)
 
     public function insertSelctionItemdata($data)
     {
+        $this->security->xss_clean($data);
         $error=$this->db->insert('promotiondetail',$data);
 
         if (empty($error)) {
@@ -131,11 +121,34 @@ public function PromotionItemGetselectId($id)
         }
     }
 
+    public function updatefeedbackById($id, $data)
+    {
+        $error = $this->db->where('id', $id)->update('userfeedback', $data);
+
+        if (empty($error)) {
+            return $this->db->error();
+        } else {
+
+            return $error = null;
+        }
+    }
+
 
    public  function deleteSelectedById($id)
    {
        $this->db->where('id',$id)->delete('promotiondetail');
    }
+
+    public function getPromotionType()
+    {
+
+        $this->db->select('promoType');
+        $this->db->where('startDate <',CURDATE());
+        $this->db->where('endDate >',CURDATE());
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 

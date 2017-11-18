@@ -130,7 +130,7 @@
                                             <select class="form-control input-height"  name="itemStatus">
                                                 <option value="">Select...</option>
                                                 <option value="1">Active</option>
-                                                <option value="0">Inctive</option>
+                                                <option value="0">In-ctive</option>
 
                                             </select>
                                         </div>

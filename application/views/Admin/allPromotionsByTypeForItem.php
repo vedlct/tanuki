@@ -46,9 +46,8 @@
                                 <button type="button" data-panel-id="<?php echo $pitem->pitemId ?>" onclick="selectid5(this)"class="btn btn-danger btn-xs">
 
                                     <i class="fa fa-trash "></i>
-                                </button></td>
-
-
+                                </button>
+                            </td>
                         </tr>
                     <?php } }?>
 
@@ -58,7 +57,7 @@
 
             <td class="center">
                 <?php if ($promotion->activationStatus==1){echo "Active";}
-                elseif ($promotion->activationStatus==0){echo "InActive";}?>
+                elseif ($promotion->activationStatus==0){echo "In-Active";}?>
             </td>
 
             <td class="center">

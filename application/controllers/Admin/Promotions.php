@@ -13,7 +13,6 @@ class Promotions extends CI_Controller
     public function index()
     {
     }
-
     public function addPromotions()
     {
 
@@ -30,7 +29,6 @@ class Promotions extends CI_Controller
     public function insertPromotions()
     {
         if ($this->session->userdata('userType') == "Admin") {
-
             $campain = $this->input->post('campain');
             $promocode = $this->input->post('promocode');
             $startdate = $this->input->post('startdate');
@@ -52,7 +50,6 @@ class Promotions extends CI_Controller
 
             }
 
-
             if (array_filter($itemlist) == null && array_filter($itemDiscount) == null) {
 
                 $promotiondata = array(
@@ -68,7 +65,6 @@ class Promotions extends CI_Controller
             }
 
             else {
-                // $this->data['error'] = $this->Promotionsm->insertItemSizedata($promotionItemdata);
 
                     $promotiondata = array(
                        'campainTitle' => $campain,
@@ -86,12 +82,8 @@ class Promotions extends CI_Controller
                            'discountAmount' => $itemDiscount[$i],
                     );
 
-                         //print_r( $promotiondata);
-                        // print_r( $promotionItemdata);
 
-                    $data = $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
-                   // print_r($data);
-
+                     $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
 
                 }
             }
@@ -146,7 +138,7 @@ class Promotions extends CI_Controller
             $promocode = $this->input->post('promocode');
             $startdate = $this->input->post("startdate");
             $enddate = $this->input->post('enddate');
-            $promotype = $this->input->post('promotype');
+//            $promotype = $this->input->post('promotype');
             $discount = $this->input->post('discount');
             $status = $this->input->post('itemStatus');
             $promotiondata = array(
@@ -154,7 +146,7 @@ class Promotions extends CI_Controller
                 'promoCode' => $promocode,
                 'startDate' => $startdate,
                 'endDate' => $enddate,
-                'promoType' => $promotype,
+//                'promoType' => $promotype,
                 'discountAmount' => $discount,
                 'activationStatus' => $status,
             );
@@ -216,7 +208,7 @@ class Promotions extends CI_Controller
             redirect('Login');
         }
     }
-
+//add new selction  promotion view
     public  function addNewselectId()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -230,10 +222,9 @@ class Promotions extends CI_Controller
             redirect('Login');
         }
 
-
     }
 
-
+//inserting new promotion   id into database
     public  function addNewselectIdinsert($promotionId)
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -246,7 +237,6 @@ class Promotions extends CI_Controller
                'fkPromotionId'=>$promotionId,
                 'fkItemId' => $ItemId,
                 'discountAmount' => $discount
-
             );
             $this->data['error'] = $this->Promotionsm->insertSelctionItemdata($data);
 
@@ -260,23 +250,20 @@ class Promotions extends CI_Controller
                 redirect('Admin/Promotions/allPromotions');
             }
 
-
         } else {
             redirect('Login');
         }
     }
-
+//selecting the particley  selection promtion for update
     public function PromotionItemGetselectId()
     {
-
 
         if ($this->session->userdata('userType') == "Admin") {
            $data['itemsinfo']=$this->Promotionsm->getAllItem();
             $id = $this->input->post('id');
             $data['PromotionSelected'] = $this->Promotionsm->PromotionItemGetselectId($id);
             $this->load->view('Admin/updateSelectionItemByid',$data);
-//        $this->data['promotioninfo'] = $this->Promotionsm->getPromotionById($id);
-//        $this->load->view('Admin/updatePromotion', $this->data);
+
         } else {
             redirect('Login');
         }
@@ -284,7 +271,7 @@ class Promotions extends CI_Controller
 
 
 
-
+//Updating the selected  promotion id
 
     public  function  updateSelectionId($id)
     {
@@ -295,7 +282,6 @@ class Promotions extends CI_Controller
             $data=array(
                 'fkItemId'=>$fkItemId,
                 'discountAmount'=>$discount
-
             );
             $this->data['error']= $this->Promotionsm->updateSelectionById($id,$data);
 
@@ -316,7 +302,7 @@ class Promotions extends CI_Controller
 
 
     }
-
+//deleting particlur promtion id
     public  function deleteSelectedById()
     {
         if ($this->session->userdata('userType') == "Admin") {

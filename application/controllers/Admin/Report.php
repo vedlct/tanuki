@@ -16,6 +16,11 @@ class Report extends CI_Controller
     }
     public function searchByDate(){
 
+        $startdate= $this->input->post('startdate');
+        $enddate= $this->input->post('enddate');
+        $this->data['allreport']= $this->Reportm->viewAllReportBydate($startdate, $enddate);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
     }
 
     public function filterByCustomer(){
@@ -33,6 +38,12 @@ class Report extends CI_Controller
         $this->data['allreportitem']= $this->Reportm->filterByItems();
         $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
         $this->load->view('Admin/ReportFilterByItems', $this->data);
+    }
+
+    public function filterByPoints(){
+        $this->data['allreportearnpoint']= $this->Reportm->earnPointCount();
+        $this->data['allreportexpensepoint']= $this->Reportm->expensePointCount();
+        $this->load->view('Admin/ReportFilterByPoint', $this->data);
     }
 
 }

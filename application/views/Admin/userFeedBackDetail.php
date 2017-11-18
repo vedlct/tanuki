@@ -27,9 +27,9 @@
                         <ol class="breadcrumb page-breadcrumb pull-right">
                             <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li><a class="parent-item" href="#">Category</a>&nbsp;<i class="fa fa-angle-right"></i>
+                            <li><a class="parent-item" href="#">UserFeedback</a>&nbsp;<i class="fa fa-angle-right"></i>
                             </li>
-                            <li class="active">Category List</li>
+                            <li class="active">User Feedback List</li>
                         </ol>
                     </div>
                 </div>
@@ -46,19 +46,11 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>User Feedback</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
                             </div>
                             <div class="card-body ">
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
                                             <ul class="dropdown-menu pull-right">
                                                 <li>
                                                     <a href="javascript:;">
@@ -82,8 +74,9 @@
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
                                         <th width="10%"class="center">Item Name </th>
-                                        <th width="20%"class="center">Customer Name </th>
+                                        <th width="10%"class="center">Customer Name </th>
                                         <th width="20%"class="center"> Feedback Detail</th>
+                                        <th width="10%"class="center"> Customer Rating</th>
                                         <th width="20%"class="center"> Feedback Time date(d-m-y)</th>
                                         <th width="20%"class="center"> Action </th>
                                     </tr>
@@ -98,9 +91,10 @@
                                             <td class="center"> <?php echo $f->itemName?> </td>
                                             <td class="center"> <?php echo $f->name ?></td>
                                             <td class="center"> <?php echo $f->feedback ?></td>
-<!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
+                                            <td class="center"> <?php echo $f->userRating ?></td>
                                             <td class="center"> <?php echo $f->feedbackTime ?></td>
 <!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
+
 
                                             <td class="center">
                                                 <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $f->fid ?>" onclick="selectid2(this)">
@@ -108,7 +102,7 @@
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
 
-                                                <button type="button" data-panel-id="<?php echo $f->fid ?> " onclick="selectid8(this)"class="btn btn-danger btn-xs">
+                                                <button type="button" data-panel-id="<?php echo $f->fid ?>" onclick="selectid8(this)"class="btn btn-danger btn-xs">
 
                                                     <i class="fa fa-trash-o "></i>
                                                 </button>
@@ -171,7 +165,7 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Admin/Userfeedback/updateUserFeedback")?>',
+            url:'<?php echo base_url("Admin/Feedback/updateUserFeedback")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {
@@ -187,24 +181,30 @@
     function selectid8(x)
     {
 
-        if (confirm("are you sure to delete this Feedback?"))
+        if (confirm("are you sure to delete this  Feedback?"))
         {
 
             btn = $(x).data('panel-id');
-            alert(btn);
+//            alert(btn);
+
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Userfeedback/deleteUserfeedbackById")?>',
-                data: {id: btn},
+                url: '<?php echo base_url("Admin/Feedback/deleteUserfeedbackById")?>',
+                data: {id:btn},
                 cache: false,
                 success: function (data) {
-                    alert('feedback deleted Successfully');
+
                     location.reload();
+                    //alert(data)
+
+
                 }
 
             });
         }
     }
+
+
     // When the user clicks * of the modal, close it
     span.onclick = function() {
         modal.style.display = "none";

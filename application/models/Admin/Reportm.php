@@ -10,6 +10,16 @@ class Reportm extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function viewAllReportBydate($startdate, $enddate){
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
+        $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
+        $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
+        $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
+        $this->db->from('transactionmaster');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function viewAllItemReport(){
         $this->db->select('fkTransId, fkItemSizeId , quantity , rate , discount, itemName, itemSize');
         $this->db->join('itemsizes ', 'itemsizes.id = transactiondetail.fkItemSizeId ', 'left');
@@ -92,10 +102,28 @@ class Reportm extends CI_Model
         return $query->result();
     }
 
-    public function pointcount()
+    public function earnPointCount()
     {
+        $this->db->select('users.name as username,memberCardNo, users.id as uid,  SUM(earnedPoints) as earnpoint');
+        $this->db->join('users', 'users.id = points.fkUserId', 'left');
+        $this->db->from('points');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
 
     }
 
+    public function expensePointCount()
+    {
+        $this->db->select('users.name as username , users.id as uid,  SUM(expedPoints) as expensepoint');
+        $this->db->join('users', 'users.id = pointdeduct.fkUserId', 'left');
+        $this->db->from('pointdeduct');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
 
 }

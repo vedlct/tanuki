@@ -74,7 +74,7 @@
                                         <th width="13%"class="center"> Order Date </th>
                                         <th width="5%"class="center"> Payment Type </th>
                                         <th width="41%"class="center"> Items </th>
-<!--                                        <th width="10%"class="center"> Delivery Fee & Final Amount </th>-->
+
                                         <th width="15%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
@@ -88,18 +88,23 @@
                                             <td class="center"><?php echo $orders->userName; ?>
 
                                                 <div class="btn-group">
-                                                    <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>" onclick="selectidShowUser(this)">
+                                                    <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div><hr>
 
                                                <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
                                             </td>
-                                            <td class="center"><?php echo $orders->orderType; ?></td>
+                                            <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
+                                                                elseif($orders->orderType=="take"){echo "Take Away";}
+                                                                elseif($orders->orderType=="home"){echo "Online";}?>
+                                            </td>
                                             <td class="center">
                                                 <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
                                             </td>
-                                            <td class="center"><?php echo $orders->paymentType; ?></td>
+                                            <td class="center"><?php if ($orders->paymentType=="cs"){echo "Cash";}
+                                                                 elseif($orders->paymentType=="crd"){echo "Card";}?>
+                                            </td>
                                             <td class="center">
                                                 <div class="table table-responsive">
                                                     <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
@@ -108,7 +113,7 @@
                                                         <th width="10%"class="center">Size</th >
                                                         <th width="10%"class="center">Quantity</th >
                                                         <th width="10%"class="center">Rate</th >
-                                                        <th width="10%"class="center">Discount</th >
+                                                        <th width="10%"class="center">Discount($)</th >
                                                         <th width="10%"class="center">Total</th >
                                                         <th width="5%"class="center">Action</th >
                                                     </tr>
@@ -136,8 +141,9 @@
                                                             <td><?php echo $res->itemSize?></td>
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
-                                                            <td><?php echo $orderItem->discount?></td>
-                                                            <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$orderItem->discount)?></td>
+<!--                                                            <td>--><?php //echo $orderItem->discount?><!--</td>-->
+                                                            <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
+                                                            <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
                                                                 <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
 
@@ -167,7 +173,6 @@
 
                                             </td>
 
-<!--                                            <td class="center">--><?php //echo $orders->deliveryfee; ?><!--</td>-->
                                             <td class="center">
 
                                                             <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
@@ -350,6 +355,24 @@
             }
 
         });
+    }
+
+    function ShowUserInfo(x)
+    {
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Orders/showAllInfo" )?>',
+            data:{id:btn},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+            }
+
+        });
+        modal.style.display = "block";
     }
 
 
