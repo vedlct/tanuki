@@ -25,11 +25,32 @@ class Reportm extends CI_Model
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
-        $this->db->where('fkOrderId =', $orderID);
+        $this->db->where('transactionmaster.fkOrderId =', $orderID);
         $this->db->from('transactionmaster');
         $query = $this->db->get();
         return $query->result();
     }
+    public function viewAllReportBymemberid($memberID){
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
+        $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
+        $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
+        $this->db->where('users.memberCardNo =', $memberID);
+        $this->db->from('transactionmaster');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function viewAllReportByemployeeid($employeeID){
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
+        $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
+        $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
+        $this->db->where('u.id =', $employeeID);
+        $this->db->from('transactionmaster');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function viewAllItemReport(){
         $this->db->select('fkTransId, fkItemSizeId , quantity , rate , discount, itemName, itemSize');
         $this->db->join('itemsizes ', 'itemsizes.id = transactiondetail.fkItemSizeId ', 'left');
@@ -77,6 +98,22 @@ class Reportm extends CI_Model
         return $query->result();
 
     }
+
+    public function filterByItemsDate($startdate,$enddate )
+    {
+        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem');
+        $this->db->join('transactionmaster', 'transactionmaster.id  = transactiondetail.fkTransId', 'left');
+        $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
+        $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
+        $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
+        $this->db->from('transactiondetail');
+        $this->db->group_by('items.id');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+
 
     public function filterByItemsSize()
     {

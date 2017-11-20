@@ -34,7 +34,7 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
+                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByMemberId">
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
@@ -43,7 +43,7 @@
                                             </div >
                                         </div>
 
-                                        </div>
+
                                         <div class="btn-group col-md-3 col-sm-3">
 
                                             <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
@@ -53,7 +53,7 @@
 
 
                                     </form>
-
+                                </div>
 
                                     <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                         <thead>
