@@ -167,6 +167,7 @@
 
 </html>
 <?php include ("js.php") ?>
+
 <script>
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
@@ -244,6 +245,7 @@
     }
 
 </script>
+
 <script>
     function showCustomer(){
         $.ajax({

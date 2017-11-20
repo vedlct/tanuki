@@ -66,7 +66,7 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">×</span>
-
+                        <link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
                         <div id="txtHint"></div>
 
                     </div>
@@ -81,6 +81,8 @@
     <!-- end page container -->
 
     <?php include ("footer.php") ?>
+    <?php include ("js.php") ?>
+
 
 </div>
 

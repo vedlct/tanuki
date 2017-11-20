@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
 
                 <div class="row">
                     <div class="col-md-12">
@@ -56,76 +55,25 @@
 
                                 <?php }  ?>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
 
 
 
         <!-- end page content -->
 
-        <div id="myModal" class="modal">
-            <br/><br/><br/>
+                      <div id="myModal" class="modal">
+                      <br/><br/><br/>
             <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">×</span>
+                       <div class="modal-content">
+                       <span class="close">×</span>
+                        <div id="txtHint"></div>
+                      </div>
 
-                <div id="txtHint"></div>
+                 </div>
 
-            </div>
+                    <!-- end page container --
 
+                 <?php include ("js.php") ?>
 
-        </div>
-
-    </div>
-
-</div>
-
-
-</body>
-
-</html>
-<?php include ("js.php") ?>
-
-
-<!---->
-<!--<script>-->
-<!--    var modal = document.getElementById('myModal');-->
-<!--    var span = document.getElementsByClassName("close")[0];-->
-<!---->
-<!--    function selectid2() {-->
-<!--        var x = document.getElementById('promotype').value;-->
-<!--        {-->
-<!---->
-<!--            document.getElementById('showattr').style.display = "block";-->
-<!--            document.getElementById('Item_price').style.display = "none";-->
-<!--//        document.getElementById('Item_Status').style.display = "none";-->
-<!--            document.getElementById('add_remove_button').style.display = "block";-->
-<!--            return false;-->
-<!--//        }else {-->
-<!--//            document.getElementById('showattr').style.display = "none";-->
-<!--//            document.getElementById('Item_price').style.display = "block";-->
-<!--////        document.getElementById('Item_Status').style.display = "none";-->
-<!--//            document.getElementById('add_remove_button').style.display = "none";-->
-<!--//            return false;-->
-<!--        }-->
-<!--        // When the user clicks * of the modal, close it-->
-<!--        span.onclick = function () {-->
-<!--            modal.style.display = "none";-->
-<!--        }-->
-<!--        // When the user clicks anywhere outside of the modal, close it-->
-<!--        window.onclick = function (event) {-->
-<!--            if (event.target == modal) {-->
-<!--                modal.style.display = "none";-->
-<!--            }-->
-<!--        }-->
-<!--    }-->
-</script>
 
 
 
