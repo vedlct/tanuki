@@ -34,19 +34,21 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
+
+                                    <div id="date" style="display: none">
+                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByDate">
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Start Date</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date">
                                             </div >
                                         </div>
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">End Date</label>
-                                                <input type="text" class="form-control docs-date" name="date_from" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date">
                                             </div>
 
 
@@ -61,7 +63,35 @@
 
 
                                     </form>
+                                    </div>
+                                    <div id="order" style="display: none;">
+                                        <div class="col-md-3 col-sm-3" >
+                                        <div class="form-group" >
 
+                                            <label for="date">Order ID</label>
+                                            <input type="text" class="form-control " name="orderid" placeholder="Order ID">
+                                        </div >
+
+                                    </div>
+                                        <div class="btn-group col-md-3 col-sm-3" >
+
+                                            <button style="margin-top: 30px"   onclick="" class="btn btn-info">
+                                                submti
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group col-md-3 col-sm-3" id="searchbydate">
+
+                                        <button style="margin-top: 30px"   onclick="searchbydate()" class="btn btn-info">
+                                            Search By Date
+                                        </button>
+                                    </div>
+                                    <div class="btn-group col-md-3 col-sm-3" id="searchbyoder">
+
+                                        <button style="margin-top: 30px"  id="searchbyorderid" onclick="searchbydorder()" class="btn btn-info">
+                                            Search By OrderID
+                                        </button>
+                                    </div>
 
                                     <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                         <thead>
@@ -162,6 +192,18 @@
 
 
 <script>
+    function searchbydate(){
+         document.getElementById('searchbydate').style.display='none';
+        document.getElementById('date').style.display='block';
+        document.getElementById('order').style.display='none';
+        document.getElementById('searchbyoder').style.display='block';
+    }
+    function searchbydorder(){
+        document.getElementById('searchbydate').style.display='block';
+        document.getElementById('order').style.display='block';
+        document.getElementById('date').style.display='none';
+        document.getElementById('searchbyoder').style.display='none';
+    }
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
     function selectid1(x)

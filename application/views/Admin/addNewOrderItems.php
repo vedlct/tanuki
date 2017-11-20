@@ -52,7 +52,7 @@
 
             <label class="control-label col-md-3"> Discount<span class="required"> * </span></label>
             <div class="col-md-5">
-                <input type="number" id="ItemDiscount" name="ItemDiscount" placeholder="Please give a Discount" required class="form-control input-height" />
+                <input type="number" id="ItemDiscount" name="ItemDiscount" placeholder="Please give a Discount" required class="form-control input-height"  readonly/>
             </div>
         </div>
 

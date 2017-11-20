@@ -70,11 +70,11 @@
                                         <th width="3%"class="center"> Sr.NO </th>
                                         <th width="15%"class="center"> User & Order Tacker Name</th>
                                         <th width="8%"class="center"> Order Type</th>
-                                        <th width="13%"class="center"> Order Date </th>
+                                        <th width="8%"class="center"> Order Date </th>
                                         <th width="5%"class="center"> Payment Type </th>
                                         <th width="41%"class="center"> Items </th>
 
-                                        <th width="15%"class="center"> Order Status </th>
+                                        <th width="20%"class="center"> Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -106,7 +106,7 @@
                                             </td>
                                             <td class="center">
                                                 <div class="table table-responsive">
-                                                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                    <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
                                                         <th width="50%"class="center">Name</th >
                                                         <th width="10%"class="center">Size</th >
@@ -140,7 +140,7 @@
                                                             <td><?php echo $res->itemSize?></td>
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
-<!--                                                            <td>--><?php //echo $orderItem->discount?><!--</td>-->
+
                                                             <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
                                                             <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
@@ -161,10 +161,13 @@
                                                     <tr>
                                                         <td style="color: red" colspan="5">Total-(including delevery fee: <?php echo $orders->deliveryfee; ?>$) : </td>
                                                         <td colspan="1"><?php echo $totalWithDelevery=$total+$orders->deliveryfee?></td>
+                                                        <td>
+                                                            <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
+                                                        </td>
                                                     </tr>
 
                                                 </table>
-                                                    <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                                                    
                                                 </div>
 
                                             </td>
@@ -329,6 +332,20 @@
             }
 
         });
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/setDiscount")?>',
+            data: {id: itemId},
+            cache: false,
+            success: function (data) {
+
+               // alert(data)
+                document.getElementById("ItemDiscount").value = data;
+
+            }
+
+        });
     }
 
     function showItemPriceByItemSizeId(x)
@@ -403,6 +420,7 @@
                 success: function (data) {
 
                     location.reload();
+                    //alert(data);
 
                 }
             });

@@ -27,7 +27,7 @@ class Orders extends CI_Controller
 
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
-           // print_r($this->data['orders']);
+
 
 
             $this->load->view('Admin/allOrders', $this->data);
@@ -45,6 +45,46 @@ class Orders extends CI_Controller
 
 
             $orderStatus=$this->input->post('status');
+            $delivered = $this->Ordersm->checkDelivery($orderStatus);
+            
+
+            foreach ($delivered as $status) {
+                if ($status->statusTitle == "delivered") {
+
+                    $this->data['orderInfo'] = $this->Ordersm->getDeliveredOrderInfo($orderId);
+                    $this->data['orderItemsInfo'] = $this->Ordersm->getDeliveredOrderItemsInfo($orderId);
+                    foreach ($this->data['orderInfo'] as $orderInfo) {
+                        $data1 = array(
+                            'fkOrderId' => $orderInfo->id,
+                            'vatTotal' => $orderInfo->vat,
+                            'transDate' => date('Y-m-d'),
+                        );
+                    }
+                    $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
+
+                    foreach ($this->data['orderItemsInfo'] as $orderedItems) {
+
+                        $data2 = array(
+                            'fkTransId' => $transectionId,
+                            'fkItemSizeId' => $orderedItems->fkItemSizeId,
+                            'quantity' => $orderedItems->quantity,
+                            'rate' => $orderedItems->rate,
+                            'discount' => $orderedItems->discount,
+                        );
+                        $this->Ordersm->insertdeliveredOrderedItemsToTransection($data2);
+                    }
+
+                }
+//                else {
+//                    $data = array(
+//                        'fkOrderStatus' => $orderStatus,
+//
+//
+//                    );
+//
+//                    $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
+//                }
+            }
 
             $data = array(
                 'fkOrderStatus' => $orderStatus,
@@ -52,12 +92,12 @@ class Orders extends CI_Controller
 
             );
 
-            $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId,$data);
+            $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
 
             if (empty($this->data['error'])) {
 
                 $this->session->set_flashdata('successMessage','Order Updated Successfully');
-               // $this->session->set_flashdata('catData',$catId);
+
 
             } else {
                 $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
@@ -153,8 +193,7 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-//            $categoryId=$this->input->post('categoryName');
-//            $itemId=$this->input->post('itemId');
+
             $itemSizeId=$this->input->post('itemSizeId');
             $ItemQuantity=$this->input->post('ItemQuantity');
             $ItemRate=$this->input->post('ItemRate');
@@ -277,5 +316,33 @@ class Orders extends CI_Controller
             redirect('Login');
         }
 
+    }
+
+    public function setDiscount(){
+
+      //  echo date('Y-m-d');
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $itemId=$this->input->post('id');
+            $this->data['promotype'] = $this->Ordersm->getPromoType();
+
+            foreach ($this->data['promotype'] as $pt){}
+                $promotype=  $pt->promoType;
+                $this->data['promotype'] = $this->Ordersm->getPromoType();
+                if ($promotype == 'a'){
+                    echo $pt->discountAmount;
+
+                }else {
+                    $this->data['promotypepp'] = $this->Ordersm->setDiscountforSelectItem($itemId);
+                    foreach ($this->data['promotypepp'] as $promo){
+                        echo $promo->itemdiscount;
+                    }
+                }
+
+
+        }
+        else{
+            redirect('Login');
+        }
     }
 }

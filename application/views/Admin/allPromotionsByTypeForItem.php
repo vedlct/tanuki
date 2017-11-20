@@ -22,12 +22,19 @@
             <td class="center"><?php echo $promotion->startDate; ?></td>
             <td class="center"><?php echo $promotion->endDate; ?></td>
             <td class="center">
-                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                <table style="margin-bottom: 5px" class="orderexmples table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                   
+                    <tr>
+                        <th>Name</th>
+                        <th>Discount</th>
+                        <th>Action</th>
+                    </tr>
                     <?php
 
                     //echo $s->type_id;
                     foreach ( $promotionsItem as $pitem ) {?>
                         <?php if ($promotion->id == $pitem->fkPromotionId) {?>
+                        
                         <tr>
                             <td><?php echo $pitem->itname ?></td>
                             <td><?php echo $pitem->discountAmount ?></td>
