@@ -22,6 +22,12 @@ class Report extends CI_Controller
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
         $this->load->view('Admin/allReport', $this->data);
     }
+    public function searchByOrderId(){
+        $orderID= $this->input->post('orderid');
+        $this->data['allreport']= $this->Reportm->viewAllReportByorderid($orderID);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
+    }
 
     public function filterByCustomer(){
         $this->data['allreportcus']= $this->Reportm->filterByCustomer();

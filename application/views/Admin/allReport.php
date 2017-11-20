@@ -64,6 +64,7 @@
 
                                     </form>
                                     </div>
+                                    <form action="<?php echo base_url()?>Admin/Report/searchByOrderId" method="post">
                                     <div id="order" style="display: none;">
                                         <div class="col-md-3 col-sm-3" >
                                         <div class="form-group" >
@@ -75,11 +76,12 @@
                                     </div>
                                         <div class="btn-group col-md-3 col-sm-3" >
 
-                                            <button style="margin-top: 30px"   onclick="" class="btn btn-info">
+                                            <button style="margin-top: 30px"  type="submit"  onclick="" class="btn btn-info">
                                                 submti
                                             </button>
                                         </div>
                                     </div>
+                                     </form>
                                     <div class="btn-group col-md-3 col-sm-3" id="searchbydate">
 
                                         <button style="margin-top: 30px"   onclick="searchbydate()" class="btn btn-info">
@@ -108,8 +110,13 @@
                                         </tr>
                                         </thead>
                                         <tbody>
+                                        <?php  echo $this->session->userdata('userType'); ?>
+                                        <?php  echo $_SESSION['userType'] ?>
 
-                                        <?php $count = 1; foreach ($allreport as $ar) {  ?>
+                                        <?php $count = 1; foreach ($allreport as $ar) {
+
+                                            ?>
+
                                             <tr>
                                                 <td class="center"><?php echo $count ?></td>
                                                 <td class="center"><?php echo $ar->id ?></td>
