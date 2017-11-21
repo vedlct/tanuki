@@ -34,25 +34,35 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
-                                        <div class="col-md-6 col-sm-3" >
+                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByItemsDate">
+                                        <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
-                                                <label for="date">Search For Details</label>
-                                                <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
+                                                <label for="date">Start Date</label>
+                                                <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date">
                                             </div >
                                         </div>
+                                        <div class="col-md-3 col-sm-3" >
+                                            <div class="form-group" >
 
-                                </div>
-                                <div class="btn-group col-md-6 col-sm-3">
-
-                                    <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
-                                        submit
-                                    </button>
-                                </div>
+                                                <label for="date">End Date</label>
+                                                <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date">
+                                            </div>
 
 
-                                </form>
+
+                                        </div>
+                                        <div class="btn-group col-md-3 col-sm-3">
+
+                                            <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                                submit
+                                            </button>
+                                        </div>
+
+
+
+
+                                    </form>
 
 
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">

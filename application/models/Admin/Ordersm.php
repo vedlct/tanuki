@@ -107,6 +107,46 @@ class Ordersm extends CI_Model
         }
     }
 
+    public function getPromoType(){
+
+        $this->db->select('promoType, discountAmount');
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+    public function setDiscountForAll(){
+
+        $this->db->select('promoType, discountAmount');
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoType =','a');
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+     public function setDiscountforSelectItem($itemId){
+
+         $this->db->select('promotiondetail.discountAmount as itemdiscount');
+         $this->db->join('promotiondetail','promotiondetail.fkPromotionId = promotions.id','left');
+         $this->db->where('fkItemId =',$itemId);
+         $this->db->where('startDate <',date('Y-m-d'));
+         $this->db->where('endDate >',date('Y-m-d'));
+         $this->db->where('promoType =','s');
+         $this->db->from('promotions');
+         $this->db->limit(1);
+         $query1 = $this->db->get();
+         return $query1->result();
+
+     }
+
+
+
+
+
     public  function getDeliveredOrderInfo($orderId)
     {
         $this->db->select('orders.id,orders.vat');
@@ -166,6 +206,7 @@ class Ordersm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+
 
 
 }

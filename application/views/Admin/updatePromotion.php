@@ -1,7 +1,6 @@
 
 
-
-
+<link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
     <div class="clearfix"></div>
     <!-- start page container -->
 
@@ -91,13 +90,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
 
-
-
-
-        <!-- end page content -->
+<?php include ("js.php") ?>
 
             <div id="myModal" class="modal">
                <br/><br/><br/>
@@ -112,89 +107,6 @@
 
            </div>
 
-    </div>
-<?php include ("js.php") ?>
 
 
-
-<script>
-    var modal = document.getElementById('myModal');
-    var span = document.getElementsByClassName("close")[0];
-
-    function selectid2() {
-        var x = document.getElementById('promotype').value;
-        if (x == "a") {
-
-            document.getElementById('showattr').style.display = "block";
-            document.getElementById('Item_price').style.display = "none";
-//        document.getElementById('Item_Status').style.display = "none";
-            document.getElementById('add_remove_button').style.display = "block";
-            return false;
-        }else {
-            document.getElementById('showattr').style.display = "none";
-            document.getElementById('Item_price').style.display = "block";
-//        document.getElementById('Item_Status').style.display = "none";
-            document.getElementById('add_remove_button').style.display = "none";
-            return false;
-        }
-        // When the user clicks * of the modal, close it
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
-    }
-</script>
-
-
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        var counter = 2;
-        $("#addButton").click(function () {
-            if(counter>100){
-                alert("Only 100 textboxes allow");
-                return false;
-            }
-            var newTextBoxDiv = $(document.createElement('div'))
-                .attr("id", 'TextBoxDiv' + counter);
-
-            newTextBoxDiv.after().html('<div class="form-group">'+'<label class="control-label col-md-3">Item #'+ counter + ' : </label>' +
-                '<div class="control-label col-md-5">'+'<select class="form-control input-height"  name="itemlist[] '+ counter +
-                '" id="itemlist' + counter +'" data-panel-id="'+ counter+'" value="" required>'+'<option selected value="" >'+'<?php echo "select" ?>'+'</option>'+
-                '<?php foreach($allItem as $it){ ?>'+'<option value="<?php echo $it->id ?>" ><?php echo $it->itemName ?>'+'</option>'+'<?php }?>'+
-                '</select>'+'</div>'+'</div>'+
-                '<div id = "discount" class="form-group">'+
-                '<label class="control-label col-md-3"> Discount(%):'+'<span class="required"> * '+'</span>'+'</label>'+
-                '<div class="col-md-5">'+
-                '<input type="text" name="itemDiscount[]" placeholder="Discount(%)"  class="form-control input-height" />'+
-                '</div>'+
-
-                '</div>'
-            );
-
-
-            newTextBoxDiv.appendTo("#TextBoxesGroup");
-            counter++;
-        });
-        $("#removeButton").click(function () {
-            if(counter==2){
-                alert(" textbox to remove");
-                document.getElementById('Item_price').style.display = "block";
-//                    document.getElementById('Item_Status').style.display = "block";
-                document.getElementById('add_remove_button').style.display = "none";
-                document.getElementById('showattr').style.display = "none";
-                return false;
-            }
-            counter--;
-            $("#TextBoxDiv" + counter).remove();
-        });
-    });
-
-
-</script>
 

@@ -14,14 +14,6 @@ class Report extends CI_Controller
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
         $this->load->view('Admin/allReport', $this->data);
     }
-    public function searchByDate(){
-
-        $startdate= $this->input->post('startdate');
-        $enddate= $this->input->post('enddate');
-        $this->data['allreport']= $this->Reportm->viewAllReportBydate($startdate, $enddate);
-        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
-        $this->load->view('Admin/allReport', $this->data);
-    }
 
     public function filterByCustomer(){
         $this->data['allreportcus']= $this->Reportm->filterByCustomer();
@@ -45,6 +37,43 @@ class Report extends CI_Controller
         $this->data['allreportexpensepoint']= $this->Reportm->expensePointCount();
         $this->load->view('Admin/ReportFilterByPoint', $this->data);
     }
+//////////////////////////////ALL search CODE/////////////////////
+    public function searchByDate(){
+
+        $startdate= $this->input->post('startdate');
+        $enddate= $this->input->post('enddate');
+        $this->data['allreport']= $this->Reportm->viewAllReportBydate($startdate, $enddate);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
+    }
+    public function searchByOrderId(){
+        $orderID= $this->input->post('orderid');
+        $this->data['allreport']= $this->Reportm->viewAllReportByorderid($orderID);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/allReport', $this->data);
+    }
+    public function searchByMemberId(){
+        $memberID= $this->input->post('memberid');
+        $this->data['allreport']= $this->Reportm->viewAllReportBymemberid($memberID);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/ReportFilterByMemberId', $this->data);
+    }
+    public function searchByEmployeeId(){
+        $employeeID= $this->input->post('employeeid');
+        $this->data['allreport']= $this->Reportm->viewAllReportByemployeeid($employeeID);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+        $this->load->view('Admin/ReportFilterByEmloyeeId.php', $this->data);
+    }
+
+    public function searchByItemsDate(){
+        $startdate= $this->input->post('startdate');
+        $enddate= $this->input->post('enddate');
+        $this->data['allreportitem']= $this->Reportm->filterByItemsDate($startdate,$enddate );
+        $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
+        $this->load->view('Admin/ReportFilterByItems', $this->data);
+    }
+
+
 
 }
 ?>

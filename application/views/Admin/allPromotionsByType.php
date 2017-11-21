@@ -1,4 +1,4 @@
-<table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+<table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
     <thead>
     <tr >
         <th width=""class="center"> SL </th>

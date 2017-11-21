@@ -34,25 +34,26 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
+                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByEmployeeId">
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Search For Details</label>
-                                                <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
+                                                <input type="text" class="form-control" name="employeeid" placeholder="Membership ID">
                                             </div >
                                         </div>
 
-                                </div>
+
                                 <div class="btn-group col-md-3 col-sm-3">
 
                                     <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
                                         submit
                                     </button>
                                 </div>
+                                    </form>
+                                </div>
 
 
-                                </form>
 
 
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">

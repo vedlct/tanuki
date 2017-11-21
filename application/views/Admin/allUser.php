@@ -79,7 +79,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                    <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                         <thead>
                                                         <tr>
 
@@ -167,6 +167,7 @@
 
 </html>
 <?php include ("js.php") ?>
+
 <script>
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
@@ -244,6 +245,7 @@
     }
 
 </script>
+
 <script>
     function showCustomer(){
         $.ajax({

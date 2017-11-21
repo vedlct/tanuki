@@ -317,4 +317,32 @@ class Orders extends CI_Controller
         }
 
     }
+
+    public function setDiscount(){
+
+      //  echo date('Y-m-d');
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $itemId=$this->input->post('id');
+            $this->data['promotype'] = $this->Ordersm->getPromoType();
+
+            foreach ($this->data['promotype'] as $pt){}
+                $promotype=  $pt->promoType;
+                $this->data['promotype'] = $this->Ordersm->getPromoType();
+                if ($promotype == 'a'){
+                    echo $pt->discountAmount;
+
+                }else {
+                    $this->data['promotypepp'] = $this->Ordersm->setDiscountforSelectItem($itemId);
+                    foreach ($this->data['promotypepp'] as $promo){
+                        echo $promo->itemdiscount;
+                    }
+                }
+
+
+        }
+        else{
+            redirect('Login');
+        }
+    }
 }
