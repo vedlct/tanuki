@@ -20,7 +20,7 @@
             <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>"></td>
             <td class="center"><?php echo $items->itemName; ?></td>
             <td class="center">
-                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle orderexmple" id="example4">
                 <?php
 
                 //echo $s->type_id;
@@ -44,7 +44,7 @@
                 <?php }?>
 
                 </table>
-                <button data-panel-id="<?php echo $items->id ?>" onclick="selectid5(this)" style="width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 30px; margin-top: 5px;" class="fa fa-plus-circle"></i></button>
+                <button data-panel-id="<?php echo $items->id ?>" onclick="selectid5(this)" style="height:35px; width: 100%; margin:0 auto" class="btn btn-success "><i style="font-size: 25px; margin-top: 1px;" class="fa fa-plus-circle"></i></button>
             </td>
 
             <td class="center">

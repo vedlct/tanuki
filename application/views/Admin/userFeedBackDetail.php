@@ -69,7 +69,7 @@
                                     </div>
                                 </div>
 
-                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
@@ -96,13 +96,13 @@
 <!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
 
 
-                                            <td class="center">
-                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $f->fid ?>" onclick="selectid2(this)">
+                                            <td  class="center">
+                                                <button style="margin-top:3px;"  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $f->fid ?>" onclick="selectid2(this)">
 
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
 
-                                                <button type="button" data-panel-id="<?php echo $f->fid ?>" onclick="selectid8(this)"class="btn btn-danger btn-xs">
+                                                <button style="margin-top:3px;" type="button" data-panel-id="<?php echo $f->fid ?>" onclick="selectid8(this)"class="btn btn-danger btn-xs">
 
                                                     <i class="fa fa-trash-o "></i>
                                                 </button>

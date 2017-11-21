@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
