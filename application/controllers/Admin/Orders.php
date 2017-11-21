@@ -345,4 +345,16 @@ class Orders extends CI_Controller
             redirect('Login');
         }
     }
+
+    public function searchByOrderId()
+    {
+
+        $orderID= $this->input->post('orderid');
+        $this->data['orders']= $this->Ordersm->viewOrderInfoByOrderId($orderID);
+        $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
+        $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+        $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
+
+        $this->load->view('Admin/OrderSearchFilterByOrderId', $this->data);
+    }
 }

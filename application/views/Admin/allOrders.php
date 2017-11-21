@@ -62,7 +62,35 @@
                                             </ul>
                                         </div>
                                     </div>
+
                                 </div>
+
+
+                                    <button id="searchbyorderid" onclick="searchbydorder()" class="btn btn-info">
+                                        Search By OrderID
+                                    </button>
+
+
+                                    <div id="order" style="display: none">
+                                        <div class="col-md-6 col-sm-6" >
+                                            <div class="form-group" >
+
+                                                <label for="date">Order ID</label>
+                                                <input type="text" id="searchOrderId" class="form-control " name="orderid" placeholder="Order ID">
+                                            </div >
+
+                                        </div>
+                                        <div class="btn-group col-md-3 col-sm-3" >
+
+                                            <button style="margin-top: 30px"  type="submit"  onclick="searchByOrderId()" class="btn btn-info">
+                                                submit
+                                            </button>
+                                            <a href="Admin-Orders">
+                                                Reload
+                                            </a>
+                                        </div>
+                                    </div>
+
                                 <div class="table table-responsive">
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
@@ -396,6 +424,31 @@
 
         });
         modal.style.display = "block";
+    }
+
+    function searchByOrderId()
+    {
+        var orderId=document.getElementById("searchOrderId").value;
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Orders/searchByOrderId" )?>',
+            data:{orderid:orderId},
+            cache: false,
+            success:function(data)
+            {
+                $('#example4').html(data);
+            }
+
+        });
+
+    }
+
+    function searchbydorder(){
+
+        document.getElementById('order').style.display='block';
+
+        document.getElementById('searchbyorderid').style.display='none';
     }
 
 

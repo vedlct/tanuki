@@ -16,6 +16,18 @@ class Ordersm extends CI_Model
         return $query->result();
     }
 
+    public  function viewOrderInfoByOrderId($orderID)
+    {
+
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->from('orders o');
+        $this->db->where('o.id',$orderID);
+        $this->db->join('users u','u.id = o.fkUserId','left');
+        $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
 
     public  function getAllOrdersItems()
     {
