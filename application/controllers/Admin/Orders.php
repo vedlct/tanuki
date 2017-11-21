@@ -27,8 +27,8 @@ class Orders extends CI_Controller
 
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
-
-
+            $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
+            //print_r($this->data['StatusDelivered']);
 
             $this->load->view('Admin/allOrders', $this->data);
         }
@@ -46,7 +46,7 @@ class Orders extends CI_Controller
 
             $orderStatus=$this->input->post('status');
             $delivered = $this->Ordersm->checkDelivery($orderStatus);
-            
+
 
             foreach ($delivered as $status) {
                 if ($status->statusTitle == "delivered") {

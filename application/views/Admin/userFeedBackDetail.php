@@ -93,7 +93,7 @@
                                             <td class="center"> <?php echo $f->feedback ?></td>
                                             <td class="center"> <?php echo $f->userRating ?></td>
                                             <td class="center"> <?php echo $f->feedbackTime ?></td>
-<!--                                            <td class="center"> --><?php //echo $f->fkUserId ?><!--</td>-->
+
 
 
                                             <td class="center">
