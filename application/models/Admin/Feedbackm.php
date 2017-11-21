@@ -45,7 +45,14 @@ class Feedbackm extends CI_Model
 
         }
 
+public function totalFeedback()
+{
+    $this->db->select('id');
+    $this->db->from('userfeedback');
 
+    $query = $this->db->get();
+    return $query->result();
+}
 
 
 

@@ -40,7 +40,7 @@
                                     <i class="fa fa-users usr-clr"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="23">0</p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="resultts1" style="font-size: 90%"></span></p>
                                     <p>ORDERS</p>
                                 </div>
                             </div>
@@ -62,8 +62,8 @@
                                     <i class="fa fa-heartbeat"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="14">0</p>
-                                    <p>TODAY'S RECIPIES</p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="14"><span id="resultts3" style="font-size: 90%"></span></p>
+                                    <p>CUSTOMER FEEDBACK</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                                     <i class="fa fa-money"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="3421">0</p><span>$</span>
+                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="resultts2" style="font-size: 90%"></span></p>
                                     <p>Total Earning</p>
                                 </div>
                             </div>
@@ -303,5 +303,29 @@
                 $("#results").text(data);
             }
         });
-    },100);
+        $.ajax({
+            url: "<?php echo base_url('Admin/Report/getTotaltransactiondetail') ?>",
+            cache: false,
+            success: function (data) {
+                $("#resultts2").text(data);
+
+            }
+        });
+        $.ajax({
+            url: "<?php echo base_url('Admin/Feedback/getTotalfeedback') ?>",
+            cache: false,
+            success: function (data) {
+                $("#resultts3").text(data);
+
+            }
+        });
+        $.ajax({
+            url: "<?php echo base_url('Admin/Orders/getTotalOrder') ?>",
+            cache: false,
+            success: function (data) {
+                $("#resultts1").text(data);
+            }
+        });
+    },2000);
     </script>
+

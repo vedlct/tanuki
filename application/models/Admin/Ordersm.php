@@ -219,6 +219,64 @@ class Ordersm extends CI_Model
         return $query->result();
     }
 
+    public function getTotalOrder()
+    {
+
+        $query = $this->db->get('orders');
+        return $query->num_rows();
+    }
+
+    public  function addNewOrderStatus($data)
+    {
+        $error=$this->db->insert('orderstatus', $data);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return $error=null;
+        }
+
+    }
+public  function getOrderStatusId($status_id)
+{
+    $this->db->from('orderstatus');
+    $this->db->where('id',$status_id)->select(['id','sequece','statusTitle']);
+    $query = $this->db->get();
+    return $query->result();
+}
+
+public function  updateOrderById($id, $data)
+{
+    $error=$this->db->where('id',$id)->update('orderstatus',$data);
+
+    if (empty($error))
+    {
+        return $this->db->error();
+    }
+    else {
+
+        return $error = null;
+    }
+
+
+}
+
+
+    public function getAllOrderstatus()
+    {
+        $this->db->select('id,sequece,statusTitle');
+        $this->db->from('orderstatus');
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function deleteOrderId($id)
+    {
+        $this->db->where('id',$id)->delete('orderstatus');
+    }
+
+
 
 
 }

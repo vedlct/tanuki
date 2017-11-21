@@ -74,6 +74,11 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin-ordersStatus" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Order Status</span>
+                    </a>
+                </li>
+                <li class="nav-item">
 
                     <a href="<?php echo base_url()?>Admin/Feedback/allUserfeedback" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">User Feedback</span>
