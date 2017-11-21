@@ -19,20 +19,6 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <div class="page-bar">
-                    <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">Category List</div>
-                        </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li><a class="parent-item" href="#">Category</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">Category List</li>
-                        </ol>
-                    </div>
-                </div>
 
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
@@ -83,7 +69,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>

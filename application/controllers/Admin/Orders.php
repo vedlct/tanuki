@@ -24,9 +24,10 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $this->data['orders'] = $this->Ordersm->getAllOrders();
-
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+            $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
+            //print_r($this->data['StatusDelivered']);
 
 
             $this->load->view('Admin/allOrders', $this->data);

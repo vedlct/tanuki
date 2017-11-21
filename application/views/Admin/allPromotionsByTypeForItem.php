@@ -52,7 +52,7 @@
                     <?php } }?>
 
                 </table>
-                <button style="width: 100%; margin:0 auto"  class="btn btn-success " data-panel-id="<?php echo $promotion->id?>" onclick="selectid6(this)"><i style="font-size: 30px; margin-top: 5px;"   class="fa fa-plus-circle"></i></button>
+                <button style="height:35px; width: 100%; margin:0 auto"  class="btn btn-success " data-panel-id="<?php echo $promotion->id?>" onclick="selectid6(this)"><i style="font-size: 25px; margin-top: 1px;"   class="fa fa-plus-circle"></i></button>
             </td>
 
             <td class="center">

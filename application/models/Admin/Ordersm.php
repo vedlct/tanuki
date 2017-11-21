@@ -29,8 +29,19 @@ class Ordersm extends CI_Model
     {
         $this->db->select('os.id,os.statusTitle');
         $this->db->from('orderstatus os');
+        $this->db->order_by('os.sequece', 'ASC');
         $query=$this->db->get();
         return $query->result();
+    }
+
+    public  function getOrdersStatusDeliveredId()
+    {
+        $this->db->select('os.id');
+        $this->db->from('orderstatus os');
+        $this->db->order_by('os.sequece', 'DESC');
+        $this->db->limit(1);
+        $query=$this->db->get();
+        return $query->row();
     }
 
 

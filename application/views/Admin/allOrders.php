@@ -68,6 +68,7 @@
                                     <thead>
                                     <tr >
                                         <th width="3%"class="center"> Sr.NO </th>
+                                        <th width="3%"class="center"> Order Id </th>
                                         <th width="15%"class="center"> User & Order Tacker Name</th>
                                         <th width="8%"class="center"> Order Type</th>
                                         <th width="8%"class="center"> Order Date </th>
@@ -84,6 +85,7 @@
                                         <tr class="odd gradeX">
 
                                             <td><?php echo $i;?></td>
+                                            <td><?php echo $orders->id;?></td>
                                             <td class="center"><?php echo $orders->userName; ?>
 
                                                 <div class="btn-group">
@@ -174,14 +176,22 @@
 
                                             <td class="center">
 
+
+                                                <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
                                                             <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                                                                 <option value="">Select</option>
-                                                                <?php foreach ($ordersStatus as $Status) { ?>
+
+                                                                <?php foreach ($ordersStatus as $Status){?>
+
                                                                     <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
-                                                                <?php } ?>
+                                                                <?php }?>
+
+
+
                                                             </select>
-
-
+                                                <?php }else{?>
+                                                Already Delivery
+                                                <?php } ?>
 
                                             </td>
 

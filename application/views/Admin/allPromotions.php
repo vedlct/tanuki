@@ -15,11 +15,9 @@
     <div class="page-container">
 
         <?php include ('leftNavigation.php')?>
-
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
                 <?php }
@@ -66,7 +64,7 @@
                     <!-- Modal content -->
                     <div class="modal-content">
                         <span class="close">×</span>
-                        <link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
+
                         <div id="txtHint"></div>
 
                     </div>
@@ -81,8 +79,6 @@
     <!-- end page container -->
 
     <?php include ("footer.php") ?>
-    <?php include ("js.php") ?>
-
 
 </div>
 
@@ -92,35 +88,29 @@
 </html>
 <?php include ("js.php") ?>
 <script>
-   function promotypefync(){
-       var type = document.getElementById('promotype').value;
- //alert(type);
-          $.ajax({
-              type:'POST',
-              url:'<?php echo base_url("Admin/Promotions/getAllPromotions/")?>'+type,
-              data:{type:type},
-              cache: false,
-              success:function(data) {
-
-                  $('#tableid').html(data);
-               // alert(data);
-              }
-          });
-
-   }
-
+    function promotypefync(){
+        var type = document.getElementById('promotype').value;
+        //alert(type);
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Promotions/getAllPromotions/")?>'+type,
+            data:{type:type},
+            cache: false,
+            success:function(data) {
+                $('#tableid').html(data);
+                // alert(data);
+            }
+        });
+    }
 </script>
 
 
 
 <script>
-
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
-
     function selectid1(x)
     {
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Category/newCategory" )?>',
@@ -130,66 +120,43 @@
             {
                 $('#txtHint').html(data);
             }
-
         });
         modal.style.display = "block";
     }
-
     function selectid4(x)
     {
-
         btn = $(x).data('panel-id');
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Promotions/getPromotionById")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {
-
                 $('#txtHint').html(data);
-
             }
         });
         modal.style.display = "block";
-
     }
-
-
     function selectid2(x)
     {
-
         btn = $(x).data('panel-id');
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Promotions/PromotionItemGetselectId")?>',
             data:{id:btn},
             cache: false,
             success:function(data) {
-
                 $('#txtHint').html(data);
-
             }
         });
         modal.style.display = "block";
-
     }
-
-
-
-
-
     function selectid5(x)
     {
-
         if (confirm("are you sure to delete this Item ?"))
         {
-
             btn = $(x).data('panel-id');
 //            var catId= document.getElementById('categoryName').value;
-
-
             $.ajax({
                 type: 'POST',
                 url: '<?php echo base_url("Admin/Promotions/deleteSelectedById")?>',
@@ -198,18 +165,12 @@
                 success: function (data) {
                     location.reload();
                 }
-
             });
         }
     }
-
-
-
     function selectid6(x)
     {
-
         btn = $(x).data('panel-id');
-
         $.ajax({
             async: true,
             type:'POST',
@@ -217,25 +178,15 @@
             data:{id:btn},
             cache: false,
             success:function(data) {
-
                 $('#txtHint').html(data);
-
             }
         });
         modal.style.display = "block";
-
     }
-
-
-
-
-
     function selectid3(x)
     {
-
         if (confirm("are you sure to delete this Item ?"))
         {
-
             btn = $(x).data('panel-id');
 //            var catId= document.getElementById('categoryName').value;
             $.ajax({
@@ -246,7 +197,6 @@
                 success: function (data) {
                     location.reload();
                 }
-
             });
         }
     }
@@ -254,21 +204,17 @@
     span.onclick = function() {
         modal.style.display = "none";
     }
-
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
-
-
 </script>
 
 <script>
     function showtable() {
         var x = document.getElementById('categoryName').value;
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
@@ -277,10 +223,8 @@
             success:function(data)
             {
                 $('#tableid').html(data);
-
             }
         });
-
         document.getElementById("tableid").style.display ="block";
     }
 </script>
@@ -288,7 +232,6 @@
 <script>
     function showtable2(x) {
         // var x = document.getElementById('categoryName').value;
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Items/showItemsTable/")?>'+x,
@@ -297,10 +240,8 @@
             success:function(data)
             {
                 $('#tableid').html(data);
-
             }
         });
-
         document.getElementById("tableid").style.display ="block";
     }
 </script>
