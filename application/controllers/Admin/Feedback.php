@@ -96,7 +96,26 @@ class Feedback extends CI_Controller
         }
     }
 
+public  function getTotalfeedback()
+{
+    if ($this->session->userdata('userType') == "Admin") {
 
+
+        $result = $this->Feedbackm->totalFeedback();
+
+        foreach ($result as $totalFeedback){
+            $totalFeedback=$totalFeedback->id;
+        }
+        echo $totalFeedback;
+
+
+
+    } else {
+
+        redirect('Login');
+    }
+
+}
 
 
 

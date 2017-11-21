@@ -197,7 +197,15 @@ class User extends CI_Controller {
 
     public function getTotalUser()
     {
+        if ($this->session->userdata('userType') == "Admin") {
+
         echo $result = $this->Userm->getTotalUser();
+        }
+        else
+        {
+            redirect('Login');
+        }
+
 
     }
 

@@ -62,8 +62,7 @@ $route['Admin-AddCategory'] = 'Admin/Category/addCategory';
 $route['Admin-Items'] = 'Admin/Items/allItems';
 $route['Admin-addItems'] = 'Admin/Items/addItems';
 $route['Admin-insertItem'] = 'Admin/Items/insertItem';
-
-
+$route['Admin-ordersStatus']='Admin/Orders/ordereStatus';
 $route['Admin-EditItem/(:any)'] = 'Admin/Items/editItem/$1';
 $route['Admin-EditItemSizePrice/(:any)'] = 'Admin/Items/editItemSizePriceById/$1';
 

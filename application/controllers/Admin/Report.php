@@ -46,5 +46,26 @@ class Report extends CI_Controller
         $this->load->view('Admin/ReportFilterByPoint', $this->data);
     }
 
+    public  function getTotaltransactiondetail()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+
+             $result = $this->Reportm->totalEaring();
+
+             foreach ($result as $totalTransection){
+                 $earning=$totalTransection->totalammount;
+             }
+             echo $earning;
+
+
+
+        } else {
+
+            redirect('Login');
+        }
+
+    }
+
 }
 ?>

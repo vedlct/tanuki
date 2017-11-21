@@ -29,11 +29,8 @@ class Orders extends CI_Controller
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
 
 
-
             $this->load->view('Admin/allOrders', $this->data);
-        }
-        else
-        {
+        } else {
             redirect('Login');
         }
 
@@ -44,9 +41,9 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
 
-            $orderStatus=$this->input->post('status');
+            $orderStatus = $this->input->post('status');
             $delivered = $this->Ordersm->checkDelivery($orderStatus);
-            
+
 
             foreach ($delivered as $status) {
                 if ($status->statusTitle == "delivered") {
@@ -96,18 +93,16 @@ class Orders extends CI_Controller
 
             if (empty($this->data['error'])) {
 
-                $this->session->set_flashdata('successMessage','Order Updated Successfully');
+                $this->session->set_flashdata('successMessage', 'Order Updated Successfully');
 
 
             } else {
-                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
 
             }
 
 
-        }
-        else
-        {
+        } else {
             redirect('Login');
         }
 
@@ -117,13 +112,11 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $itemId=$this->input->post('id');
+            $itemId = $this->input->post('id');
             $this->data['ordersItem'] = $this->Ordersm->getOrderItemForEdit($itemId);
 
             $this->load->view('Admin/orderItemsEdit', $this->data);
-        }
-        else
-        {
+        } else {
             redirect('Login');
         }
 
@@ -133,27 +126,25 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $itemQuantity=$this->input->post('itemQuantity');
+            $itemQuantity = $this->input->post('itemQuantity');
 
             $data = array(
                 'quantity' => $itemQuantity,
 
             );
-            $this->data['error'] = $this->Ordersm->updateOrderItemById($id,$data);
+            $this->data['error'] = $this->Ordersm->updateOrderItemById($id, $data);
 
             if (empty($this->data['error'])) {
 
-                $this->session->set_flashdata('successMessage','Ordered Items Quantity Updated Successfully');
+                $this->session->set_flashdata('successMessage', 'Ordered Items Quantity Updated Successfully');
 
                 redirect('Admin-Orders');
 
             } else {
-                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
                 redirect('Admin-Orders');
             }
-        }
-        else
-        {
+        } else {
             redirect('Login');
         }
 
@@ -167,8 +158,7 @@ class Orders extends CI_Controller
 
             $this->Ordersm->deleteOrderItemsById($id);
 
-        }
-        else{
+        } else {
             redirect('Login');
         }
     }
@@ -177,13 +167,12 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $this->data['orderId']=$this->input->post('id');
+            $this->data['orderId'] = $this->input->post('id');
             $this->data['categoryInfo'] = $this->Categorym->getAllCategoryNameId();
 
 
-            $this->load->view('Admin/addNewOrderItems',$this->data);
-        }
-        else{
+            $this->load->view('Admin/addNewOrderItems', $this->data);
+        } else {
             redirect('Login');
         }
 
@@ -194,10 +183,10 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
 
-            $itemSizeId=$this->input->post('itemSizeId');
-            $ItemQuantity=$this->input->post('ItemQuantity');
-            $ItemRate=$this->input->post('ItemRate');
-            $ItemDiscount=$this->input->post('ItemDiscount');
+            $itemSizeId = $this->input->post('itemSizeId');
+            $ItemQuantity = $this->input->post('ItemQuantity');
+            $ItemRate = $this->input->post('ItemRate');
+            $ItemDiscount = $this->input->post('ItemDiscount');
 
             $data = array(
                 'fkOrderId' => $orderId,
@@ -213,17 +202,16 @@ class Orders extends CI_Controller
 
             if (empty($this->data['error'])) {
 
-                $this->session->set_flashdata('successMessage','Item Ordered Successfully');
+                $this->session->set_flashdata('successMessage', 'Item Ordered Successfully');
 
                 redirect('Admin-Orders');
 
             } else {
-                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
                 redirect('Admin-Orders');
             }
 
-        }
-        else{
+        } else {
             redirect('Login');
         }
 
@@ -233,21 +221,20 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $catId=$this->input->post('id');
+            $catId = $this->input->post('id');
 
             $this->data['itemInfo'] = $this->Itemsm->getAllItemsNameIdByCategory($catId);
 
             if (empty($this->data['itemInfo'])) {
 
                 echo "<option value='' selected>Select Item</option>";
-            }else{
+            } else {
                 echo "<option value='' selected>Select Item</option>";
                 foreach ($this->data['itemInfo'] as $items) {
                     echo "<option value='$items->id'>$items->itemName</option>";
                 }
             }
-        }
-        else{
+        } else {
             redirect('Login');
         }
 
@@ -257,7 +244,7 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $itemId=$this->input->post('id');
+            $itemId = $this->input->post('id');
             $this->data['itemSizeInfo'] = $this->Itemsm->getAllItemSizesNameIdByItem($itemId);
 //            $this->data['promotionType'] = $this->Promotionsm->getPromotionType();
 ////            if (empty($this->data['promotionType'])){
@@ -267,14 +254,13 @@ class Orders extends CI_Controller
             if (empty($this->data['itemSizeInfo'])) {
 
                 echo "<option value='' selected>Select Item Size</option>";
-            }else{
+            } else {
                 echo "<option value='' selected>Select Item Size</option>";
                 foreach ($this->data['itemSizeInfo'] as $itemSize) {
                     echo "<option value='$itemSize->id'>$itemSize->itemSize</option>";
                 }
             }
-        }
-        else{
+        } else {
             redirect('Login');
         }
 
@@ -284,20 +270,19 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $itemSizeId=$this->input->post('id');
+            $itemSizeId = $this->input->post('id');
             $this->data['itemPrice'] = $this->Itemsm->getItemPriceByItemSizeId($itemSizeId);
 
             if (empty($this->data['itemPrice'])) {
 
                 echo "Please Select an Item Size";
-            }else{
+            } else {
 
                 foreach ($this->data['itemPrice'] as $itemPrice) {
                     echo $itemPrice->price;
                 }
             }
-        }
-        else{
+        } else {
             redirect('Login');
         }
 
@@ -307,42 +292,183 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $userId=$this->input->post('id');
+            $userId = $this->input->post('id');
             $this->data['userInfo'] = $this->Userm->getAllInfoUser($userId);
 
-            $this->load->view('Admin/userInfoForOder',$this->data);
-        }
-        else{
+            $this->load->view('Admin/userInfoForOder', $this->data);
+        } else {
             redirect('Login');
         }
 
     }
 
-    public function setDiscount(){
+    public function setDiscount()
+    {
 
-      //  echo date('Y-m-d');
+        //  echo date('Y-m-d');
         if ($this->session->userdata('userType') == "Admin") {
 
-            $itemId=$this->input->post('id');
+            $itemId = $this->input->post('id');
             $this->data['promotype'] = $this->Ordersm->getPromoType();
 
-            foreach ($this->data['promotype'] as $pt){}
-                $promotype=  $pt->promoType;
-                $this->data['promotype'] = $this->Ordersm->getPromoType();
-                if ($promotype == 'a'){
-                    echo $pt->discountAmount;
+            foreach ($this->data['promotype'] as $pt) {
+            }
+            $promotype = $pt->promoType;
+            $this->data['promotype'] = $this->Ordersm->getPromoType();
+            if ($promotype == 'a') {
+                echo $pt->discountAmount;
 
-                }else {
-                    $this->data['promotypepp'] = $this->Ordersm->setDiscountforSelectItem($itemId);
-                    foreach ($this->data['promotypepp'] as $promo){
-                        echo $promo->itemdiscount;
-                    }
+            } else {
+                $this->data['promotypepp'] = $this->Ordersm->setDiscountforSelectItem($itemId);
+                foreach ($this->data['promotypepp'] as $promo) {
+                    echo $promo->itemdiscount;
                 }
+            }
 
 
-        }
-        else{
+        } else {
             redirect('Login');
         }
     }
+
+       public function getTotalOrder()
+         {
+            if ($this->session->userdata('userType') == "Admin") {
+
+
+            echo $result = $this->Ordersm->getTotalOrder();
+
+
+            }     else {
+
+                    redirect('Login');
+                   }
+
+         }
+
+
+
+      public function ordereStatus()
+     {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $this->data['orderestatus'] = $this->Ordersm->getAllOrderstatus();
+            $this->load->view('Admin/orderStatus', $this->data);
+//            $this->load->view('Admin/orderStatus', $this->data);
+        } else {
+            redirect('Login');
+        }
+
+
+    }
+
+
+public  function addNewOrderStatus()
+{
+    if ($this->session->userdata('userType') == "Admin") {
+        $this->load->view('Admin/addNewOrderStatus');
+    } else {
+        redirect('Login');
+    }
+
+}
+
+
+public  function insertNewOrderStatus()
+{
+    if ($this->session->userdata('userType') == "Admin") {
+
+        $sequence= $this->input->post('sequence');
+        $statusTitle= $this->input->post('statusTitle');
+        $data=array
+            (
+
+            'sequece'=> $sequence,
+            'statusTitle'=>$statusTitle,
+
+    );
+
+        $this->data['error'] = $this->Ordersm->addNewOrderStatus($data);
+
+
+        if (empty($this->data['error'])) {
+
+            $this->session->set_flashdata('successMessage', 'OrderStatus add  Successfully');
+
+            redirect('Admin-ordersStatus');
+
+        } else {
+            $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+            redirect('Admin-ordersStatus');
+        }
+
+    } else {
+        redirect('Login');
+    }
+}
+
+public function  getOredrById()
+{
+    if ($this->session->userdata('userType') == "Admin") {
+
+        $status_id = $this->input->post('id');
+        $data['orderstatusinfo'] = $this->Ordersm->getOrderStatusId($status_id);
+        $this->load->view('Admin/updateOrderstatus',$data);
+
+    } else {
+        redirect('Login');
+    }
+}
+
+
+public  function updateOrderStatus($id)
+{
+    if ($this->session->userdata('userType') == "Admin") {
+
+        $data = array(
+            'sequece' => $this->input->post('sequence'),
+            'statusTitle'=>$this->input->post('statusTitle')
+
+
+        );
+
+        $this->data['error'] = $this->Ordersm->updateOrderById($id, $data);
+
+        if (empty($this->data['error'])) {
+
+            $this->session->set_flashdata('successMessage','Update order  Status Successfully');
+            redirect('Admin-ordersStatus');
+
+        } else {
+
+            $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+            redirect('Admin-ordersStatus');
+
+        }
+
+    } else {
+        redirect('login');
+    }
+}
+
+
+public  function deleteOrderId()
+{
+    if ($this->session->userdata('userType') == "Admin") {
+
+        $id = $this->input->post('id');
+        $this->Ordersm->deleteOrderId($id);
+
+    }
+    else{
+        redirect('Login');
+    }
+}
+
+
+
+
+
+
+
 }

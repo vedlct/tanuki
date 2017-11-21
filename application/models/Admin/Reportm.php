@@ -126,4 +126,14 @@ class Reportm extends CI_Model
 
     }
 
+    public function totalEaring(){
+        $this->db->select('SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount');
+        $this->db->from('transactiondetail');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
+
 }
