@@ -19,7 +19,7 @@
                 </li>
 
 
-                
+
                 <li class="nav-item">
                     <a href="<?php echo base_url() ?>Admin/User/allUser" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
                         <span class="title">Users</span> <span class="arrow"></span>
