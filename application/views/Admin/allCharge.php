@@ -19,20 +19,6 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <div class="page-bar">
-                    <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">All Charge List</div>
-                        </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li><a class="parent-item" href="#">Category</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">All Charge List</li>
-                        </ol>
-                    </div>
-                </div>
 
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
@@ -53,16 +39,9 @@
                                 </div>
                             </div>
                             <div class="card-body ">
-                                <div class="row">
+                                <div class="row pull-right">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group">
-                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
-                                                Add New Delivery Fee <i class="fa fa-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group pull-right">
+                                        <div class="btn-group ">
                                             <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
@@ -166,22 +145,7 @@
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
 
-    function selectid1(x)
-    {
 
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Charge/newCharge" )?>',
-            data:{},
-            cache: false,
-            success:function(data)
-            {
-                $('#txtHint').html(data);
-            }
-
-        });
-        modal.style.display = "block";
-    }
 
     function selectid2(x)
     {

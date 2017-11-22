@@ -18,6 +18,7 @@ class Chargem extends CI_Model
     public  function insertCharge($data)
     {
         $this->security->xss_clean($data);
+
         $error=$this->db->insert('charges', $data);
 
         if (empty($error))
