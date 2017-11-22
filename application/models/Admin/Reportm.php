@@ -21,7 +21,7 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function viewAllReportByorderid($orderID){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, fkOrderId ');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');

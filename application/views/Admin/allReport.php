@@ -117,7 +117,7 @@
 
                                             <tr>
                                                 <td class="center"><?php echo $count ?></td>
-                                                <td class="center"><?php echo $ar->id ?></td>
+                                                <td class="center"><?php echo $ar->fkOrderId ?></td>
                                                 <td class="center">
                                                     <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
 

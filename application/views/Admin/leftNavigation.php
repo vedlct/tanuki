@@ -84,12 +84,14 @@
                         <span class="title">User Feedback</span>
                     </a>
                 </li>
-                <li class="nav-item">
 
-                    <a href="<?php echo base_url()?>Admin/Charge/allCharges" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin/Charge/allCharges" class="nav-link nav-toggle"><i class="fa fa-gift"></i>
                         <span class="title">Charges</span>
                     </a>
                 </li>
+
+
                 <li class="nav-item">
                     <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">Report</span> <span class="arrow"></span>
