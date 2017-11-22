@@ -29,7 +29,7 @@
 	<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short"  data-parallax="scroll" data-image-src="img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>Frequently asked questions</h1>
@@ -466,13 +466,13 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/common_scripts_min.js"></script>
+<script src="js/functions.js"></script>
+<script src="assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
+<script src="js/theia-sticky-sidebar.js"></script>
 <script>
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80

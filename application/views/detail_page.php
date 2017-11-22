@@ -32,7 +32,7 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
 	<div id="sub_content">
-    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
+    	<div id="thumb"><img src="img/thumb_restaurant.jpg" alt=""></div>
                      <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.php">Read 98 reviews</a></small>)</div>
                     <h1>Mexican TacoMex</h1>
                     <div><em>Mexican / American</em></div>
@@ -46,7 +46,7 @@
         <div class="container">
             <ul>
                 <li><a href="#0">Home</a></li>
-                <li><a href="#0">Category</a></li>
+                <li><a href="#0">Tanuki's Dishes</a></li>
                 <li>Page active</li>
             </ul>
             <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
@@ -54,30 +54,33 @@
     </div><!-- Position -->
 
 <!-- Content ================================================== -->
-<div class="container margin_60_35">
+<div class="container-fluid margin_60_35">
 		<div class="row">
         
-			<div class="col-md-3">
-            	<p><a href="list_page.php" class="btn_side">Back to search</a></p>
-				<div class="box_style_1">
-					<ul id="cat_nav">
-						<li><a href="#starters" class="active">Starters <span>(141)</span></a></li>
-						<li><a href="#main_courses">Main Courses <span>(20)</span></a></li>
-						<li><a href="#beef">Beef <span>(12)</span></a></li>
-						<li><a href="#desserts">Desserts <span>(11)</span></a></li>
-						<li><a href="#drinks">Drinks <span>(20)</span></a></li>
-					</ul>
-				</div><!-- End box_style_1 -->
-                
-				<div class="box_style_2 hidden-xs" id="help">
-					<i class="icon_lifesaver"></i>
-					<h4>Need <span>Help?</span></h4>
-					<a href="tel://004542344599" class="phone">+45 423 445 99</a>
-					<small>Monday to Friday 9.00am - 7.30pm</small>
-				</div>
-			</div><!-- End col-md-3 -->
+			<div class="col-md-1"></div>
+        	<div class="col-md-2">
+            <p><a href="list_page.php" class="btn_side">Back to search</a></p>
+            <div class="box_style_1">
+                <ul id="cat_nav">
+                        <li><a href="#starters" class="active">Starters</a></li>
+                        <li><a href="#main_courses" class="">Main courses</a> </li>
+                        <li><a href="#beef" class="">Beef</a> </li>
+                        <li><a href="#" class="">Item 4</a> </li>
+                        <li><a href="#" class="">Item 5</a> </li>
+                        <li><a href="#" class="">Item 6</a> </li>
+
+                </ul>
+            </div><!-- End box_style_1 -->
+
+            <div class="box_style_2 hidden-xs" id="help">
+                <i class="icon_lifesaver"></i>
+                <h4>Need <span>Help?</span></h4>
+                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
+                <small>Monday to Friday 9.00am - 7.30pm</small>
+            </div>
+        </div><!-- End col-md-3 -->
             
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
 					<h3 class="nomargin_top" id="starters">Starters</h3>
@@ -101,8 +104,8 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
-							<h5>1. Mexican Enchiladas</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-1.jpg" alt="thumb"></figure>
+							<h5>Mexican Enchiladas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -138,8 +141,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-2.jpg" alt="thumb"></figure>
-							<h5>2. Fajitas</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-2.jpg" alt="thumb"></figure>
+							<h5>Fajitas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -175,8 +178,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-3.jpg" alt="thumb"></figure>
-							<h5>3. Royal Fajitas</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-3.jpg" alt="thumb"></figure>
+							<h5>Royal Fajitas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -212,8 +215,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-4.jpg" alt="thumb"></figure>
-							<h5>4. Chicken Enchilada Wrap</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-4.jpg" alt="thumb"></figure>
+							<h5>Chicken Enchilada Wrap</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -271,8 +274,8 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-5.jpg" alt="thumb"></figure>
-							<h5>5. Cheese Quesadilla</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-5.jpg" alt="thumb"></figure>
+							<h5>Cheese Quesadilla</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -308,8 +311,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-6.jpg" alt="thumb"></figure>
-							<h5>6. Chorizo & Cheese</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-6.jpg" alt="thumb"></figure>
+							<h5>Chorizo & Cheese</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -345,8 +348,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-7.jpg" alt="thumb"></figure>
-							<h5>7. Beef Taco</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-7.jpg" alt="thumb"></figure>
+							<h5>Beef Taco</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -360,8 +363,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-8.jpg" alt="thumb"></figure>
-							<h5>8. Minced Beef Double Layer</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-8.jpg" alt="thumb"></figure>
+							<h5>Minced Beef Double Layer</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -397,8 +400,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-9.jpg" alt="thumb"></figure>
-							<h5>9. Piri Piri Chicken</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-9.jpg" alt="thumb"></figure>
+							<h5>Piri Piri Chicken</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -434,8 +437,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-10.jpg" alt="thumb"></figure>
-							<h5>10. Burrito Al Pastor</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-10.jpg" alt="thumb"></figure>
+							<h5>Burrito Al Pastor</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -493,8 +496,8 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-11.jpg" alt="thumb"></figure>
-							<h5>11. Beef Enchilada Wrap</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-11.jpg" alt="thumb"></figure>
+							<h5>Beef Enchilada Wrap</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -530,8 +533,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-12.jpg" alt="thumb"></figure>
-							<h5>12. Chicken Fillet Taco</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-12.jpg" alt="thumb"></figure>
+							<h5>Chicken Fillet Taco</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -567,8 +570,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-13.jpg" alt="thumb"></figure>
-							<h5>13. Tiger Prawn & Chorizo</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-13.jpg" alt="thumb"></figure>
+							<h5>Tiger Prawn & Chorizo</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -604,8 +607,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-14.jpg" alt="thumb"></figure>
-							<h5>14. Fillet Steak & Chorizo</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-14.jpg" alt="thumb"></figure>
+							<h5>Fillet Steak & Chorizo</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -619,8 +622,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-15.jpg" alt="thumb"></figure>
-							<h5>15. Burrito's with Rice</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-15.jpg" alt="thumb"></figure>
+							<h5>Burrito's with Rice</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -656,8 +659,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-16.jpg" alt="thumb"></figure>
-							<h5>16. Mexican Burger</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-16.jpg" alt="thumb"></figure>
+							<h5>Mexican Burger</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -715,8 +718,8 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-17.jpg" alt="thumb"></figure>
-							<h5>17. Chocolate Fudge Cake</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-17.jpg" alt="thumb"></figure>
+							<h5>Chocolate Fudge Cake</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -730,8 +733,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-18.jpg" alt="thumb"></figure>
-							<h5>18. Cheesecake</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-18.jpg" alt="thumb"></figure>
+							<h5>Cheesecake</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -745,8 +748,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-19.jpg" alt="thumb"></figure>
-							<h5>19. Apple Pie & Custard</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-19.jpg" alt="thumb"></figure>
+							<h5>Apple Pie & Custard</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -760,8 +763,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-20.jpg" alt="thumb"></figure>
-							<h5>20. Profiteroles</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-20.jpg" alt="thumb"></figure>
+							<h5>Profiteroles</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -797,8 +800,8 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-21.jpg" alt="thumb"></figure>
-							<h5>21. Coke 0.33L</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-21.jpg" alt="thumb"></figure>
+							<h5>Coke 0.33L</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -812,8 +815,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-22.jpg" alt="thumb"></figure>
-							<h5>2. Diet Coke 0.33L</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-22.jpg" alt="thumb"></figure>
+							<h5>Diet Coke 0.33L</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -827,8 +830,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-23.jpg" alt="thumb"></figure>
-							<h5>3. Diet Coke 1L</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-23.jpg" alt="thumb"></figure>
+							<h5>Diet Coke 1L</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -842,8 +845,8 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-24.jpg" alt="thumb"></figure>
-							<h5>4. Fanta Orange 0.33L</h5>
+                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-24.jpg" alt="thumb"></figure>
+							<h5>Fanta Orange 0.33L</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
 							</p>
@@ -868,42 +871,14 @@
 					<tbody>
 					<tr>
 						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-						</td>
+							<input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
+                            <input type="text"  name="qty" id="" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="1"/>
+							<input type="button" class="btn btn-default" data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)" style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+                        </td>
+                        <td>Mexican Enchiladas</td>
+                        <td>Medium</td>
 						<td>
 							<strong class="pull-right">$11</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-						</td>
-						<td>
-							<strong class="pull-right">$14</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-						</td>
-						<td>
-							<strong class="pull-right">$20</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-						</td>
-						<td>
-							<strong class="pull-right">$9</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-						</td>
-						<td>
-							<strong class="pull-right">$12</strong>
 						</td>
 					</tr>
 					</tbody>
@@ -939,7 +914,7 @@
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="<?php echo base_url()?>Cart/carts">Order now</a>
+					<a class="btn_full" href="cart.php">Order now</a>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
@@ -1009,15 +984,15 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/common_scripts_min.js"></script>
+<script src="js/functions.js"></script>
+<script src="assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="<?php echo base_url()?>public/js/cat_nav_mobile.js"></script>
+<script  src="js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
-<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
+<script src="js/theia-sticky-sidebar.js"></script>
 <script>
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80

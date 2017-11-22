@@ -4,15 +4,15 @@
             <div class="row">
                 <div class="col-md-4 col-sm-3">
                   	<h3>Secure payments with</h3>
-                    <p><img src="<?php echo base_url() ?>public/img/cards.png" alt="" class="img-responsive"></p>
+                    <p><img src="img/cards.png" alt="" class="img-responsive"></p>
                     
                 </div>
                 <div class="col-md-3 col-sm-3">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="<?php echo base_url()?>About/aboutUs">About us</a></li>
-                        <li><a href="<?php echo base_url()?>Faq/faqs">Faq</a></li>
-                         <li><a href="<?php echo base_url()?>Contact/contacts">Contacts</a></li>
+                        <li><a href="about.php">About us</a></li>
+                        <li><a href="faq.php">Faq</a></li>
+                         <li><a href="contacts.php">Contacts</a></li>
                         <li><a href="#0" data-toggle="modal" data-target="#login_2">Admin Login</a></li>
                         <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
                         <li><a href="#0">Terms and conditions</a></li>
@@ -61,7 +61,7 @@
                             <li><a href="#0"><i class="icon-vimeo"></i></a></li>
                             <li><a href="#0"><i class="icon-youtube-play"></i></a></li>
                         </ul>
-                        <p>© <b>R A K</b> - 2017</p>
+                        <p>© <b>T A N U K I</b> - 2017</p>
                     </div>
                 </div>
             </div><!-- End row -->

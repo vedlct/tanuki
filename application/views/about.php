@@ -29,7 +29,7 @@
 	<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>About us</h1>
@@ -75,7 +75,7 @@
 			</p>
 		</div>
 		<div class="col-md-7 col-md-offset-1 text-right hidden-sm hidden-xs">
-			<img src="<?php echo base_url()?>public/img/devices.jpg" alt="" class="img-responsive">
+			<img src="img/devices.jpg" alt="" class="img-responsive">
 		</div>
 	</div><!-- End row -->
 	<hr class="more_margin">
@@ -231,10 +231,10 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<script src="js/jquery-2.2.4.min.js"></script>
+<script src="js/common_scripts_min.js"></script>
+<script src="js/functions.js"></script>
+<script src="assets/validate.js"></script>
 
 </body>
 </html>
