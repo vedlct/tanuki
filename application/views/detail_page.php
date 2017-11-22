@@ -32,7 +32,7 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
 	<div id="sub_content">
-    	<div id="thumb"><img src="img/thumb_restaurant.jpg" alt=""></div>
+    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
                      <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.php">Read 98 reviews</a></small>)</div>
                     <h1>Mexican TacoMex</h1>
                     <div><em>Mexican / American</em></div>
@@ -104,7 +104,7 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-1.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
 							<h5>Mexican Enchiladas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -141,7 +141,7 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-2.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-2.jpg" alt="thumb"></figure>
 							<h5>Fajitas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -178,7 +178,7 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-3.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-3.jpg" alt="thumb"></figure>
 							<h5>Royal Fajitas</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -215,7 +215,7 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-4.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-4.jpg" alt="thumb"></figure>
 							<h5>Chicken Enchilada Wrap</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -274,7 +274,7 @@
 					<tbody>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-5.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-5.jpg" alt="thumb"></figure>
 							<h5>Cheese Quesadilla</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -311,7 +311,7 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-6.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-6.jpg" alt="thumb"></figure>
 							<h5>Chorizo & Cheese</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -348,7 +348,7 @@
 					</tr>
 					<tr>
 						<td>
-                        	<figure class="thumb_menu_list"><img src="img/menu-thumb-7.jpg" alt="thumb"></figure>
+                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-7.jpg" alt="thumb"></figure>
 							<h5>Beef Taco</h5>
 							<p>
 								Fuisset mentitum deleniti sit ea.
@@ -984,15 +984,15 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/common_scripts_min.js"></script>
-<script src="js/functions.js"></script>
-<script src="assets/validate.js"></script>
+<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
+<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
+<script src="<?php echo base_url()?>public/js/functions.js"></script>
+<script src="<?php echo base_url()?>public/assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="js/cat_nav_mobile.js"></script>
+<script  src="<?php echo base_url()?>public/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
-<script src="js/theia-sticky-sidebar.js"></script>
+<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
 <script>
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80

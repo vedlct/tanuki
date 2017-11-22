@@ -20,7 +20,7 @@
                     	<a href="index.php">Home</a>
                     </li>
                     <li>
-                    	<a href="grid_list.php">Tanuki's Dishes</a>
+                    	<a href="<?php echo base_url()?>Category">Tanuki's Dishes</a>
                     </li>
                     <li><a href="about.php">About us</a></li>
                     <li><a href="faq.php">Faq</a></li>

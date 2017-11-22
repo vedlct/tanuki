@@ -127,7 +127,7 @@
 						</div>
 					</div>
 					<div class="col-md-9 col-sm-9 hidden-xs">
-						<a href="grid_list.php" class="bt_filters"><i class="icon-th"></i></a>
+						<a href="gridList.php" class="bt_filters"><i class="icon-th"></i></a>
 					</div>
 				</div>
 			</div><!--End tools -->

@@ -29,7 +29,7 @@
 	<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_short.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
 	<div id="sub_content">
     	<h1>24 results in your zone</h1>
@@ -79,11 +79,11 @@
         
         	<div class="row">
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -103,14 +103,14 @@
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->
                <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_2.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant_2.jpg" alt="">
 							</div>
 							<div class="rating">
-								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
+								<i class="<?php echo base_url()?>public/icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
 							</div>
 							<h3>Naples Pizza</h3>
 							<div class="type">
@@ -128,11 +128,11 @@
                 </div><!-- End col-md-6-->                
             
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.3s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_3.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant_3.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -156,10 +156,10 @@
             
             <div class="row">
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.5s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_5.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant_5.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -179,10 +179,10 @@
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->
                 <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.6s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_6.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant_6.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -203,10 +203,10 @@
                 </div><!-- End col-md-6-->  
                 
                <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.4s">
-                	<a class="strip_list grid" href="detail_page.php">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
                     	<div class="desc">
 							<div class="thumb_strip">
-								<img src="img/thumb_restaurant_4.jpg" alt="">
+								<img src="<?php echo base_url()?>public/img/thumb_restaurant_4.jpg" alt="">
 							</div>
 							<div class="rating">
 								<i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
@@ -294,18 +294,18 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/common_scripts_min.js"></script>
-<script src="js/functions.js"></script>
-<script src="assets/validate.js"></script>
+<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
+<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
+<script src="<?php echo base_url()?>public/js/functions.js"></script>
+<script src="<?php echo base_url()?>public/assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script  src="js/cat_nav_mobile.js"></script>
+<script  src="<?php echo base_url()?>public/js/cat_nav_mobile.js"></script>
 <script>$('#cat_nav').mobileMenu();</script>
 <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>
-<script src="js/map.js"></script>
-<script src="js/infobox.js"></script>
-<script src="js/ion.rangeSlider.js"></script>
+<script src="<?php echo base_url()?>public/js/map.js"></script>
+<script src="<?php echo base_url()?>public/js/infobox.js"></script>
+<script src="<?php echo base_url()?>public/js/ion.rangeSlider.js"></script>
 <script>
     $(function () {
 		 'use strict';
