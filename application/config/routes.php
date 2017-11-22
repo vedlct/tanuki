@@ -49,36 +49,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'Login';
+$route['default_controller'] = 'TanukiHome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-
-/*Admin Panel */
-
-$route['Admin-Home'] = 'Admin/Home/viewHome';
-$route['Admin-Category'] = 'Admin/Category/allCategory';
-$route['Admin-AddCategory'] = 'Admin/Category/addCategory';
-
-$route['Admin-Items'] = 'Admin/Items/allItems';
-$route['Admin-addItems'] = 'Admin/Items/addItems';
-$route['Admin-insertItem'] = 'Admin/Items/insertItem';
-$route['Admin-ordersStatus']='Admin/Orders/ordereStatus';
-$route['Admin-EditItem/(:any)'] = 'Admin/Items/editItem/$1';
-$route['Admin-EditItemSizePrice/(:any)'] = 'Admin/Items/editItemSizePriceById/$1';
-
-
-$route['Admin-AddItemSizePrice'] = 'Admin/Items/addItemSizePriceById';
-$route['Admin-insertItemSizePrice/(:any)/(:any)'] = 'Admin/Items/insertItemSizePrice/$1/$2';
-
-$route['Admin-Orders'] = 'Admin/Orders/allOrders';
-
-
-$route['Admin-Report'] = 'Admin/Report/viewReport';
-
-$route['Admin-OrdersByDate'] = 'Admin/Orders/showOrdersByDate';
-
-
-$route['Admin-EditOrderItem/(:any)'] = 'Admin/Orders/updateOrderItemById/$1';
-
-$route['Admin-AddOrderedItem/(:any)'] = 'Admin/Orders/addNewOrderItems/$1';
-
