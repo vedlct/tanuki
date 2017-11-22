@@ -10,19 +10,6 @@ class Charge extends CI_Controller
 
     }
 
-//    public  function Charges()
-//    {
-//        if ($this->session->userdata('userType') == "Admin") {
-//
-//            $data['charge'] = $this->Chargem->getAllCharge();
-//
-//
-//        }
-//        else {
-//            redirect('Login');
-//        }
-//
-//    }
 
     public function allCharges()
     {
@@ -43,25 +30,6 @@ class Charge extends CI_Controller
     }
 
     }
-//public  function newCharge()
-//{
-//    if ($this->session->userdata('userType') == "Admin") {
-//
-//       if ($this->Chargem->getAllCharge() == null) {
-//            $this->load->view("Admin/newCharge");
-//    }
-//    else
-//    {
-//        redirect('Admin/Charge/allCharges');
-//    }
-//
-//
-//    }
-//    else {
-//        redirect('Login');
-//    }
-//
-//}
 
     public  function insertCharge()
     {
