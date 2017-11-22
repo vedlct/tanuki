@@ -49,6 +49,7 @@ class Report extends CI_Controller
     public function searchByOrderId(){
         $orderID= $this->input->post('orderid');
         $this->data['allreport']= $this->Reportm->viewAllReportByorderid($orderID);
+//        print_r($this->data['allreport']);
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
         $this->load->view('Admin/allReport', $this->data);
     }
