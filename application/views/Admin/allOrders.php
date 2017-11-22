@@ -189,8 +189,8 @@
                                                         </tr>
                                                     <?php $total=$total+$price;}}}?>
                                                     <tr>
-                                                        <td style="color: red" colspan="5">Total-(including delevery fee: <?php echo $orders->deliveryfee; ?>$) : </td>
-                                                        <td colspan="1"><?php echo $totalWithDelevery=$total+$orders->deliveryfee?></td>
+                                                        <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
+                                                        <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
                                                         <td>
                                                             <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
                                                         </td>
@@ -378,7 +378,7 @@
             cache: false,
             success: function (data) {
 
-               // alert(data)
+
                 document.getElementById("ItemDiscount").value = data;
 
             }

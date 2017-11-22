@@ -306,7 +306,7 @@ class Orders extends CI_Controller
     public function setDiscount()
     {
 
-        //  echo date('Y-m-d');
+
         if ($this->session->userdata('userType') == "Admin") {
 
             $itemId = $this->input->post('id');
