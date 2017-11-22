@@ -98,10 +98,10 @@
                                         <th width="3%"class="center"> Sr.NO </th>
                                         <th width="3%"class="center"> Order Id </th>
                                         <th width="15%"class="center"> User & Order Tacker Name</th>
-                                        <th width="8%"class="center"> Order Type</th>
-                                        <th width="8%"class="center"> Order Date </th>
-                                        <th width="5%"class="center"> Payment Type </th>
-                                        <th width="41%"class="center"> Items </th>
+                                        <th width="10%"class="center"> Order Type & Date</th>
+
+                                        <th width="5%"class="center"> Payment Type</th>
+                                        <th width="44%"class="center"> Items </th>
 
                                         <th width="20%"class="center"> Order Status </th>
                                     </tr>
@@ -126,11 +126,10 @@
                                             </td>
                                             <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
                                                                 elseif($orders->orderType=="take"){echo "Take Away";}
-                                                                elseif($orders->orderType=="home"){echo "Online";}?>
-                                            </td>
-                                            <td class="center">
+                                                                elseif($orders->orderType=="home"){echo "Online";}?><hr>
                                                 <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
                                             </td>
+
                                             <td class="center"><?php if ($orders->paymentType=="cs"){echo "Cash";}
                                                                  elseif($orders->paymentType=="crd"){echo "Card";}?>
                                             </td>
