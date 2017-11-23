@@ -108,23 +108,31 @@
 							</p>
 						</td>
 						<td width="30%">
-							<strong>€ 9,40</strong>
+							<strong><?php echo $item->price?></strong>
 						</td>
 						<td class="options" width="10%">
                         <div class="dropdown dropdown-options">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-                            <?php foreach ($allitemsize as $itemsize) { ?>
-                            <?php if ($itemsize->fkItemId == $item->id && $itemsize->itemSize != "default") { ?>
+							<?php foreach ($alldefault as $defualt){?>
+                            	<?php if ($item->id == $defualt->fkItemId) {?>
+									<?php if ($defualt->itemSize == "default") {?>
+								<a href="#" class="" data-toggle="" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+							<?php } else { ?>
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+
+                            <?php	} } }?>
+
+
                             <div class="dropdown-menu">
                                 <h5>Select an option</h5>
-
+								<?php foreach ($allitemsize as $itemsize) { ?>
+								<?php if ($itemsize->fkItemId == $item->id && $itemsize->itemSize != "default") { ?>
                                 <label>
                                 <input type="checkbox" value=""><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
                                 </label>
-
+								<?php } }?>
                                 <a href="#0" class="add_to_basket">Add to cart</a>
                             </div>
-                                <?php } }?>
+
                         </div>
                     </td>
 					</tr>

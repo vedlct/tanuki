@@ -20,6 +20,7 @@ class Items extends CI_Controller {
         $this->data['allitem']= $this->Itemsm->getAllItem();
         $this->data['allitemsize']= $this->Itemsm->getAllItemSize();
         $this->data['allcategory']= $this->Itemsm->getAllCategory();
+        $this->data['alldefault']= $this->Itemsm->getDefualtItemSize();
         $this->load->view('detail_page', $this->data);
     }
 
