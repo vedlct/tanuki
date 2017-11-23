@@ -1,4 +1,7 @@
 
+<head>
+    <?php include("head.php"); ?>
+</head>
 
 <link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
     <div class="clearfix"></div>
@@ -92,21 +95,5 @@
                 </div>
 
 
+
 <?php include ("js.php") ?>
-
-            <div id="myModal" class="modal">
-               <br/><br/><br/>
-            <!-- Modal content -->
-               <div class="modal-content">
-                  <span class="close">×</span>
-
-                   <div id="txtHint"></div>
-
-                  </div>
-
-
-           </div>
-
-
-
-

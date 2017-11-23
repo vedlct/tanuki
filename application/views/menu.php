@@ -4,8 +4,8 @@
         <div class="row">
             <div class="col--md-4 col-sm-4 col-xs-4">
                 <a href="index.php" id="logo">
-                <img style="margin-top:-15px; padding: 0px" src="img/logo.png" width="70"  alt="" data-retina="true" class="hidden-xs">
-                <img src="img/logo_mobile.png" width="50" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+                <img style="margin-top:-15px; padding: 0px" src="<?php echo base_url()?>public/img/logo.png" width="70"  alt="" data-retina="true" class="hidden-xs">
+                <img src="<?php echo base_url()?>public/img/logo_mobile.png" width="50" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
                 </a>
             </div>
             <nav class="col--md-8 col-sm-8 col-xs-8">
