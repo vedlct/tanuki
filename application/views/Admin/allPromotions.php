@@ -18,6 +18,7 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
+
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
                 <?php }
@@ -31,7 +32,6 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>Promotions List</header>
-
                             </div>
 
                             <div class="card-body ">
@@ -90,15 +90,16 @@
 <script>
     function promotypefync(){
         var type = document.getElementById('promotype').value;
-        //alert(type);
+
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Promotions/getAllPromotions/")?>'+type,
             data:{type:type},
             cache: false,
             success:function(data) {
+
                 $('#tableid').html(data);
-                // alert(data);
+
             }
         });
     }
@@ -132,6 +133,7 @@
             data:{id:btn},
             cache: false,
             success:function(data) {
+
                 $('#txtHint').html(data);
             }
         });

@@ -1,6 +1,5 @@
 
 
-<link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
     <div class="clearfix"></div>
     <!-- start page container -->
 
@@ -91,21 +90,14 @@
                     </div>
                 </div>
 
+<!-- date picker  -->
 
-<?php include ("js.php") ?>
+<script src="<?php echo base_url()?>public/js/datepicker.js"></script>
+<script src="<?php echo base_url()?>public/js/main.js"></script>
 
-            <div id="myModal" class="modal">
-               <br/><br/><br/>
-            <!-- Modal content -->
-               <div class="modal-content">
-                  <span class="close">×</span>
-
-                   <div id="txtHint"></div>
-
-                  </div>
+<!-- date picker  -->
 
 
-           </div>
 
 
 
