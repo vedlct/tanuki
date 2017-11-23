@@ -79,7 +79,7 @@
         
         	<div class="row">
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.1s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
@@ -103,7 +103,7 @@
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->
                <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.2s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
@@ -128,7 +128,7 @@
                 </div><!-- End col-md-6-->                
             
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.3s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="ribbon_1">Popular</div>
                     	<div class="desc">
 							<div class="thumb_strip">
@@ -156,7 +156,7 @@
             
             <div class="row">
             	<div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.5s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="desc">
 							<div class="thumb_strip">
 								<img src="<?php echo base_url()?>public/img/thumb_restaurant_5.jpg" alt="">
@@ -179,7 +179,7 @@
                     </a><!-- End strip_list-->
                 </div><!-- End col-md-6-->
                 <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.6s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="desc">
 							<div class="thumb_strip">
 								<img src="<?php echo base_url()?>public/img/thumb_restaurant_6.jpg" alt="">
@@ -203,7 +203,7 @@
                 </div><!-- End col-md-6-->  
                 
                <div class="col-md-4 col-sm-4 wow zoomIn" data-wow-delay="0.4s">
-                	<a class="strip_list grid" href="<?php echo base_url()?>Item">
+                	<a class="strip_list grid" href="<?php echo base_url()?>Items">
                     	<div class="desc">
 							<div class="thumb_strip">
 								<img src="<?php echo base_url()?>public/img/thumb_restaurant_4.jpg" alt="">
