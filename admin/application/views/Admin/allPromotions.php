@@ -4,6 +4,7 @@
 <head>
     <?php include("head.php"); ?>
 </head>
+
 <body class="page-header-fixed sidemenu-closed-hidelogo page-container-bg-solid page-content-white page-md">
 
 <div class="page-wrapper">

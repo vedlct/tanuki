@@ -18,12 +18,11 @@
 	<!--bootstrap -->
     <link href="<?php echo base_url()?>public/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url()?>public/js/bootstrap-switch/css/bootstrap-switch.min.css" rel="stylesheet" type="text/css" />
-
-
     
+
+
     <!-- Theme Styles -->
     <link href="<?php echo base_url()?>public/css/theme_style.css" rel="stylesheet" id="rt_style_components" type="text/css" />
-
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>public/css/modal.css " />
 
     <link href="<?php echo base_url()?>public/css/plugins.min.css" rel="stylesheet" type="text/css" />
