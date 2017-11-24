@@ -115,9 +115,9 @@
 							<?php foreach ($alldefault as $defualt){?>
                             	<?php if ($item->id == $defualt->fkItemId) {?>
 									<?php if ($defualt->itemSize == "default") {?>
-								<a href="#" class="" data-toggle="" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+										<a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
 							<?php } else { ?>
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+										<a href="#" class="dropdown-toggle" data-panel-id="<?= $item->id ?>" onclick="addcart(this)" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 
                             <?php	} } }?>
 
@@ -146,20 +146,23 @@
             <div class="theiaStickySidebar">
 				<div id="cart_box" >
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
-					<table class="table table_summary">
+					<table id="cart_table" class="table table_summary">
 					<tbody>
+				<?php	foreach ($this->cart->contents() as $c) { ?>
 					<tr>
 						<td>
 							<input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="" onclick="minus(this)" value="-"/>
                             <input type="text"  name="qty" id="" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="1"/>
 							<input type="button" class="btn btn-default" data-panel-id="" onclick="plus(this)" style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
                         </td>
-                        <td>Mexican Enchiladas</td>
-                        <td>Medium</td>
+                        <td><?php echo $c['name']?></td>
+                        <td> <?php  if ($c['options']['Size'] == "defualt"){}else
+							{echo $c['options']['Size'];}?></td>
 						<td>
-							<strong class="pull-right">$11</strong>
+							<strong class="pull-right"><?php echo $c['price']?></strong>
 						</td>
 					</tr>
+					<?php } ?>
 					</tbody>
 					</table>
 					<hr>
@@ -267,6 +270,7 @@
 <script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
 <script src="<?php echo base_url()?>public/js/functions.js"></script>
 <script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
 <script  src="<?php echo base_url()?>public/js/cat_nav_mobile.js"></script>
@@ -290,5 +294,24 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 		});
 </script>
 
+<script>
+	function addcart(x) {
+		btn = $(x).data('panel-id');
+
+		//alert(btn);
+
+		$.ajax({
+			type:'POST',
+			url:'<?php echo base_url("Items/insertCart/")?>'+btn,
+			data:{'id':btn},
+			cache: false,
+			success:function(data)
+			{
+				$('#cart_table').load(document.URL +  ' #cart_table');
+			}
+
+		});
+	}
+</script>
 </body>
 </html>
