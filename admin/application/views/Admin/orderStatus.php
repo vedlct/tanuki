@@ -56,7 +56,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group">
-                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
+                                            <button id="addRow" onclick="selectid1(this)" class="btn btn-info" style="z-index: inherit">
                                                 Add New Order Ststus <i class="fa fa-plus"></i>
                                             </button>
                                         </div>
