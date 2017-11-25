@@ -262,8 +262,7 @@ public function  updateOrderById($id, $data)
 
 
 }
-
-
+    
     public function getAllOrderstatus()
     {
         $this->db->select('id,sequece,statusTitle');
@@ -275,6 +274,8 @@ public function  updateOrderById($id, $data)
     {
         $this->db->where('id',$id)->delete('orderstatus');
     }
+
+   
 
 
 
