@@ -332,6 +332,7 @@ class Orders extends CI_Controller
         }
     }
 
+    ////////////////////////////////////// daily order  info //////////////////////////////////////////////////////
     public function getTotalOrder()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -355,7 +356,6 @@ class Orders extends CI_Controller
 
             $this->data['orderestatus'] = $this->Ordersm->getAllOrderstatus();
             $this->load->view('Admin/orderStatus', $this->data);
-//            $this->load->view('Admin/orderStatus', $this->data);
         } else {
             redirect('Login');
         }

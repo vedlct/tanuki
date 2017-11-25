@@ -194,7 +194,7 @@ class User extends CI_Controller {
         }
 
     }
-
+///new user registation info daily update /////////////////////////////////
     public function getTotalUser()
     {
         if ($this->session->userdata('userType') == "Admin") {

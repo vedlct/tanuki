@@ -116,6 +116,9 @@ public  function getTotalfeedback()
     }
 
 }
+
+
+////////////////////////////// daily user Feedback////////////////////////////////////////////////////
     public  function totalFeedback()
     {
 
