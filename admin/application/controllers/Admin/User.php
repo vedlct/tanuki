@@ -199,7 +199,8 @@ class User extends CI_Controller {
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-        echo $result = $this->Userm->getTotalUser();
+        $result = $this->Userm->getTotalUser();
+        echo $result;
         }
         else
         {

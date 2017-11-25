@@ -281,13 +281,16 @@
     </div>
     <!-- end page container -->
     <?php include ("footer.php") ?>
-    <?php include ("js.php") ?>
+
 
 </div>
 
 </body>
 
 </html>
+
+<?php include ("js.php") ?>
+
 <script>
     var i = setInterval(function(){
         $.ajax({
@@ -297,6 +300,11 @@
                 $("#results").text(data);
             }
         });
+
+    },6000 , 60);
+
+    var i = setInterval(function(){
+
         $.ajax({
             url: "<?php echo base_url('Admin/Report/getTotaltransactiondetail') ?>",
             cache: false,
@@ -304,6 +312,12 @@
                 $("#resultts2").text(data);
             }
         });
+
+    },6000, 60);
+
+    var i = setInterval(function(){
+
+
         $.ajax({
             url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
             cache: false,
@@ -311,6 +325,11 @@
                 $("#resultts3").text(data);
             }
         });
+
+    },6000, 60);
+
+    var i = setInterval(function(){
+
         $.ajax({
             url: "<?php echo base_url('Admin/Orders/getTotalOrder') ?>",
             cache: false,
@@ -318,5 +337,5 @@
                 $("#resultts1").text(data);
             }
         });
-    },600);
+    },6000, 60);
 </script>
