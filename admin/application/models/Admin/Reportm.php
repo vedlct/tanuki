@@ -174,12 +174,25 @@ class Reportm extends CI_Model
     }
 
     public function totalEaring(){
-        $this->db->select('SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount');
-        $this->db->from('transactiondetail');
-
+        $date= date('Y-m-d');
+        //$this->db->select('SUM(transactiondetail.quantity) as totalquantity,SUM(transactiondetail.rate) as totalrate,  SUM(transactiondetail.discount) as totaldiscount, vatTotal');
+        $this->db->select('transactiondetail.quantity as totalquantity,transactiondetail.rate as totalrate,  transactiondetail.discount as totaldiscount, vatTotal');
+        $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
+        $this->db->from('transactionmaster');
+        $this->db->where('transDate =', $date);
         $query = $this->db->get();
         return $query->result();
     }
+    public function totalvat(){
+        $date= date('Y-m-d');
+        $this->db->select(' SUM(vatTotal) as totalvat');
+        $this->db->from('transactionmaster');
+        $this->db->where('transDate =', $date);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
 
 
 

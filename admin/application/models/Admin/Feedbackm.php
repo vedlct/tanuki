@@ -45,14 +45,16 @@ class Feedbackm extends CI_Model
 
         }
 
-public function totalFeedback()
-{
-    $this->db->select('id');
-    $this->db->from('userfeedback');
+    public function totalFeedback()
+    {
 
-    $query = $this->db->get();
-    return $query->result();
-}
+        $date= date('Y-m-d');
+        $this->db->where('DATE(feedbackTime)',$date);
+        $query = $this->db->get('userfeedback');
+        return $query->num_rows();
+
+    }
+
 
 
 

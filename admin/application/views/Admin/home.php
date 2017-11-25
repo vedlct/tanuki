@@ -15,7 +15,6 @@
     <div class="page-container">
 
         <?php include ('leftNavigation.php')?>
-
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -81,7 +80,6 @@
                     </div>
                 </div>
                 <!-- end widget -->
-
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="card  card-topline-green">
@@ -93,47 +91,204 @@
                                     <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
                                 </div>
                             </div>
-                            <!-- start cart body -->
-                      
-                            <div id="card-body" class="card-body ">
-
+                            <div class="card-body ">
+                                <div class="row table-padding">
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="btn-group">
+                                            <button id="addRow" class="btn btn-info">
+                                                Add New <i class="fa fa-plus"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6">
+                                        <div class="btn-group pull-right">
+                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
+                                                <i class="fa fa-angle-down"></i>
+                                            </button>
+                                            <ul class="dropdown-menu pull-right">
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-print"></i> Print </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column" id="example4">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                    <input type="checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                                    <span></span>
+                                                </label>
+                                            </th>
+                                            <th>Patient Name</th>
+                                            <th>Assigned Doctor</th>
+                                            <th>Date</th>
+                                            <th>Time</th>
+                                            <th>Actions </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td> Pooja Patel </td>
+                                            <td>
+                                                <a href="mailto:looper90@gmail.com"> Dr.Sarah Smith </a>
+                                            </td>
+                                            <td class="center"> 12/05/2016 </td>
+                                            <td class="center"> 10:55 </td>
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs btn-info dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td> Pankaj Singh </td>
+                                            <td>
+                                                <a href="mailto:userwow@yahoo.com"> Dr.Rajesh </a>
+                                            </td>
+                                            <td class="center"> 12/05/2016 </td>
+                                            <td class="center"> 11:15 </td>
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs btn-success dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td> Raj Malhotra </td>
+                                            <td>
+                                                <a href="mailto:doctormail@gmail.com"> Dr.Megha Trivedi </a>
+                                            </td>
+                                            <td class="center"> 12/05/2016 </td>
+                                            <td class="center"> 11:25 </td>
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs btn-primary dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="odd gradeX">
+                                            <td>
+                                                <label class="rt-chkbox rt-chkbox-single rt-chkbox-outline">
+                                                    <input type="checkbox" class="checkboxes" value="1" />
+                                                    <span></span>
+                                                </label>
+                                            </td>
+                                            <td> Sneha Pandya </td>
+                                            <td>
+                                                <a href="mailto:doctormail@gmail.com"> Dr.Sarah Smith </a>
+                                            </td>
+                                            <td class="center"> 12/05/2016 </td>
+                                            <td class="center"> 11:35 </td>
+                                            <td class="center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-xs btn-warning dropdown-toggle no-margin" type="button" data-toggle="dropdown" aria-expanded="false"> Actions
+                                                        <i class="fa fa-angle-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-trash-o"></i> Delete </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-ban"></i> Cancel </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:;"><i class="fa fa-clock-o"></i> Postpone </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <!-- end cart body-->
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- end page content -->
-
-        <div id="myModal" class="modal">
-            <br/><br/><br/>
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">×</span>
-
-                <div id="txtHint"></div>
-
-            </div>
-
-
-        </div>
-
     </div>
     <!-- end page container -->
-
     <?php include ("footer.php") ?>
-
+    <?php include ("js.php") ?>
 
 </div>
 
 </body>
 
 </html>
-<?php include ("js.php") ?>
 <script>
-
     var i = setInterval(function(){
         $.ajax({
             url: "<?php echo base_url('Admin/User/getTotalUser') ?>",
@@ -147,15 +302,13 @@
             cache: false,
             success: function (data) {
                 $("#resultts2").text(data);
-
             }
         });
         $.ajax({
-            url: "<?php echo base_url('Admin/Feedback/getTotalfeedback') ?>",
+            url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
             cache: false,
             success: function (data) {
                 $("#resultts3").text(data);
-
             }
         });
         $.ajax({
@@ -165,243 +318,5 @@
                 $("#resultts1").text(data);
             }
         });
-
-        $.ajax({
-            url: "<?php echo base_url('Admin/Home/getTodaysOrder') ?>",
-            cache: false,
-            success: function (data) {
-                var newOrder=data;
-
-                $.ajax({
-                    url: "<?php echo base_url('Admin/Home/getTotalfeedback') ?>",
-                    cache: false,
-                    success: function (data) {
-                        $("#resultts3").text(data);
-
-                    }
-                });
-                $.aj
-
-            }
-        });
-    },2000);
-    </script>
-
-<script>
-    var modal = document.getElementById('myModal');
-    var span = document.getElementsByClassName("close")[0];
-
-    function editOrderItemsId(x)
-    {
-        btn = $(x).data('panel-id');
-
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Orders/editOrderItems" )?>',
-            data:{id:btn},
-            cache: false,
-            success:function(data)
-            {
-                $('#txtHint').html(data);
-            }
-
-        });
-        modal.style.display = "block";
-    }
-
-    function deleteOrderItemsId(x)
-    {
-        if (confirm("are you sure to delete this Category?"))
-        {
-            btn = $(x).data('panel-id');
-
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url("Admin/Orders/deleteOrderedItemsId")?>',
-                data: {id: btn},
-                cache: false,
-                success: function (data) {
-                    alert(' Selected Order Item deleted Successfully');
-                    location.reload();
-
-                }
-            });
-        }
-
-
-    }
-
-    function addNewItemOrder(x)
-    {
-
-        btn = $(x).data('panel-id');
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Admin/Orders/NewOrderItems")?>',
-            data: {id: btn},
-            cache: false,
-            success: function (data) {
-                $('#txtHint').html(data);
-            }
-
-        });
-        modal.style.display = "block";
-
-    }
-
-    function showItemByCategory(x)
-    {
-
-        var catId=document.getElementById('categoryName').value;
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Admin/Orders/getAllItemsByCategory")?>',
-            data: {id: catId},
-            cache: false,
-            success: function (data) {
-
-                document.getElementById("itemId").innerHTML = data;
-
-            }
-
-        });
-    }
-
-    function showItemSizesByItem(x)
-    {
-
-        var itemId=document.getElementById('itemId').value;
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Admin/Orders/getAllItemSizesByItem")?>',
-            data: {id: itemId},
-            cache: false,
-            success: function (data) {
-
-                document.getElementById("itemSizeId").innerHTML = data;
-
-            }
-
-        });
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Admin/Orders/setDiscount")?>',
-            data: {id: itemId},
-            cache: false,
-            success: function (data) {
-
-
-                document.getElementById("ItemDiscount").value = data;
-
-            }
-
-        });
-    }
-
-    function showItemPriceByItemSizeId(x)
-    {
-
-        var itemSizeId=document.getElementById('itemSizeId').value;
-
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Admin/Orders/getItemPriceByItemSize")?>',
-            data: {id: itemSizeId},
-            cache: false,
-            success: function (data) {
-
-
-                var quantity=document.getElementById("ItemQuantity").value = "1";
-
-                document.getElementById("ItemRate").value = (quantity*data);
-
-            }
-
-        });
-    }
-
-    function ShowUserInfo(x)
-    {
-        btn = $(x).data('panel-id');
-
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Orders/showAllInfo" )?>',
-            data:{id:btn},
-            cache: false,
-            success:function(data)
-            {
-                $('#txtHint').html(data);
-            }
-
-        });
-        modal.style.display = "block";
-    }
-
-    function searchByOrderId()
-    {
-        var orderId=document.getElementById("searchOrderId").value;
-
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Orders/searchByOrderId" )?>',
-            data:{orderid:orderId},
-            cache: false,
-            success:function(data)
-            {
-                $('#example4').html(data);
-            }
-
-        });
-
-    }
-
-    function searchbydorder(){
-
-        document.getElementById('order').style.display='block';
-
-        document.getElementById('searchbyorderid').style.display='none';
-    }
-
-
-    // When the user clicks * of the modal, close it
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-
-    function changeStatus(v) {
-
-        if (confirm("are you sure to Change this Oder Status?")) {
-
-            var option = document.getElementById(v).value;
-
-
-            $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url("Admin/Orders/changeOrderStatus/")?>' + v,
-                data: {status: option},
-                cache: false,
-                success: function (data) {
-
-                    location.reload();
-                    //alert(data);
-
-                }
-            });
-        }
-
-    }
+    },600);
 </script>
-
