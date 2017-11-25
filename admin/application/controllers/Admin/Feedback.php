@@ -118,6 +118,20 @@ public  function getTotalfeedback()
 }
 
 
+////////////////////////////// daily user Feedback////////////////////////////////////////////////////
+    public  function totalFeedback()
+    {
+
+
+        if ($this->session->userdata('userType') == "Admin") {
+
+            echo $result = $this->Feedbackm->totalFeedback();
+        } else {
+            redirect('Login');
+        }
+
+    }
+
 
 }
 

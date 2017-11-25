@@ -15,7 +15,6 @@
     <div class="page-container">
 
         <?php include ('leftNavigation.php')?>
-
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -81,7 +80,6 @@
                     </div>
                 </div>
                 <!-- end widget -->
-
                 <div class="row">
                     <div class="col-md-12 col-sm-12">
                         <div class="card  card-topline-green">
@@ -270,7 +268,6 @@
                                                 </div>
                                             </td>
                                         </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -278,14 +275,11 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <!-- end page content -->
-
     </div>
     <!-- end page container -->
-
     <?php include ("footer.php") ?>
     <?php include ("js.php") ?>
 
@@ -308,15 +302,13 @@
             cache: false,
             success: function (data) {
                 $("#resultts2").text(data);
-
             }
         });
         $.ajax({
-            url: "<?php echo base_url('Admin/Feedback/getTotalfeedback') ?>",
+            url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
             cache: false,
             success: function (data) {
                 $("#resultts3").text(data);
-
             }
         });
         $.ajax({
@@ -326,6 +318,5 @@
                 $("#resultts1").text(data);
             }
         });
-    },2000);
-    </script>
-
+    },600);
+</script>

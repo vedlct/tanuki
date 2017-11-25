@@ -74,23 +74,35 @@ class Report extends CI_Controller
         $this->load->view('Admin/ReportFilterByItems', $this->data);
     }
 
-
+//// everyday earinig ////////////////////////////////////////////////////////////////////////
 
     public  function getTotaltransactiondetail()
     {
         if ($this->session->userdata('userType') == "Admin") {
 
+            $totalearning= 0;
+            $totalvat= 0;
 
-             $result = $this->Reportm->totalEaring();
+            //  echo 1;
+            $this->data['totalearning'] = $this->Reportm->totalEaring();
+            $this->data['totalvat']= $this->Reportm->totalvat();
+            foreach ($this->data['totalearning'] as $totalTransection){
+                $earning=(($totalTransection->totalquantity * $totalTransection->totalrate) - $totalTransection->totaldiscount);
+            $totalearning = $earning+$totalearning;
+            }
+            foreach ($this->data['totalvat'] as $totalVat){
+               // $earning=(($totalTransection->totalquantity * $totalTransection->totalrate) - $totalTransection->totaldiscount);
+                $totalvat = $totalVat->totalvat;
+            }
 
-             foreach ($result as $totalTransection){
-                 $earning=$totalTransection->totalammount;
-             }
-             echo $earning;
+
+            //$totalearning = $totalearning+ $totalTransection->totalvat;
+            echo $totalearning+$totalvat;
 
 
+        }
 
-        } else {
+        else {
 
             redirect('Login');
         }
