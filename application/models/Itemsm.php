@@ -34,10 +34,18 @@ class Itemsm extends CI_Model {
     }
     public function getItem($id){
 
-        $this->db->select('items.id as id, itemName, price');
+        $this->db->select('items.id as id, itemName,itemSize,  price');
         $this->db->join('itemsizes ', 'itemsizes.fkItemId = items.id ', 'left');
         $this->db->from('items');
         $this->db->where('items.id', $id);
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getItemSize($id){
+        $this->db->select('itemsizes.id as id, itemName,itemSize,  price');
+        $this->db->join('items ', 'itemsizes.fkItemId = items.id ', 'left');
+        $this->db->from('itemsizes');
+        $this->db->where('itemsizes.id', $id);
         $query = $this->db->get();
         return $query->result();
     }

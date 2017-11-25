@@ -117,7 +117,7 @@
 									<?php if ($defualt->itemSize == "default") {?>
 										<a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
 							<?php } else { ?>
-										<a href="#" class="dropdown-toggle" data-panel-id="<?= $item->id ?>" onclick="addcart(this)" data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
+										<a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 
                             <?php	} } }?>
 
@@ -127,10 +127,10 @@
 								<?php foreach ($allitemsize as $itemsize) { ?>
 								<?php if ($itemsize->fkItemId == $item->id && $itemsize->itemSize != "default") { ?>
                                 <label>
-                                <input type="checkbox" value=""><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
+                                <input type="checkbox"id="check1" value="<?php echo $itemsize->id?>" class="chk" name="options_1"><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
                                 </label>
 								<?php } }?>
-                                <a href="#0" class="add_to_basket">Add to cart</a>
+                                <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()" >Add to cart</a>
                             </div>
 
                         </div>
@@ -148,21 +148,25 @@
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
 					<table id="cart_table" class="table table_summary">
 					<tbody>
-				<?php	foreach ($this->cart->contents() as $c) { ?>
+				<?php	foreach ($this->cart->contents() as $c) {
+
+				    ?>
 					<tr>
 						<td>
-							<input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="" onclick="minus(this)" value="-"/>
-                            <input type="text"  name="qty" id="" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="1"/>
-							<input type="button" class="btn btn-default" data-panel-id="" onclick="plus(this)" style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+							<input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
+                            <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
+							<input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
                         </td>
-                        <td><?php echo $c['name']?></td>
+                        <td><?php echo htmlspecialchars($c['name'])?></td>
                         <td> <?php  if ($c['options']['Size'] == "defualt"){}else
 							{echo $c['options']['Size'];}?></td>
 						<td>
-							<strong class="pull-right"><?php echo $c['price']?></strong>
+							<strong class="pull-right"><?php echo $c['subtotal'];?></strong>
 						</td>
 					</tr>
-					<?php } ?>
+					<?php
+
+				} ?>
 					</tbody>
 					</table>
 					<hr>
@@ -176,7 +180,7 @@
 					</div><!-- Edn options 2 -->
                     
 					<hr>
-					<table class="table table_summary">
+					<table class="table table_summary" id="total_table">
 					<tbody>
 					<tr>
 						<td>
@@ -296,6 +300,7 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 <script>
 	function addcart(x) {
+	    //alert("hellasdasdado");
 		btn = $(x).data('panel-id');
 
 		//alert(btn);
@@ -312,6 +317,83 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 		});
 	}
+    function minus(x) {
+
+        var btn = $(x).data('panel-id');
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x-1;
+
+        document.getElementById(btn).value = newx;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+                //  alert(data);
+
+            }
+
+        });
+        $('#cart_table').load(document.URL +  ' #cart_table');
+        $('#total_table').load(document.URL +  ' #total_table');
+    }
+    function plus(x) {
+
+        var btn = $(x).data('panel-id');
+
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x+1;
+
+
+        document.getElementById(btn).value = newx;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+
+
+            }
+
+        });
+
+        $('#cart_table').load(document.URL +  ' #cart_table');
+        $('#total_table').load(document.URL +  ' #total_table');
+    }
+
+	function addcartwithitemsize() {
+
+        //    alert("hellow");
+        var chkArray = [];
+        var i;
+        /* look for all checkboes that have a class 'chk' attached to it and check if it was checked */
+        $(".chk:checked").each(function () {
+            chkArray.push($(this).val());
+        });
+
+
+        for (i = 0; i < chkArray.length; i++) {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Items/insertItemSizeCart/")?>' + chkArray[i],
+                data: {'id': chkArray[i]},
+                cache: false,
+                success: function (data) {
+                    // $('#txt').html(data);
+                    //alert(data);
+                      $('#cart_table').load(document.URL +  ' #cart_table');
+                }
+
+            });
+             $("input:checkbox").attr('checked', false);
+
+        }
+    }
 </script>
 </body>
 </html>

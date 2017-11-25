@@ -36,11 +36,41 @@ class Items extends CI_Controller {
                 'price' => $item->price,
                 'name' => $item->itemName,
                 'coupon' => "",
-                'options' => array('Size' => "")
+                'options' => array('Size' => $item->itemSize)
             );
             $this->cart->insert($data);
         }
 
+    }
+    public function insertItemSizeCart(){
+
+        $id = $this->input->post('id');
+
+        $this->data['item'] = $this->Itemsm->getItemSize($id);
+        foreach ($this->data['item'] as $itemsize){
+            $data = array(
+                'id' => $itemsize->id,
+                'qty' => 1,
+                'price' => $itemsize->price,
+                'name' => $itemsize->itemName,
+                'coupon' => "",
+                'options' => array('Size' => $itemsize->itemSize)
+            );
+            $this->cart->insert($data);
+        }
+
+    }
+    public function updateCart(){
+        $id = $this->input->post('id');
+        $amount = $this->input->post('amount');
+
+
+        $data = array(
+            'rowid' => $id,
+            'qty' => $amount,
+
+        );
+        $this->cart->update($data);
     }
 
 }
