@@ -337,8 +337,9 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
 
-            echo $result = $this->Ordersm->getTotalOrder();
+            $result = $this->Ordersm->getTotalOrder();
 
+            echo $result;
 
         } else {
 

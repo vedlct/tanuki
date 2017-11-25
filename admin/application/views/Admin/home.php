@@ -312,7 +312,7 @@
             }
         });
         $.ajax({
-            url: "<?php echo base_url('Admin/Feedback/getTotalfeedback') ?>",
+            url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
             cache: false,
             success: function (data) {
                 $("#resultts3").text(data);
@@ -326,6 +326,6 @@
                 $("#resultts1").text(data);
             }
         });
-    },2000);
+    },600);
     </script>
 

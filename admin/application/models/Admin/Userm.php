@@ -96,9 +96,13 @@ class Userm extends CI_Model
 
     public  function getTotalUser()
     {
-        $this->db->where("fkUserType", 'cus');
+
+        $date= date('Y-m-d');
+        $this->db->where('fkUserType','cus');
+        $this->db->where('DATE(insertDate)',$date);
         $query = $this->db->get('users');
         return $query->num_rows();
+
     }
 
     public function getAllInfoUser($userId)

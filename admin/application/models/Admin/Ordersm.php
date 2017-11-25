@@ -221,9 +221,11 @@ class Ordersm extends CI_Model
 
     public function getTotalOrder()
     {
-
+        $date= date('Y-m-d');
+        $this->db->where('DATE(orderDate)',$date);
         $query = $this->db->get('orders');
         return $query->num_rows();
+
     }
 
     public  function addNewOrderStatus($data)
