@@ -24,4 +24,23 @@ class Items extends CI_Controller {
         $this->load->view('detail_page', $this->data);
     }
 
+    public function insertCart(){
+
+        $id = $this->input->post('id');
+
+        $this->data['item'] = $this->Itemsm->getItem($id);
+        foreach ($this->data['item'] as $item){
+            $data = array(
+                'id' => $item->id,
+                'qty' => 1,
+                'price' => $item->price,
+                'name' => $item->itemName,
+                'coupon' => "",
+                'options' => array('Size' => "")
+            );
+            $this->cart->insert($data);
+        }
+
+    }
+
 }
