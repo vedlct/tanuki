@@ -297,6 +297,7 @@
                 $("#results").text(data);
             }
         });
+
         $.ajax({
             url: "<?php echo base_url('Admin/Report/getTotaltransactiondetail') ?>",
             cache: false,
@@ -318,5 +319,5 @@
                 $("#resultts1").text(data);
             }
         });
-    },600);
+    },60000 , 60);
 </script>
