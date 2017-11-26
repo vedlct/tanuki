@@ -49,5 +49,22 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function getcharges(){
+        $this->db->select('deliveryfee, vat ');
+        $this->db->from('charges');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function getPromoType($promocoe){
+
+        $this->db->select('promoType, discountAmount');
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoCode', $promocoe);
+        $this->db->from('promotions');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
 }
 ?>

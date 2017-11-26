@@ -21,6 +21,7 @@ class Items extends CI_Controller {
         $this->data['allitemsize']= $this->Itemsm->getAllItemSize();
         $this->data['allcategory']= $this->Itemsm->getAllCategory();
         $this->data['alldefault']= $this->Itemsm->getDefualtItemSize();
+        $this->data['charges'] = $this->Itemsm->getcharges();
         $this->load->view('detail_page', $this->data);
     }
 
@@ -40,7 +41,13 @@ class Items extends CI_Controller {
             );
             $this->cart->insert($data);
         }
-
+        $total = $this->cart->total();
+        $disamountpercen = $this->session->userdata('discountpercentage');
+        $disamount= ($total*$disamountpercen)/100;
+        $data = array(
+            'discount' => $disamount,
+        );
+        $this->session->set_userdata($data);
     }
     public function insertItemSizeCart(){
 
@@ -58,6 +65,13 @@ class Items extends CI_Controller {
             );
             $this->cart->insert($data);
         }
+        $total = $this->cart->total();
+        $disamountpercen = $this->session->userdata('discountpercentage');
+        $disamount= ($total*$disamountpercen)/100;
+        $data = array(
+            'discount' => $disamount,
+        );
+        $this->session->set_userdata($data);
 
     }
     public function updateCart(){
@@ -71,6 +85,73 @@ class Items extends CI_Controller {
 
         );
         $this->cart->update($data);
+
+        $total = $this->cart->total();
+        $disamountpercen = $this->session->userdata('discountpercentage');
+        $disamount= ($total*$disamountpercen)/100;
+        $data = array(
+            'discount' => $disamount,
+        );
+        $this->session->set_userdata($data);
     }
 
+    public function cart(){
+
+        $this->load->view('cart');
+    }
+    public function discount(){
+        $promocoe = $this->input->post('promocode');
+        $this->data['promotype'] = $this->Itemsm->getPromoType($promocoe);
+
+        foreach ($this->data['promotype'] as $pt) {}
+
+
+            if (!empty($this->data['promotype'])) {
+               // $this->data['promotype'] = $this->Itemsm->getPromoType();
+                $promotype = $pt->promoType;
+                if ($promotype == 'a') {
+                    $disamountpercen= $pt->discountAmount;
+                    $total = $this->cart->total();
+                    $disamount= ($total*$disamountpercen)/100;
+                     //$disamount;
+                    $data = array(
+                        'discount' => $disamount,
+                        'discountpercentage' => $disamountpercen,
+
+                    );
+
+                    $this->session->set_userdata($data);
+                    echo $disamount;
+                } else {
+                    $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem();
+                    foreach ($this->data['promotypepp'] as $promo) {
+                        echo $promo->itemdiscount;
+                    }
+                }
+            } else {
+
+                echo "00";
+            }
+
+
+    }
+
+    public function takeaway(){
+
+        $data = array(
+            'orderType' => "take",
+
+        );
+
+        $this->session->set_userdata($data);
+    }
+    public function homedelivary(){
+
+        $data = array(
+            'orderType' => "home",
+
+        );
+
+        $this->session->set_userdata($data);
+    }
 }

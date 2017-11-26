@@ -4,7 +4,7 @@
 <head>
     
     <?php include ('head.php') ?>
-    <title>RAK - Quality Delivery or Take Away Food</title>
+    <title>Tanuki- Japanis Food</title>
 
 </head>
 
@@ -13,7 +13,7 @@
     <!--[if lte IE 8]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
     <![endif]-->
-    
+
     <div id="preloader">
         <div class="sk-spinner sk-spinner-wave" id="status">
             <div class="sk-rect1"></div>
@@ -23,7 +23,7 @@
             <div class="sk-rect5"></div>
         </div>
     </div><!-- End Preload -->
-    
+
     <!-- Header ================================================== -->
     <?php include ('menu.php') ?>
 	<!-- End Header =============================================== -->
@@ -148,7 +148,7 @@
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
 					<table id="cart_table" class="table table_summary">
 					<tbody>
-				<?php	foreach ($this->cart->contents() as $c) {
+				<?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
 
 				    ?>
 					<tr>
@@ -166,16 +166,27 @@
 					</tr>
 					<?php
 
+				$subtotal = $subtotal + $c['subtotal'];
 				} ?>
 					</tbody>
 					</table>
 					<hr>
 					<div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" checked name="option_2" class="icheck">Delivery</label>
+						<a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
 						</div>
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" name="option_2" class="icheck">Take Away</label>
+							<a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+						</div>
+					</div>
+					<hr>
+					<div class="row" id="options_2">
+						<div class="col-lg-6">
+							<label>Promo Code :</label>
+
+						</div>
+						<div class="col-lg-6">
+							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
 						</div>
 					</div><!-- Edn options 2 -->
                     
@@ -183,24 +194,48 @@
 					<table class="table table_summary" id="total_table">
 					<tbody>
 					<tr>
+					<td>
+						Oder Type <span class="pull-right"><?php echo $this->session->userdata('orderType') ?></span>
+					</td>
+					</tr>
+					<tr>
 						<td>
-							 Subtotal <span class="pull-right">$56</span>
+							 Subtotal <span class="pull-right"><?php echo $subtotal?></span>
 						</td>
 					</tr>
 					<tr>
 						<td>
-							 Delivery fee <span class="pull-right">$10</span>
+							Discount <span class="pull-right"> <?php if ( $this->session->userdata('discount') == null)
+							{ echo 0.00;} else{
+									echo $this->session->userdata('discount');
+								} ?> </span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							 Delivery fee <span class="pull-right">
+								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
+									$dfee = $char->deliveryfee;
+									$vat = $char->vat;
+								}?>
+								<?php echo $dfee ; ?></span>
+						</td>
+					</tr>
+
+					<tr>
+						<td>
+							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
 						</td>
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right">$66</span>
+							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt?></span>
 						</td>
 					</tr>
 					</tbody>
 					</table>
 					<hr>
-					<a class="btn_full" href="cart.php">Order now</a>
+					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
@@ -313,6 +348,7 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 			success:function(data)
 			{
 				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
 			}
 
 		});
@@ -333,12 +369,12 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
             success: function (data) {
                 // $('#txt').html(data);
                 //  alert(data);
-
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
             }
 
         });
-        $('#cart_table').load(document.URL +  ' #cart_table');
-        $('#total_table').load(document.URL +  ' #total_table');
+
     }
     function plus(x) {
 
@@ -356,14 +392,14 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
             cache: false,
             success: function (data) {
                 // $('#txt').html(data);
-
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
 
             }
 
         });
 
-        $('#cart_table').load(document.URL +  ' #cart_table');
-        $('#total_table').load(document.URL +  ' #total_table');
+
     }
 
 	function addcartwithitemsize() {
@@ -387,6 +423,7 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
                     // $('#txt').html(data);
                     //alert(data);
                       $('#cart_table').load(document.URL +  ' #cart_table');
+					$('#total_table').load(document.URL +  ' #total_table');
                 }
 
             });
@@ -394,6 +431,50 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
         }
     }
+
+    function discount() {
+
+		var promocode = document.getElementById("promocode").value;
+
+			$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url("Items/discount/")?>' ,
+			data: {'promocode': promocode},
+			cache: false,
+			success: function (data) {
+				if (data == "00"){
+					alert ("Promo code not Valid");
+				}else  {
+					$('#cart_table').load(document.URL +  ' #cart_table');
+					$('#total_table').load(document.URL +  ' #total_table');
+				}
+			}
+
+		});
+	}
+
+	function takeaway() {
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url("Items/takeaway/")?>' ,
+			cache: false,
+			success: function (data) {
+			}
+
+		});
+	}
+
+	function homedelivary() {
+
+		$.ajax({
+			type: 'POST',
+			url: '<?php echo base_url("Items/homedelivary/")?>' ,
+			cache: false,
+			success: function (data) {
+			}
+
+		});
+	}
 </script>
 </body>
 </html>
