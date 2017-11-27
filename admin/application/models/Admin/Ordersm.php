@@ -6,6 +6,13 @@ class Ordersm extends CI_Model
 
     public  function getAllOrders()
     {
+        $data=array
+        (
+            'orderNotifications'=>'1',
+        );
+
+        $this->security->xss_clean($data);
+        $error=$this->db->update('orders', $data);
 
         $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
@@ -96,6 +103,18 @@ class Ordersm extends CI_Model
         {
             return $error=null;
         }
+    }
+
+    public  function getUnseenOrder()
+    {
+
+        $this->db->select('COUNT(id) as totalUnseen');
+        $this->db->from('orders');
+        $this->db->where('orderNotifications',"0");
+
+        $query=$this->db->get();
+        return $query->result();
+        
     }
 
     public function deleteOrderItemsById($id)

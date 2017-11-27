@@ -1,3 +1,23 @@
+
+<?php if ($this->session->userdata('userType')!="Admin"){
+echo "<script type=\"text/javascript\">
+        alert(\"Login First\");
+        window.location=\"/\";
+        </script>";
+}
+else
+    {
+        $this->db->select('COUNT(id) as total');
+        $this->db->from('orders');
+        $this->db->where('orderNotifications',"0");
+
+        $query=$this->db->get();
+        
+     foreach ($query->result() as $unseenOrder){
+         $ordernotification=$unseenOrder->total;
+     }
+?>
+
 <!-- start sidebar menu -->
 <div class="sidebar-container">
     <div class="sidemenu-container navbar-collapse collapse fixed-menu">
@@ -25,9 +45,7 @@
                         <span class="title">Users</span> <span class="arrow"></span>
                     </a>
                 </li>
-
-
-
+                
                 <li class="nav-item  ">
                     <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
                         <span class="title">Customer</span> <span class="arrow"></span>
@@ -70,7 +88,7 @@
 
                 <li class="nav-item">
                     <a href="<?php echo base_url()?>Admin-Orders" class="nav-link nav-toggle"><i class="fa fa-book"></i>
-                        <span class="title">Order</span>
+                        <span class="title">Order</span><span id="output1" style="color:#FFF;;margin: 1px;font-size: 13px;"></span>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -283,3 +301,29 @@
     </div>
 </div>
 <!-- end sidebar menu -->
+<script>
+    var old_notification = "<?php echo $ordernotification?>";
+
+    var old_unseen = parseInt(old_notification);
+    var new_unseen =0;
+    setInterval(function(){
+        $.ajax({
+            type : 'POST',
+            url: "<?php echo base_url('Admin/Orders/getTotalOrderSeen') ?>",
+            cache: false,
+            success : function(datan){
+
+                if (parseFloat(datan) > old_unseen) {
+                    new_unseen=new_unseen+1;
+                    $('#output1').html(" ("+new_unseen+")"),
+                        old_unseen = datan;
+                }else {
+                    $('#output1').html(" ("+old_unseen+")")
+                }
+            }
+        });
+    },2000);
+
+</script>
+
+<?php }?>

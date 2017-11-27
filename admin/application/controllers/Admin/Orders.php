@@ -123,6 +123,22 @@ class Orders extends CI_Controller
 
     }
 
+    public function getTotalOrderSeen()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $this->data['unseenOrder'] = $this->Ordersm->getUnseenOrder();
+            foreach ($this->data['unseenOrder'] as $unseen){
+                $newUnseen=$unseen->totalUnseen;
+            }
+
+            echo $newUnseen;
+        } else {
+            redirect('Login');
+        }
+
+    }
+
     public function updateOrderItemById($id)
     {
         if ($this->session->userdata('userType') == "Admin") {
