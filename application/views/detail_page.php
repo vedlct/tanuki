@@ -205,10 +205,15 @@
 					</tr>
 					<tr>
 						<td>
-							Discount <span class="pull-right"> <?php if ( $this->session->userdata('discount') == null)
-							{ echo 0.00;} else{
-									echo $this->session->userdata('discount');
-								} ?> </span>
+							Discount <span class="pull-right">
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+//							{ echo 0.00;} else{
+//									echo $this->session->userdata('discount');
+//								} ?><!-- </span>-->
+                                <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
+                                   echo $c['coupon'];
+                                } ?>
+                            </span>
 						</td>
 					</tr>
 					<tr>

@@ -60,7 +60,7 @@ class Items extends CI_Controller {
                 'qty' => 1,
                 'price' => $itemsize->price,
                 'name' => $itemsize->itemName,
-                'coupon' => "",
+                'coupon' => 0,
                 'options' => array('Size' => $itemsize->itemSize)
             );
             $this->cart->insert($data);
@@ -123,10 +123,7 @@ class Items extends CI_Controller {
                     $this->session->set_userdata($data);
                     echo $disamount;
                 } else {
-                    $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem();
-                    foreach ($this->data['promotypepp'] as $promo) {
-                        echo $promo->itemdiscount;
-                    }
+                    $this->discountforitem();
                 }
             } else {
 
@@ -135,6 +132,28 @@ class Items extends CI_Controller {
 
 
     }
+
+    public function discountforitem(){
+       foreach ( $this->cart->contents() as $c){
+          $itemId = $c['id'];
+          $rowid = $c['rowid'];
+          $subtotal = $c['subtotal'];
+           $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem($itemId);
+           foreach ($this->data['promotypepp'] as $promo) {
+               $discountforitem=  $promo->itemdiscount;
+               $dis= ($subtotal * $discountforitem )/100;
+           }
+           $data = array(
+               'rowid' => $rowid,
+               'coupon' => $dis,
+
+           );
+           $this->cart->update($data);
+
+       }
+
+        }
+
 
     public function takeaway(){
 
