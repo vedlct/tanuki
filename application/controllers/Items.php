@@ -107,7 +107,10 @@ class Items extends CI_Controller {
 
     public function cart(){
 
-        $this->load->view('cart');
+        $userid= $this->session->userdata('id');
+      echo $userid;
+        //$this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+       // $this->load->view('cart', $this->data);
     }
 
     public function promocode(){

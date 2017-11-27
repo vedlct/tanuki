@@ -234,13 +234,19 @@
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt?></span>
+							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
 						</td>
 					</tr>
 					</tbody>
 					</table>
 					<hr>
+					<div id="ordertypediv">
+					<?php if($this->session->userdata('orderType') != null){ ?>
 					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
+					<?php }else { ?>
+						<a class="btn_full" href="#0" onclick="orderwarning()">Order now</a>
+					<?php } ?>
+					</div>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
@@ -260,10 +266,10 @@
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="#" class="popup-form" id="myLogin">
+				<form action="<?php echo base_url()?>admin/Login/check_user" class="popup-form" id="myLogin" method="post">
                 	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" placeholder="Username">
-					<input type="text" class="form-control form-white" placeholder="Password">
+					<input type="email" class="form-control form-white" name="email" placeholder="Email">
+					<input type="text" class="form-control form-white" name="password" placeholder="Password">
 					<div class="text-left">
 						<a href="#">Forgot Password?</a>
 					</div>
@@ -464,6 +470,9 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 			url: '<?php echo base_url("Items/takeaway/")?>' ,
 			cache: false,
 			success: function (data) {
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
+				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
 			}
 
 		});
@@ -476,9 +485,17 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 			url: '<?php echo base_url("Items/homedelivary/")?>' ,
 			cache: false,
 			success: function (data) {
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
+				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
+
 			}
 
 		});
+	}
+
+	function orderwarning() {
+		alert("Please Select A Order Type")
 	}
 </script>
 </body>

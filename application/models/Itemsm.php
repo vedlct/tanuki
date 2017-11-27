@@ -80,5 +80,12 @@ class Itemsm extends CI_Model {
         return $query1->result();
 
     }
+    public function getUserdata($userid){
+        $this->db->select('name, address , postalCode, fkCity', 'memberCardNo' , 'contactNo', 'email', 'password');
+        $this->db->from('users');
+        $this->db->where('id', $userid);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

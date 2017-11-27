@@ -45,12 +45,13 @@ class Login extends CI_Controller
             $this->session->set_userdata($data);
 
 
-            if ($this->session->userdata('userType') == "Admin"){
+            if ($this->session->userdata('userType') == "Admin")
+            {
                 redirect('Admin/Home');
             }
-            elseif ($this->session->userdata('userType') == "Customer")
+            elseif ($this->session->userdata('userType') == "cus")
             {
-                redirect('Admin/Home/viewHome');
+                redirect('../Items');
             }
             //print_r($result);
 
@@ -58,7 +59,7 @@ class Login extends CI_Controller
         else{
             echo "<script>
                         alert('wrong username or password');
-                     window.location=\"/tanuki/Login\";  
+                     window.location=\"/tanuki/Admin/Login\";  
 					
                 </script>";
 
