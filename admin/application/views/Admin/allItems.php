@@ -39,8 +39,6 @@
                             <div class="card-body ">
 
 
-
-
                                                 <div class="form-group">
                                                     <label class="control-label col-md-3">Category<span class="required"> * </span></label>
                                                     <div class="col-md-5">

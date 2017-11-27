@@ -93,6 +93,18 @@
                                                         <input class="form-control input-height" type='textbox' id='textimage1' name="textprice[]">
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-md-3">Status #1: </label>
+                                                    <div class="col-md-5">
+                                                        <select class="form-control input-height"  name="itemsizeStatus[]">
+                                                            <option value="">Select...</option>
+                                                            <option value="1">Active</option>
+                                                            <option value="0">Inactive</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                         </div>
                                         <div id="add_remove_button" class="form-group" style="margin-left: 230px">
@@ -243,6 +255,16 @@
                 '<div class="col-md-5">'+
                 '<input class="form-control input-height" type="textbox" id="textimage1" name="textprice[]">'+
                 '</div>'+
+                '</div>'+
+                '</div>'+
+                '<div class="form-group">'+
+                '<label class="control-label col-md-3">Status: #' +counter+'</label>'+
+                '<div class="col-md-5">'+
+                '<select class="form-control input-height"  name="itemsizeStatus[]">'+
+                '<option value="">Select...'+'</option>'+
+                '<option value="1">Active'+'</option>'+
+                '<option value="0">Inactive'+'</option>'+
+                '</select>'+
                 '</div>'+
                 '</div>'
             );
