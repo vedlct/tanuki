@@ -211,8 +211,8 @@
 //									echo $this->session->userdata('discount');
 //								} ?><!-- </span>-->
                                 <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
-                                   echo $c['coupon'];
-                                } ?>
+                                    $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
+                                } echo $totaldis;?>
                             </span>
 						</td>
 					</tr>
@@ -443,7 +443,7 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 			$.ajax({
 			type: 'POST',
-			url: '<?php echo base_url("Items/discount/")?>' ,
+			url: '<?php echo base_url("Items/promocode/")?>' ,
 			data: {'promocode': promocode},
 			cache: false,
 			success: function (data) {

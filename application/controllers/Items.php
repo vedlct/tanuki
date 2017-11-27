@@ -36,18 +36,22 @@ class Items extends CI_Controller {
                 'qty' => 1,
                 'price' => $item->price,
                 'name' => $item->itemName,
-                'coupon' => "",
+                'coupon' => 0,
                 'options' => array('Size' => $item->itemSize)
             );
             $this->cart->insert($data);
         }
-        $total = $this->cart->total();
-        $disamountpercen = $this->session->userdata('discountpercentage');
-        $disamount= ($total*$disamountpercen)/100;
-        $data = array(
-            'discount' => $disamount,
-        );
-        $this->session->set_userdata($data);
+//        $total = $this->cart->total();
+//        $disamountpercen = $this->session->userdata('discountpercentage');
+//        $disamount= ($total*$disamountpercen)/100;
+//        $data = array(
+//            'discount' => $disamount,
+//        );
+//        $this->session->set_userdata($data);
+        if ($this->session->userdata('promocode') != null){
+            $this->discount($this->session->userdata('promocode'));
+        }
+
     }
     public function insertItemSizeCart(){
 
@@ -65,13 +69,16 @@ class Items extends CI_Controller {
             );
             $this->cart->insert($data);
         }
-        $total = $this->cart->total();
-        $disamountpercen = $this->session->userdata('discountpercentage');
-        $disamount= ($total*$disamountpercen)/100;
-        $data = array(
-            'discount' => $disamount,
-        );
-        $this->session->set_userdata($data);
+//        $total = $this->cart->total();
+//        $disamountpercen = $this->session->userdata('discountpercentage');
+//        $disamount= ($total*$disamountpercen)/100;
+//        $data = array(
+//            'discount' => $disamount,
+//        );
+//        $this->session->set_userdata($data);
+        if ($this->session->userdata('promocode') != null){
+            $this->discount($this->session->userdata('promocode'));
+        }
 
     }
     public function updateCart(){
@@ -86,42 +93,69 @@ class Items extends CI_Controller {
         );
         $this->cart->update($data);
 
-        $total = $this->cart->total();
-        $disamountpercen = $this->session->userdata('discountpercentage');
-        $disamount= ($total*$disamountpercen)/100;
-        $data = array(
-            'discount' => $disamount,
-        );
-        $this->session->set_userdata($data);
+//        $total = $this->cart->total();
+//        $disamountpercen = $this->session->userdata('discountpercentage');
+//        $disamount= ($total*$disamountpercen)/100;
+//        $data = array(
+//            'discount' => $disamount,
+//        );
+//        $this->session->set_userdata($data);
+        if ($this->session->userdata('promocode') != null){
+            $this->discount($this->session->userdata('promocode'));
+        }
     }
 
     public function cart(){
 
         $this->load->view('cart');
     }
-    public function discount(){
+
+    public function promocode(){
         $promocoe = $this->input->post('promocode');
+        $data = array(
+            'promocode' => $promocoe,
+
+        );
+        $this->session->set_userdata($data);
+        $this->discount($promocoe);
+    }
+    public function discount($promocoe){
+
         $this->data['promotype'] = $this->Itemsm->getPromoType($promocoe);
 
         foreach ($this->data['promotype'] as $pt) {}
 
 
             if (!empty($this->data['promotype'])) {
-               // $this->data['promotype'] = $this->Itemsm->getPromoType();
+
                 $promotype = $pt->promoType;
+
                 if ($promotype == 'a') {
-                    $disamountpercen= $pt->discountAmount;
-                    $total = $this->cart->total();
-                    $disamount= ($total*$disamountpercen)/100;
-                     //$disamount;
-                    $data = array(
-                        'discount' => $disamount,
-                        'discountpercentage' => $disamountpercen,
+                    //$disamountpercen= $pt->discountAmount;
+                    //$total = $this->cart->total();
+                    //$disamount= ($total*$disamountpercen)/100;
 
-                    );
+//                    $data = array(
+//                        'discount' => $disamount,
+//                        'discountpercentage' => $disamountpercen,
+//
+//                    );
+//
+//                    $this->session->set_userdata($data);
+                    foreach ( $this->cart->contents() as $c){
+                        $disamountpercen= $pt->discountAmount;
+                        $rowid = $c['rowid'];
+                        $subtotal = $c['subtotal'];
+                        $dis = ($subtotal * $disamountpercen) / 100;
 
-                    $this->session->set_userdata($data);
-                    echo $disamount;
+                        $data = array(
+                            'rowid' => $rowid,
+                            'coupon' => $dis,
+
+                        );
+                        $this->cart->update($data);
+                    }
+                    echo $dis;
                 } else {
                     $this->discountforitem();
                 }
@@ -132,26 +166,27 @@ class Items extends CI_Controller {
 
 
     }
-
+    //this function for selected item discout.
     public function discountforitem(){
+
        foreach ( $this->cart->contents() as $c){
           $itemId = $c['id'];
           $rowid = $c['rowid'];
           $subtotal = $c['subtotal'];
            $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem($itemId);
            foreach ($this->data['promotypepp'] as $promo) {
-               $discountforitem=  $promo->itemdiscount;
-               $dis= ($subtotal * $discountforitem )/100;
+               $discountforitem = $promo->itemdiscount;
+               $dis = ($subtotal * $discountforitem) / 100;
+
+               $data = array(
+                   'rowid' => $rowid,
+                   'coupon' => $dis,
+
+               );
+               $this->cart->update($data);
            }
-           $data = array(
-               'rowid' => $rowid,
-               'coupon' => $dis,
 
-           );
-           $this->cart->update($data);
-
-       }
-
+            }
         }
 
 
