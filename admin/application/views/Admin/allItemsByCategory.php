@@ -24,11 +24,22 @@
                 <?php
 
                 //echo $s->type_id;
-                $query1= $this->db->query("select `id` AS itemSizeId ,`itemSize`,`price` from `itemsizes` WHERE `fkItemId` ='$items->id'");
+                $query1= $this->db->query("select `id` AS itemSizeId ,`itemSize`,`price`,`itemSizeStatus` from `itemsizes` WHERE `fkItemId` ='$items->id'");
                 foreach ( $query1->result() as $res ) {?>
                 <tr>
                     <td><?php echo $res->itemSize?></td>
                     <td><?php echo $res->price?></td>
+<!--                    <td>--><?php //echo $res->itemSizeStatus?><!--</td>-->
+                    <td > <?php if( $res->itemSizeStatus==1)
+                        {
+                            echo "Active";
+                        }
+                        else
+                        {
+                            echo " InActive ";
+                        }
+
+                        ?></td>
                     <td width="20%"><button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $res->itemSizeId ?>" onclick="selectid1(this)">
 
                             <i class="fa fa-edit"></i>

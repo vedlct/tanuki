@@ -39,7 +39,7 @@
                     <option value="">Select...</option>
 
                     <option  <?php if ($itemInfo->itemStatus=='1')echo 'selected = "selected"';?>value="1">Active</option>
-                    <option  <?php if ($itemInfo->itemStatus=='0')echo 'selected = "selected"';?>value="0">Inactive</option>
+                    <option  <?php if ($itemInfo->itemStatus=='0')echo 'selected = "selected"';?>value="0">InActive</option>
 
                 </select>
             </div>
