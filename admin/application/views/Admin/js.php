@@ -2,7 +2,7 @@
 
 
 <!-- start js include path -->
-<script src="<?php echo base_url()?>public/js/jquery.min.js" type="text/javascript"></script>
+
 <script src="<?php echo base_url()?>public/js/jquery.blockui.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>public/js/jquery-validation/js/jquery.validate.min.js" type="text/javascript"></script>
 <script src="<?php echo base_url()?>public/js/jquery-validation/js/additional-methods.min.js" type="text/javascript"></script>
@@ -16,8 +16,8 @@
 <!--<script src="--><?php //echo base_url()?><!--public/js/bootstrap-timepicker/js/bootstrap-timepicker-init.js" type="text/javascript" charset="UTF-8"></script>-->
 <!--<script src="--><?php //echo  base_url()?><!--public/js/bootstrap-datepicker/js/bootstrap-datepicker.min.js" type="text/javascript" charset="UTF-8"></script>-->
 <!-- dropzone -->
-<script src="<?php echo base_url()?>public/js/dropzone/dropzone.js" type="text/javascript"></script>
-<script src="<?php echo base_url()?>public/js/dropzone/dropzone-call.js" type="text/javascript"></script>
+<!--<script src="--><?php //echo base_url()?><!--public/js/dropzone/dropzone.js" type="text/javascript"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/dropzone/dropzone-call.js" type="text/javascript"></script>-->
 
 <script src="<?php echo base_url()?>public/js/jquery.slimscroll.js"></script>
 <script src="<?php echo base_url()?>public/js/app.js" type="text/javascript"></script>

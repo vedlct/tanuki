@@ -39,4 +39,6 @@
 
     <!-- date picker      -->
 
+    <script src="<?php echo base_url()?>public/js/jquery.min.js" type="text/javascript"></script>
+
 
