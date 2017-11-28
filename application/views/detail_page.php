@@ -249,7 +249,8 @@
 					</div>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
-			</div><!-- End col-md-3 -->
+			</div>
+            <!-- End col-md-3 -->
             
 		</div><!-- End row -->
 </div><!-- End container -->

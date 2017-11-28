@@ -69,9 +69,10 @@
     </div><!-- Position -->
 
 <!-- Content ================================================== -->
-<div class="container margin_60_35">
+<div class="container-fluid margin_60_35">
 		<div class="row">
-			<div class="col-md-3">
+            <div class="col-md-1"></div>
+			<div class="col-md-2">
             
 				<div class="box_style_2 hidden-xs info">
 					<h4 class="nomargin_top">Delivery time <i class="icon_clock_alt pull-right"></i></h4>
@@ -94,40 +95,45 @@
                 
 			</div><!-- End col-md-3 -->
             
-			<div class="col-md-6">
+			<div class="col-md-5">
 				<div class="box_style_2" id="order_process">
 					<h2 class="inner">Your order details</h2>
-					<div class="form-group">
-						<label>First name</label>
-						<input type="text" class="form-control" id="firstname_order" name="firstname_order" placeholder="First name">
-					</div>
-					<div class="form-group">
-						<label>Last name</label>
-						<input type="text" class="form-control" id="lastname_order" name="lastname_order" placeholder="Last name">
+                    <?php
+
+                    ?>
+					<?php foreach ($userdata as $ud) { ?>
+                    <div class="form-group">
+						<label> Name</label>
+						<input type="text" class="form-control" id="firstname_order" name="firstname_order" value="<?php echo $ud->name?>" placeholder="First name">
 					</div>
 					<div class="form-group">
 						<label>Telephone/mobile</label>
-						<input type="text" id="tel_order" name="tel_order" class="form-control" placeholder="Telephone/mobile">
+						<input type="number" id="tel_order" name="tel_order" class="form-control" value="<?php echo $ud->contactNo?>" placeholder="Telephone/mobile">
 					</div>
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" id="email_booking_2" name="email_order" class="form-control" placeholder="Your email">
+						<input type="email" id="email_booking_2" name="email_order" class="form-control" value="<?php echo $ud->email?>" placeholder="Your email">
 					</div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="password" name="password" class="form-control" value="<?php echo $ud->email?>" placeholder="Your Password">
+                    </div>
 					<div class="form-group">
 						<label>Your full address</label>
-						<input type="text" id="address_order" name="address_order" class="form-control" placeholder=" Your full address">
+						<input type="text" id="address_order" name="address_order" class="form-control" value="<?php echo $ud->address?>" placeholder=" Your full address">
 					</div>
 					<div class="row">
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" id="city_order" name="city_order" class="form-control" placeholder="Your city">
+								<input type="text" id="city_order" name="city_order" class="form-control" value="<?php echo $ud->name?>" placeholder="Your city">
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>Postal code</label>
-								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" placeholder=" Your postal code">
+								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="<?php echo $ud->name?>" placeholder=" Your postal code">
 							</div>
 						</div>
 					</div>
@@ -169,103 +175,171 @@
 								</select>
 							</div>
 						</div>
+                        <?php } ?>
 					</div>
 					<hr>
 					<div class="row">
-						<div class="col-md-12">
-				
-								<label>Notes for the restaurant</label>
-								<textarea class="form-control" style="height:150px" placeholder="Ex. Allergies, cash change..." name="notes" id="notes"></textarea>
-				
-						</div>
+                        <div class="box_style_2">
+                            <h2 class="inner">Payment methods</h2>
+                            <div class="payment_select">
+                                <label><input type="radio" value="" checked name="payment_method" class="icheck">Credit card</label>
+                                <i class="icon_creditcard"></i>
+                            </div>
+                            <div class="form-group">
+                                <label>Name on card</label>
+                                <input type="text" class="form-control" id="name_card_order" name="name_card_order" placeholder="First and last name">
+                            </div>
+                            <div class="form-group">
+                                <label>Card number</label>
+                                <input type="text" id="card_number" name="card_number" class="form-control" placeholder="Card number">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label>Expiration date</label>
+                                    <div class="row">
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="mm">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="yyyy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Security code</label>
+                                        <div class="row">
+                                            <div class="col-md-4 col-sm-6">
+                                                <div class="form-group">
+                                                    <input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8 col-sm-6">
+                                                <img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><!--End row -->
+                            <div class="payment_select" id="paypal">
+                                <label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
+                            </div>
+                            <div class="payment_select nomargin">
+                                <label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
+                                <i class="icon_wallet"></i>
+                            </div>
+                        </div>
 					</div>
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-6 -->
-            
-			<div class="col-md-3" id="sidebar">
-            	<div class="theiaStickySidebar">
-				<div id="cart_box">
-					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
-					<table class="table table_summary">
-					<tbody>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Enchiladas
-						</td>
-						<td>
-							<strong class="pull-right">$11</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Burrito
-						</td>
-						<td>
-							<strong class="pull-right">$14</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>1x</strong> Chicken
-						</td>
-						<td>
-							<strong class="pull-right">$20</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Corona Beer
-						</td>
-						<td>
-							<strong class="pull-right">$9</strong>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<a href="#0" class="remove_item"><i class="icon_minus_alt"></i></a> <strong>2x</strong> Cheese Cake
-						</td>
-						<td>
-							<strong class="pull-right">$12</strong>
-						</td>
-					</tr>
-					</tbody>
-					</table>
-					<hr>
-					<div class="row" id="options_2">
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" checked name="option_2" class="icheck">Delivery</label>
-						</div>
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<label><input type="radio" value="" name="option_2" class="icheck">Take Away</label>
-						</div>
-					</div><!-- Edn options 2 -->
-					<hr>
-					<table class="table table_summary">
-					<tbody>
-					<tr>
-						<td>
-							 Subtotal <span class="pull-right">$56</span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							 Delivery fee <span class="pull-right">$10</span>
-						</td>
-					</tr>
-					<tr>
-						<td class="total">
-							 TOTAL <span class="pull-right">$66</span>
-						</td>
-					</tr>
-					</tbody>
-					</table>
-					<hr>
-					<a class="btn_full" href="cart_2.php">Go to checkout</a>
-					<a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
-				</div><!-- End cart_box -->
+            <div class="col-md-3" id="sidebar">
+                <div class="theiaStickySidebar">
+                    <div id="cart_box" >
+                        <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+                        <table id="cart_table" class="table table_summary">
+                            <tbody>
+                            <?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
+
+                                ?>
+                                <tr>
+                                    <td>
+                                        <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
+                                        <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
+                                        <input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+                                    </td>
+                                    <td><?php echo htmlspecialchars($c['name'])?></td>
+                                    <td> <?php  if ($c['options']['Size'] == "defualt"){}else
+                                        {echo $c['options']['Size'];}?></td>
+                                    <td>
+                                        <strong class="pull-right"><?php echo $c['subtotal'];?></strong>
+                                    </td>
+                                </tr>
+                                <?php
+
+                                $subtotal = $subtotal + $c['subtotal'];
+                            } ?>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6">
+                                <label>Promo Code :</label>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
+                            </div>
+                        </div><!-- Edn options 2 -->
+
+                        <hr>
+                        <table class="table table_summary" id="total_table">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    Oder Type <span class="pull-right"><?php echo $this->session->userdata('orderType') ?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Subtotal <span class="pull-right"><?php echo $subtotal?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Discount <span class="pull-right">
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+                                        //							{ echo 0.00;} else{
+                                        //									echo $this->session->userdata('discount');
+                                        //								} ?><!-- </span>-->
+                                        <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
+                                            $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
+                                        } echo $totaldis;?>
+                            </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Delivery fee <span class="pull-right">
+								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
+                                    $dfee = $char->deliveryfee;
+                                    $vat = $char->vat;
+                                }?>
+                                <?php echo $dfee ; ?></span>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="total">
+                                    TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+                        <a class="btn_full" href="<?php echo base_url()?>Items/payment">Go to checkout</a>
+                        <a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
+                    </div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
-			</div><!-- End col-md-3 -->
-            
+            </div>
+
 		</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
