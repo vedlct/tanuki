@@ -12,14 +12,14 @@ class Itemsm extends CI_Model {
     }
      public function getAllItemSize(){
 
-         $this->db->select('id, fkItemId , itemSize, price');
+         $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
          $this->db->from('itemsizes');
          $query = $this->db->get();
          return $query->result();
      }
     public function getDefualtItemSize(){
 
-        $this->db->select('id, fkItemId , itemSize, price');
+        $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
         $this->db->from('itemsizes');
         $this->db->group_by('fkItemId');
         $query = $this->db->get();
@@ -34,7 +34,7 @@ class Itemsm extends CI_Model {
     }
     public function getItem($id){
 
-        $this->db->select('items.id as id, itemName,itemSize,  price');
+        $this->db->select('itemsizes.id as id, itemName,itemSize,  price');
         $this->db->join('itemsizes ', 'itemsizes.fkItemId = items.id ', 'left');
         $this->db->from('items');
         $this->db->where('items.id', $id);
@@ -84,6 +84,14 @@ class Itemsm extends CI_Model {
         $this->db->select('name, address , postalCode, fkCity, memberCardNo , contactNo , email, password');
         $this->db->from('users');
         $this->db->where('id', $userid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getItemid($itemsizeid){
+        $this->db->select('itemsizes.fkItemId as id');
+        $this->db->from('itemsizes');
+        $this->db->where('itemsizes.id', $itemsizeid);
         $query = $this->db->get();
         return $query->result();
     }
