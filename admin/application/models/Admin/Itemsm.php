@@ -114,7 +114,22 @@ class Itemsm extends CI_Model
 
     public function insertItemSizePriceByItemId($data)
     {
+        $itemId=$data['fkItemId'];
 
+        $this->db->select('id');
+        $this->db->where('fkItemId',$itemId);
+        $this->db->where('itemSize',"default");
+        $query=$this->db->get('itemsizes');
+        if (!empty($query->result())){
+
+            foreach ($query->result() as $itemSizes){
+                $id=$itemSizes->id;
+                $data1=array(
+                    'itemSizeStatus'=>'0',
+                );
+                $this->db->where('id',$id)->update('itemsizes',$data1);
+            }
+        }
 
         $error=$this->db->insert('itemsizes', $data);
         if (empty($error))
