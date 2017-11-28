@@ -1,56 +1,5 @@
 
-    <div class="row">
-
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="btn-group pull-right">
-                <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                    <i class="fa fa-angle-down"></i>
-                </button>
-                <ul class="dropdown-menu pull-right">
-                    <li>
-                        <a href="javascript:;">
-                            <i class="fa fa-print"></i> Print </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-
-<!--    <button id="searchbyorderid" onclick="searchbydorder()" class="btn btn-info">-->
-<!--        Search By OrderID-->
-<!--    </button>-->
-
-
-    <div id="order" style="display: block">
-        <div class="col-md-6 col-sm-6" >
-            <div class="form-group" >
-
-                <label for="date">Order ID</label>
-                <input type="text" id="searchOrderId" class="form-control " name="orderid" placeholder="Order ID">
-            </div >
-
-        </div>
-        <div class="btn-group col-md-3 col-sm-3" >
-
-            <button style="margin-top: 30px"  type="submit"  onclick="searchByOrderId()" class="btn btn-info">
-                submit
-            </button>
-            <a href="Admin-Orders">
-                Reload
-            </a>
-        </div>
-    </div>
-
+<?php if (!empty($orders)){?>
     <div class="table table-responsive">
         <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
             <thead>
@@ -74,13 +23,9 @@
 
                     <td><?php echo $i;?></td>
                     <td><?php echo $orders->id;?></td>
-                    <td class="center"><?php echo $orders->userName; ?>
+                    <td class="center"><b>User:</b> <?php echo $orders->userName; ?>
 
-                        <div class="btn-group">
-                            <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
-                                <i class="fa fa-info"></i>
-                            </button>
-                        </div><hr>
+                        <hr>
 
                         <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
                     </td>
@@ -103,7 +48,7 @@
                                     <th width="10%"class="center">Rate</th >
                                     <th width="10%"class="center">Discount($)</th >
                                     <th width="10%"class="center">Total</th >
-                                    <th width="5%"class="center">Action</th >
+
                                 </tr>
                                 <?php
                                 $total=0;
@@ -132,17 +77,7 @@
 
                                                 <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
                                                 <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
-                                                <td width="20%">
-                                                    <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
 
-                                                        <i class="fa fa-edit"></i>
-                                                    </button>
-
-                                                    <button type="button" data-panel-id="<?php echo $orderItem->id?>" onclick="deleteOrderItemsId(this)"class="btn btn-danger btn-xs">
-
-                                                        <i class="fa fa-trash "></i>
-                                                    </button>
-                                                </td>
 
 
                                             </tr>
@@ -150,9 +85,7 @@
                                 <tr>
                                     <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
                                     <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
-                                    <td>
-                                        <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
-                                    </td>
+
                                 </tr>
 
                             </table>
@@ -164,21 +97,19 @@
                     <td class="center">
 
 
-                        <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
-                            <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
-                                <option value="">Select</option>
+
+
 
                                 <?php foreach ($ordersStatus as $Status){?>
 
-                                    <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
-                                <?php }?>
+                                    <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id){?>
+
+                                    <?php echo $Status->statusTitle?>
+                                <?php }}?>
 
 
 
-                            </select>
-                        <?php }else{?>
-                            Already Delivery
-                        <?php } ?>
+
 
                     </td>
 
@@ -189,3 +120,4 @@
             </tbody>
         </table>
     </div>
+<?php }?>

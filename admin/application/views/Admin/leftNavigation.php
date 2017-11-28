@@ -2,7 +2,8 @@
 <?php if ($this->session->userdata('userType')!="Admin"){
 echo "<script type=\"text/javascript\">
         alert(\"Login First\");
-        window.location=\"/\";
+        
+        window.location.href= '" . base_url() . "';
         </script>";
 }
 else

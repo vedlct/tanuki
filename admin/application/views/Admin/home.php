@@ -84,14 +84,15 @@
                     <div class="col-md-12 col-sm-12">
                         <div class="card  card-topline-green">
                             <div class="card-head">
-                                <header>Recent Orders</header>
+                                <header>Tdays Orders</header>
                                 <div class="tools">
                                     <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
                                     <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
                                     <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
                                 </div>
                             </div>
-                            <div class="card-body ">
+
+                            <div id="todayOrder" class="card-body ">
                                 <div class="row table-padding">
                                     <div class="col-md-6 col-sm-6 col-xs-6">
                                         <div class="btn-group">
@@ -272,9 +273,11 @@
                                     </table>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- end page content -->
@@ -328,4 +331,15 @@
             }
         });
     },6000, 60);
+
+    var i = setInterval(function(){
+        $.ajax({
+            url: "<?php echo base_url('Admin/Home/getAllTodaysOrder') ?>",
+            cache: false,
+            success: function (data) {
+                $("#todayOrder").html(data);
+            }
+        });
+    },6000, 60);
+
 </script>
