@@ -26,8 +26,10 @@
         </a>
         <!-- end mobile menu -->
         <!-- start header menu -->
+
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
+
 
                 <!-- start notification dropdown -->
 <!--                <li class="dropdown dropdown-extended dropdown-notification" id="header_notification_bar">-->
@@ -97,6 +99,7 @@
                 <!-- end notification dropdown -->
 
                 <!-- start manage user dropdown -->
+
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 <!--                        <img alt="" class="img-circle " src="--><?php //echo base_url()?><!--public/img/dp.svg" />-->
@@ -132,6 +135,7 @@
                 </li>
                 <!-- end manage user dropdown -->
             </ul>
+            <a href="<?php echo base_url()?>../Items"> <button class="btn btn-skype" style="margin-top: 10px; float: right">Place Order</button></a>
         </div>
     </div>
 </div>

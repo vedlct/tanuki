@@ -66,5 +66,26 @@ class Itemsm extends CI_Model {
         return $query->result();
 
     }
+    public function setDiscountforSelectItem($itemId){
+
+        $this->db->select('promotiondetail.discountAmount as itemdiscount');
+        $this->db->join('promotiondetail','promotiondetail.fkPromotionId = promotions.id','left');
+        $this->db->where('fkItemId =',$itemId);
+        $this->db->where('startDate <',date('Y-m-d'));
+        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoType =','s');
+        $this->db->from('promotions');
+        $this->db->limit(1);
+        $query1 = $this->db->get();
+        return $query1->result();
+
+    }
+    public function getUserdata($userid){
+        $this->db->select('name, address , postalCode, fkCity', 'memberCardNo' , 'contactNo', 'email', 'password');
+        $this->db->from('users');
+        $this->db->where('id', $userid);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 ?>

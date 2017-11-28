@@ -19,6 +19,19 @@
                 </div>
 
             </div>
+            <div class="form-group">
+                <label class="control-label col-md-3">Items Activation Status
+                    <span class="required"> * </span>
+                </label>
+                <div  class="col-md-5">
+                    <select class="form-control input-height" name="itemsizeStatus">
+                        <option value="1" <?php echo ($itemInfo->itemsizeStatus=='1')?'selected="selected"':''; ?>>active</option>
+                        <option value="0" <?php echo ($itemInfo->itemsizeStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
+                    </select>
+
+                </div>
+            </div>
+
 
             <input type="hidden" name="catId" required class="form-control input-height" value="<?php echo $catId;?>" />
 

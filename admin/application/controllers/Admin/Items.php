@@ -30,7 +30,7 @@ class Items extends CI_Controller
             $status  = $this->input->post('itemStatus');
             $textbox = $this->input->post('textbox[]');
             $textprice = $this->input->post('textprice[]');
-            //$textstatus = $this->input->post('textstatus[]');
+            $itemsizeStatus = $this->input->post('itemsizeStatus[]');
             $this->load->library('upload');
             $config = array(
                 'upload_path' => "images/itemImages/",
@@ -66,6 +66,7 @@ class Items extends CI_Controller
                             'fkItemId'=>$itemId,
                             'price' => $textprice[$i],
                             'itemSize'=>$textbox[$i],
+                            'itemsizeStatus'=>$itemsizeStatus[$i]
                         );
                         $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
                     }
@@ -147,9 +148,11 @@ class Items extends CI_Controller
             $catId = $this->input->post('catId');
             $itemSize=$this->input->post('itemSize');
             $itemPrice=$this->input->post('itemPrice');
+            $itemsizeStatus=$this->input->post('itemsizeStatus');
             $data = array(
                 'itemSize' => $itemSize,
                 'price' => $itemPrice,
+                'itemsizeStatus'=>$itemsizeStatus
             );
             $this->data['error'] = $this->Itemsm->updateItemSizePriceById($id,$data);
             if (empty($this->data['error'])) {
@@ -237,6 +240,7 @@ class Items extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
             $this->data['itemId'] = $this->input->post('id');
             $this->data['catId'] = $this->input->post('catId');
+
             $this->load->view('Admin/addNewSizePriceForItem',$this->data);
         }
         else{
@@ -249,10 +253,12 @@ class Items extends CI_Controller
 
             $itemSize = $this->input->post('itemSize');
             $itemPrice = $this->input->post('itemPrice');
+            $itemSizeStatus  =$this->input->post ('itemsizeStatus');
             $data = array(
                 'itemSize' => $itemSize,
                 'price' => $itemPrice,
                 'fkItemId'=>$itemId,
+                'itemSizeStatus'=>$itemSizeStatus
             );
 
             $this->data['error']=$this->Itemsm->insertItemSizePriceByItemId($data);

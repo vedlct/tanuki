@@ -33,7 +33,7 @@
     <div id="subheader">
 	<div id="sub_content">
     	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.php">Read 98 reviews</a></small>)</div>
+                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read 98 reviews</a></small>)</div>
                     <h1>Mexican TacoMex</h1>
                     <div><em>Mexican / American</em></div>
                     <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
@@ -205,10 +205,15 @@
 					</tr>
 					<tr>
 						<td>
-							Discount <span class="pull-right"> <?php if ( $this->session->userdata('discount') == null)
-							{ echo 0.00;} else{
-									echo $this->session->userdata('discount');
-								} ?> </span>
+							Discount <span class="pull-right">
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+//							{ echo 0.00;} else{
+//									echo $this->session->userdata('discount');
+//								} ?><!-- </span>-->
+                                <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
+                                    $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
+                                } echo $totaldis;?>
+                            </span>
 						</td>
 					</tr>
 					<tr>
@@ -229,13 +234,19 @@
 					</tr>
 					<tr>
 						<td class="total">
-							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt?></span>
+							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
 						</td>
 					</tr>
 					</tbody>
 					</table>
 					<hr>
+					<div id="ordertypediv">
+					<?php if($this->session->userdata('orderType') != null){ ?>
 					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
+					<?php }else { ?>
+						<a class="btn_full" href="#0" onclick="orderwarning()">Order now</a>
+					<?php } ?>
+					</div>
 				</div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
 			</div><!-- End col-md-3 -->
@@ -255,10 +266,10 @@
 		<div class="modal-dialog">
 			<div class="modal-content modal-popup">
 				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="#" class="popup-form" id="myLogin">
+				<form action="<?php echo base_url()?>admin/Login/check_user" class="popup-form" id="myLogin" method="post">
                 	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" placeholder="Username">
-					<input type="text" class="form-control form-white" placeholder="Password">
+					<input type="email" class="form-control form-white" name="email" placeholder="Email">
+					<input type="text" class="form-control form-white" name="password" placeholder="Password">
 					<div class="text-left">
 						<a href="#">Forgot Password?</a>
 					</div>
@@ -438,7 +449,7 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 			$.ajax({
 			type: 'POST',
-			url: '<?php echo base_url("Items/discount/")?>' ,
+			url: '<?php echo base_url("Items/promocode/")?>' ,
 			data: {'promocode': promocode},
 			cache: false,
 			success: function (data) {
@@ -459,6 +470,9 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 			url: '<?php echo base_url("Items/takeaway/")?>' ,
 			cache: false,
 			success: function (data) {
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
+				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
 			}
 
 		});
@@ -471,9 +485,17 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 			url: '<?php echo base_url("Items/homedelivary/")?>' ,
 			cache: false,
 			success: function (data) {
+				$('#cart_table').load(document.URL +  ' #cart_table');
+				$('#total_table').load(document.URL +  ' #total_table');
+				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
+
 			}
 
 		});
+	}
+
+	function orderwarning() {
+		alert("Please Select A Order Type")
 	}
 </script>
 </body>

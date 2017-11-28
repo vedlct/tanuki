@@ -37,7 +37,7 @@ class Itemsm extends CI_Model
     }
     public function getItemSizePriceInfoById($id)
     {
-        $this->db->select('is.id,is.itemSize,is.price');
+        $this->db->select('is.id,is.itemSize,is.price,is.itemsizeStatus');
         $this->db->from('itemsizes is');
         $this->db->where('is.id',$id);
         $query = $this->db->get();
