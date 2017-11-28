@@ -228,7 +228,7 @@
 <!--                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>-->
 <!--                        </div>-->
 <!--                    </div>-->
-                  
+
                     <!-- Edn options 2 -->
 
                     <table class="table table_summary" id="total_table">

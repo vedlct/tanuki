@@ -76,7 +76,7 @@ class Login extends CI_Controller
         $this->loginm->logout($id,$data);
         $this->session->sess_destroy();
 
-        redirect('Login');
+        redirect('../Items');
     }
 
 

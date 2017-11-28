@@ -220,4 +220,10 @@ class Items extends CI_Controller {
 
         $this->session->set_userdata($data);
     }
+
+    public function checkoutInsert(){
+
+    }
+
+
 }

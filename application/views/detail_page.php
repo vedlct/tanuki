@@ -157,7 +157,9 @@
                             <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
 							<input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
                         </td>
-                        <td><?php echo htmlspecialchars($c['name'])?></td>
+                        <td><?php echo htmlspecialchars($c['name'])?>
+                        <?php echo $c['id']?>
+                        </td>
                         <td> <?php  if ($c['options']['Size'] == "defualt"){}else
 							{echo $c['options']['Size'];}?></td>
 						<td>
