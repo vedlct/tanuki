@@ -25,8 +25,8 @@
                 </label>
                 <div  class="col-md-5">
                     <select class="form-control input-height" name="itemsizeStatus">
-                        <option <?php echo ($itemInfo->itemsizeStatus=='1')?'selected="selected"':''; ?>>active</option>
-                        <option <?php echo ($itemInfo->itemsizeStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
+                        <option value="1" <?php echo ($itemInfo->itemsizeStatus=='1')?'selected="selected"':''; ?>>active</option>
+                        <option value="0" <?php echo ($itemInfo->itemsizeStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
                     </select>
 
                 </div>

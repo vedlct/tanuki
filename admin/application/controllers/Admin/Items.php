@@ -35,7 +35,7 @@ class Items extends CI_Controller
             $config = array(
                 'upload_path' => "images/itemImages/",
                 'allowed_types' => "jpg|png|jpeg|gif",
-                'max_size' => "1024*4",
+                'max_size' => "4096",
                 'overwrite' => TRUE,
                 'remove_spaces' => FALSE,
                 'mod_mime_fix' => FALSE,
@@ -182,7 +182,7 @@ class Items extends CI_Controller
                 $config = array(
                     'upload_path' => "images/itemImages/",
                     'allowed_types' => "jpg|png|jpeg|gif",
-                    'max_size' => "1024*4",
+                    'max_size' => "4096",
                     'overwrite' => TRUE,
                     'remove_spaces' => FALSE,
                     'mod_mime_fix' => FALSE,
@@ -250,6 +250,7 @@ class Items extends CI_Controller
     public function insertItemSizePrice($catId,$itemId)
     {
         if ($this->session->userdata('userType') == "Admin") {
+
             $itemSize = $this->input->post('itemSize');
             $itemPrice = $this->input->post('itemPrice');
             $itemSizeStatus  =$this->input->post ('itemsizeStatus');
@@ -259,6 +260,7 @@ class Items extends CI_Controller
                 'fkItemId'=>$itemId,
                 'itemSizeStatus'=>$itemSizeStatus
             );
+
             $this->data['error']=$this->Itemsm->insertItemSizePriceByItemId($data);
             if (empty($this->data['error'])) {
                 $this->session->set_flashdata('successMessage','Item Updated Successfully');

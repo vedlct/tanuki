@@ -39,7 +39,7 @@
                                     <i class="fa fa-users usr-clr"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="resultts1" style="font-size: 90%"></span></p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup"><span id="resultts1" style="font-size: 90%"></span></p>
                                     <p>ORDERS</p>
                                 </div>
                             </div>
@@ -50,7 +50,7 @@
                                     <i class="fa fa-user"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="results" style="font-size: 90%"></span></p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup"><span id="results" style="font-size: 90%"></span></p>
                                     <p>CUSTOMERS</p>
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
                                     <i class="fa fa-heartbeat"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="14"><span id="resultts3" style="font-size: 90%"></span></p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup"><span id="resultts3" style="font-size: 90%"></span></p>
                                     <p>CUSTOMER FEEDBACK</p>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                     <i class="fa fa-money"></i>
                                 </div>
                                 <div class="value white">
-                                    <p class="sbold addr-font-h1" data-counter="counterup" data-value="48"><span id="resultts2" style="font-size: 90%"></span></p>
+                                    <p class="sbold addr-font-h1" data-counter="counterup"><span id="resultts2" style="font-size: 90%"></span></p>
                                     <p>Total Earning</p>
                                 </div>
                             </div>
