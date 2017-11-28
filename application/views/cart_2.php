@@ -14,16 +14,16 @@
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
     <![endif]-->
     
-    <div id="preloader">
-        <div class="sk-spinner sk-spinner-wave" id="status">
-            <div class="sk-rect1"></div>
-            <div class="sk-rect2"></div>
-            <div class="sk-rect3"></div>
-            <div class="sk-rect4"></div>
-            <div class="sk-rect5"></div>
-        </div>
-    </div><!-- End Preload -->
-    
+<!--    <div id="preloader">-->
+<!--        <div class="sk-spinner sk-spinner-wave" id="status">-->
+<!--            <div class="sk-rect1"></div>-->
+<!--            <div class="sk-rect2"></div>-->
+<!--            <div class="sk-rect3"></div>-->
+<!--            <div class="sk-rect4"></div>-->
+<!--            <div class="sk-rect5"></div>-->
+<!--        </div>-->
+<!--    </div><!-- End Preload -->-->
+<!--    -->
     <!-- Header ================================================== -->
     <?php include ('menu.php') ?>
 	<!-- End Header =============================================== -->
@@ -141,6 +141,7 @@
 					</div><!--End row -->
 					<div class="payment_select" id="paypal">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
+
 					</div>
 					<div class="payment_select nomargin">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
@@ -297,13 +298,13 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="js/jquery-2.2.4.min.js"></script>
-<script src="js/common_scripts_min.js"></script>
-<script src="js/functions.js"></script>
-<script src="assets/validate.js"></script>
+<script src="<?php echo base_url()?>js/jquery-2.2.4.min.js"></script>
+<script src="<?php echo base_url()?>js/common_scripts_min.js"></script>
+<script src="<?php echo base_url()?>js/functions.js"></script>
+<script src="<?php echo base_url()?>assets/validate.js"></script>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="js/theia-sticky-sidebar.js"></script>
+<script src="<?php echo base_url()?>js/theia-sticky-sidebar.js"></script>
 <script>
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80

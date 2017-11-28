@@ -105,12 +105,21 @@ class Items extends CI_Controller {
         }
     }
 
-    public function cart(){
-
-        $userid= $this->session->userdata('id');
-      echo $userid;
-        //$this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-       // $this->load->view('cart', $this->data);
+    public function cart()
+    {
+        $userid = $this->session->userdata('id');
+        if ($userid == "") {
+            $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->load->view('cartforguest', $this->data);
+        } else {
+            $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+            $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->load->view('cart', $this->data);
+        }
+    }
+    public function payment(){
+        $this->data['charges'] = $this->Itemsm->getcharges();
+        $this->load->view('cart_2', $this->data);
     }
 
     public function promocode(){
@@ -211,4 +220,10 @@ class Items extends CI_Controller {
 
         $this->session->set_userdata($data);
     }
+
+    public function checkoutInsert(){
+
+    }
+
+
 }
