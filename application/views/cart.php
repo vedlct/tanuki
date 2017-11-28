@@ -127,13 +127,13 @@
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" id="city_order" name="city_order" class="form-control" value="<?php echo $ud->name?>" placeholder="Your city">
+								<input type="text" id="city_order" name="city_order" class="form-control" value="<?php echo $ud->fkCity?>" placeholder="Your city">
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>Postal code</label>
-								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="<?php echo $ud->name?>" placeholder=" Your postal code">
+								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="<?php echo $ud->postalCode?>" placeholder=" Your postal code">
 							</div>
 						</div>
 					</div>
@@ -179,62 +179,22 @@
 					</div>
 					<hr>
 					<div class="row">
-                        <div class="box_style_2">
-                            <h2 class="inner">Payment methods</h2>
-                            <div class="payment_select">
-                                <label><input type="radio" value="" checked name="payment_method" class="icheck">Credit card</label>
-                                <i class="icon_creditcard"></i>
-                            </div>
-                            <div class="form-group">
-                                <label>Name on card</label>
-                                <input type="text" class="form-control" id="name_card_order" name="name_card_order" placeholder="First and last name">
-                            </div>
-                            <div class="form-group">
-                                <label>Card number</label>
-                                <input type="text" id="card_number" name="card_number" class="form-control" placeholder="Card number">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label>Expiration date</label>
-                                    <div class="row">
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <input type="text" id="expire_month" name="expire_month" class="form-control" placeholder="mm">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-sm-6">
-                                            <div class="form-group">
-                                                <input type="text" id="expire_year" name="expire_year" class="form-control" placeholder="yyyy">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Security code</label>
-                                        <div class="row">
-                                            <div class="col-md-4 col-sm-6">
-                                                <div class="form-group">
-                                                    <input type="text" id="ccv" name="ccv" class="form-control" placeholder="CCV">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-8 col-sm-6">
-                                                <img src="img/icon_ccv.gif" width="50" height="29" alt="ccv"><small>Last 3 digits</small>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!--End row -->
-                            <div class="payment_select" id="paypal">
-                                <label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
-                            </div>
-                            <div class="payment_select nomargin">
-                                <label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
-                                <i class="icon_wallet"></i>
-                            </div>
-                        </div>
+
 					</div>
 				</div><!-- End box_style_1 -->
+                <div class="box_style_2">
+                    <h2 class="inner">Payment methods</h2>
+                    <div class="payment_select">
+                        <label><input type="radio" value="" checked name="payment_method" class="">Credit card</label>
+                        <i class="icon_creditcard"></i>
+                    </div>
+                    <!--End row -->
+
+                    <div class="payment_select nomargin">
+                        <label><input type="radio" value="" name="payment_method" class="">Pay with cash</label>
+                        <i class="icon_wallet"></i>
+                    </div>
+                </div>
 			</div><!-- End col-md-6 -->
             <div class="col-md-3" id="sidebar">
                 <div class="theiaStickySidebar">
@@ -265,26 +225,26 @@
                             </tbody>
                         </table>
                         <hr>
-                        <div class="row" id="options_2">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
-                            </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
-                            </div>
-                        </div>
-                        <hr>
-                        <div class="row" id="options_2">
-                            <div class="col-lg-6">
-                                <label>Promo Code :</label>
+<!--                        <div class="row" id="options_2">-->
+<!--                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+<!--                                <a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="--><?php //echo base_url()?><!--public/img/takeaway.jpg"><br>Take Away</a>-->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+<!--                                <a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="--><?php //echo base_url()?><!--public/img/homedeli.png"><br>Home Deliver</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <hr>-->
+<!--                        <div class="row" id="options_2">-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <label>Promo Code :</label>-->
+<!---->
+<!--                            </div>-->
+<!--                            <div class="col-lg-6">-->
+<!--                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >-->
+<!--                            </div>-->
+<!--                        </div><!-- Edn options 2 -->
 
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-                            </div>
-                        </div><!-- Edn options 2 -->
 
-                        <hr>
                         <table class="table table_summary" id="total_table">
                             <tbody>
                             <tr>

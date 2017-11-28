@@ -189,7 +189,7 @@
                 </div>
             </div><!-- End box_style_1 -->
         </div><!-- End col-md-6 -->
-        <div class="col-md-4" id="sidebar">
+        <div class="col-md-3" id="sidebar">
             <div class="theiaStickySidebar">
                 <div id="cart_box" >
                     <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
@@ -218,17 +218,17 @@
                         </tbody>
                     </table>
                     <hr>
-                    <div class="row" id="options_2">
-                        <h4 align="center">Payment Method</h4>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                            <a href="#0" onclick="takeaway()">	<i class="icon_creditcard"></i><br>Cash</a>
-
-                        </div>
-                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>
-                        </div>
-                    </div>
-                    <hr>
+<!--                    <div class="row" id="options_2">-->
+<!--                        <h4 align="center">Payment Method</h4>-->
+<!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+<!--                            <a href="#0" onclick="takeaway()">	<i class="icon_creditcard"></i><br>Cash</a>-->
+<!---->
+<!--                        </div>-->
+<!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+<!--                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                  
                     <!-- Edn options 2 -->
 
                     <table class="table table_summary" id="total_table">

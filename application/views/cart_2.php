@@ -141,6 +141,7 @@
 					</div><!--End row -->
 					<div class="payment_select" id="paypal">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with paypal</label>
+
 					</div>
 					<div class="payment_select nomargin">
 						<label><input type="radio" value="" name="payment_method" class="icheck">Pay with cash</label>
