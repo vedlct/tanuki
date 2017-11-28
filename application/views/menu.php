@@ -25,8 +25,40 @@
                     <li><a href="about.php">About us</a></li>
                     <li><a href="faq.php">Faq</a></li>
                     <li><a href="contacts.php">Contacts</a></li>
+                    <?php if($this->session->userdata('loggedin')=="true"){
+                    $username=$this->session->userdata('name');
+                    $usertype=$this->session->userdata('userType');
+                    if($usertype=="Admin"){
+
+                    ?>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo base_url()?>Admin_Home">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                    <?php }else{?>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo base_url()?>Profile/showuser/<?php echo $username; ?>">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    <?php }}else{?>
                     <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#login_2">User Login</button>
-                    <button class="btn btn-sm btn-success" href="#0" data-toggle="modal" data-target="#register">User Register</button>                                                      
+                    <button class="btn btn-sm btn-success" href="#0" data-toggle="modal" data-target="#register">User Register</button>
+                    <?php }?>
                 </ul>
             </div><!-- End main-menu -->
             </nav>
