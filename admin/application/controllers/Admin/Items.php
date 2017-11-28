@@ -57,6 +57,7 @@ class Items extends CI_Controller
                     $itemSizedata = array(
                         'fkItemId'=>$itemId,
                         'price' => $price,
+                        'itemsizeStatus'=>$status,
                     );
                     $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
                 }
