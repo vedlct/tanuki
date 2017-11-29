@@ -214,7 +214,18 @@ class Items extends CI_Controller {
         $this->session->set_userdata($data);
     }
 
-    public function checkoutInsert(){
+    public function checkout(){
+
+        $ordertype= $this->session->userdata('OrdertType');
+        $orderdate= date("Y-m-d H:i");
+        $orderstatus= "";
+        $deliveryfee="";
+        $vat= "";
+        $paymenttype="";
+        $user="";
+
+
+        $this->Itemsm->checkoutInsert();
 
     }
 

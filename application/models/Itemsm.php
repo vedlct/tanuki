@@ -14,6 +14,7 @@ class Itemsm extends CI_Model {
 
          $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
          $this->db->from('itemsizes');
+         $this->db->where('itemSizeStatus', "1");
          $query = $this->db->get();
          return $query->result();
      }
@@ -95,5 +96,22 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function checkoutInsert(){
+
+
+        foreach ($this->cart->contents() as $c){
+
+            $data = array(
+
+                'fkItemSizeId' => $itemSizeId,
+                'quantity' => $ItemQuantity,
+                'rate' => $ItemRate,
+                'discount' => $ItemDiscount,
+
+            );
+        }
+    }
+
 }
 ?>

@@ -260,10 +260,7 @@
                             <tr>
                                 <td>
                                     Discount <span class="pull-right">
-<!--                                --><?php //if ( $this->session->userdata('discount') == null)
-                                        //							{ echo 0.00;} else{
-                                        //									echo $this->session->userdata('discount');
-                                        //								} ?><!-- </span>-->
+
                                         <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
                                             $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
                                         } echo $totaldis;?>
@@ -294,8 +291,8 @@
                             </tbody>
                         </table>
                         <hr>
-                        <a class="btn_full" href="<?php echo base_url()?>Items/payment">Go to checkout</a>
-                        <a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
+                        <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                        <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
             </div>

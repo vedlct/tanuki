@@ -176,18 +176,22 @@
                     </div>
 
                 </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-12">
 
-                        <div class="payment_select">
-                            <label><input type="radio" value="" checked name="payment_method" class="icheck">Credit card</label>
-                            <i class="icon_creditcard"></i>
-                        </div>
 
-                    </div>
-                </div>
             </div><!-- End box_style_1 -->
+            <div class="box_style_2">
+                <h2 class="inner">Payment methods</h2>
+                <div class="payment_select">
+                    <label><input type="radio" value="" checked name="payment_method" class="">Credit card</label>
+                    <i class="icon_creditcard"></i>
+                </div>
+                <!--End row -->
+
+                <div class="payment_select nomargin">
+                    <label><input type="radio" value="" name="payment_method" class="">Pay with cash</label>
+                    <i class="icon_wallet"></i>
+                </div>
+            </div>
         </div><!-- End col-md-6 -->
         <div class="col-md-3" id="sidebar">
             <div class="theiaStickySidebar">
@@ -280,7 +284,7 @@
                         </tbody>
                     </table>
                     <hr>
-                    <a class="btn_full" href="<?php echo base_url()?>Items/payment">Go to checkout</a>
+                    <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                     <a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
