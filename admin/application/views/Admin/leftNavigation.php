@@ -3,7 +3,7 @@
 echo "<script type=\"text/javascript\">
         alert(\"Login First\");
         
-        window.location.href= '" . base_url() . "';
+        window.location=\"/tanuki/Admin/Login\";
         </script>";
 }
 else
@@ -36,6 +36,11 @@ else
                 <li class="nav-item">
                     <a href="<?php echo base_url()?>Admin-Category" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">Category</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="<?php echo base_url()?>Admin/Pdf/testPdf" target="_blank" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Pdf</span>
                     </a>
                 </li>
 
