@@ -50,7 +50,7 @@
                                             <span class="required"> * </span>
                                         </label>
                                         <div class="col-md-5">
-                                            <input type="text" required class="form-control input-height" value="<?php echo $fupdate-> userRating ?>" placeholder="Enter Postcode" name="rating" />
+                                            <input type="text" required class="form-control input-height" value="<?php echo $fupdate-> userRating ?>" placeholder="Enter  Rating " name="rating" />
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -58,7 +58,7 @@
                                             <span class="required"> * </span>
                                         </label>
                                         <div class="col-md-5">
-                                            <input type="text" required class="form-control input-height" value="<?php echo $fupdate->feedback ?> " placeholder="Enter Postcode" name="detail" />
+                                            <input type="text" required class="form-control input-height" value="<?php echo $fupdate->feedback ?> " placeholder="Enter feedback detail" name="detail" />
                                         </div>
                                     </div>
                                     </div>

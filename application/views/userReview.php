@@ -29,7 +29,7 @@
     <div id="subheader">
         <div id="sub_content">
             <div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">98 reviews</a></small> )</div>
+            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">All  reviews</a></small> )</div>
             <h1>Mexican TacoMex</h1>
             <div><em>Mexican / American</em></div>
             <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
@@ -88,14 +88,11 @@
 //                    //echo $this->session->userdata['username'];?>
 <!--                --><?php //}?>
 
-                <h2>Demo2</h2>
 
 
                 <div id="summary_review">
                     <div id="general_rating">
-                        11 Reviews
-
-
+                       All Items  Reviews
 
                     </div>
 
@@ -113,7 +110,6 @@
 //                    ?>
 
                     <hr class="styled">
-                    <a href="#" class="btn_1 add_bottom_15" data-toggle="modal" data-target="#myReview">Leave a review</a>
                 </div><!-- End summary_review -->
 
 <!--            --><?php //}}else{?>
@@ -352,41 +348,7 @@
         </div>
     </div>
 </div><!-- End Register modal -->
-
-<!-- Review modal -->
-<div class="modal fade" id="myReview" tabindex="-1" role="dialog" aria-labelledby="review" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content modal-popup">
-            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-
-            <form method="post" action="<?php echo base_url() ?>Feedback/newReview" name="review" id="review" class="popup-form">
-                <div class="login_icon"><i class="icon_comment_alt"></i></div>
-<!--                --><?php //foreach ($res_details as $e){?>
-
-                <input name="restaurant_name" id="restaurant_name" type="hidden" value="Mexican Taco Mex">
-
-<!--                <input name="re_id" id="re_id" type="text" value="--><?php //echo $e->id ?><!--" style="color: black">-->
-
-
-
-<!--                --><?php //}?><!---->-->
-
-<!--                --><?php //$query5 =$this->db->query(" select `id` from `restaurant` ");
-//                foreach ($query5->result() as $v ){$id=$v->id;}
-//                ?>
-
-<!--                <input name="res_id" id="res_id" type="hidden" value="--><?php //echo $id ?><!--" style="color: black">-->
-
-
-                <textarea name="review_text" id="review_text" class="form-control form-white" style="height:100px" placeholder="write review" ></textarea>
-                <input type="text" name="verify_review" id="verify_review" class="form-control form-white" placeholder="Are you human? 3 + 1 =">
-                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                <input type="submit" value="Submit" class="btn btn-submit" id="submit-review">
-            </form>
-            <div id="message-review"></div>
-        </div>
-    </div>
-</div><!-- End Register modal -->
+    <!-- End Register modal -->
 	<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
