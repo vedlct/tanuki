@@ -10,7 +10,34 @@ class Feedbackm extends CI_Model
         $this->db->join('users u', 'u.id = f.fkUserId', 'left');
         $this->db->join('items i', 'i.id=f.fkItemId', 'left');
         $this->db->where("u.fkUserType =", 'cus');
+        $this->db->order_by('f.id', 'DESC');
+
         $query = $this->db->get();
         return $query->result();
     }
+
+//    public function getAllitem()
+//    {
+//        $this->db->select('id,itemName');
+//        $this->db->from('items');
+//        $query = $this->db->get();
+//        return $query->result();
+//    }
+
+    public function getitemById($itemid)
+    {
+        $this->db->where('id', $itemid);
+        $this->db->select('id,itemName');
+        $this->db->from('items');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function insertFeedback($data)
+    {
+
+        $query = $this->db->insert('userfeedback',$data);
+
+    }
+
 }
