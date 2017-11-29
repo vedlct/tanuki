@@ -23,6 +23,8 @@
         <td>$80</td>
     </tr>
 </table>
+
+<img src="https://www.w3schools.com/images/w3schools_green.jpg">
 ​
 <p><b>Note:</b> The width attribute is not supported in HTML5. Use CSS instead.</p>
 ​
