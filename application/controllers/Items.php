@@ -143,17 +143,7 @@ class Items extends CI_Controller {
                 $promotype = $pt->promoType;
 
                 if ($promotype == 'a') {
-                    //$disamountpercen= $pt->discountAmount;
-                    //$total = $this->cart->total();
-                    //$disamount= ($total*$disamountpercen)/100;
 
-//                    $data = array(
-//                        'discount' => $disamount,
-//                        'discountpercentage' => $disamountpercen,
-//
-//                    );
-//
-//                    $this->session->set_userdata($data);
                     foreach ( $this->cart->contents() as $c){
                         $disamountpercen= $pt->discountAmount;
                         $rowid = $c['rowid'];
@@ -182,7 +172,10 @@ class Items extends CI_Controller {
     public function discountforitem(){
 
        foreach ( $this->cart->contents() as $c){
-          $itemId = $c['id'];
+         $itemsizeid = $c['id'];
+           $this->data['itemid'] = $this->Itemsm->getItemid($itemsizeid);
+           foreach ($this->data['itemid'] as $i){}
+          $itemId = $i->id ;
           $rowid = $c['rowid'];
           $subtotal = $c['subtotal'];
            $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem($itemId);

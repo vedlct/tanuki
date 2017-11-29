@@ -114,7 +114,7 @@
                         <div class="dropdown dropdown-options">
 							<?php foreach ($alldefault as $defualt){?>
                             	<?php if ($item->id == $defualt->fkItemId) {?>
-									<?php if ($defualt->itemSize == "default") {?>
+									<?php if ($defualt->itemSize == "default" && $defualt->itemsizeStatus == "1" ) {?>
 										<a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
 							<?php } else { ?>
 										<a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
