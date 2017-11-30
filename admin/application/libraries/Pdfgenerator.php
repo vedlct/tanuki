@@ -1,9 +1,16 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+define("DOMPDF_ENABLE_HTML5PARSER", true);
+define("DOMPDF_ENABLE_FONTSUBSETTING", true);
+define("DOMPDF_UNICODE_ENABLED", true);
+define("DOMPDF_DPI", 120);
+
 require_once("dompdf/autoload.inc.php");
 use Dompdf\Dompdf;
 use Dompdf\Options;
+
+
 
 class Pdfgenerator {
 
