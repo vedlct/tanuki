@@ -231,7 +231,14 @@
 
 					<tr>
 						<td>
-							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
+							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =(($subtotal-$totaldis)*$vat)/100?></span>
+                            <?php
+                            $data = array(
+                                'vat' => $vatt,
+
+                            );
+                            $this->session->set_userdata($data);
+                            ?>
 						</td>
 					</tr>
 					<tr>

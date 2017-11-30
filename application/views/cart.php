@@ -185,13 +185,13 @@
                 <div class="box_style_2">
                     <h2 class="inner">Payment methods</h2>
                     <div class="payment_select">
-                        <label><input type="radio" value="" checked name="payment_method" class="">Credit card</label>
+                        <label><input type="radio" value="" onclick="paymentcreditcard()" checked name="payment_method" class="">Credit card</label>
                         <i class="icon_creditcard"></i>
                     </div>
                     <!--End row -->
 
                     <div class="payment_select nomargin">
-                        <label><input type="radio" value="" name="payment_method" class="">Pay with cash</label>
+                        <label><input type="radio" value="" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
                         <i class="icon_wallet"></i>
                     </div>
                 </div>
@@ -291,6 +291,8 @@
                             </tbody>
                         </table>
                         <hr>
+                        Your total point :
+                        <hr>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
@@ -373,6 +375,38 @@
     jQuery('#sidebar').theiaStickySidebar({
       additionalMarginTop: 80
     });
+</script>
+<script>
+    function paymentcreditcard() {
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Items/paymentcreditcard/")?>',
+            cache: false,
+            success:function(data)
+            {
+              //  $('#cart_table').load(document.URL +  ' #cart_table');
+               // $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
+    function paymentcash() {
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Items/paymentcash/")?>',
+            cache: false,
+            success:function(data)
+            {
+             //   $('#cart_table').load(document.URL +  ' #cart_table');
+              //  $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
 </script>
 
 </body>

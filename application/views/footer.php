@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-md-4 col-sm-3">
                   	<h3>Secure payments with</h3>
-                    <p><img src="img/cards.png" alt="" class="img-responsive"></p>
+                    <p><img src="<?php echo base_url()?>img/cards.png" alt="" class="img-responsive"></p>
                     
                 </div>
                 <div class="col-md-3 col-sm-3">

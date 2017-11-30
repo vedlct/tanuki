@@ -59,8 +59,8 @@ class Itemsm extends CI_Model {
     public function getPromoType($promocoe){
 
         $this->db->select('promoType, discountAmount');
-        $this->db->where('startDate <',date('Y-m-d'));
-        $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('startDate <=',date('Y-m-d'));
+        $this->db->where('endDate >=',date('Y-m-d'));
         $this->db->where('promoCode', $promocoe);
         $this->db->from('promotions');
         $query = $this->db->get();
@@ -97,19 +97,33 @@ class Itemsm extends CI_Model {
         return $query->result();
     }
 
-    public function checkoutInsert(){
+    public function getorderstatus(){
+        $this->db->select('id');
+        $this->db->from('orderstatus');
+        $this->db->order_by('sequece', 'ASC');
+        $this->db->limit(1);
+        $query = $this->db->get();
+        return $query->row();
+    }
+    public function checkoutInsert($data){
 
 
+        $this->db->insert('orders', $data);
+
+        $orderid = $this->db->insert_id();
         foreach ($this->cart->contents() as $c){
 
-            $data = array(
+            $data2 = array(
 
-                'fkItemSizeId' => $itemSizeId,
-                'quantity' => $ItemQuantity,
-                'rate' => $ItemRate,
-                'discount' => $ItemDiscount,
+                'fkOrderId' => $orderid,
+                'fkItemSizeId' => $c['id'],
+                'quantity' => $c['qty'],
+                'rate' => $c['price'],
+                'discount' => $c['coupon'],
+
 
             );
+            $this->db->insert('orderitems', $data2);
         }
     }
 

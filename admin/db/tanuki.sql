@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.3
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2017 at 01:02 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 7.1.8
+-- Generation Time: Nov 30, 2017 at 12:42 PM
+-- Server version: 10.1.25-MariaDB
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -39,7 +41,10 @@ CREATE TABLE `catagory` (
 
 INSERT INTO `catagory` (`id`, `name`, `fkInsertBy`, `insertDate`) VALUES
 (1, 'testing 1', 3, '2017-11-21 07:15:11'),
-(2, 'new', 3, '2017-11-15 13:11:02');
+(3, 'STARTERS', 3, '2017-11-23 07:51:19'),
+(4, 'MAIN COURSES', 3, '2017-11-23 07:51:27'),
+(5, 'BEEF', 3, '2017-11-23 07:51:35'),
+(6, 'DESSERTS', 3, '2017-11-23 07:51:43');
 
 -- --------------------------------------------------------
 
@@ -58,8 +63,7 @@ CREATE TABLE `charges` (
 --
 
 INSERT INTO `charges` (`id`, `deliveryfee`, `vat`) VALUES
-(1, '123.00', '23123.00'),
-(2, '34234.00', '3445.00');
+(1, '4.00', '15.00');
 
 -- --------------------------------------------------------
 
@@ -103,7 +107,16 @@ CREATE TABLE `items` (
 INSERT INTO `items` (`id`, `fkCatagory`, `itemName`, `image`, `description`, `fkInsertBy`, `insertDate`, `itemStatus`) VALUES
 (4, 1, 'priza', '14900406_1023011481155352_4768715051129103434_n.jpg', 'moja', 3, '2017-11-14 12:29:56', 0),
 (5, 1, 'burger', '17800016_1565413556833199_1970750778728872010_n.jpg', 'this is test', 3, '2017-11-11 10:16:38', 1),
-(6, 1, 'er', '14900406_1023011481155352_4768715051129103434_n.jpg', 'er', 3, '2017-11-14 05:47:10', 1);
+(6, 1, 'er', '14900406_1023011481155352_4768715051129103434_n.jpg', 'er', 3, '2017-11-14 05:47:10', 1),
+(7, 3, 'Mexican Enchiladas', 'menu-thumb-1.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 07:53:14', 1),
+(8, 3, 'Fajitas', 'menu-thumb-2.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 07:59:19', 1),
+(9, 4, 'Cheese Quesadilla', 'menu-thumb-3.jpg', 'Fuisset mentitum deleniti sit ea', 3, '2017-11-23 08:00:20', 1),
+(10, 4, 'Chorizo & c', 'menu-thumb-4.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-25 06:41:42', 1),
+(11, 4, 'Beef Taco', 'menu-thumb-7.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 08:02:21', 1),
+(12, 5, 'Beef Enchilada Wrap', 'menu-thumb-8.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 08:08:06', 1),
+(13, 5, 'Chicken Fillet Taco', 'menu-thumb-12.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 08:08:42', 1),
+(14, 1, 'test', '11.png', 'safsf', 3, '2017-11-28 09:56:00', 1),
+(15, 1, 'sdfsf', '10.PNG', 'sdfsafd', 3, '2017-11-28 09:56:46', 1);
 
 -- --------------------------------------------------------
 
@@ -116,7 +129,7 @@ CREATE TABLE `itemsizes` (
   `fkItemId` int(11) NOT NULL,
   `itemSize` varchar(20) NOT NULL DEFAULT 'default',
   `price` decimal(10,2) NOT NULL,
-  `itemSizeStatus` tinyint(4) NOT NULL DEFAULT '1' COMMENT 'o=InActive,1=Active'
+  `itemSizeStatus` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -128,8 +141,23 @@ INSERT INTO `itemsizes` (`id`, `fkItemId`, `itemSize`, `price`, `itemSizeStatus`
 (6, 4, 'M', '10.00', 1),
 (7, 4, 's', '6.00', 1),
 (8, 5, 'default', '12.00', 1),
-(9, 6, 'default', '12.00', 1),
-(12, 5, 'S', '30.00', 1);
+(9, 6, 'default', '12.00', 0),
+(12, 5, 'S', '30.00', 1),
+(13, 7, 'default', '9.40', 1),
+(14, 8, 'S', '3.30', 1),
+(15, 8, 'M', '5.40', 1),
+(16, 8, 'L', '8.40', 1),
+(17, 9, 'default', '12.00', 1),
+(18, 10, 'default', '24.71', 1),
+(19, 11, 'default', '8.40', 1),
+(20, 12, 'S', '3.50', 1),
+(21, 12, 'M', '4.80', 1),
+(22, 12, 'L', '8.70', 1),
+(23, 12, 'Extra Cheez', '2.20', 1),
+(24, 13, 'default', '12.40', 1),
+(25, 6, 'L', '2.00', 1),
+(26, 14, 'default', '10.00', 1),
+(27, 15, 'default', '12.00', 1);
 
 -- --------------------------------------------------------
 
@@ -182,11 +210,24 @@ INSERT INTO `logininfo` (`id`, `loginTime`, `sourceIp`, `fkUserId`, `browser`, `
 (29, '2017-11-23 05:04:26', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
 (30, '2017-11-23 06:02:52', '::1', 3, 'Firefo', '0000-00-00 00:00:00'),
 (31, '2017-11-23 06:03:50', '::1', 3, 'Firefo', '0000-00-00 00:00:00'),
-(32, '2017-11-24 09:50:38', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
-(33, '2017-11-25 08:04:38', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
-(34, '2017-11-25 11:11:58', '::1', 3, 'Firefo', '0000-00-00 00:00:00'),
-(35, '2017-11-25 11:25:28', '::1', 3, 'Firefo', '0000-00-00 00:00:00'),
-(36, '2017-11-25 11:58:40', '::1', 3, 'Firefo', '0000-00-00 00:00:00');
+(32, '2017-11-24 11:35:56', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(33, '2017-11-25 10:58:27', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(34, '2017-11-25 11:01:30', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(35, '2017-11-27 07:53:56', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(36, '2017-11-28 06:05:16', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(37, '2017-11-28 06:06:01', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(38, '2017-11-28 07:56:07', '::1', 9, 'Chrome', '0000-00-00 00:00:00'),
+(39, '2017-11-28 08:42:45', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(40, '2017-11-28 09:44:46', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(41, '2017-11-28 09:50:49', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(42, '2017-11-28 10:38:05', '::1', 3, 'Chrome', '2017-11-28 05:38:05'),
+(43, '2017-11-28 10:42:57', '::1', 9, 'Chrome', '2017-11-28 05:42:57'),
+(44, '2017-11-28 10:44:30', '::1', 11, 'Chrome', '0000-00-00 00:00:00'),
+(45, '2017-11-29 05:43:16', '::1', 3, 'Chrome', '0000-00-00 00:00:00'),
+(46, '2017-11-30 06:00:00', '::1', 3, 'Chrome', '2017-11-30 01:00:00'),
+(47, '2017-11-30 06:14:18', '::1', 3, 'Firefo', '2017-11-30 06:14:18'),
+(48, '2017-11-30 06:00:47', '::1', 9, 'Chrome', '0000-00-00 00:00:00'),
+(49, '2017-11-30 06:05:13', '::1', 9, 'Chrome', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -208,11 +249,16 @@ CREATE TABLE `orderitems` (
 --
 
 INSERT INTO `orderitems` (`id`, `fkOrderId`, `fkItemSizeId`, `quantity`, `rate`, `discount`) VALUES
-(1, 6, 5, '11.00', '20.00', '10.00'),
+(1, 6, 5, '10.00', '20.00', '10.00'),
 (3, 7, 6, '9.00', '60.00', '3.00'),
-(4, 6, 12, '5.00', '30.00', '20.00'),
+(4, 6, 12, '1.00', '30.00', '20.00'),
 (5, 7, 9, '5.00', '12.00', '2.00'),
-(6, 6, 7, '56.00', '6.00', '30.00');
+(6, 6, 7, '56.00', '6.00', '30.00'),
+(7, 6, 9, '12.00', '12.00', '12.00'),
+(9, 10, 26, '1.00', '10.00', '1.00'),
+(10, 10, 13, '1.00', '9.40', '0.94'),
+(11, 10, 15, '1.00', '5.40', '0.54'),
+(12, 10, 19, '3.00', '8.40', '2.52');
 
 -- --------------------------------------------------------
 
@@ -229,18 +275,19 @@ CREATE TABLE `orders` (
   `vat` decimal(10,2) NOT NULL,
   `paymentType` varchar(3) NOT NULL DEFAULT 'cs' COMMENT 'cs = Cash, crd = Card',
   `fkUserId` int(11) DEFAULT NULL,
-  `fkOrderTaker` int(11) DEFAULT NULL
+  `fkOrderTaker` int(11) DEFAULT NULL,
+  `orderNotifications` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `orderType`, `orderDate`, `fkOrderStatus`, `deliveryfee`, `vat`, `paymentType`, `fkUserId`, `fkOrderTaker`) VALUES
-(6, 'have', '2017-11-23 00:00:00', 6, '50.00', '20.00', 'cs', 3, 9),
-(7, 'have', '2017-11-24 08:21:32', 7, '60.00', '0.00', 'cs', 3, 9),
-(8, 'take', '2017-11-25 17:16:30', 6, '20.00', '0.00', 'crd', 3, 9),
-(9, 'have', '2017-11-25 00:00:00', 7, '60.00', '0.00', 'cs', 3, 9);
+INSERT INTO `orders` (`id`, `orderType`, `orderDate`, `fkOrderStatus`, `deliveryfee`, `vat`, `paymentType`, `fkUserId`, `fkOrderTaker`, `orderNotifications`) VALUES
+(6, 'have', '2017-11-06 00:00:00', 6, '50.00', '20.00', 'cs', 3, 9, 1),
+(7, 'have', '2017-11-23 00:00:00', 6, '60.00', '0.00', 'cs', 3, 9, 1),
+(8, 'take', '2017-11-18 00:00:00', 6, '20.00', '0.00', 'crd', 3, 9, 1),
+(10, 'take', '2017-11-30 11:06:00', 4, NULL, '6.75', 'cas', 9, 9, 0);
 
 -- --------------------------------------------------------
 
@@ -276,6 +323,13 @@ CREATE TABLE `pointdeduct` (
   `expedPoints` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `pointdeduct`
+--
+
+INSERT INTO `pointdeduct` (`fkUserId`, `fkOrderId`, `expedPoints`) VALUES
+(9, 7, '50.00');
+
 -- --------------------------------------------------------
 
 --
@@ -288,6 +342,18 @@ CREATE TABLE `points` (
   `fkUserId` int(11) NOT NULL,
   `earnedPoints` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `points`
+--
+
+INSERT INTO `points` (`id`, `fkTransId`, `fkUserId`, `earnedPoints`) VALUES
+(1, 5, 9, '10.00'),
+(2, 3, 9, '20.00'),
+(3, 8, 11, '5.00'),
+(4, 7, 9, '80.00'),
+(5, 4, 9, '60.00'),
+(6, 2, 11, '50.00');
 
 -- --------------------------------------------------------
 
@@ -309,7 +375,7 @@ CREATE TABLE `promotiondetail` (
 INSERT INTO `promotiondetail` (`id`, `fkPromotionId`, `fkItemId`, `discountAmount`) VALUES
 (16, 27, 5, '10'),
 (17, 27, 4, '10'),
-(18, 27, 6, '10'),
+(18, 27, 6, '15'),
 (19, 29, 6, '20');
 
 -- --------------------------------------------------------
@@ -334,8 +400,8 @@ CREATE TABLE `promotions` (
 --
 
 INSERT INTO `promotions` (`id`, `campainTitle`, `promoCode`, `startDate`, `endDate`, `promoType`, `discountAmount`, `activationStatus`) VALUES
-(26, 'winter', 'winter10', '0000-00-00', '2020-01-17', 'a', '10', 1),
-(27, 'burgerhot', 'burgerhot10', '0000-00-00', '0000-00-00', 's', NULL, 1),
+(26, 'winter', 'winter10', '2017-11-15', '2017-11-30', 'a', '10', 1),
+(27, 'burgerhot', 'burgerhot10', '2017-11-22', '2017-11-23', 's', '15', 1),
 (28, 'test', '34', '2017-11-14', '2017-11-23', 'a', '12', 1),
 (29, 'new', '3123', '2017-11-15', '2017-11-17', 's', NULL, 1);
 
@@ -371,7 +437,9 @@ INSERT INTO `transactiondetail` (`fkTransId`, `fkItemSizeId`, `quantity`, `rate`
 (7, 5, '10.00', '20.00', '10.00'),
 (7, 7, '56.00', '6.00', '30.00'),
 (7, 9, '12.00', '12.00', '12.00'),
-(7, 12, '1.00', '30.00', '20.00');
+(7, 12, '1.00', '30.00', '20.00'),
+(8, 6, '9.00', '60.00', '3.00'),
+(8, 9, '5.00', '12.00', '2.00');
 
 -- --------------------------------------------------------
 
@@ -399,7 +467,8 @@ INSERT INTO `transactionmaster` (`id`, `transDate`, `fkOrderId`, `transactionBy`
 (4, '2017-11-18', 7, 0, '0.00', NULL),
 (5, '2017-11-18', 8, 0, '0.00', NULL),
 (6, '2017-11-18', 7, 0, '0.00', NULL),
-(7, '2017-11-22', 6, 0, '20.00', NULL);
+(7, '2017-11-22', 6, 0, '20.00', NULL),
+(8, '2017-11-23', 7, 0, '0.00', NULL);
 
 -- --------------------------------------------------------
 
@@ -421,8 +490,7 @@ CREATE TABLE `userfeedback` (
 --
 
 INSERT INTO `userfeedback` (`id`, `fkItemId`, `fkUserId`, `userRating`, `feedback`, `feedbackTime`) VALUES
-(2, 4, 9, 6, 'gdfgdfg', '2017-11-25 10:58:28'),
-(3, 4, 9, 6, 'gdfgdfg', '2017-11-25 10:57:57');
+(2, 4, 3, 6, 'gdfgdfg', '2017-11-21 18:00:00');
 
 -- --------------------------------------------------------
 
@@ -441,17 +509,18 @@ CREATE TABLE `users` (
   `email` varchar(80) DEFAULT NULL,
   `password` varchar(80) DEFAULT NULL,
   `userActivationStatus` tinyint(1) DEFAULT NULL COMMENT '0 = In-Active, 1 = Active',
-  `fkUserType` varchar(5) NOT NULL DEFAULT 'guest',
-  `insertDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `insertDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fkUserType` varchar(5) NOT NULL DEFAULT 'guest'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `address`, `postalCode`, `fkCity`, `memberCardNo`, `contactNo`, `email`, `password`, `userActivationStatus`, `fkUserType`, `insertDate`) VALUES
-(3, 'sakib Rahman dasda', 'sdf', 'sdf', NULL, 'sdf', 'sdf', 'admin@gmail.com', 'admin@123', 1, 'Admin', '2017-11-25 07:22:09'),
-(9, 'sj', 'baridhada', '1216', 1, '20202', '113213', 'sj@gmail.com', '1213', 1, 'cus', '2017-11-25 07:22:09');
+INSERT INTO `users` (`id`, `name`, `address`, `postalCode`, `fkCity`, `memberCardNo`, `contactNo`, `email`, `password`, `userActivationStatus`, `insertDate`, `fkUserType`) VALUES
+(3, 'sakib Rahman dasda', 'sdf', 'sdf', NULL, 'sdf', '122456', 'admin@gmail.com', 'admin@123', 1, '2017-11-28 06:52:28', 'Admin'),
+(9, 'sj', 'baridhada', '1216', 1, '20202', '113213', 'sj@gmail.com', '123', 1, '2017-11-28 10:39:34', 'cus'),
+(11, 'sujon', 'baridhada', '1216', 1, '20202', '113213', 'suj@gmail.com', '123', 1, '2017-11-28 10:39:44', 'cus');
 
 -- --------------------------------------------------------
 
@@ -614,12 +683,12 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `catagory`
 --
 ALTER TABLE `catagory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `charges`
 --
 ALTER TABLE `charges`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `city`
 --
@@ -629,27 +698,27 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `itemsizes`
 --
 ALTER TABLE `itemsizes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `logininfo`
 --
 ALTER TABLE `logininfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `orderitems`
 --
 ALTER TABLE `orderitems`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `orderstatus`
 --
@@ -659,7 +728,7 @@ ALTER TABLE `orderstatus`
 -- AUTO_INCREMENT for table `points`
 --
 ALTER TABLE `points`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `promotiondetail`
 --
@@ -674,17 +743,17 @@ ALTER TABLE `promotions`
 -- AUTO_INCREMENT for table `transactionmaster`
 --
 ALTER TABLE `transactionmaster`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `userfeedback`
 --
 ALTER TABLE `userfeedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
@@ -758,24 +827,12 @@ ALTER TABLE `transactiondetail`
   ADD CONSTRAINT `fk_transDetailTransId` FOREIGN KEY (`fkTransId`) REFERENCES `transactionmaster` (`id`);
 
 --
--- Constraints for table `transactionmaster`
---
-ALTER TABLE `transactionmaster`
-  ADD CONSTRAINT `fk_transactionMasterOrderId` FOREIGN KEY (`fkOrderId`) REFERENCES `orders` (`id`);
-
---
 -- Constraints for table `userfeedback`
 --
 ALTER TABLE `userfeedback`
   ADD CONSTRAINT `FK_userFeedbackItemId` FOREIGN KEY (`fkItemId`) REFERENCES `items` (`id`),
   ADD CONSTRAINT `FK_userFeedbackUserId` FOREIGN KEY (`fkUserId`) REFERENCES `users` (`id`);
-
---
--- Constraints for table `users`
---
-ALTER TABLE `users`
-  ADD CONSTRAINT `FK_usersCity` FOREIGN KEY (`fkCity`) REFERENCES `city` (`id`),
-  ADD CONSTRAINT `FK_usersUserType` FOREIGN KEY (`fkUserType`) REFERENCES `usertype` (`id`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
