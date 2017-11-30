@@ -27,11 +27,11 @@ body {
   font-family: SourceSansPro;
 }
 
-header {
-  padding: 10px 0;
-  margin-bottom: 20px;
+#header {
+  /*padding: 10px 0;*/
+    margin-bottom: 20px;
     border-bottom: 1px solid #F83831;
-    margin-top: 50px;
+    /*margin-top: 50px;*/
 
 }
 
@@ -46,7 +46,7 @@ header {
 
 #company {
   float: right;
-  text-align: right;
+  /*text-align: right;*/
 }
 
 
@@ -56,7 +56,7 @@ header {
 
 #client {
   padding-left: 6px;
-    border-left: 6px solid #F83831;
+  border-left: 6px solid #F83831;
   float: left;
 }
 
@@ -72,11 +72,12 @@ h2.name {
 
 #invoice {
   float: right;
-  text-align: right;
+  /*text-align: right;*/
+  /*text-align: left;*/
 }
 
 #invoice h1 {
-    color: #F83831;
+  color: #F83831;
   font-size: 2.4em;
   line-height: 1em;
   font-weight: normal;
@@ -97,14 +98,14 @@ table {
 
 table th,
 table td {
-  padding: 20px;
+  padding: 10px;
   background: #EEEEEE;
   text-align: center;
   border-bottom: 1px solid #FFFFFF;
 }
 
 table th {
-  white-space: nowrap;        
+  white-space: nowrap;
   font-weight: normal;
 }
 
@@ -176,8 +177,10 @@ table tfoot tr td:first-child {
 }
 
 #thanks{
+  margin-top: 25px;
   font-size: 2em;
-  margin-bottom: 50px;
+  margin-bottom: 25px;
+  /*margin-bottom: 50px;*/
 }
 
 #notices{
@@ -196,7 +199,7 @@ footer {
   position: absolute;
   bottom: 0;
   border-top: 1px solid #AAAAAA;
-  padding: 8px 0;
+  /*padding: 8px 0;*/
   text-align: center;
 }
 

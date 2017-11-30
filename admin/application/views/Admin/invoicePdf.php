@@ -12,10 +12,11 @@
 
 </head>
 <body>
-<header class="clearfix">
+<div id="header" class="clearfix">
     <div style="float: left" class="col-md-6" id="logo">
         <img src="<?php echo base_url()?>images/logo/logo.png?>">
     </div>
+
     <div style="float: right"class="col-md-6" id="company">
         <h1 class="name">Tanuki Restaurant</h1>
         <div>455 Foggy Heights, AZ 85004, US</div>
@@ -23,16 +24,16 @@
         <div><a href="mailto:company@example.com">company@example.com</a></div>
     </div>
 
-</header>
+</div>
 <main>
     <div id="details" class="clearfix">
-        <div id="client" class="col-lg-6" style="float: left">
+        <div id="client">
             <div class="to">INVOICE TO:</div>
             <h2 class="name">John Doe</h2>
             <div class="address">796 Silver Harbour, TX 79273, US</div>
             <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
         </div>
-        <div id="invoice" style="float: right" class="col-lg-6">
+        <div id="invoice">
             <h1>INVOICE 3-2-1</h1>
             <div class="date">Date of Invoice: 01/06/2014</div>
             <div class="date">Due Date: 30/06/2014</div>
@@ -74,6 +75,14 @@
             <td class="qty">20</td>
             <td class="total">$800.00</td>
         </tr>
+        <tr>
+            <td class="no">04</td>
+            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
+            <td class="unit">$40.00</td>
+            <td class="qty">20</td>
+            <td class="total">$800.00</td>
+        </tr>
         </tbody>
         <tfoot>
         <tr>
@@ -93,6 +102,7 @@
         </tr>
         </tfoot>
     </table>
+
     <div id="thanks">Thank you!</div>
     <div id="notices">
         <div>NOTICE:</div>

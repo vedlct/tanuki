@@ -7,7 +7,6 @@ class PdfMaker extends CI_Controller
     {
         parent::__construct();
         $this->load->library('pdfgenerator');
-
     }
     public function index()
     {
@@ -23,7 +22,6 @@ class PdfMaker extends CI_Controller
             $html = $this->load->view('Admin/testPdf', $data, true);
             $filename = 'testPdf';
             $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
-
 
 
         } else {
@@ -48,4 +46,5 @@ class PdfMaker extends CI_Controller
         }
 
     }
+
 }
