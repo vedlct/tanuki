@@ -103,7 +103,7 @@
                                         <th width="5%"class="center"> Payment Type</th>
                                         <th width="44%"class="center"> Items </th>
 
-                                        <th width="20%"class="center"> Order Status </th>
+                                        <th width="20%"class="center"> Print & Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -202,6 +202,11 @@
                                             </td>
 
                                             <td class="center">
+
+                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf">
+                                                    <i class="fa fa-print"></i> Print </a>
+
+                                                <hr>
 
 
                                                 <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>

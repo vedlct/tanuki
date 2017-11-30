@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class TestPdf extends CI_Controller
+class PdfMaker extends CI_Controller
 {
 
     public function __construct()
@@ -24,6 +24,23 @@ class TestPdf extends CI_Controller
             $filename = 'testPdf';
             $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 
+
+
+        } else {
+            redirect('Login');
+        }
+
+    }
+
+    public function OrderBillPdf()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $data='';
+
+            $html = $this->load->view('Admin/invoicePdf', $data, true);
+            $filename = 'testPdf';
+            $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 
 
         } else {

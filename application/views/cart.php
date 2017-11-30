@@ -225,24 +225,6 @@
                             </tbody>
                         </table>
                         <hr>
-<!--                        <div class="row" id="options_2">-->
-<!--                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-<!--                                <a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="--><?php //echo base_url()?><!--public/img/takeaway.jpg"><br>Take Away</a>-->
-<!--                            </div>-->
-<!--                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-<!--                                <a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="--><?php //echo base_url()?><!--public/img/homedeli.png"><br>Home Deliver</a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <hr>-->
-<!--                        <div class="row" id="options_2">-->
-<!--                            <div class="col-lg-6">-->
-<!--                                <label>Promo Code :</label>-->
-<!---->
-<!--                            </div>-->
-<!--                            <div class="col-lg-6">-->
-<!--                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >-->
-<!--                            </div>-->
-<!--                        </div><!-- Edn options 2 -->
 
 
                         <table class="table table_summary" id="total_table">
@@ -307,48 +289,9 @@
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
-<!-- Login modal -->   
-<div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content modal-popup">
-				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="#" class="popup-form" id="myLogin">
-                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" placeholder="Username">
-					<input type="text" class="form-control form-white" placeholder="Password">
-					<div class="text-left">
-						<a href="#">Forgot Password?</a>
-					</div>
-					<button type="submit" class="btn btn-submit">Submit</button>
-				</form>
-			</div>
-		</div>
-	</div><!-- End modal -->   
-    
-<!-- Register modal -->   
-<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content modal-popup">
-				<a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-				<form action="#" class="popup-form" id="myRegister">
-                	<div class="login_icon"><i class="icon_lock_alt"></i></div>
-					<input type="text" class="form-control form-white" placeholder="Name">
-					<input type="text" class="form-control form-white" placeholder="Last Name">
-                    <input type="email" class="form-control form-white" placeholder="Email">
-                    <input type="text" class="form-control form-white" placeholder="Password"  id="password1">
-                    <input type="text" class="form-control form-white" placeholder="Confirm password"  id="password2">
-                    <div id="pass-info" class="clearfix"></div>
-					<div class="checkbox-holder text-left">
-						<div class="checkbox">
-							<input type="checkbox" value="accept_2" id="check_2" name="check_2" />
-							<label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
-						</div>
-					</div>
-					<button type="submit" class="btn btn-submit">Register</button>
-				</form>
-			</div>
-		</div>
-	</div><!-- End Register modal -->
+    <!-- login logout modal-->
+    <?php include ('login_logout.php')?>
+    <!-- end login logout modal-->
     
      <!-- Search Menu -->
 	<div class="search-overlay-menu">
@@ -377,3 +320,53 @@
 
 </body>
 </html>
+
+<script>
+    function minus(x) {
+
+        var btn = $(x).data('panel-id');
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x-1;
+
+        document.getElementById(btn).value = newx;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+                //  alert(data);
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
+    function plus(x) {
+
+        var btn = $(x).data('panel-id');
+
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x+1;
+
+        document.getElementById(btn).value = newx;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+
+            }
+
+        });
+
+
+    }
+</script>
