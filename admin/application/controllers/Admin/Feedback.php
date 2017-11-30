@@ -19,7 +19,8 @@ class Feedback extends CI_Controller
 
             $this->load->view('Admin/userFeedBackDetail', $data);
         } else {
-            redirect('Login');
+           
+		   redirect('Login');
 
         }
     }
