@@ -1,8 +1,6 @@
 <?php
 class Itemsm extends CI_Model {
-
     public function getAllItem(){
-
         $this->db->select('items.id as id, fkCatagory , itemName, image, description, price');
         $this->db->join('itemsizes ', 'itemsizes.fkItemId = items.id ', 'left');
         $this->db->from('items');
@@ -10,16 +8,14 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-     public function getAllItemSize(){
-
-         $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
-         $this->db->from('itemsizes');
-         $this->db->where('itemSizeStatus', "1");
-         $query = $this->db->get();
-         return $query->result();
-     }
+    public function getAllItemSize(){
+        $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
+        $this->db->from('itemsizes');
+        $this->db->where('itemSizeStatus', "1");
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getDefualtItemSize(){
-
         $this->db->select('id, fkItemId , itemSize, price, itemsizeStatus');
         $this->db->from('itemsizes');
         $this->db->group_by('fkItemId');
@@ -27,14 +23,12 @@ class Itemsm extends CI_Model {
         return $query->result();
     }
     public function getAllCategory(){
-
         $this->db->select('id, name ');
         $this->db->from('catagory');
         $query = $this->db->get();
         return $query->result();
     }
     public function getItem($id){
-
         $this->db->select('itemsizes.id as id, itemName,itemSize,  price');
         $this->db->join('itemsizes ', 'itemsizes.fkItemId = items.id ', 'left');
         $this->db->from('items');
@@ -57,7 +51,6 @@ class Itemsm extends CI_Model {
         return $query->result();
     }
     public function getPromoType($promocoe){
-
         $this->db->select('promoType, discountAmount');
         $this->db->where('startDate <=',date('Y-m-d'));
         $this->db->where('endDate >=',date('Y-m-d'));
@@ -65,10 +58,8 @@ class Itemsm extends CI_Model {
         $this->db->from('promotions');
         $query = $this->db->get();
         return $query->result();
-
     }
     public function setDiscountforSelectItem($itemId){
-
         $this->db->select('promotiondetail.discountAmount as itemdiscount');
         $this->db->join('promotiondetail','promotiondetail.fkPromotionId = promotions.id','left');
         $this->db->where('fkItemId =',$itemId);
@@ -79,7 +70,6 @@ class Itemsm extends CI_Model {
         $this->db->limit(1);
         $query1 = $this->db->get();
         return $query1->result();
-
     }
     public function getUserdata($userid){
         $this->db->select('name, address , postalCode, fkCity, memberCardNo , contactNo , email, password');
@@ -88,7 +78,6 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
     public function getItemid($itemsizeid){
         $this->db->select('itemsizes.fkItemId as id');
         $this->db->from('itemsizes');
@@ -96,7 +85,6 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
-
     public function getorderstatus(){
         $this->db->select('id');
         $this->db->from('orderstatus');
@@ -106,42 +94,32 @@ class Itemsm extends CI_Model {
         return $query->row();
     }
     public function checkoutInsert($data){
-
-
         $this->db->insert('orders', $data);
-
         $orderid = $this->db->insert_id();
         foreach ($this->cart->contents() as $c){
-
             $data2 = array(
-
                 'fkOrderId' => $orderid,
                 'fkItemSizeId' => $c['id'],
                 'quantity' => $c['qty'],
                 'rate' => $c['price'],
                 'discount' => $c['coupon'],
-
-
             );
             $this->db->insert('orderitems', $data2);
         }
     }
-
     public function getearnPoint($userid){
-        $this->db->select('SUM(`earnedPoints`) as earnpoint');
+        $this->db->select('SUM(`earnedPoints`) as earnspoint ');
         $this->db->from('points');
         $this->db->where('fkUserId', $userid);
         $query = $this->db->get();
         return $query->result();
-
     }
     public function getexpensePoint($userid){
-        $this->db->select('SUM(`expedPoints`) as expensepoint');
+        $this->db->select('SUM(`expedPoints`) as expenspoint');
         $this->db->from('pointdeduct');
         $this->db->where('fkUserId', $userid);
         $query = $this->db->get();
-        return $query->row();
+        return $query->result();
     }
-
 }
 ?>

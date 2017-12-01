@@ -113,10 +113,15 @@ class Items extends CI_Controller {
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-            $erresult = $this->Itemsm->getearnPoint($userid);
-            $this->data['earnpoint'] = $erresult->earnpoint;
-            $exresult = $this->Itemsm->getexpensePoint($userid);
-            $this->data['exensepoint'] = $exresult->expensepoint;
+
+//            $erresult = $this->Itemsm->getearnPoint($userid);
+//            $this->data['earnpoint'] = $erresult->earnpoint;
+//            $exresult = $this->Itemsm->getexpensePoint($userid);
+//            $this->data['exensepoint'] = $exresult->expensepoint;
+
+            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
+
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->load->view('cart', $this->data);
         }
@@ -263,6 +268,60 @@ class Items extends CI_Controller {
         redirect('Items');
 
     }
+
+    public function usepoints()
+    {
+
+        $userid = $this->session->userdata('id');
+        $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+        $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
+        foreach ($this->data['earnpoint'] as $ep) {
+            $earn = $ep->earnspoint;
+        }
+        foreach ($this->data['exensepoint'] as $exp) {
+            $expense = $exp->expenspoint;
+        }
+        $totalpoint = $earn - $expense;
+        $totalpointdollar = $totalpoint / 10;
+        $totalbill = $this->cart->total();
+        if ($totalpointdollar >= $totalbill) {
+            $resukt = $totalpointdollar - $totalbill;
+            $updatedtotalpointdollar = $totalpointdollar - $resukt;
+            $newtotal = $totalbill - $updatedtotalpointdollar;
+
+            foreach ($this->cart->contents() as $c) {
+
+                $disamount = $newtotal / $this->cart->total_items();
+
+                $data = array(
+                    'rowid' => $c['rowid'],
+                    'coupon' => $disamount,
+
+                );
+                $this->cart->update($data);
+            }
+        } else {
+            //  $newtotal = $totalbill - $totalpointdollar;
+            //  $updatedtotalpointdollar = $totalpointdollar - $resukt;
+            // $newtotal = $totalbill - $updatedtotalpointdollar;
+
+            foreach ($this->cart->contents() as $c) {
+
+                $disamount = $totalpointdollar / $this->cart->total_items();
+
+                $data = array(
+                    'rowid' => $c['rowid'],
+                    'coupon' => $disamount,
+
+                );
+                $this->cart->update($data);
+
+            }
+        }
+            echo $totalpointdollar;
+
+        }
+
 
 
 }
