@@ -113,8 +113,8 @@ class Items extends CI_Controller {
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-            $this->data['earnpoint'] = $this->Itemsm->getearnPoint();
-            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint();
+            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->load->view('cart', $this->data);
         }
@@ -259,6 +259,19 @@ class Items extends CI_Controller {
         );
         $this->Itemsm->checkoutInsert($data);
         redirect('Items');
+
+    }
+
+    public function usepoints(){
+
+//        $userid = $this->session->userdata('id');
+//            $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+//            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+//        foreach ($this->data['userdata']  as $ep){ $earn = $ep->earnspoint;}
+//        foreach ($this->data['earnpoint']  as $exp){ $expense = $exp->expenspoint;}
+//        $totalpoint= $earn-$expense;
+        $totalbill= $this->cart->total();
+       echo $totalbill;
 
     }
 
