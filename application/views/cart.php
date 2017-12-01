@@ -225,8 +225,8 @@
                             </tbody>
                         </table>
                         <hr>
-
-
+                        Your total point : <?php echo ($earnpoint - $exensepoint) ?>
+                        <hr>
                         <table class="table table_summary" id="total_table">
                             <tbody>
                             <tr>
@@ -273,8 +273,7 @@
                             </tbody>
                         </table>
                         <hr>
-                        Your total point :
-                        <hr>
+
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->

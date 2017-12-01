@@ -113,8 +113,10 @@ class Items extends CI_Controller {
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-            $this->data['earnpoint'] = $this->Itemsm->getearnPoint();
-            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint();
+            $erresult = $this->Itemsm->getearnPoint($userid);
+            $this->data['earnpoint'] = $erresult->earnpoint;
+            $exresult = $this->Itemsm->getexpensePoint($userid);
+            $this->data['exensepoint'] = $exresult->expensepoint;
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->load->view('cart', $this->data);
         }

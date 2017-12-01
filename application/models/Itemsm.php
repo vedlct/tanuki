@@ -127,5 +127,21 @@ class Itemsm extends CI_Model {
         }
     }
 
+    public function getearnPoint($userid){
+        $this->db->select('SUM(`earnedPoints`) as earnpoint');
+        $this->db->from('points');
+        $this->db->where('fkUserId', $userid);
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+    public function getexpensePoint($userid){
+        $this->db->select('SUM(`expedPoints`) as expensepoint');
+        $this->db->from('pointdeduct');
+        $this->db->where('fkUserId', $userid);
+        $query = $this->db->get();
+        return $query->row();
+    }
+
 }
 ?>
