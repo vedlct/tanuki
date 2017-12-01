@@ -203,7 +203,7 @@
 
                                             <td class="center">
 
-                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf" target="_blank">
+                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
                                                     <i class="fa fa-print"></i> Print </a>
 
                                                 <hr>
