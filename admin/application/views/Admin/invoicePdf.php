@@ -42,15 +42,16 @@
         </div>
 
     </div>
-    <table border="0" cellspacing="0" cellpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="no">#</th>
-            <th class="desc">NAME</th>
-            <th class="desc">SIZE</th>
-            <th class="unit">UNIT PRICE</th>
-            <th class="qty">QUANTITY</th>
-            <th class="total">TOTAL</th>
+            <th width="5%" class="no">#</th>
+            <th width="25%" class="desc">NAME</th>
+            <th width="15%"class="desc">SIZE</th>
+            <th width="10%"class="unit">UNIT PRICE</th>
+            <th width="10%"class="qty">QUANTITY</th>
+            <th width="10%"class="discount">Discount</th >
+            <th width="15%"class="total">TOTAL</th>
         </tr>
         </thead>
         <tbody>
@@ -59,9 +60,10 @@
             <td class="no"><?php echo $i?></td>
             <td class="desc"><h3><?php echo $orderItems->itemName?></h3><?php echo $orderItems->description?></td>
             <td class="desc"><h3><?php echo $orderItems->itemSize?></h3></td>
-            <td class="unit"><?php echo $orderItems->rate?></td>
+            <td class="unit">$<?php echo $orderItems->rate?></td>
             <td class="qty"><?php echo $orderItems->quantity?></td>
-            <td class="total"><?php echo $price=($orderItems->rate * $orderItems->quantity) ?></td>
+            <td class="discount">$<?php echo $discount=(($orderItems->quantity*$orderItems->rate)*($orderItems->discount/100))?></td>
+            <td class="total">$<?php echo $price=(($orderItems->rate * $orderItems->quantity)-$discount) ?></td>
         </tr>
         <?php $i++;$total=($total+$price);} ?>
         </tbody>
@@ -69,25 +71,25 @@
 
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">SUBTOTAL</td>
+            <td colspan="4">SUBTOTAL</td>
             <td>$<?php echo $total?></td>
         </tr>
         <tr>
             <td colspan="2"></td>
             <?php foreach ($charge as $charges){?>
-            <td colspan="3">VAT <?php echo $charges->vat?>%</td>
+            <td colspan="4">VAT <?php echo $charges->vat?>%</td>
             <?php }?>
             <td>$<?php echo  $allOrder->vat?></td>
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">Delevary Fee</td>
+            <td colspan="4">Delevary Fee</td>
             <td>$<?php echo $allOrder->deliveryfee?></td>
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">GRAND TOTAL</td>
-            <td>$<?php echo $Total=($allOrder->deliveryfee+$allOrder->vat)?></td>
+            <td colspan="4">GRAND TOTAL</td>
+            <td>$<?php echo $Total=($total+$allOrder->deliveryfee+$allOrder->vat)?></td>
         </tr>
 
 

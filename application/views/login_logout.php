@@ -21,13 +21,27 @@
     <div class="modal-dialog">
         <div class="modal-content modal-popup">
             <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-            <form action="#" class="popup-form" id="myRegister">
+            <form action="<?php echo base_url()?>admin/Login/check_user" class="popup-form" id="myRegister" onsubmit="return registration()">
                 <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="Name">
-                <input type="text" class="form-control form-white" placeholder="Last Name">
-                <input type="email" class="form-control form-white" placeholder="Email">
-                <input type="text" class="form-control form-white" placeholder="Password"  id="password1">
-                <input type="text" class="form-control form-white" placeholder="Confirm password"  id="password2">
+                <input type="text" class="form-control form-white" id="Name" placeholder="Name">
+                <textarea type="text" id="address" name="address" class="form-control form-white" placeholder=" Your full address"></textarea>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+
+                    <input type="text" id="city" name="city" class="form-control form-white" value="" placeholder="Your city">
+
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+
+                    <input type="text" id="pcode" name="pcode" class="form-control form-white" value="" placeholder=" Your postal code">
+
+                    </div>
+                </div>
+
+                <input type="email" class="form-control form-white"name="email" id="email" placeholder="Email">
+                <input type="text" class="form-control form-white"name="password" placeholder="Password"  id="password">
+                <input type="text" class="form-control form-white" name="conPassword" placeholder="Confirm password"  id="conPassword">
+                <input type="tel" class="form-control form-white" placeholder="Contact No">
                 <div id="pass-info" class="clearfix"></div>
                 <div class="checkbox-holder text-left">
                     <div class="checkbox">
@@ -40,3 +54,18 @@
         </div>
     </div>
 </div><!-- End Register modal -->
+
+<script>
+
+    function registration() {
+        var name=document.getElementById('Name').value;
+        var address=document.getElementById('address').value;
+        var city=document.getElementById('city').value;
+        var pcode=document.getElementById('pcode').value;
+        var email=document.getElementById('email').value;
+        var password=document.getElementById('password').value;
+        var conPassword=document.getElementById('conPassword').value;
+
+    }
+
+</script>
