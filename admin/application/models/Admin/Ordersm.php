@@ -328,6 +328,16 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
+    public  function getUsedPointForOrder($orderId)
+    {
+        $this->db->select('expedPoints');
+        $this->db->from('pointdeduct');
+        $this->db->where('fkOrderId',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
    
 
 
