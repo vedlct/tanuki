@@ -274,9 +274,10 @@ class Items extends CI_Controller {
         $totalbill= $this->cart->total();
         $totalpointdollar = $totalpoint * .1 ;
        if ($totalpointdollar >= $totalbill){
-           
+           $res = $totalpointdollar - $totalbill ;
+           $newtotal = $totalpointdollar - $res;
        }
-        echo $totalpoint;
+        echo $newtotal;
 
     }
 
