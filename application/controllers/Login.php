@@ -69,33 +69,38 @@ class Login extends CI_Controller
 
     }
 
+    public function showRegitration()
+    {
+        $this->load->view('userRegistration');
+    }
+
     public function registerUser()
     {
         $this->load->library('form_validation');
 
-        if (!$this->form_validation->run('userRes')) {
+//        if (!$this->form_validation->run('userRes')) {
+//
+//            $this->load->view('userRegistration');
+//
+//        }
+//        else {
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
 
-            $this->load->model('Admin/Departmentm');
-            $this->data['departmentName'] = $this->Departmentm->gellDepartmentName();
-            $this->load->view('Admin/newCourse', $this->data);
+            if ($password == $conPassword) {
 
-        }
-        $name = $this->input->post('Name');
-        $address = $this->input->post('address');
-        $city = $this->input->post('city');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $conPassword = $this->input->post('conPassword');
-        $phone = $this->input->post('phone');
-
-        if ($password==$conPassword){
-
-
-        }
-
+            $memberCard= (int)$email;
+            print_r($memberCard);
 
 
-        redirect('Login');
+            }
+//        }
+//        redirect('Login');
     }
 
 
