@@ -264,14 +264,19 @@ class Items extends CI_Controller {
 
     public function usepoints(){
 
-//        $userid = $this->session->userdata('id');
-//            $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-//            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
-//        foreach ($this->data['userdata']  as $ep){ $earn = $ep->earnspoint;}
-//        foreach ($this->data['earnpoint']  as $exp){ $expense = $exp->expenspoint;}
-//        $totalpoint= $earn-$expense;
+        $userid = $this->session->userdata('id');
+
+        $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+        $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
+        foreach ($this->data['earnpoint']  as $ep){ $earn = $ep->earnspoint;}
+        foreach ($this->data['exensepoint']  as $exp){ $expense = $exp->expenspoint;}
+        $totalpoint= $earn-$expense;
         $totalbill= $this->cart->total();
-       echo $totalbill;
+        $totalpointdollar = $totalpoint * .1 ;
+       if ($totalpointdollar >= $totalbill){
+           
+       }
+        echo $totalpoint;
 
     }
 
