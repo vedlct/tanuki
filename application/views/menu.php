@@ -27,6 +27,7 @@
                     <li><a href="contacts.php">Contacts</a></li>
                     <?php if($this->session->userdata('loggedin')=="true"){
                     $username=$this->session->userdata('name');
+                    $userId=$this->session->userdata('id');
                     $usertype=$this->session->userdata('userType');
                     if($usertype=="Admin"){
 
@@ -49,7 +50,8 @@
                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url()?>Profile/showuser/<?php echo $username; ?>">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Profile/showuser/<?php echo $userId; ?>">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Userorder/userOrders/<?php echo $userId; ?>">My Order</a></li>
                                     <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
 
                                 </ul>
