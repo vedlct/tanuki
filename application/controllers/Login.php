@@ -10,10 +10,6 @@ class Login extends CI_Controller
     }
 
 
-    public function index()
-    {
-        $this->load->view('login');
-    }
 
 
     public function check_user()
@@ -45,12 +41,10 @@ class Login extends CI_Controller
             $this->session->set_userdata($data);
 
 
-            if ($this->session->userdata('userType') == "Admin"){
-                redirect('Admin/Home');
-            }
-            elseif ($this->session->userdata('userType') == "Customer")
+
+            if ($this->session->userdata('userType') == "Cus")
             {
-                redirect('Admin/Home/viewHome');
+                redirect('index');
             }
             //print_r($result);
 
@@ -58,7 +52,7 @@ class Login extends CI_Controller
         else{
             echo "<script>
                         alert('wrong username or password');
-                     window.location=\"/tanuki/Login\";  
+                     window.location=\"/index\";  
 					
                 </script>";
 
