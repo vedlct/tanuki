@@ -23,13 +23,13 @@
         <div class="sk-rect5"></div>
     </div>
 </div>
-                <?php include ('menu.php') ?>
+<?php include ('menu.php') ?>
 
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
             <div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">All  reviews</a></small> )</div>
+            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">98 reviews</a></small> )</div>
             <h1>Mexican TacoMex</h1>
             <div><em>Mexican / American</em></div>
             <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
@@ -64,9 +64,6 @@
             <div class="box_style_2">
                 <h4 class="nomargin_top">Opening time <i class="icon_clock_alt pull-right"></i></h4>
                 <ul class="opening_list">
-<!--                    --><?php //foreach ($details as $e){?>
-<!--                        --><?php //echo $e->time ?>
-<!--                    --><?php //}?>
 
                     <h1>demo</h1>
                 </ul>
@@ -81,106 +78,190 @@
 
         <div class="col-md-8">
             <div class="box_style_2">
-                <h2 class="inner">Description</h2>
-
-<!--                --><?php //foreach ($details as $e){?>
-<!--                    --><?php ////echo $e->description;
-//                    //echo $this->session->userdata['username'];?>
-<!--                --><?php //}?>
+                <h2 class="inner"> Review </h2>
+                <?php if ($this->session->userdata('loggedin')=="true" ){?>
+                    <?php foreach ($avgrating as $av){
+                        $rating_avg = round($av->userRatings);
 
 
+                    }?>
+                    <?php
+                    switch ($rating_avg) {
+                        case 1:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
 
-                <div id="summary_review">
-                    <div id="general_rating">
-                       All Items  Reviews
+                            <?php
+                            break;
+                        case 2:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
 
-                    </div>
+                            <?php
+                            break;
+                        case 3:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 4:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 5:
+                            ?>
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        default:
+                            ?>
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+
+                    }
+
+                    ?>
 
 
-                    <div class="row" id="rating_summary">
+
+                    <?php foreach( $allItem as $items) { ?>
+                        <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
 
 
-                    </div><!-- End row -->
-
-<!--                    --><?php //if($this->session->userdata('loggedin')=="true"){
-//                    $username=$this->session->userdata('username');
-//                    $usertype=$this->session->userdata('type');
-//                    if($usertype=="User"){
-//
-//                    ?>
-
-                    <hr class="styled">
-                </div><!-- End summary_review -->
-
-<!--            --><?php //}}else{?>
-
-<!--                <hr class="styled">-->
-<!--                <a href="#" class="btn_1 add_bottom_15" data-toggle="modal" data-target="#login_2">Leave a review</a>-->
-<!--            </div>-->
-<!--<!--            --><?php ////}?>
+                        <form method="post" action="<?php echo base_url() ?>Feedback/newReview/<?php echo $items->id ?>">
 
 
-<!--            --><?php //foreach($comments as $c){  ?>
-                <?php $i=1; foreach($userFeedback as $f) { ?>
+                            <textarea name="review_text" id="review_text" class="form-control form-black" style="height:100px" placeholder="write review..........." ></textarea>
+                            <input type="number" name="rating" max="5" min="0">
 
-                <div class="review_strip_single">
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                            <input type="submit" value="Submit" >
+                        </form>
+                    <?php }}else{?>
+
+
+                    <?php foreach ($avgrating as $av){
+                        $rating_avg = round($av->userRatings);
+
+
+                    }?>
+                    <?php
+                    switch ($rating_avg) {
+                        case 1:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 2:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 3:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 4:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 5:
+                            ?>
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        default:
+                            ?>
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+
+                    }
+
+                    ?>
+
+
+
+                    <?php foreach( $allItem as $items) { ?>
+                        <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
+
+
+                    <?php }}  ?>
+
+                <?php foreach($userFeedback as $f) { ?>
+
 
                     <h4><?php echo $f->name ?></h4>
-
-                        <p>
-                            <?php echo $f->feedback ?>
-                            <small>   <?php echo $f->feedbackTime ?></small>
-                        </p>
-                        <p><?php echo $f->userRating?></p>
+                    <?php break; } ?>
 
 
-
-
-                        <!--
-                            <div class="review_strip_single">
-                                <img src="<?php echo base_url() ?>img/avatar3.jpg" alt="" class="img-circle">
-                                <small> - 25 March 2015 -</small>
-                                <h4>Markus Schulz</h4>
-                                <p>
-                                    "At sed dico invenire facilisis, sed option sapientem iudicabit ad, sea idque doming vituperatoribus at. Duo ut inani tantas scaevola. Commodo oblique at cum. Duo id vide delectus. Vel et doctus laoreet minimum, ei feugait pertinacia usu.
-                                </p>
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-                                        </div>
-                                        Food Quality
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i>
-                                        </div>
-                                        Price
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i><i class="icon_star"></i><i class="icon_star"></i>
-                                        </div>
-                                        Punctuality
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="rating">
-                                            <i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i>
-                                        </div>
-                                        Courtesy
-                                    </div>
-                                </div><!-- End row
-                            </div><!-- End review strip -->
-
-                        <?php  $i++;}	?>
-
-
+            </div>
+            <!-- End box_style_1 -->
         </div>
-                <!-- End box_style_1 -->
-    </div>
-</div><!-- End row -->
+    </div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
+
 
 <!-- Footer ================================================== -->
 <!-- Footer ================================================== -->
@@ -254,102 +335,14 @@
     </div><!-- End container -->
 </footer>
 <!-- End Footer =============================================== --><!-- End Footer =============================================== -->
-
+</div>
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
-<!-- Login modal -->
-<div class="modal fade" id="login_2" tabindex="-1" role="dialog" aria-labelledby="myLogin" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content modal-popup">
-            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-            <form action="<?php echo base_url()?>Home/login" class="popup-form" id="myLogin" method="post">
-                <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="Username" name="username" >
-                <input type="password" class="form-control form-white" placeholder="Password" name="password">
-                <div class="text-left">
-                    <a href="#" data-toggle="modal" data-target="#forgot_pass" onclick="forgot_pass()">Forgot Password?</a>
-                </div>
-                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                <button type="submit" class="btn btn-submit">Submit</button>
-            </form>
-        </div>
-    </div>
-</div><!-- End modal -->
-<!-- forgot pass modal -->
-<div class="modal fade" id="forgot_pass" tabindex="-1" role="dialog" aria-labelledby="forgot_password" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content modal-popup">
-            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-            <form action="<?php echo base_url()?>Home/forgot_pass" class="popup-form" id="forgot_pass" method="post">
-                <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <label ><h3 style="color: white">Please Enter Your Email Address<h3></label>
-                <input type="email" class="form-control form-white" placeholder="Email" name="email">
-                <div class="text-left">
-                </div>
-                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                <button type="submit" class="btn btn-submit">Submit</button>
-            </form>
-        </div>
-    </div>
-</div>
-<script>
-    function forgot_pass() {
-        document.getElementById("login_2").style.display = 'none';
-    }
-</script>
+<?php include ('login_logout.php')?>
 
 
-<!-- Register modal -->
-<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content modal-popup">
-            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-            <form action="<?php echo base_url()?>Registration" class="popup-form" id="myRegister" method="post">
-                <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="text" class="form-control form-white" placeholder="Name" name="Name">
 
-                <input type="email" class="form-control form-white" placeholder="Email" name="Email">
-                <input type="text" class="form-control form-white" id="Username" placeholder="UserName" name="UserName" onclick="hidediv()" onfocusout="myFunc()">
-                <div style="display: none" id="alerttext"><span style="color: red"> UserName Already Taken</span></div>
 
-                <input type="text" class="form-control form-white" placeholder=" Your full address" name="full_address"  >
-                <input type="text" class="form-control form-white" placeholder=" Your phone number" name="phone_number"  >
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <input type="text"  name="city" class="form-control form-white" placeholder="Your city">
-
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <input type="text"  name="postal_code" class="form-control form-white" placeholder="Your postal code">
-
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <input type="text"  name="state" class="form-control form-white" placeholder="State">
-
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <input type="text"  name="country" class="form-control form-white" placeholder="Country">
-
-                    </div>
-                </div>
-
-                <input type="text" class="form-control form-white" placeholder="Password"  id="password1"name="password1">
-                <input type="text" class="form-control form-white" placeholder="Confirm password"  id="password2"name="password2">
-                <div id="pass-info" class="clearfix"></div>
-                <div class="checkbox-holder text-left">
-                    <div class="checkbox">
-                        <input type="checkbox" value="accept_2" id="check_2" name="check_2" />
-                        <label for="check_2"><span>I Agree to the <strong>Terms &amp; Conditions</strong></span></label>
-                    </div>
-                </div>
-                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                <button type="submit" class="btn btn-submit" name="confirmregistration">Register</button>
-            </form>
-        </div>
-    </div>
-</div><!-- End Register modal -->
-    <!-- End Register modal -->
-	<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
 <script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
@@ -363,22 +356,22 @@
 <script src="<?php echo base_url()?>public/js/infobox.js"></script>
 <script src="<?php echo base_url()?>public/js/jquery.sliderPro.min.js"></script>
 <script type="text/javascript">
-	$( document ).ready(function( $ ) {
-		$( '#Img_carousel' ).sliderPro({
-			width: 960,
-			height: 500,
-			fade: true,
-			arrows: true,
-			buttons: false,
-			fullScreen: false,
-			smallSize: 500,
-			startSlide: 0,
-			mediumSize: 1000,
-			largeSize: 3000,
-			thumbnailArrows: true,
-			autoplay: false
-		});
-	});
+    $( document ).ready(function( $ ) {
+        $( '#Img_carousel' ).sliderPro({
+            width: 960,
+            height: 500,
+            fade: true,
+            arrows: true,
+            buttons: false,
+            fullScreen: false,
+            smallSize: 500,
+            startSlide: 0,
+            mediumSize: 1000,
+            largeSize: 3000,
+            thumbnailArrows: true,
+            autoplay: false
+        });
+    });
 </script>
 
 </body>

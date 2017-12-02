@@ -186,34 +186,35 @@
 
 
                                                         </tr>
-                                                    <?php $total=$total+$price;}}}?>
+                                                    <?php $total=$total+$price;}}} ?>
                                                     <tr>
 
-                                                        <td style="color: red" colspan="5">Total-(delevery fee:$<?php echo $orders->deliveryfee;?> + vat:$<?php echo $orders->vat?>
+                                                        <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
 
                                                             <?php foreach ($pointUsed as $pu){
                                                                 if ($pu->fkOrderId == $orders->id ){
 
                                                                     if (!empty($pu->expedPoints)) {
-                                                                        echo " - Points Used :$" . $pu->expedPoints;
+                                                                        echo " - Points Used :" . $pu->expedPoints;
                                                                     }
                                                                 }
 
-                                                            }?> )</td>
+                                                            } ?> )
+                                                        </td>
 
                                                         <td colspan="1">
 
-                                                            <?php $point=0;foreach ($pointUsed as $pu){
+                                                            <?php $pointToMoney=0;foreach ($pointUsed as $pu){
                                                                 if ($pu->fkOrderId == $orders->id ){
 
                                                                     if (!empty($pu->expedPoints)) {
-                                                                        $point= $pu->expedPoints;
+                                                                        $pointToMoney= ($pu->expedPoints/10);
 
                                                                     }
                                                                 }
 
                                                             }?>
-                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat) - $point);?>
+                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
 
                                                         </td>
                                                         <td>

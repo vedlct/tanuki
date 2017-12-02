@@ -20,7 +20,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" n class="form-control input-height"  value="<?php echo $u->name; ?> " name="username" />
+                                                    <input type="text"  class="form-control input-height"  value="<?php echo $u->name; ?> " name="username" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -28,7 +28,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" n class="form-control input-height" value="<?php echo $u->address; ?>" name="address" />
+                                                    <input type="text"  class="form-control input-height" value="<?php echo $u->address; ?>" name="address" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -36,7 +36,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" n class="form-control input-height" value="<?php echo $u->postalCode; ?>" name="postcode" />
+                                                    <input type="text"  class="form-control input-height" value="<?php echo $u->postalCode; ?>" name="postcode" />
                                                 </div>
                                             </div>
 
@@ -59,7 +59,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" n class="form-control input-height" value="<?php echo $u->memberCardNo ?>" name="membercardnumber" />
+                                                    <input type="text"  class="form-control input-height" value="<?php echo $u->memberCardNo ?>" name="membercardnumber" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -67,7 +67,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text" n class="form-control input-height" value="<?php echo $u->contactNo ?>" name="contactno" />
+                                                    <input type="text"  class="form-control input-height" value="<?php echo $u->contactNo ?>" name="contactno" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -75,7 +75,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="email" n class="form-control input-height" value="<?php echo $u->email ?>" name="email" />
+                                                    <input type="email"  class="form-control input-height" value="<?php echo $u->email ?>" name="email" />
 
                                                 </div>
                                             </div>
@@ -84,7 +84,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="password" n class="form-control input-height" value="<?php echo $u->password ?>" name="password" />
+                                                    <input type="password"  class="form-control input-height" value="<?php echo $u->password ?>" name="password" />
                                                 </div>
                                             </div>
 
