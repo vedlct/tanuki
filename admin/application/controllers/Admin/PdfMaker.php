@@ -30,13 +30,22 @@ class PdfMaker extends CI_Controller
 
     }
 
-    public function OrderBillPdf()
+    public function OrderBillPdf($orderId)
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-            $data='';
+            $this->load->model('Admin/Ordersm');
+            $this->load->model('Admin/Chargem');
 
-            $html = $this->load->view('Admin/invoicePdf', $data, true);
+            $this->data['orders'] = $this->Ordersm->viewOrderInfoByOrderIdForPrint($orderId);
+            $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItemsForPrint($orderId);
+            $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+            $this->data['charge'] = $this->Chargem->getAllCharge();
+            $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
+
+
+
+            $html = $this->load->view('Admin/invoicePdf', $this->data, true);
             $filename = 'testPdf';
             $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 

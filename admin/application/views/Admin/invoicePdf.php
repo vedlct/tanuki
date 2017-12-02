@@ -26,82 +26,92 @@
 
 </div>
 <main>
+    <?php foreach ($orders as $allOrder){?>
     <div id="details" class="clearfix">
+
         <div id="client">
             <div class="to">INVOICE TO:</div>
-            <h2 class="name">John Doe</h2>
-            <div class="address">796 Silver Harbour, TX 79273, US</div>
-            <div class="email"><a href="mailto:john@example.com">john@example.com</a></div>
+            <h2 class="name"><?php echo $allOrder->userName?></h2>
+            <div class="address"><?php echo $allOrder->address?>,<?php echo $allOrder->postalCode?>,<?php echo $allOrder->cityName?>,US</div>
+            <div class="email"><a href="mailto:<?php echo $allOrder->email?>"><?php echo $allOrder->email?></a></div>
         </div>
+
         <div id="invoice">
-            <h1>INVOICE 3-2-1</h1>
-            <div class="date">Date of Invoice: 01/06/2014</div>
-            <div class="date">Due Date: 30/06/2014</div>
+            <h1>ORDER# <?php echo $allOrder->id ?></h1>
+            <div class="date">Date of Invoice: <?php echo date('d/m/Y')?></div>
         </div>
+
     </div>
-    <table border="0" cellspacing="0" cellpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="no">#</th>
-            <th class="desc">NAME</th>
-            <th class="desc">SIZE</th>
-            <th class="unit">UNIT PRICE</th>
-            <th class="qty">QUANTITY</th>
-            <th class="total">TOTAL</th>
+            <th width="5%" class="no">#</th>
+            <th width="25%" class="desc">NAME</th>
+            <th width="15%"class="desc">SIZE</th>
+            <th width="10%"class="unit">UNIT PRICE</th>
+            <th width="10%"class="qty">QUANTITY</th>
+            <th width="10%"class="discount">Discount</th >
+            <th width="15%"class="total">TOTAL</th>
         </tr>
         </thead>
         <tbody>
+        <?php $total=0;$i=1;foreach ($ordersItems as $orderItems){?>
         <tr>
-            <td class="no">01</td>
-            <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="desc"><h3>Website Design</h3>Creating a recognizable design solution based on the company's existing visual identity</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">30</td>
-            <td class="total">$1,200.00</td>
+            <td class="no"><?php echo $i?></td>
+            <td class="desc"><h3><?php echo $orderItems->itemName?></h3><?php echo $orderItems->description?></td>
+            <td class="desc"><h3><?php echo $orderItems->itemSize?></h3></td>
+            <td class="unit">$<?php echo $orderItems->rate?></td>
+            <td class="qty"><?php echo $orderItems->quantity?></td>
+            <?php if (!empty($orderItems->discount)){?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php }else{?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php } ?>
+            <td class="total">$<?php echo $price=(($orderItems->rate * $orderItems->quantity)-$discount) ?></td>
         </tr>
-        <tr>
-            <td class="no">02</td>
-            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-            <td class="desc"><h3>Website Development</h3>Developing a Content Management System-based Website</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">80</td>
-            <td class="total">$3,200.00</td>
-        </tr>
-        <tr>
-            <td class="no">03</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
-        </tr>
-        <tr>
-            <td class="no">04</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="desc"><h3>Search Engines Optimization</h3>Optimize the site for search engines (SEO)</td>
-            <td class="unit">$40.00</td>
-            <td class="qty">20</td>
-            <td class="total">$800.00</td>
-        </tr>
+        <?php $i++;$total=($total+$price);} ?>
         </tbody>
+
         <tfoot>
+
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">SUBTOTAL</td>
-            <td>$5,200.00</td>
+            <td colspan="4">SUBTOTAL</td>
+            <td>$<?php echo $total?></td>
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">TAX 25%</td>
-            <td>$1,300.00</td>
+            <?php foreach ($charge as $charges){?>
+            <td colspan="4">VAT <?php echo $charges->vat?>%</td>
+            <?php }if (!empty($allOrder->vat)){?>
+            <td>$<?php echo  $allOrder->vat?></td>
+            <?php }else{ ?>
+            <td>$0.00</td>
+            <?php } ?>
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">GRAND TOTAL</td>
-            <td>$6,500.00</td>
+            <td colspan="4">Delevary Fee</td>
+            <td>$<?php echo $allOrder->deliveryfee?></td>
         </tr>
+        <?php $pointTk=0;if (!empty($pointUsed)){foreach ($pointUsed as $usedPoint){?>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4">Used Point <?php echo $usedPoint->expedPoints?></td>
+            <td>- $<?php echo $pointTk=($usedPoint->expedPoints/10) ?></td>
+        </tr>
+        <?php }} ?>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4">GRAND TOTAL</td>
+            <td>$<?php echo $Total=(($total+$allOrder->deliveryfee+$allOrder->vat)-$pointTk)?></td>
+        </tr>
+
         </tfoot>
+
     </table>
+    <?php }?>
+
 
     <div id="thanks">Thank you!</div>
     <div id="notices">

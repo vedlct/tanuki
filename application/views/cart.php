@@ -273,7 +273,16 @@
                             </tbody>
                         </table>
                         <hr>
-                        Your total point :
+                        <?php
+                        foreach ($earnpoint  as $ep){ $earn = $ep->earnspoint;}
+                        foreach ($exensepoint  as $exp){ $expense = $exp->expenspoint;}
+                        ?>
+                        <div>
+                        <h4 style="color: red; width: 50%">Your Total Points : <?php echo $totalpoint = $earn - $expense ?></h4>
+                            <?php if ($totalpoint >100) { ?>
+                        <button style="float: right; margin-top: -40px" class="btn btn-sm btn-success" onclick="usepoints()">Use Points</button>
+                            <?php } ?>
+                        </div>
                         <hr>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
@@ -401,6 +410,22 @@
 
         });
 
+
+    }
+
+    function usepoints() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/usepoints/")?>' ,
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+               // $('#cart_table').load(document.URL +  ' #cart_table');
+               // $('#total_table').load(document.URL +  ' #total_table');
+        alert(data);
+            }
+
+        });
 
     }
 </script>

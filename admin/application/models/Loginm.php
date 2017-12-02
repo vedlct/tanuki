@@ -10,6 +10,7 @@ class Loginm extends CI_Model{
         $this->db->select('u.id as userId,u.name,u.email,u.fkUserType as userType');
         $this->db->where('email',$userEmail);
         $this->db->where('password',$password);
+        $this->db->where('fkUserType',"Admin");
         $this->db->from('users u');
 
         $query = $this->db->get();
