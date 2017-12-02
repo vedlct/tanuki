@@ -276,6 +276,13 @@ class Items extends CI_Controller {
        if ($totalpointdollar >= $totalbill){
            $res = $totalpointdollar - $totalbill ;
            $newtotal = $totalpointdollar - $res;
+
+           $data = array(
+               'expensepoint' => $newtotal,
+
+           );
+
+           $this->session->set_userdata($data);
        }
         echo $newtotal;
 
