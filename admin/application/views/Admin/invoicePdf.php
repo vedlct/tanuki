@@ -62,7 +62,11 @@
             <td class="desc"><h3><?php echo $orderItems->itemSize?></h3></td>
             <td class="unit">$<?php echo $orderItems->rate?></td>
             <td class="qty"><?php echo $orderItems->quantity?></td>
-            <td class="discount">$<?php echo $discount=(($orderItems->quantity*$orderItems->rate)*($orderItems->discount/100))?></td>
+            <?php if (!empty($orderItems->discount)){?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php }else{?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php } ?>
             <td class="total">$<?php echo $price=(($orderItems->rate * $orderItems->quantity)-$discount) ?></td>
         </tr>
         <?php $i++;$total=($total+$price);} ?>
@@ -78,18 +82,28 @@
             <td colspan="2"></td>
             <?php foreach ($charge as $charges){?>
             <td colspan="4">VAT <?php echo $charges->vat?>%</td>
-            <?php }?>
+            <?php }if (!empty($allOrder->vat)){?>
             <td>$<?php echo  $allOrder->vat?></td>
+            <?php }else{ ?>
+            <td>$0.00</td>
+            <?php } ?>
         </tr>
         <tr>
             <td colspan="2"></td>
             <td colspan="4">Delevary Fee</td>
             <td>$<?php echo $allOrder->deliveryfee?></td>
         </tr>
+        <?php $pointTk=0;if (!empty($pointUsed)){foreach ($pointUsed as $usedPoint){?>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4">Used Point <?php echo $usedPoint->expedPoints?></td>
+            <td>- $<?php echo $pointTk=($usedPoint->expedPoints/10) ?></td>
+        </tr>
+        <?php }} ?>
         <tr>
             <td colspan="2"></td>
             <td colspan="4">GRAND TOTAL</td>
-            <td>$<?php echo $Total=($total+$allOrder->deliveryfee+$allOrder->vat)?></td>
+            <td>$<?php echo $Total=(($total+$allOrder->deliveryfee+$allOrder->vat)-$pointTk)?></td>
         </tr>
 
 
