@@ -283,6 +283,14 @@ class Items extends CI_Controller {
            );
 
            $this->session->set_userdata($data);
+       }else {
+           $newtotal =  $totalpointdollar ;
+           $data = array(
+               'expensepoint' => $newtotal,
+
+           );
+
+           $this->session->set_userdata($data);
        }
         echo $newtotal;
 

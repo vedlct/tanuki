@@ -236,7 +236,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    Subtotal <span class="pull-right"><?php echo $subtotal?></span>
+                                    Subtotal <span class="pull-right"><?php echo $subtotal - $this->session->userdata('expensepoint')?></span>
                                 </td>
                             </tr>
                             <tr>
