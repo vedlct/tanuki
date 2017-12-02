@@ -103,7 +103,7 @@
                                         <th width="5%"class="center"> Payment Type</th>
                                         <th width="44%"class="center"> Items </th>
 
-                                        <th width="20%"class="center"> Order Status </th>
+                                        <th width="20%"class="center"> Print & Order Status </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -170,7 +170,7 @@
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
 
-                                                            <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
+                                                            <td><?php echo $discount=$orderItem->discount?></td>
                                                             <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
                                                                 <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
@@ -188,8 +188,34 @@
                                                         </tr>
                                                     <?php $total=$total+$price;}}}?>
                                                     <tr>
-                                                        <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
-                                                        <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
+
+                                                        <td style="color: red" colspan="5">Total-(delevery fee:$<?php echo $orders->deliveryfee;?> + vat:$<?php echo $orders->vat?>
+
+                                                            <?php foreach ($pointUsed as $pu){
+                                                                if ($pu->fkOrderId == $orders->id ){
+
+                                                                    if (!empty($pu->expedPoints)) {
+                                                                        echo " - Points Used :$" . $pu->expedPoints;
+                                                                    }
+                                                                }
+
+                                                            }?> )</td>
+
+                                                        <td colspan="1">
+
+                                                            <?php $point=0;foreach ($pointUsed as $pu){
+                                                                if ($pu->fkOrderId == $orders->id ){
+
+                                                                    if (!empty($pu->expedPoints)) {
+                                                                        $point= $pu->expedPoints;
+
+                                                                    }
+                                                                }
+
+                                                            }?>
+                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat) - $point);?>
+
+                                                        </td>
                                                         <td>
                                                             <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
                                                         </td>
@@ -202,6 +228,11 @@
                                             </td>
 
                                             <td class="center">
+
+                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
+                                                    <i class="fa fa-print"></i> Print </a>
+
+                                                <hr>
 
 
                                                 <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>

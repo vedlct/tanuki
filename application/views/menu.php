@@ -59,7 +59,7 @@
                         </li>
                     <?php }}else{?>
                     <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#login_2">User Login</button>
-                    <button class="btn btn-sm btn-success" href="#0" data-toggle="modal" data-target="#register">User Register</button>
+                    <button class="btn btn-sm btn-success" href="#" data-toggle="modal" data-target="#register">User Register</button>
                     <?php }?>
                 </ul>
             </div><!-- End main-menu -->

@@ -39,7 +39,7 @@ else
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="<?php echo base_url()?>Admin/TestPdf/testPdf" target="_blank" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                    <a href="<?php echo base_url()?>Admin/PdfMaker/testPdf" target="_blank" class="nav-link nav-toggle"><i class="fa fa-book"></i>
                         <span class="title">Pdf</span>
                     </a>
                 </li>

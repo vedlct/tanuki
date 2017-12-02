@@ -113,6 +113,8 @@ class Items extends CI_Controller {
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->load->view('cart', $this->data);
         }
@@ -213,19 +215,63 @@ class Items extends CI_Controller {
 
         $this->session->set_userdata($data);
     }
+    public function paymentcreditcard(){
+
+        $data = array(
+            'paymentMethod' => "credit",
+
+        );
+
+        $this->session->set_userdata($data);
+    }
+    public function paymentcash(){
+
+        $data = array(
+            'paymentMethod' => "cash",
+
+        );
+
+        $this->session->set_userdata($data);
+    }
 
     public function checkout(){
 
-        $ordertype= $this->session->userdata('OrdertType');
+        $ordertype= $this->session->userdata('orderType');
         $orderdate= date("Y-m-d H:i");
-        $orderstatus= "";
-        $deliveryfee="";
-        $vat= "";
-        $paymenttype="";
-        $user="";
+        $re = $this->Itemsm->getorderstatus();
+        $orderstatus= $re->id;
+        $deliveryfee=$this->session->userdata('deliverfee');
+        $vat= $this->session->userdata('vat');;
+        $paymenttype=$this->session->userdata('paymentMethod');
+        $user=$this->session->userdata('id');
+        $ordertaker = $this->session->userdata('id');
 
+        $data = array(
+            'orderType' => $ordertype ,
+            'orderDate' => $orderdate,
+            'fkOrderStatus' => $orderstatus,
+            'deliveryfee' => $deliveryfee,
+            'vat' => $vat,
+            'paymentType' => $paymenttype,
+            'fkUserId' => $user,
+            'fkOrderTaker' => $ordertaker,
 
-        $this->Itemsm->checkoutInsert();
+        );
+        $this->Itemsm->checkoutInsert($data);
+        redirect('Items');
+
+    }
+
+    public function usepoints(){
+
+//        $userid = $this->session->userdata('id');
+//            $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+//            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+//        foreach ($this->data['userdata']  as $ep){ $earn = $ep->earnspoint;}
+//        foreach ($this->data['earnpoint']  as $exp){ $expense = $exp->expenspoint;}
+//        $totalpoint= $earn-$expense;
+        $totalbill= $this->cart->total();
+       echo $totalbill;
 
     }
 

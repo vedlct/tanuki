@@ -44,15 +44,15 @@ class Login extends CI_Controller
 
             $this->session->set_userdata($data);
 
-
             if ($this->session->userdata('userType') == "Admin")
             {
                 redirect('Admin/Home');
             }
-            elseif ($this->session->userdata('userType') == "cus")
-            {
-                redirect('../Items');
-            }
+
+//            elseif ($this->session->userdata('userType') == "cus")
+//            {
+//                redirect('../Items');
+//            }
             //print_r($result);
 
         }
