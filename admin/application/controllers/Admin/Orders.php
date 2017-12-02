@@ -27,7 +27,9 @@ class Orders extends CI_Controller
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
             $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
-            //print_r($this->data['StatusDelivered']);
+            $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
+
+          //  print_r($this->data['pointUsed']);
 
 
             $this->load->view('Admin/allOrders', $this->data);
@@ -493,6 +495,7 @@ class Orders extends CI_Controller
             redirect('Login');
         }
     }
+
 
 }
 

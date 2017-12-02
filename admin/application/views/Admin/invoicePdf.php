@@ -71,6 +71,7 @@
         </tr>
         <?php $i++;$total=($total+$price);} ?>
         </tbody>
+
         <tfoot>
 
         <tr>
@@ -106,8 +107,8 @@
             <td>$<?php echo $Total=(($total+$allOrder->deliveryfee+$allOrder->vat)-$pointTk)?></td>
         </tr>
 
-
         </tfoot>
+
     </table>
     <?php }?>
 
