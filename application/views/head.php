@@ -18,7 +18,8 @@
 
     <!-- BASE CSS -->
     <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet">
-    
+
+
     <!-- Modernizr -->
 	<script src="<?php echo base_url()?>public/js/modernizr.js"></script>
 

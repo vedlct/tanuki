@@ -38,6 +38,7 @@ body {
 #logo {
   float: left;
   margin-top: 8px;
+
 }
 
 #logo img {
@@ -45,8 +46,10 @@ body {
 }
 
 #company {
-  float: right;
-  /*text-align: right;*/
+  float: left;
+  text-align: left;
+  margin-left: 320px;
+
 }
 
 
