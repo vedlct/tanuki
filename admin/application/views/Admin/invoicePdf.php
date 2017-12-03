@@ -42,15 +42,16 @@
         </div>
 
     </div>
-    <table border="0" cellspacing="0" cellpadding="0">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <thead>
         <tr>
-            <th class="no">#</th>
-            <th class="desc">NAME</th>
-            <th class="desc">SIZE</th>
-            <th class="unit">UNIT PRICE</th>
-            <th class="qty">QUANTITY</th>
-            <th class="total">TOTAL</th>
+            <th width="5%" class="no">#</th>
+            <th width="25%" class="desc">NAME</th>
+            <th width="15%"class="desc">SIZE</th>
+            <th width="10%"class="unit">UNIT PRICE</th>
+            <th width="10%"class="qty">QUANTITY</th>
+            <th width="10%"class="discount">Discount</th >
+            <th width="15%"class="total">TOTAL</th>
         </tr>
         </thead>
         <tbody>
@@ -59,39 +60,55 @@
             <td class="no"><?php echo $i?></td>
             <td class="desc"><h3><?php echo $orderItems->itemName?></h3><?php echo $orderItems->description?></td>
             <td class="desc"><h3><?php echo $orderItems->itemSize?></h3></td>
-            <td class="unit"><?php echo $orderItems->rate?></td>
+            <td class="unit">$<?php echo $orderItems->rate?></td>
             <td class="qty"><?php echo $orderItems->quantity?></td>
-            <td class="total"><?php echo $price=($orderItems->rate * $orderItems->quantity) ?></td>
+            <?php if (!empty($orderItems->discount)){?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php }else{?>
+            <td class="discount">$<?php echo $discount=$orderItems->discount?></td>
+            <?php } ?>
+            <td class="total">$<?php echo $price=(($orderItems->rate * $orderItems->quantity)-$discount) ?></td>
         </tr>
         <?php $i++;$total=($total+$price);} ?>
         </tbody>
+
         <tfoot>
 
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">SUBTOTAL</td>
+            <td colspan="4">SUBTOTAL</td>
             <td>$<?php echo $total?></td>
         </tr>
         <tr>
             <td colspan="2"></td>
             <?php foreach ($charge as $charges){?>
-            <td colspan="3">VAT <?php echo $charges->vat?>%</td>
-            <?php }?>
+            <td colspan="4">VAT <?php echo $charges->vat?>%</td>
+            <?php }if (!empty($allOrder->vat)){?>
             <td>$<?php echo  $allOrder->vat?></td>
+            <?php }else{ ?>
+            <td>$0.00</td>
+            <?php } ?>
         </tr>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">Delevary Fee</td>
+            <td colspan="4">Delevary Fee</td>
             <td>$<?php echo $allOrder->deliveryfee?></td>
         </tr>
+        <?php $pointTk=0;if (!empty($pointUsed)){foreach ($pointUsed as $usedPoint){?>
         <tr>
             <td colspan="2"></td>
-            <td colspan="3">GRAND TOTAL</td>
-            <td>$<?php echo $Total=($allOrder->deliveryfee+$allOrder->vat)?></td>
+            <td colspan="4">Used Point <?php echo $usedPoint->expedPoints?></td>
+            <td>- $<?php echo $pointTk=($usedPoint->expedPoints/10) ?></td>
+        </tr>
+        <?php }} ?>
+        <tr>
+            <td colspan="2"></td>
+            <td colspan="4">GRAND TOTAL</td>
+            <td>$<?php echo $Total=(($total+$allOrder->deliveryfee+$allOrder->vat)-$pointTk)?></td>
         </tr>
 
-
         </tfoot>
+
     </table>
     <?php }?>
 

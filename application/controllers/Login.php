@@ -10,8 +10,6 @@ class Login extends CI_Controller
     }
 
 
-
-
     public function check_user()
     {
 
@@ -40,19 +38,17 @@ class Login extends CI_Controller
 
             $this->session->set_userdata($data);
 
-
-
-            if ($this->session->userdata('userType') == "Cus")
+            if ($this->session->userdata('userType') == "cus")
             {
-                redirect('index');
+                redirect('Items/itemShow');
             }
-            //print_r($result);
+
 
         }
         else{
             echo "<script>
                         alert('wrong username or password');
-                     window.location=\"/index\";  
+                     window.location=\"/tanuki\";  
 					
                 </script>";
 
@@ -69,7 +65,42 @@ class Login extends CI_Controller
         $this->loginm->logout($id,$data);
         $this->session->sess_destroy();
 
-        redirect('Login');
+        redirect('Items/itemShow');
+
+    }
+
+    public function showRegitration()
+    {
+        $this->load->view('userRegistration');
+    }
+
+    public function registerUser()
+    {
+        $this->load->library('form_validation');
+
+//        if (!$this->form_validation->run('userRes')) {
+//
+//            $this->load->view('userRegistration');
+//
+//        }
+//        else {
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
+
+            if ($password == $conPassword) {
+
+            $memberCard= (int)$email;
+            print_r($memberCard);
+
+
+            }
+//        }
+//        redirect('Login');
     }
 
 

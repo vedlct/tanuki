@@ -41,7 +41,7 @@ class PdfMaker extends CI_Controller
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItemsForPrint($orderId);
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
             $this->data['charge'] = $this->Chargem->getAllCharge();
-
+            $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
 
             $html = $this->load->view('Admin/invoicePdf', $this->data, true);
             $filename = 'testPdf';

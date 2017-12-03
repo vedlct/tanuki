@@ -27,6 +27,7 @@
                     <li><a href="contacts.php">Contacts</a></li>
                     <?php if($this->session->userdata('loggedin')=="true"){
                     $username=$this->session->userdata('name');
+                    $userId=$this->session->userdata('id');
                     $usertype=$this->session->userdata('userType');
                     if($usertype=="Admin"){
 
@@ -49,7 +50,8 @@
                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url()?>Profile/showuser/<?php echo $username; ?>">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Profile/showuser/<?php echo $userId; ?>">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>Userorder/userOrders/<?php echo $userId; ?>">My Order</a></li>
                                     <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
 
                                 </ul>
@@ -57,7 +59,8 @@
                         </li>
                     <?php }}else{?>
                     <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#login_2">User Login</button>
-                    <button class="btn btn-sm btn-success" href="#0" data-toggle="modal" data-target="#register">User Register</button>
+
+                    <a href="<?php echo base_url()?>Login/showRegitration"><button class="btn btn-sm btn-success">User Register</button></a>
                     <?php }?>
                 </ul>
             </div><!-- End main-menu -->

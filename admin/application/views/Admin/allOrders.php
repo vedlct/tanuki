@@ -170,7 +170,7 @@
                                                             <td><?php echo $orderItem->quantity?></td>
                                                             <td><?php echo $orderItem->rate?></td>
 
-                                                            <td><?php echo $discount=(($orderItem->quantity*$orderItem->rate)*($orderItem->discount/100))?></td>
+                                                            <td><?php echo $discount=$orderItem->discount?></td>
                                                             <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
                                                                 <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
@@ -186,10 +186,37 @@
 
 
                                                         </tr>
-                                                    <?php $total=$total+$price;}}}?>
+                                                    <?php $total=$total+$price;}}} ?>
                                                     <tr>
-                                                        <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
-                                                        <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
+
+                                                        <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+
+                                                            <?php foreach ($pointUsed as $pu){
+                                                                if ($pu->fkOrderId == $orders->id ){
+
+                                                                    if (!empty($pu->expedPoints)) {
+                                                                        echo " - Points Used :" . $pu->expedPoints;
+                                                                    }
+                                                                }
+
+                                                            } ?> )
+                                                        </td>
+
+                                                        <td colspan="1">
+
+                                                            <?php $pointToMoney=0;foreach ($pointUsed as $pu){
+                                                                if ($pu->fkOrderId == $orders->id ){
+
+                                                                    if (!empty($pu->expedPoints)) {
+                                                                        $pointToMoney= ($pu->expedPoints/10);
+
+                                                                    }
+                                                                }
+
+                                                            }?>
+                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+
+                                                        </td>
                                                         <td>
                                                             <button data-panel-id="<?php echo $orders->id ?>" onclick="addNewItemOrder(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-plus-circle"></i></button>
                                                         </td>

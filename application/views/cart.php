@@ -233,7 +233,7 @@
                         </tr>
                         <tr>
                             <td>
-                                Subtotal <span class="pull-right"><?php echo $subtotal?></span>
+                                Subtotal <span class="pull-right"><?php echo $subtotal - $this->session->userdata('expensepoint')?></span>
                             </td>
                         </tr>
                         <tr>
@@ -259,6 +259,7 @@
 
                         <tr>
                             <td>
+                                <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
                                 Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
                             </td>
                         </tr>
@@ -395,9 +396,9 @@
             cache: false,
             success: function (data) {
                 // $('#txt').html(data);
-                // $('#cart_table').load(document.URL +  ' #cart_table');
-                // $('#total_table').load(document.URL +  ' #total_table');
-                alert(data);
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                // alert(data);
             }
         });
     }
