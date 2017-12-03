@@ -1,15 +1,4 @@
 
-    <div class="clearfix"></div>
-    <!-- start page container -->
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-topline-green">
-                            <div class="card-head">
-                                <header>Update Promotion</header>
-
-                            </div>
-                            <div class="card-body ">
                            <?php foreach ($promotioninfo as $p) { ?>
 
                                 <form action="<?php echo base_url()?>Admin/Promotions/updatePromotionById/<?php echo $p->id ?>"  method="post" id="form_sample_1" enctype="multipart/form-data" class="form-horizontal">
@@ -48,13 +37,13 @@
                                         </div>
                                     </div>
 
-                                    <div id = "Item_price" class="form-group">
-                                        <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>
-                                        <div class="col-md-5">
-                                            <input type="text"  name="discount" placeholder="Discount(%)" value="<?php echo $p->discountAmount ?>"  class="form-control input-height" />
-                                        </div>
-
-                                    </div>
+<!--                                    <div id = "Item_price" class="form-group">-->
+<!--                                        <label class="control-label col-md-3"> Discount(%):<span class="required"> * </span></label>-->
+<!--                                        <div class="col-md-5">-->
+<!--                                            <input type="text"  name="discount" placeholder="Discount(%)" value="--><?php //echo $p->discountAmount ?><!--"  class="form-control input-height" />-->
+<!--                                        </div>-->
+<!---->
+<!--                                    </div>-->
 
                                     <div id = "Item_Status" class="form-group">
                                         <label class="control-label col-md-3">Status: </label>
@@ -84,10 +73,7 @@
 
                                 <?php } ?>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
 <!-- date picker  -->
 

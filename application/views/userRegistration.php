@@ -57,6 +57,13 @@
 <div class="container-fluid margin_60_35">
     <div  class="row">
 
+        <?php if ($this->session->flashdata('errorMessage')!=null){?>
+            <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+        <?php }
+        elseif($this->session->flashdata('successMessage')!=null){?>
+            <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+        <?php }?>
+
 
         <div align="center" class="span3 col-md-12">
             <div style="color: red" class="login_icon"><i class="icon_lock_alt"></i></div>
@@ -77,7 +84,7 @@
                     </div>
                     <div class="col-md-10">
                         <p><font color="red"> <?php echo form_error('address'); ?></font></p>
-                        <textarea type="text" id="address" name="address" value="<?php echo set_value('address'); ?>" class="form-control"  required placeholder=" Your full address"></textarea>
+                        <textarea type="text" id="address" name="address"  class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -94,7 +101,7 @@
                         <select class="form-control" id="city" name="city" required>
                             <option value="">Your city</option>
                             <?php foreach ($query1->result() as $cities){?>
-                                <option value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
+                                <option <?php echo set_select('city',  $cities->id, False); ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
                             <?php } ?>
                         </select>
 
@@ -133,7 +140,7 @@
                     </div>
                     <div class="col-md-4">
                         <p><font color="red"> <?php echo form_error('password'); ?></font></p>
-                        <input type="text" class="form-control" value="<?php echo set_value('password'); ?>" name="password" required placeholder="Password"  id="password">
+                        <input type="password" class="form-control" value="<?php echo set_value('password'); ?>" name="password" required placeholder="Password"  id="password">
                     </div>
 
                     <div class="col-md-2">
@@ -141,7 +148,7 @@
                     </div>
                     <div class="col-md-4">
                         <p><font color="red"> <?php echo form_error('conPassword'); ?></font></p>
-                        <input type="text" class="form-control" value="<?php echo set_value('conPassword'); ?>" name="conPassword" required placeholder="Confirm password"  id="conPassword">
+                        <input type="password" class="form-control" value="<?php echo set_value('conPassword'); ?>" name="conPassword" required placeholder="Confirm password"  id="conPassword">
                     </div>
 
                 </div><br><br>

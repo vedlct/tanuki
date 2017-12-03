@@ -32,38 +32,10 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>Order List</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+
                             </div>
                             <div class="card-body ">
-                                <div class="row">
 
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> Print </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
                                     <button id="searchbyorderid" onclick="searchbydorder()" class="btn btn-info">
@@ -117,7 +89,7 @@
                                             <td class="center"><?php echo $orders->userName; ?>
 
                                                 <div class="btn-group">
-                                                    <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
+                                                    <button class="btn btn-primary btn-xs" style="z-index: inherit" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div><hr>

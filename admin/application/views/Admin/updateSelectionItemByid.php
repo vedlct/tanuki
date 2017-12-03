@@ -1,13 +1,4 @@
-<link rel="stylesheet" href="<?php echo base_url()?>public/css/datepicker.css">
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-topline-green">
-                            <div class="card-head">
-                                <header>Update Promotion  Items info</header>
-
-                            </div>
-                            <div class="card-body ">
                                 <?php foreach ($PromotionSelected as $s) { ?>
 
                                 <form action="<?php echo base_url()?>Admin/Promotions/updateSelectionId/<?php echo $s-> pitemId?> "  method="post" id="form_sample_1" enctype="multipart/form-data" class="form-horizontal">
@@ -16,7 +7,7 @@
                                         <div id='TextBoxesGroup'>
                                             <div id="TextBoxDiv1" >
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-3">Item #1:
+                                                    <label class="control-label col-md-3">Item:
                                                         <span class="required"> * </span>
                                                     </label>
                                                     <div class="col-md-5">
@@ -57,22 +48,6 @@
 
 
 
-
-        <!-- end page content -->
-
-                      <div id="myModal" class="modal">
-                      <br/><br/><br/>
-            <!-- Modal content -->
-                       <div class="modal-content">
-                       <span class="close">×</span>
-                        <div id="txtHint"></div>
-                      </div>
-
-                 </div>
-
-                    <!-- end page container --
-
-                 <?php include ("js.php") ?>
 
 
 

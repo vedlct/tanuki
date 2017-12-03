@@ -37,7 +37,7 @@
                                 <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url()?>Admin_Home">Profile</a></li>
+                                    <li><a href="<?php echo base_url()?>admin/Admin/Home">Admin Panel</a></li>
                                     <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
 
                                 </ul>
@@ -60,7 +60,7 @@
                     <?php }}else{?>
                     <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#login_2">User Login</button>
 
-                    <a href="<?php echo base_url()?>Login/showRegitration"><button class="btn btn-sm btn-success">User Register</button></a>
+                    <button class="btn btn-sm btn-success"><a href="<?php echo base_url()?>Login/showRegitration">User Register</a></button>
                     <?php }?>
                 </ul>
             </div><!-- End main-menu -->
