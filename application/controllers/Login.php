@@ -78,12 +78,12 @@ class Login extends CI_Controller
     {
         $this->load->library('form_validation');
 
-//        if (!$this->form_validation->run('userRes')) {
-//
-//            $this->load->view('userRegistration');
-//
-//        }
-//        else {
+        if (!$this->form_validation->run('userRes')) {
+
+            $this->load->view('userRegistration');
+
+        }
+        else {
             $name = $this->input->post('Name');
             $address = $this->input->post('address');
             $city = $this->input->post('city');
@@ -94,13 +94,22 @@ class Login extends CI_Controller
 
             if ($password == $conPassword) {
 
-            $memberCard= (int)$email;
-            print_r($memberCard);
+                $result = '';
+
+                for ($i=0;$i<count($email);$i++){
+
+                    $memberCard= ord(strtolower($email)) - 96;
+                    print_r($memberCard);
+                    //$result=$result.$memberCard;
+                }
+
+
+            //echo $result;
+            //print_r($memberCard);
 
 
             }
-//        }
-//        redirect('Login');
+        }
     }
 
 

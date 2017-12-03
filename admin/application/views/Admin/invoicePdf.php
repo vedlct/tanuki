@@ -13,11 +13,11 @@
 </head>
 <body>
 <div id="header" class="clearfix">
-    <div style="float: left" class="col-md-6" id="logo">
+    <div  id="logo">
         <img src="<?php echo base_url()?>images/logo/logo.png?>">
     </div>
 
-    <div style="float: right"class="col-md-6" id="company">
+    <div id="company">
         <h1 class="name">Tanuki Restaurant</h1>
         <div>455 Foggy Heights, AZ 85004, US</div>
         <div>(602) 519-0450</div>
