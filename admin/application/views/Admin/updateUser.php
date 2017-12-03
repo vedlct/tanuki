@@ -1,19 +1,11 @@
 
-
-
-        <div class="row">
-            <div class="col-md-12 col-sm-12">
-                <div class="card card-topline-aqua" id="form_wizard_1">
-                    <div class="card-head">
-                    </div>
-                    <div class="card-body" id="bar-parent">
                         <?php foreach($userInfo as $u) { ?>
                         <form class="form-horizontal" action="<?php echo base_url()?>Admin/User/updateUserById/<?php echo $u->id ?>"  enctype="multipart/form-data" method="POST">
                             <div class="form-wizard">
                                 <div class="form-body">
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="tab1">
-                                            <h3 class="block"> User Detail Updateform</h3>
+                                            <h3 style="text-align: center" class="block"> User Detail Updateform</h3>
 
                                             <div class="form-group">
                                                 <label class="control-label col-md-3"> Name
@@ -59,7 +51,7 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="text"  class="form-control input-height" value="<?php echo $u->memberCardNo ?>" name="membercardnumber" />
+                                                    <input type="text"  readonly class="form-control input-height" value="<?php echo $u->memberCardNo ?>" name="membercardnumber" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -95,20 +87,20 @@
                                                 </label>
                                                     <div  class="col-md-5">
                                                         <select class="form-control input-height" name="status">
-                                                            <option <?php echo ($u->userActivationStatus=='1')?'selected="selected"':''; ?>>active</option>
-                                                            <option <?php echo ($u->userActivationStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
+                                                            <option value="1" <?php echo ($u->userActivationStatus=='1')?'selected="selected"':''; ?>>active</option>
+                                                            <option value="0" <?php echo ($u->userActivationStatus=='0')?'selected="selected"':''; ?>>In-Active</option>
                                                         </select>
 
                                                     </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-3">City
+                                                <label class="control-label col-md-3">User Type
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
                                                     <select class="form-control input-height" required name="usertype">
                                                         <?php foreach ($userTypeinfo as $userTypeinfo ) { ?>
-                                                            <option value="<?php echo $userTypeinfo->id ?>"<?php if (!empty($u->fkUserType) && $userTypeinfo->id==$u->fkUserType) echo 'selected="selected"'?> ><?php echo $userTypeinfo->typeTitle ?></option>
+                                                            <option value="<?php echo $userTypeinfo->id ?>"<?php if (!empty($u->fkUserType) && $userTypeinfo->id==$u->fkUserType ) echo 'selected="selected"'?> ><?php echo $userTypeinfo->typeTitle ?></option>
 
 
                                                         <?php } ?>
@@ -136,7 +128,3 @@
             </div>
             </form>
             <?php } ?>
-        </div>
-    </div>
-</div>
-</div>

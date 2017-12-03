@@ -29,7 +29,11 @@ $config = array (
         array(
             'field' => 'email',
             'label' => 'User Email',
-            'rules' => 'required|max_length[80]|valid_email|xss_clean|htmlspecialchars'
+            'rules' => 'required|max_length[80]|valid_email|is_unique[users.email]|xss_clean|htmlspecialchars',
+            'errors' => array(
+                'is_unique' => 'Email Allready Existed ! User  Existed !',
+            ),
+
         ),
         array(
             'field' => 'password',

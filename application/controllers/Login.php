@@ -18,32 +18,39 @@ class Login extends CI_Controller
 
         if (!empty($result)) {
 
-            $data1=array(
-
-                'sourceIp'=>$this->input->ip_address(),
-                'fkUserId'=>$result->userId,
-                'browser'=>$this->agent->browser()
-
-            );
-            $loginId=$this->loginm->loginInfo($data1);
-
-            $data = array(
-                'name' => $result->name,
-                'email' => $result->email,
-                'id' => $result->userId,
-                'userType' => $result->userType,
-                'loggedin' => "true",
-                'loginId'=>$loginId,
-            );
-
-            $this->session->set_userdata($data);
-
-            if ($this->session->userdata('userType') == "cus")
+            if ($result->userType == "cus" && $result->userActivationStatus == "0")
             {
-                redirect('Items/itemShow');
+                echo "<script>
+                    alert('Your Id is not Active Yet Please Try again Sometime');
+                    window.location.href= '" . base_url()."';
+                    </script>";
             }
+            else if ($result->userType == "cus" && $result->userActivationStatus == "1") {
 
 
+                $data1 = array(
+
+                    'sourceIp' => $this->input->ip_address(),
+                    'fkUserId' => $result->userId,
+                    'browser' => $this->agent->browser()
+
+                );
+                $loginId = $this->loginm->loginInfo($data1);
+
+                $data = array(
+                    'name' => $result->name,
+                    'email' => $result->email,
+                    'id' => $result->userId,
+                    'userType' => $result->userType,
+                    'loggedin' => "true",
+                    'loginId' => $loginId,
+                );
+
+                $this->session->set_userdata($data);
+
+                redirect('Items/itemShow');
+
+            }
         }
         else{
             echo "<script>
@@ -87,6 +94,7 @@ class Login extends CI_Controller
             $name = $this->input->post('Name');
             $address = $this->input->post('address');
             $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
             $conPassword = $this->input->post('conPassword');
@@ -94,19 +102,32 @@ class Login extends CI_Controller
 
             if ($password == $conPassword) {
 
-                $result = '';
+                $data=array(
+                    'name'=>$name,
+                    'address'=>$address,
+                    'postalCode'=>$postal,
+                    'fkCity'=>$city,
+                    'contactNo'=>$phone,
+                    'email'=>$email,
+                    'password'=>$conPassword,
+                    'userActivationStatus'=>'0',
+                    'fkUserType'=>'cus',
 
-                for ($i=0;$i<count($email);$i++){
+                );
 
-                    $memberCard= ord(strtolower($email)) - 96;
-                    print_r($memberCard);
-                    //$result=$result.$memberCard;
+                $this->data['error']=$this->loginm->customerRegister($data);
+
+                if (empty($this->data['error'])) {
+
+                    $this->session->set_flashdata('successMessage','Customer Created Successfully');
+                    redirect('Login/showRegitration');
+
+                } else {
+
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Login/showRegitration');
+
                 }
-
-
-            //echo $result;
-            //print_r($memberCard);
-
 
             }
         }

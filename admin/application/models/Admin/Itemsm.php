@@ -148,6 +148,7 @@ class Itemsm extends CI_Model
         $this->db->select('i.id,i.itemName');
         $this->db->from('items i');
         $this->db->where('i.fkCatagory',$catId);
+        $this->db->where('i.itemStatus',"1");
         $query = $this->db->get();
         return $query->result();
     }
@@ -157,6 +158,7 @@ class Itemsm extends CI_Model
         $this->db->select('is.id,is.itemSize');
         $this->db->from('itemsizes is');
         $this->db->where('is.fkItemId',$itemId);
+        $this->db->where('is.itemSizeStatus',"1");
         $query = $this->db->get();
         return $query->result();
     }
