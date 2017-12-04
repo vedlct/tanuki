@@ -16,13 +16,8 @@ class Feedbackm extends CI_Model
         return $query->result();
     }
 
-//    public function getAllitem()
-//    {
-//        $this->db->select('id,itemName');
-//        $this->db->from('items');
-//        $query = $this->db->get();
-//        return $query->result();
-//    }
+
+
     public function allaItems()
     {
         $this->db->select('id,itemName','userRating');
@@ -47,9 +42,30 @@ class Feedbackm extends CI_Model
 
     public function getitemById($itemid)
     {
-        $this->db->where('id', $itemid);
+        $this->db->where('items.id', $itemid);
         $this->db->select('id,itemName','userRating');
         $this->db->from('items');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function feedbackbyitemfeedback(){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name');
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function feedbackbyitem($itemid){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name,userRating');
+        $this->db->where('items.id', $itemid);
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $this->db->order_by('userfeedback.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -61,12 +77,12 @@ class Feedbackm extends CI_Model
 
     }
 
-    public function ratingavg($itemid){
+    public function ratingavg(){
 
 
         //$this->db->select_avg('userRating');
         $this->db->select('id, AVG(userRating) as userRatings');
-        $this->db->where('fkItemId', $itemid);
+//       $this->db->where('fkItemId');
         $this->db->from('userfeedback');
         $query = $this->db->get();
         return $query->result();

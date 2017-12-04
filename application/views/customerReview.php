@@ -14,15 +14,15 @@
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
 <![endif]-->
 
-<!--<div id="preloader">-->
-<!--    <div class="sk-spinner sk-spinner-wave" id="status">-->
-<!--        <div class="sk-rect1"></div>-->
-<!--        <div class="sk-rect2"></div>-->
-<!--        <div class="sk-rect3"></div>-->
-<!--        <div class="sk-rect4"></div>-->
-<!--        <div class="sk-rect5"></div>-->
-<!--    </div>-->
-<!--</div>-->
+<div id="preloader">
+    <div class="sk-spinner sk-spinner-wave" id="status">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div>
 <?php include ('menu.php') ?>
 
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
@@ -79,218 +79,178 @@
         <div class="col-md-8">
             <div class="box_style_2">
                 <h2 class="inner"> Review </h2>
+                <?php if ($this->session->userdata('loggedin')=="true" ){?>
+                    <?php foreach( $allItem as $items) { ?>
+                        <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
 
 
-                <?php foreach( $allItem as $items) { ?>
-                    <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
+                        <form method="post" action="<?php echo base_url() ?>Feedback/newReview/<?php echo $items->id ?>">
 
 
-
-
-                <?php foreach ($avgrating as $av){
-                    $rating_avg = round($av->userRatings);
-
-
-                }?>
-                <?php
-                switch ($rating_avg) {
-                    case 1:
-                        ?>
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-                        break;
-                    case 2:
-                        ?>
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-                        break;
-                    case 3:
-                        ?>
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-                        break;
-                    case 4:
-                        ?>
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-                        break;
-                    case 5:
-                        ?>
-                        <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-                        break;
-                    default:
-                        ?>
-                        <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                        <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                        <?php
-
-                }
-
-                ?>
+                            <textarea name="review_text" id="review_text" class="form-control form-black" style="height:100px" placeholder="write review..........." ></textarea>
+                            <input type="number" name="rating" max="5" min="0" class="form-control form-black"  placeholder="Give rating here ..........." ></input>
+                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                            <input type="submit" style="color: red" class="form-control form-black"  value="Submit" >
+                        </form>
 
 
 
-                <?php foreach( $allItem as $items) { ?>
-                    <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
 
 
-                <?php }}  ?>
+                    <?php }}else{?>
+
+
+
+
+                    <?php foreach( $allItem as $items) { ?>
+
+
+                        <h1> <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b></h1>
+
+                    <?php }}  ?>
+
 
                 <?php foreach($userFeedback as $f) { ?>
 
 
-                <h4><?php echo $f->name ?></h4>
-                <?php break; } ?>
+
+<!--                    <h4>--><?php //echo $f->name ?><!--</h4>-->
+                        <!---->
+                        <!---->
+
+                        <div class="review_strip_single">
+                            <h4 style="color: inherit"><?php echo $f->name ?> said</h4>
+                            <p>
+
+                                <small>  - <?php echo $f->feedbackTime ?></small>
+                            </p>
+
+                            <p><b><?php echo $f->feedback ?></b></p>
+                            <h5 style="color:inherit">User Rating: <?php echo $f->userRating ?></h5>
 
 
+                        </div>
+                        <?php  } ?>
+
+
+            </div>
+            <!-- End box_style_1 -->
+        </div>
+    </div><!-- End row -->
+</div><!-- End container -->
+<!-- End Content =============================================== -->
+
+
+<!-- Footer ================================================== -->
+<!-- Footer ================================================== -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 col-sm-3">
+                <h3>Secure payments with</h3>
+                <p><img src="<?php echo base_url() ?>public/img/cards.png" alt="" class="img-responsive"></p>
+
+            </div>
+            <div class="col-md-3 col-sm-3">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="about.php">About us</a></li>
+                    <li><a href="faq.php">Faq</a></li>
+                    <li><a href="contacts.php">Contacts</a></li>
+                    <li><a href="#0" data-toggle="modal" data-target="#login_2">Admin Login</a></li>
+                    <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
+                    <li><a href="#0">Terms and conditions</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3 col-sm-3"  id="newsletter">
+                <h3>Newsletter</h3>
+                <p>Join our newsletter to keep be informed about offers and news.</p>
+                <div id="message-newsletter_2"></div>
+                <form method="post" action="<?php echo base_url()?>Feedback/newReview" name="newsletter_2" id="newsletter_2">
+                    <div class="form-group">
+                        <input name="email_newsletter_2" id="email_newsletter_2"  type="email" value=""  placeholder="Your mail" class="form-control">
+                    </div>
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                    <input type="submit" value="Subscribe" class="btn_1" id="submit-newsletter_2">
+                </form>
+            </div>
+            <div class="col-md-2 col-sm-3">
+                <h3>Settings</h3>
+                <div class="styled-select">
+                    <select class="form-control" name="lang" id="lang">
+                        <option value="English" selected>English</option>
+                        <option value="French">French</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Russian">Russian</option>
+                    </select>
                 </div>
-                <!-- End box_style_1 -->
+                <div class="styled-select">
+                    <select class="form-control" name="currency" id="currency">
+                        <option value="USD" selected>USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                        <option value="RUB">RUB</option>
+                    </select>
+                </div>
+            </div>
+        </div><!-- End row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div id="social_footer">
+                    <ul>
+                        <li><a href="#0"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#0"><i class="icon-twitter"></i></a></li>
+                        <li><a href="#0"><i class="icon-google"></i></a></li>
+                        <li><a href="#0"><i class="icon-instagram"></i></a></li>
+                        <li><a href="#0"><i class="icon-pinterest"></i></a></li>
+                        <li><a href="#0"><i class="icon-vimeo"></i></a></li>
+                        <li><a href="#0"><i class="icon-youtube-play"></i></a></li>
+                    </ul>
+                    <p>© <b>R A K</b> - 2017</p>
+                </div>
             </div>
         </div><!-- End row -->
     </div><!-- End container -->
-    <!-- End Content =============================================== -->
-
-
-    <!-- Footer ================================================== -->
-    <!-- Footer ================================================== -->
-    <footer>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 col-sm-3">
-                    <h3>Secure payments with</h3>
-                    <p><img src="<?php echo base_url() ?>public/img/cards.png" alt="" class="img-responsive"></p>
-
-                </div>
-                <div class="col-md-3 col-sm-3">
-                    <h3>About</h3>
-                    <ul>
-                        <li><a href="about.php">About us</a></li>
-                        <li><a href="faq.php">Faq</a></li>
-                        <li><a href="contacts.php">Contacts</a></li>
-                        <li><a href="#0" data-toggle="modal" data-target="#login_2">Admin Login</a></li>
-                        <li><a href="#0" data-toggle="modal" data-target="#register">Register</a></li>
-                        <li><a href="#0">Terms and conditions</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-3 col-sm-3"  id="newsletter">
-                    <h3>Newsletter</h3>
-                    <p>Join our newsletter to keep be informed about offers and news.</p>
-                    <div id="message-newsletter_2"></div>
-                    <form method="post" action="<?php echo base_url()?>Feedback/newReview" name="newsletter_2" id="newsletter_2">
-                        <div class="form-group">
-                            <input name="email_newsletter_2" id="email_newsletter_2"  type="email" value=""  placeholder="Your mail" class="form-control">
-                        </div>
-                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                        <input type="submit" value="Subscribe" class="btn_1" id="submit-newsletter_2">
-                    </form>
-                </div>
-                <div class="col-md-2 col-sm-3">
-                    <h3>Settings</h3>
-                    <div class="styled-select">
-                        <select class="form-control" name="lang" id="lang">
-                            <option value="English" selected>English</option>
-                            <option value="French">French</option>
-                            <option value="Spanish">Spanish</option>
-                            <option value="Russian">Russian</option>
-                        </select>
-                    </div>
-                    <div class="styled-select">
-                        <select class="form-control" name="currency" id="currency">
-                            <option value="USD" selected>USD</option>
-                            <option value="EUR">EUR</option>
-                            <option value="GBP">GBP</option>
-                            <option value="RUB">RUB</option>
-                        </select>
-                    </div>
-                </div>
-            </div><!-- End row -->
-            <div class="row">
-                <div class="col-md-12">
-                    <div id="social_footer">
-                        <ul>
-                            <li><a href="#0"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#0"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#0"><i class="icon-google"></i></a></li>
-                            <li><a href="#0"><i class="icon-instagram"></i></a></li>
-                            <li><a href="#0"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#0"><i class="icon-vimeo"></i></a></li>
-                            <li><a href="#0"><i class="icon-youtube-play"></i></a></li>
-                        </ul>
-                        <p>© <b>R A K</b> - 2017</p>
-                    </div>
-                </div>
-            </div><!-- End row -->
-        </div><!-- End container -->
-    </footer>
-    <!-- End Footer =============================================== --><!-- End Footer =============================================== -->
+</footer>
+<!-- End Footer =============================================== --><!-- End Footer =============================================== -->
 </div>
-    <div class="layer"></div><!-- Mobile menu overlay mask -->
+<div class="layer"></div><!-- Mobile menu overlay mask -->
 
-    <?php include ('login_logout.php')?>
-
-
+<?php include ('login_logout.php')?>
 
 
 
-    <!-- COMMON SCRIPTS -->
-    <script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-    <script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-    <script src="<?php echo base_url()?>public/js/functions.js"></script>
-    <script src="<?php echo base_url()?>public/assets/validate.js"></script>
 
-    <!-- SPECIFIC SCRIPTS -->
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>
-    <script src="<?php echo base_url()?>public/js/map_single.js"></script>
-    <script src="<?php echo base_url()?>public/js/infobox.js"></script>
-    <script src="<?php echo base_url()?>public/js/jquery.sliderPro.min.js"></script>
-    <script type="text/javascript">
-        $( document ).ready(function( $ ) {
-            $( '#Img_carousel' ).sliderPro({
-                width: 960,
-                height: 500,
-                fade: true,
-                arrows: true,
-                buttons: false,
-                fullScreen: false,
-                smallSize: 500,
-                startSlide: 0,
-                mediumSize: 1000,
-                largeSize: 3000,
-                thumbnailArrows: true,
-                autoplay: false
-            });
+
+<!-- COMMON SCRIPTS -->
+<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
+<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
+<script src="<?php echo base_url()?>public/js/functions.js"></script>
+<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+
+<!-- SPECIFIC SCRIPTS -->
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>
+<script src="<?php echo base_url()?>public/js/map_single.js"></script>
+<script src="<?php echo base_url()?>public/js/infobox.js"></script>
+<script src="<?php echo base_url()?>public/js/jquery.sliderPro.min.js"></script>
+<script type="text/javascript">
+    $( document ).ready(function( $ ) {
+        $( '#Img_carousel' ).sliderPro({
+            width: 960,
+            height: 500,
+            fade: true,
+            arrows: true,
+            buttons: false,
+            fullScreen: false,
+            smallSize: 500,
+            startSlide: 0,
+            mediumSize: 1000,
+            largeSize: 3000,
+            thumbnailArrows: true,
+            autoplay: false
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>

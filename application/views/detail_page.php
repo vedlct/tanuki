@@ -2,7 +2,7 @@
 <!--[if IE 9]><html class="ie ie9"> <![endif]-->
 <html>
 <head>
-    
+
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
 
@@ -56,7 +56,7 @@
 <!-- Content ================================================== -->
 <div class="container-fluid margin_60_35">
 		<div class="row">
-        
+
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
             <p><a href="list_page.php" class="btn_side">Back to search</a></p>
@@ -76,7 +76,7 @@
                 <small>Monday to Friday 9.00am - 7.30pm</small>
             </div>
         </div><!-- End col-md-3 -->
-            
+
 			<div class="col-md-5">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
@@ -141,7 +141,7 @@
 					</table>
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-6 -->
-            
+
 			<div class="col-md-3" id="sidebar">
             <div class="theiaStickySidebar">
 				<div id="cart_box" >
@@ -191,7 +191,7 @@
 							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
 						</div>
 					</div><!-- Edn options 2 -->
-                    
+
 					<hr>
 					<table class="table table_summary" id="total_table">
 					<tbody>
@@ -260,7 +260,7 @@
                 </div><!-- End theiaStickySidebar -->
 			</div>
             <!-- End col-md-3 -->
-            
+
 		</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
@@ -270,9 +270,9 @@
 <!-- End Footer =============================================== -->
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
-    
+
 <?php include ('login_logout.php')?>
-    
+
     <!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -283,7 +283,7 @@
 		</form>
 	</div>
 	<!-- End Search Menu -->
-    
+
 <!-- COMMON SCRIPTS -->
 <script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
 <script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>

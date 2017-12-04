@@ -46,7 +46,6 @@
 <!-- End Content =============================================== -->
 
 <!-- Footer ================================================== -->
-<?php include ('footer.php') ?>
 
 
 <div class="container margin_60">
@@ -133,11 +132,7 @@
 
 
                         <div id = "pass-info" class="clearfix" ></div >
-                        <div class="row" >
-                            <div class="col-md-6" >
-                                <label ><input name = "mobile" type = "checkbox" value = "" class="icheck" checked > Accept <a href = "#0" > terms and conditions </a >.</label >
-                            </div >
-                        </div ><!--End row-->
+                        <!--End row-->
                         <hr style = "border-color:#ddd;" >
 
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">

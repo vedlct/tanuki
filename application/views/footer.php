@@ -11,7 +11,7 @@
                 <div class="col-md-3 col-sm-3">
                     <h3>About</h3>
                     <ul>
-                        <li><a href="about.php">About us</a></li>
+                        <li><a href="<?php echo base_url()?>About/">About us</a></li>
                         <li><a href="faq.php">Faq</a></li>
                          <li><a href="contacts.php">Contacts</a></li>
                         <li><a href="#0" data-toggle="modal" data-target="#login_2">Admin Login</a></li>

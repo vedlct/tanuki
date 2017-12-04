@@ -31,13 +31,17 @@
     <div id="subheader">
         <div id="sub_content">
             <h1>Your Order List</h1>
-            <p></p>
+
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
 </section>
 
-<div class="container left margin_20">
+<div class="container left margin_100">
 <!-- start page container -->
+    <h2 style="text-align: center" color="red">Your Recent Orders</h2>
+    <div class="col-md-1 col-lg-1"></div>
+    <div class="box_style_2 col-md-10 col-lg-10">
+
 <?php if (!empty($orders)){?>
     <div class="table table-responsive">
         <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
@@ -149,7 +153,10 @@
         </table>
     </div>
 <?php }?>
+    </div>
+    <div class="col-md-1 col-lg-10"></div>
 </div>
+</body>
 <!--    <div class="page-container">-->
 
 

@@ -25,7 +25,9 @@ class Feedback extends CI_Controller
     public function getReview($itemid)
            {
             $this->data['allItem'] = $this->Feedbackm->getitemById($itemid);
-            $this->data['userFeedback'] = $this->Feedbackm->allUserfeedback();
+           //$this->data['userFeedback'] = $this->Feedbackm->allUserfeedback();
+
+            $this->data['userFeedback'] = $this->Feedbackm->feedbackbyitem($itemid);
             $this->data['avgrating']= $this->Feedbackm->ratingavg($itemid);
              $this->load->view('customerReview', $this->data);
 
@@ -36,17 +38,20 @@ class Feedback extends CI_Controller
          public function newReview($id)
          {
 
-        $userId = $this->session->userdata('id');
-        $review = $this->input->post('review_text');
-//        $rating = $this->input->post('review_text')
+         $userId = $this->session->userdata('id');
+         $review = $this->input->post('review_text');
+         $rating = $this->input->post('rating');
 
             $data = array(
             'fkItemId' => $id,
             'fkUserId' => $userId,
             'feedback' => $review,
-             'userRating' =>'' ,
+             'userRating' =>$rating
 
             );
+
+            print_r($data);
+
 
          $data['userFeedback'] = $this->Feedbackm->insertFeedback($data);
          redirect("Feedback/getReview/" . $id);
