@@ -56,6 +56,12 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function getAllCity(){
+        $this->db->select('id, name ');
+        $this->db->from('city');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getPromoType($promocoe){
 
         $this->db->select('promoType, discountAmount');

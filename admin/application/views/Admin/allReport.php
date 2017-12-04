@@ -36,19 +36,20 @@
                                 <div class="row">
 
                                     <div id="date" style="display: none">
-                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByDate">
+<!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin/Report/searchByDate" onsubmit="return checkDate()">-->
+
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Start Date</label>
-                                                <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="startdate" id="startdate" placeholder="Pick a date">
                                             </div >
                                         </div>
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">End Date</label>
-                                                <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="enddate" id="enddate" placeholder="Pick a date">
                                             </div>
 
 
@@ -56,13 +57,13 @@
                                         </div>
                                         <div class="btn-group col-md-3 col-sm-3">
 
-                                            <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                            <button style="margin-top: 30px"  id="addRow" onclick="checkDate()" onclick="" class="btn btn-info">
                                                 submit
                                             </button>
                                         </div>
 
 
-                                    </form>
+<!--                                    </form>-->
                                     </div>
                                     <form action="<?php echo base_url()?>Admin/Report/searchByOrderId" method="post">
                                     <div id="order" style="display: none;">
@@ -198,10 +199,36 @@
 
 <script>
     function searchbydate(){
-         document.getElementById('searchbydate').style.display='none';
+        document.getElementById('searchbydate').style.display='none';
         document.getElementById('date').style.display='block';
         document.getElementById('order').style.display='none';
         document.getElementById('searchbyoder').style.display='block';
+    }
+    function checkDate() {
+
+        var startdate = document.getElementById('startdate').value;
+        var enddate = document.getElementById('enddate').value;
+
+
+        if (startdate > enddate){
+
+            alert('End Date must be greater than start date');
+            return false;
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByDate" )?>',
+                data:{'startdate':startdate,'enddate':enddate},
+                cache: false,
+                success:function(data)
+                {
+                    $('#example4').html(data);
+                }
+            });
+        }
+
     }
     function searchbydorder(){
         document.getElementById('searchbydate').style.display='block';

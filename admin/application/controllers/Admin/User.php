@@ -107,22 +107,40 @@ class User extends CI_Controller {
         }
     }
 
-    public function checkEmail($email)
+    public function checkEmail()
     {
         if ($this->session->userdata('userType') == "Admin") {
-            //$email = $this->input->post('Email');
 
-            //$user=$this->Userm->checkEmail($email);
-            return $email;
+            $email = $this->input->post('email');
 
-//            if (!empty($user)){
-//
-//                return 0;
-//
-//            }
-//            else {
-//                return 1;
-//            }
+            $user=$this->Userm->checkEmail($email);
+            if (!empty($user))
+            {
+                echo 0;
+            }
+            else{
+                echo 1;
+            }
+
+        } else {
+            redirect('Login');
+        }
+    }
+    public function checkEmailFromUpdate()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $email = $this->input->post('email');
+            $userId = $this->input->post('id');
+
+            $user=$this->Userm->checkEmailFromUpdate($userId,$email);
+            if (!empty($user))
+            {
+                echo 0;
+            }
+            else{
+                echo 1;
+            }
 
         } else {
             redirect('Login');
@@ -137,7 +155,7 @@ class User extends CI_Controller {
             $address = $this->input->post('address');
             $postcode = $this->input->post('postcode');
             $city = $this->input->post('city');
-            $membercardnumber = $this->input->post('membercardnumber');
+            //$membercardnumber = $this->input->post('membercardnumber');
             $contactNo = $this->input->post('contactno');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
@@ -148,7 +166,7 @@ class User extends CI_Controller {
                 'address' => $address,
                 'postalCode' => $postcode,
                 'fkCity' => $city,
-                'memberCardNo' => $membercardnumber,
+                //'memberCardNo' => $membercardnumber,
                 'contactNo' => $contactNo,
                 'email' => $email,
                 'password' => $password,

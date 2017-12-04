@@ -63,10 +63,11 @@
         elseif($this->session->flashdata('successMessage')!=null){?>
             <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
         <?php }?>
+        <div align="center" style="color: red" class="login_icon"><i class="icon_lock_alt"></i></div>
+        <div class="col-md-3"></div>
 
+        <div align="center"  class="box_style_2 col-md-6">
 
-        <div align="center" class="span3 col-md-12">
-            <div style="color: red" class="login_icon"><i class="icon_lock_alt"></i></div>
             <h2>Customer Registration</h2>
             <form method="post" action="<?php echo base_url()?>Login/registerUser" onsubmit="return registration()">
                 <div class="form-group col-md-12">
@@ -84,7 +85,7 @@
                     </div>
                     <div class="col-md-10">
                         <p><font color="red"> <?php echo form_error('address'); ?></font></p>
-                        <textarea type="text" id="address" name="address"  class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
+                        <textarea type="text" id="address" rows="3" cols="3" name="address"  class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -162,6 +163,7 @@
                 </div>
                                 </form>
                             </div>
+        <div class="col-md-3"></div>
 
 
                         </div><!-- End row -->
