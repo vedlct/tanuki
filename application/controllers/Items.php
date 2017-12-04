@@ -420,7 +420,7 @@ class Items extends CI_Controller {
                             'vat' => $vat,
                             'paymentType' => $paymenttype,
                             'fkUserId' => $user,
-                            'fkOrderTaker' => $ordertaker,
+                            'fkOrderTaker' => null,
 
                         );
                     }
