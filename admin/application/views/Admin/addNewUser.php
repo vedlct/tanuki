@@ -57,7 +57,8 @@
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <input type="email" onkeyup="checkEmail()" required class="form-control input-height" placeholder="Enter Email" id="email" name="email" />
+                                                    <p id="WrongEmail" style="display: none;color: red">Email Already Existed!!</p>
+                                                    <input type="email" required class="form-control input-height" onchange="checkEmail()" placeholder="Enter Email" id="email" name="email" />
 
                                                 </div>
                                             </div>
@@ -102,7 +103,7 @@
                                                 <label class="control-label col-md-3">
                                                 </label>
                                                 <div class="col-md-5">
-                                                    <button type="submit"  class="btn btn-info">Submit</button>
+                                                    <button type="submit" id="submit" class="btn btn-info">Submit</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -156,34 +157,41 @@
                                         alert("You have entered an invalid email address!");
                                         return false;
                                     }
-                                    if (email.match(mailformat))
-                                    {
-
-                                        $.ajax({
-                                            type:'POST',
-                                            url:'<?php echo base_url("Admin/User/checkEmail/")?>'+email,
-                                            data:{},
-                                            cache: false,
-                                            success:function(data) {
-//                                                if (data=0)
-//                                                {
-//                                                    alert('Email Already Existed');
-//                                                   //return false;
-//                                                }
-                                                alert(data);
-                                                return false;
-
-
-                                            }
-                                        });
-
-                                    }
-
                                     else {
+
                                         return true;
                                     }
 
 
                             }
+
+                            function checkEmail() {
+
+                                var email = document.getElementById('email').value;
+
+                                $.ajax({
+                                    type:'POST',
+                                    url:'<?php echo base_url("Admin/User/checkEmail")?>',
+                                    data:{'email':email},
+                                    cache: false,
+                                    success:function(data) {
+
+                                        if (data=="0")
+                                        {
+
+                                            document.getElementById('submit').disabled= true;
+                                            document.getElementById('WrongEmail').style.display='block';
+
+                                        }
+                                        else {
+                                            document.getElementById('WrongEmail').style.display='none';
+                                            document.getElementById('submit').disabled= false;
+                                        }
+
+                                    }
+                                });
+
+                            }
+
 
                         </script>
