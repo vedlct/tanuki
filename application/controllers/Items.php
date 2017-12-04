@@ -235,6 +235,7 @@ class Items extends CI_Controller {
         $this->session->set_userdata($data);
     }
 
+
     public function membershipid(){
         $memberid = $this->input->post('memberid');
         $this->data['memberid'] = $this->Itemsm->getuserdatabymemberid($memberid);
@@ -249,7 +250,7 @@ class Items extends CI_Controller {
         $this->session->set_userdata($data);
     }
 
-    public function checkoutguest(){
+
 
 
 //        $ordertype= $this->session->userdata('orderType');
@@ -261,6 +262,9 @@ class Items extends CI_Controller {
 //        $paymenttype=$this->session->userdata('paymentMethod');
 //        $user=$this->session->userdata('id');
 //        $ordertaker = $this->session->userdata('id');
+
+    public function checkoutguest(){
+
 
         $this->load->library('form_validation');
 
@@ -348,19 +352,21 @@ class Items extends CI_Controller {
                         'fkOrderTaker' => $ordertaker,
 
                     );
-                    $this->Itemsm->checkoutInsert($data);
+                    $this->Itemsm->checkoutInsertForGuest($data);
+
+                    $this->cart->destroy();
 
 
 
                     $this->session->set_flashdata('successMessage','CheckOut Successfully');
-                    redirect('Items/cart');
+                    redirect('Items');
 
 
 
                 } else {
 
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
-                    redirect('Items/cart');
+                    redirect('Items');
 
                 }
 

@@ -56,11 +56,20 @@
 <!-- Content ================================================== -->
 <div class="container-fluid margin_60_35">
 		<div class="row">
+
+            <?php if ($this->session->flashdata('errorMessage')!=null){?>
+                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+            <?php }
+            elseif($this->session->flashdata('successMessage')!=null){?>
+                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+            <?php }?>
         
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
             <p><a href="list_page.php" class="btn_side">Back to search</a></p>
             <div class="box_style_1">
+
+
 
                 <ul id="cat_nav">
                     <?php foreach ($allcategory as $cate) {?>
