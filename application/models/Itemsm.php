@@ -159,8 +159,9 @@ class Itemsm extends CI_Model {
 
             );
             $this->db->insert('orderitems', $data2);
-            return $orderid;
+
         }
+        return $orderid;
     }
     public function getearnPoint($userid){
         $this->db->select('SUM(`earnedPoints`) as earnspoint ');
