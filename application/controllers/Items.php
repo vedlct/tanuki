@@ -234,6 +234,20 @@ class Items extends CI_Controller {
         $this->session->set_userdata($data);
     }
 
+    public function membershipid(){
+        $memberid = $this->input->post('memberid');
+        $this->data['memberid'] = $this->Itemsm->getuserdatabymemberid($memberid);
+        foreach ($this->data['memberid'] as $member){
+            $member->id;
+        }
+        $data = array(
+            'memberuserid' => "cash",
+
+        );
+
+        $this->session->set_userdata($data);
+    }
+
     public function checkout(){
 
         $ordertype= $this->session->userdata('orderType');
@@ -241,7 +255,7 @@ class Items extends CI_Controller {
         $re = $this->Itemsm->getorderstatus();
         $orderstatus= $re->id;
         $deliveryfee=$this->session->userdata('deliverfee');
-        $vat= $this->session->userdata('vat');;
+        $vat= $this->session->userdata('vat');
         $paymenttype=$this->session->userdata('paymentMethod');
         $user=$this->session->userdata('id');
         $ordertaker = $this->session->userdata('id');

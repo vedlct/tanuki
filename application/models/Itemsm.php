@@ -149,5 +149,13 @@ class Itemsm extends CI_Model {
         return $query->result();
     }
 
+    public function getuserdatabymemberid($memberid){
+        $this->db->select('id');
+        $this->db->from('users');
+        $this->db->where('memberCardNo', $memberid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
 }
 ?>

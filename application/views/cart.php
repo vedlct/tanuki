@@ -185,7 +185,7 @@
                 <div class="box_style_2">
                     <h2 class="inner">Payment methods</h2>
                     <div class="payment_select">
-                        <label><input type="radio" value="" onclick="paymentcreditcard()" checked name="payment_method" class="">Credit card</label>
+                        <label><input type="radio" value="" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
                         <i class="icon_creditcard"></i>
                     </div>
                     <!--End row -->
@@ -279,13 +279,15 @@
                         foreach ($exensepoint  as $exp){ $expense = $exp->expenspoint;}
                         ?>
                         <div>
-                        <h4 style="color: red; width: 50%">Your Total Points : <?php echo $totalpoint = $earn - $expense ?></h4>
+                        <h4 style="color: red; width: 50%">Your Total Points : <?php  $totalpoint = $earn - $expense ;
+                            if ($totalpoint <0 ){ echo 0;}else { echo $totalpoint;}
+                            ?></h4>
                             <?php if ($totalpoint >100) { ?>
                         <button style="float: right; margin-top: -40px" class="btn btn-sm btn-success" onclick="usepoints()">Use Points</button>
                             <?php } ?>
                         </div>
                         <hr>
-                         <?php if ($this->session->userdata('orderType') != null){ ?>
+                         <?php if ($this->session->userdata('paymentMethod') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <?php }else { ?>
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
