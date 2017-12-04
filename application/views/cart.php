@@ -285,7 +285,11 @@
                             <?php } ?>
                         </div>
                         <hr>
+                         <?php if ($this->session->userdata('orderType') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                        <?php }else { ?>
+                        <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
+                        <?php } ?>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
@@ -428,5 +432,9 @@
 
         });
 
+    }
+
+    function paymentalert() {
+        alert("please select the payment method")
     }
 </script>
