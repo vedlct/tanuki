@@ -29,7 +29,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="http://localhost/tanuki/public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
             <h1>Place your order</h1>
@@ -57,7 +57,7 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
-<div id="position">
+<!--<div id="position">
     <div class="container">
         <ul>
             <li><a href="#0">Home</a></li>
@@ -66,7 +66,7 @@
         </ul>
         <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
     </div>
-</div><!-- Position -->
+</div> Position -->
 
 <!-- Content ================================================== -->
 <div class="container-fluid margin_60_35">
@@ -75,32 +75,31 @@
         <div class="col-md-2">
 
             <div class="box_style_2 hidden-xs info">
-                <h4 class="nomargin_top">Delivery time <i class="icon_clock_alt pull-right"></i></h4>
-                <p>
-                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
+                <h4 class="nomargin_top">Open Hours<i style="margin-left:30px;" class="icon_clock_alt "></i></h4>
+                <p >
+                <p>Tue-Fri Lunch <br>
+                    11:30am-2.30pm <br></p>  
+
+                <p>Tue-Thur Dinner <br>
+                    4:30pm-10:00pm <br></p>  
+                <p>Fri Dinner <br>
+                    4:30pm-10:00pm <br></p>  
+                <p> Sat 12.00pm-10:00pm <br></p> 
+                <p> Sun 12:00pm-9:00pm <br></p> 
+                <p>Mon Closed</p>
                 </p>
-                <hr>
+<!--                <hr>
                 <h4>Secure payment <i class="icon_creditcard pull-right"></i></h4>
                 <p>
                     Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-                </p>
+                </p>-->
             </div><!-- End box_style_1 -->
 
             <div class="box_style_2 hidden-xs" id="help">
                 <i class="icon_lifesaver"></i>
                 <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+703-723-8952</a>
-                <small>Open Hours <br>
-                    Tue-Fri Lunch <br>
-                    11:30am-2.30pm <br>
+                <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
 
-                    Tue-Thur Dinner <br>
-                    4:30pm-10:00pm <br>
-                    Fri Dinner <br>
-                    4:30pm-10:00pm <br>
-                    Sat 12.00pm-10:00pm <br>
-                    Sun 12:00pm-9:00pm <br>
-                    Mon Closed</small>
             </div>
 
         </div><!-- End col-md-3 -->

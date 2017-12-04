@@ -356,7 +356,8 @@ header.sticky {
     display: table;
     width: 100%;
     height: 470px;
-    background: rgba(0, 0, 0, .7)
+    background-size: cover;
+    background-color: rgba(0,0,0,0.7);
 }
 
 #home #subheader {
@@ -373,7 +374,7 @@ header.sticky {
 
 footer {
     background-color: #fff;
-    padding: 35px 0
+    padding: 0 0;
 }
 
 footer h3 {
@@ -1047,7 +1048,7 @@ a.strip_list:hover h3 {
 }
 
 .box_style_2#help a.phone {
-    font-size: 26px;
+    font-size: 23px;
     display: block;
     margin-bottom: 0;
     color: #85c99d
@@ -3089,3 +3090,11 @@ thead {
     background: #F2F2F2;
 }
 
+#social_footer {
+    float: left;
+}
+
+.jetpay {
+    margin-left: -34px;
+    overflow: hidden;
+}
