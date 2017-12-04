@@ -44,7 +44,7 @@ class PdfMaker extends CI_Controller
             $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
 
             $html = $this->load->view('Admin/invoicePdf', $this->data, true);
-            $filename = 'testPdf';
+            $filename = 'invoiceFormTanuki';
             $this->pdfgenerator->generate($html, $filename, true, 'A4', 'portrait');
 
 

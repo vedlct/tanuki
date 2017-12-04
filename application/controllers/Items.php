@@ -352,9 +352,10 @@ class Items extends CI_Controller {
                         'fkOrderTaker' => $ordertaker,
 
                     );
-                    $this->Itemsm->checkoutInsertForGuest($data);
+                    $orderId=$this->Itemsm->checkoutInsertForGuest($data);
 
                     $this->cart->destroy();
+                    
 
 
 
@@ -463,6 +464,23 @@ class Items extends CI_Controller {
         echo $newtotal;
 
     }
+
+    public function mailInvoice($orderId){
+
+        $this->load->model('Admin/Userorderm');
+
+
+        $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
+        $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItemsForPrint($orderId);
+        $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
+        $this->data['charge'] = $this->Userorderm->getAllCharge();
+        $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
+
+        $html = $this->load->view('invoicePdf', $this->data);
+
+
+    }
+
 
 
 }
