@@ -48,11 +48,20 @@
 <!-- Content ================================================== -->
 <div class="container-fluid margin_60_35">
 		<div class="row">
+
+            <?php if ($this->session->flashdata('errorMessage')!=null){?>
+                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+            <?php }
+            elseif($this->session->flashdata('successMessage')!=null){?>
+                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+            <?php }?>
         
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
             <p><a href="list_page.php" class="btn_side">Back to search</a></p>
             <div class="box_style_1">
+
+
 
                 <ul id="cat_nav">
                     <?php foreach ($allcategory as $cate) {?>
@@ -164,8 +173,10 @@
 				} ?>
 					</tbody>
 					</table>
-					<hr>
-					<div class="row" id="options_2">
+
+                    <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
+                        <hr>
+                    <div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 						<a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
 						</div>
@@ -173,7 +184,30 @@
 							<a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
 						</div>
 					</div>
+                    <?php }else {
+
+                        $data = array(
+                            'orderType' => "have",
+
+                        );
+
+                        $this->session->set_userdata($data);
+
+                    } ?>
+
+
 					<hr>
+                    <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6">
+                                <label>Membership ID :</label>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <input id="memberid" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="membershipid()" >
+                            </div>
+                        </div>
+                    <?php } else if ($this->session->userdata('userType') == null) { ?>
 					<div class="row" id="options_2">
 						<div class="col-lg-6">
 							<label>Promo Code :</label>
@@ -182,8 +216,19 @@
 						<div class="col-lg-6">
 							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
 						</div>
-					</div><!-- Edn options 2 -->
-                    
+					</div>
+                    <?php } else { ?>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6">
+                                <label>Promo Code :</label>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
+                            </div>
+                        </div>
+                        <!-- Edn options 2 -->
+                    <?php } ?>
 					<hr>
 					<table class="table table_summary" id="total_table">
 					<tbody>
@@ -454,6 +499,25 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 		});
 	}
+
+	function membershipid() {
+        var memberid = document.getElementById("memberid").value;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/membershipid/")?>' ,
+            data: {'memberid': memberid},
+            cache: false,
+            success: function (data) {
+             //   $('#cart_table').load(document.URL +  ' #cart_table');
+              //  $('#total_table').load(document.URL +  ' #total_table');
+              //  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+
+                alert(data);
+            }
+
+        });
+
+    }
 
 	function orderwarning() {
 		alert("Please Select A Order Type")

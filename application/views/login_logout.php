@@ -6,7 +6,7 @@
             <form action="<?php echo base_url()?>Login/check_user" class="popup-form" id="myLogin" method="post">
                 <div class="login_icon"><i class="icon_lock_alt"></i></div>
                 <input type="email" class="form-control form-white" name="email" placeholder="Email">
-                <input type="text" class="form-control form-white" name="password" placeholder="Password">
+                <input type="password" class="form-control form-white" name="password" placeholder="Password">
                 <div class="text-left">
                     <a href="#">Forgot Password?</a>
                 </div>

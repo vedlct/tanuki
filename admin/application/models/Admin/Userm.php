@@ -26,6 +26,19 @@ class Userm extends CI_Model
         $query = $this->db->get('usertype');
         return $query->result();
     }
+    public function checkEmail($email)
+    {
+        $this->db->where('email',$email);
+        $query = $this->db->get('users');
+        return $query->result();
+    }
+    public function checkEmailFromUpdate($userId,$email)
+    {
+        $this->db->where('email',$email);
+        $this->db->where('id !=',$userId);
+        $query = $this->db->get('users');
+        return $query->result();
+    }
 
 
     public function user($data)
@@ -36,7 +49,25 @@ class Userm extends CI_Model
             return $this->db->error();
         } else {
 
-            return $error = null;
+            $customerId=$this->db->insert_id();
+
+            $data1=array(
+                'memberCardNo'=>$customerId,
+            );
+
+            $this->db->where('id',$customerId);
+            $error=$this->db->update('users',$data1);
+
+            if (empty($error))
+            {
+                return $this->db->error();
+            }
+            else {
+
+                return $error = null;
+            }
+
+
         }
     }
 
@@ -89,6 +120,7 @@ class Userm extends CI_Model
         $this->db->from('users u');
         $this->db->join('city c', 'c.id = u.fkCity', 'left');
         $this->db->where("fkUserType", 'cus');
+        $this->db->order_by('u.id', 'desc');
         $query = $this->db->get();
         return $query->result();
 

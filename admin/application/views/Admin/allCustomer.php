@@ -33,7 +33,7 @@
                                                                     ?></td>
                                                                 <td><?php echo $u->password ; ?></td>
                                                                 <td class="left"><?php echo $u->contactNo ?></td>
-                                                                <td> <?php echo $u->address?>,<?php echo $u->fkcity?>,<?php echo $u->postalCode?>;</td>
+                                                                <td> <?php echo $u->address?>,<?php echo $u->fkcity?>,<?php echo $u->postalCode?></td>
 
                                                                 <td class="center">
                                                                     <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $u->id ?>" onclick="selectid2(this)">

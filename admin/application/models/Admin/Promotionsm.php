@@ -16,6 +16,7 @@ class Promotionsm extends CI_Model
     {
         $this->db->select('id,itemName');
         $this->db->from('items');
+        $this->db->where('itemStatus=', "1");
         $query = $this->db->get();
         return $query->result();
     }

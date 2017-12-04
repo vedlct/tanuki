@@ -32,38 +32,10 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>Order List</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+
                             </div>
                             <div class="card-body ">
-                                <div class="row">
 
-                                    <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> Print </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
-                                </div>
 
 
                                     <button id="searchbyorderid" onclick="searchbydorder()" class="btn btn-info">
@@ -117,7 +89,7 @@
                                             <td class="center"><?php echo $orders->userName; ?>
 
                                                 <div class="btn-group">
-                                                    <button class="btn btn-primary btn-xs" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
+                                                    <button class="btn btn-primary btn-xs" style="z-index: inherit" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
                                                         <i class="fa fa-info"></i>
                                                     </button>
                                                 </div><hr>
@@ -186,34 +158,35 @@
 
 
                                                         </tr>
-                                                    <?php $total=$total+$price;}}}?>
+                                                    <?php $total=$total+$price;}}} ?>
                                                     <tr>
 
-                                                        <td style="color: red" colspan="5">Total-(delevery fee:$<?php echo $orders->deliveryfee;?> + vat:$<?php echo $orders->vat?>
+                                                        <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
 
                                                             <?php foreach ($pointUsed as $pu){
                                                                 if ($pu->fkOrderId == $orders->id ){
 
                                                                     if (!empty($pu->expedPoints)) {
-                                                                        echo " - Points Used :$" . $pu->expedPoints;
+                                                                        echo " - Points Used :" . $pu->expedPoints;
                                                                     }
                                                                 }
 
-                                                            }?> )</td>
+                                                            } ?> )
+                                                        </td>
 
                                                         <td colspan="1">
 
-                                                            <?php $point=0;foreach ($pointUsed as $pu){
+                                                            <?php $pointToMoney=0;foreach ($pointUsed as $pu){
                                                                 if ($pu->fkOrderId == $orders->id ){
 
                                                                     if (!empty($pu->expedPoints)) {
-                                                                        $point= $pu->expedPoints;
+                                                                        $pointToMoney= ($pu->expedPoints/10);
 
                                                                     }
                                                                 }
 
                                                             }?>
-                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat) - $point);?>
+                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
 
                                                         </td>
                                                         <td>

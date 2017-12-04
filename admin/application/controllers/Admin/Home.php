@@ -32,6 +32,7 @@ class Home extends CI_Controller {
         $this->data['orders'] = $this->Ordersm->getAllTodaysOrders();
         $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
         $this->load->view('Admin/todaysOrder',$this->data);
 

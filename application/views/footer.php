@@ -4,7 +4,8 @@
 <!--            <div class="row">
                 <div class="col-md-4 col-sm-3">
                   	<h3>Secure payments with</h3>
-                    <p><img src="<?php echo base_url()?>img/cards.png" alt="" class="img-responsive"></p>
+
+                    <p><img src="<?php echo base_url()?>public/img/cards.png" alt="" class="img-responsive"></p>
                     
                 </div>
                 <div class="col-md-3 col-sm-3">
@@ -22,7 +23,7 @@
                     <h3>Newsletter</h3>
                     <p>Join our newsletter to keep be informed about offers and news.</p>
 					<div id="message-newsletter_2"></div>
-						<form method="post" action="assets/newsletter.php" name="newsletter_2" id="newsletter_2">
+						<form method="post" action="<?php echo base_url()?>public/assets/newsletter.php" name="newsletter_2" id="newsletter_2">
                         <div class="form-group">
                             <input name="email_newsletter_2" id="email_newsletter_2"  type="email" value=""  placeholder="Your mail" class="form-control">
                           </div>

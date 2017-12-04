@@ -45,44 +45,46 @@ class User extends CI_Controller {
     public function insertUser()
     {
         if ($this->session->userdata('userType') == "Admin") {
-            $userId = $this->session->userdata('id');
-            $username = $this->input->post('username');
-            $address = $this->input->post('address');
-            $postcode = $this->input->post('postcode');
-            $city = $this->input->post('city');
-            $membercardnumber = $this->input->post('membercardnumber');
-            $contactNo = $this->input->post('contactno');
-            $email = $this->input->post('email');
-            $password = $this->input->post('password');
-            $status = $this->input->post('status');
-            $usertype=$this->input->post('usertype');
-            $data = array(
-                'name' => $username,
-                'address' => $address,
-                'postalCode' => $postcode,
-                'fkCity' => $city,
-                'memberCardNo' => $membercardnumber,
-                'contactNo' => $contactNo,
-                'email' => $email,
-                'password' => $password,
-                'userActivationStatus' => $status,
-                'fkUserType' => $usertype
-            );
 
-            $this->data['error'] = $this->Userm->user($data);
+                $username = $this->input->post('username');
+                $address = $this->input->post('address');
+                $postcode = $this->input->post('postcode');
+                $city = $this->input->post('city');
 
-            if (empty($this->data['error'])) {
+                $contactNo = $this->input->post('contactno');
+                $email = $this->input->post('email');
+                $password = $this->input->post('password');
 
-                $this->session->set_flashdata('successMessage','User Added Successfully');
-                redirect('Admin/user/allUser');
+                $status = $this->input->post('status');
+                $usertype = $this->input->post('usertype');
 
-            } else {
+                $data = array(
+                    'name' => $username,
+                    'address' => $address,
+                    'postalCode' => $postcode,
+                    'fkCity' => $city,
 
-                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
-                redirect('Admin/user/allUser');
-            }
+                    'contactNo' => $contactNo,
+                    'email' => $email,
+                    'password' => $password,
+                    'userActivationStatus' => $status,
+                    'fkUserType' => $usertype
+                );
+
+                $this->data['error'] = $this->Userm->user($data);
+
+                if (empty($this->data['error'])) {
+
+                    $this->session->set_flashdata('successMessage', 'User Added Successfully');
+                    redirect('Admin/user/allUser');
+
+                } else {
+
+                    $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Admin/user/allUser');
+                }
+
         }
-
         else
         {
             redirect('Login');
@@ -105,6 +107,46 @@ class User extends CI_Controller {
         }
     }
 
+    public function checkEmail()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $email = $this->input->post('email');
+
+            $user=$this->Userm->checkEmail($email);
+            if (!empty($user))
+            {
+                echo 0;
+            }
+            else{
+                echo 1;
+            }
+
+        } else {
+            redirect('Login');
+        }
+    }
+    public function checkEmailFromUpdate()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $email = $this->input->post('email');
+            $userId = $this->input->post('id');
+
+            $user=$this->Userm->checkEmailFromUpdate($userId,$email);
+            if (!empty($user))
+            {
+                echo 0;
+            }
+            else{
+                echo 1;
+            }
+
+        } else {
+            redirect('Login');
+        }
+    }
+
 //Updating Particular User Detail
     public function updateUserById($id)
     {
@@ -113,7 +155,7 @@ class User extends CI_Controller {
             $address = $this->input->post('address');
             $postcode = $this->input->post('postcode');
             $city = $this->input->post('city');
-            $membercardnumber = $this->input->post('membercardnumber');
+            //$membercardnumber = $this->input->post('membercardnumber');
             $contactNo = $this->input->post('contactno');
             $email = $this->input->post('email');
             $password = $this->input->post('password');
@@ -124,7 +166,7 @@ class User extends CI_Controller {
                 'address' => $address,
                 'postalCode' => $postcode,
                 'fkCity' => $city,
-                'memberCardNo' => $membercardnumber,
+                //'memberCardNo' => $membercardnumber,
                 'contactNo' => $contactNo,
                 'email' => $email,
                 'password' => $password,

@@ -56,6 +56,12 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+    public function getAllCity(){
+        $this->db->select('id, name ');
+        $this->db->from('city');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function getPromoType($promocoe){
 
         $this->db->select('promoType, discountAmount');
@@ -125,6 +131,36 @@ class Itemsm extends CI_Model {
             );
             $this->db->insert('orderitems', $data2);
         }
+        if ($this->session->userdata('orderType') != null){
+        $data3 = array(
+            'fkOrderId' => $orderid,
+            'fkUserId' => $this->session->userdata('id'),
+            'expedPoints' => $this->session->userdata('expensepoint')
+        );
+        }
+        $this->db->insert('pointdeduct', $data3);
+    }
+    public function checkoutInsertForGuest($data){
+
+
+        $this->db->insert('orders', $data);
+
+        $orderid = $this->db->insert_id();
+        foreach ($this->cart->contents() as $c){
+
+            $data2 = array(
+
+                'fkOrderId' => $orderid,
+                'fkItemSizeId' => $c['id'],
+                'quantity' => $c['qty'],
+                'rate' => $c['price'],
+                'discount' => $c['coupon'],
+
+
+            );
+            $this->db->insert('orderitems', $data2);
+            return $orderid;
+        }
     }
     public function getearnPoint($userid){
         $this->db->select('SUM(`earnedPoints`) as earnspoint ');
@@ -137,6 +173,14 @@ class Itemsm extends CI_Model {
         $this->db->select('SUM(`expedPoints`) as expenspoint');
         $this->db->from('pointdeduct');
         $this->db->where('fkUserId', $userid);
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function getuserdatabymemberid($memberid){
+        $this->db->select('id');
+        $this->db->from('users');
+        $this->db->where('memberCardNo', $memberid);
         $query = $this->db->get();
         return $query->result();
     }

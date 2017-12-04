@@ -18,32 +18,39 @@ class Login extends CI_Controller
 
         if (!empty($result)) {
 
-            $data1=array(
-
-                'sourceIp'=>$this->input->ip_address(),
-                'fkUserId'=>$result->userId,
-                'browser'=>$this->agent->browser()
-
-            );
-            $loginId=$this->loginm->loginInfo($data1);
-
-            $data = array(
-                'name' => $result->name,
-                'email' => $result->email,
-                'id' => $result->userId,
-                'userType' => $result->userType,
-                'loggedin' => "true",
-                'loginId'=>$loginId,
-            );
-
-            $this->session->set_userdata($data);
-
-            if ($this->session->userdata('userType') == "cus")
+            if ($result->userType == "cus" && $result->userActivationStatus == "0")
             {
-                redirect('Items/itemShow');
+                echo "<script>
+                    alert('Your Id is not Active Yet Please Try again Sometime');
+                    window.location.href= '" . base_url()."';
+                    </script>";
             }
+            else if ($result->userType == "cus" && $result->userActivationStatus == "1") {
 
 
+                $data1 = array(
+
+                    'sourceIp' => $this->input->ip_address(),
+                    'fkUserId' => $result->userId,
+                    'browser' => $this->agent->browser()
+
+                );
+                $loginId = $this->loginm->loginInfo($data1);
+
+                $data = array(
+                    'name' => $result->name,
+                    'email' => $result->email,
+                    'id' => $result->userId,
+                    'userType' => $result->userType,
+                    'loggedin' => "true",
+                    'loginId' => $loginId,
+                );
+
+                $this->session->set_userdata($data);
+
+                redirect('Items/itemShow');
+
+            }
         }
         else{
             echo "<script>
@@ -69,33 +76,61 @@ class Login extends CI_Controller
 
     }
 
+    public function showRegitration()
+    {
+        $this->load->view('userRegistration');
+    }
+
     public function registerUser()
     {
         $this->load->library('form_validation');
 
         if (!$this->form_validation->run('userRes')) {
 
-            $this->load->model('Admin/Departmentm');
-            $this->data['departmentName'] = $this->Departmentm->gellDepartmentName();
-            $this->load->view('Admin/newCourse', $this->data);
+            $this->load->view('userRegistration');
 
         }
-        $name = $this->input->post('Name');
-        $address = $this->input->post('address');
-        $city = $this->input->post('city');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $conPassword = $this->input->post('conPassword');
-        $phone = $this->input->post('phone');
+        else {
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
 
-        if ($password==$conPassword){
+            if ($password == $conPassword) {
 
+                $data=array(
+                    'name'=>$name,
+                    'address'=>$address,
+                    'postalCode'=>$postal,
+                    'fkCity'=>$city,
+                    'contactNo'=>$phone,
+                    'email'=>$email,
+                    'password'=>$conPassword,
+                    'userActivationStatus'=>'0',
+                    'fkUserType'=>'cus',
 
+                );
+
+                $this->data['error']=$this->loginm->customerRegister($data);
+
+                if (empty($this->data['error'])) {
+
+                    $this->session->set_flashdata('successMessage','Customer Created Successfully');
+                    redirect('Login/showRegitration');
+
+                } else {
+
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Login/showRegitration');
+
+                }
+
+            }
         }
-
-
-
-        redirect('Login');
     }
 
 
