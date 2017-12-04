@@ -235,7 +235,7 @@ class Items extends CI_Controller {
         $this->session->set_userdata($data);
     }
 
-    public function checkout(){
+    public function checkoutguest(){
 
         $this->load->library('form_validation');
 
@@ -322,19 +322,21 @@ class Items extends CI_Controller {
                         'fkOrderTaker' => $ordertaker,
 
                     );
-                    $this->Itemsm->checkoutInsert($data);
+                    $this->Itemsm->checkoutInsertForGuest($data);
+
+                    $this->cart->destroy();
 
 
 
                     $this->session->set_flashdata('successMessage','CheckOut Successfully');
-                    redirect('Items/cart');
+                    redirect('Items');
 
 
 
                 } else {
 
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
-                    redirect('Items/cart');
+                    redirect('Items');
 
                 }
 
