@@ -1,7 +1,7 @@
 <!-- Footer ================================================== -->
 	<footer>
         <div class="container">
-            <div class="row">
+<!--            <div class="row">
                 <div class="col-md-4 col-sm-3">
                   	<h3>Secure payments with</h3>
 
@@ -49,9 +49,16 @@
                         </select>
                     </div>
                 </div>
-            </div><!-- End row -->
+            </div> End row -->
             <div class="row">
-                <div class="col-md-12">
+               
+                <div class="col-md-4 col-sm-3">
+                    <h3>Secure payments with</h3>
+                    <p class="jetpay"><img src="http://localhost/tanuki/public/img/jp-payroll.png" alt="" class="img-responsive"></p>
+
+                </div>
+               
+                <div class="col-md-8">
                     <div id="social_footer">
                         <ul>
                             <li><a href="#0"><i class="icon-facebook"></i></a></li>
