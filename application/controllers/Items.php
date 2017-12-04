@@ -110,6 +110,7 @@ class Items extends CI_Controller {
         $userid = $this->session->userdata('id');
         if ($userid == "") {
             $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
@@ -236,29 +237,109 @@ class Items extends CI_Controller {
 
     public function checkout(){
 
-        $ordertype= $this->session->userdata('orderType');
-        $orderdate= date("Y-m-d H:i");
-        $re = $this->Itemsm->getorderstatus();
-        $orderstatus= $re->id;
-        $deliveryfee=$this->session->userdata('deliverfee');
-        $vat= $this->session->userdata('vat');;
-        $paymenttype=$this->session->userdata('paymentMethod');
-        $user=$this->session->userdata('id');
-        $ordertaker = $this->session->userdata('id');
+        $this->load->library('form_validation');
 
-        $data = array(
-            'orderType' => $ordertype ,
-            'orderDate' => $orderdate,
-            'fkOrderStatus' => $orderstatus,
-            'deliveryfee' => $deliveryfee,
-            'vat' => $vat,
-            'paymentType' => $paymenttype,
-            'fkUserId' => $user,
-            'fkOrderTaker' => $ordertaker,
+        if (!$this->form_validation->run('userRes')) {
 
-        );
-        $this->Itemsm->checkoutInsert($data);
-        redirect('Items');
+            $this->load->view('cartforguest');
+
+        }
+        else {
+
+            $this->load->model('loginm');
+            $this->load->library('user_agent');
+
+
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
+
+            if ($password == $conPassword) {
+
+                $data = array(
+                    'name' => $name,
+                    'address' => $address,
+                    'postalCode' => $postal,
+                    'fkCity' => $city,
+                    'contactNo' => $phone,
+                    'email' => $email,
+                    'password' => $conPassword,
+                    'userActivationStatus' => '1',
+                    'fkUserType' => 'cus',
+
+                );
+
+                $this->data['error'] = $this->loginm->guestRegister($data);
+
+
+                if (empty($this->data['error'])) {
+
+                    $data1 = array(
+
+                        'sourceIp' => $this->input->ip_address(),
+                        'fkUserId' => $this->session->userdata('id'),
+                        'browser' => $this->agent->browser()
+
+                    );
+
+                    $loginId = $this->loginm->loginInfo($data1);
+
+                    $data = array(
+                        'name' => $name,
+                        'email' => $email,
+                        'id' => $this->session->userdata('id'),
+                        'userType' => "cus",
+                        'loggedin' => "true",
+                        'loginId' => $loginId,
+                    );
+
+                    $this->session->set_userdata($data);
+
+
+                    $ordertype = $this->session->userdata('orderType');
+                    $orderdate = date("Y-m-d H:i");
+                    $re = $this->Itemsm->getorderstatus();
+                    $orderstatus = $re->id;
+                    $deliveryfee = $this->session->userdata('deliverfee');
+                    $vat = $this->session->userdata('vat');
+                    $paymenttype = $this->session->userdata('paymentMethod');
+                    $user = $this->session->userdata('id');
+                    $ordertaker = $this->session->userdata('id');
+
+                    $data = array(
+                        'orderType' => $ordertype,
+                        'orderDate' => $orderdate,
+                        'fkOrderStatus' => $orderstatus,
+                        'deliveryfee' => $deliveryfee,
+                        'vat' => $vat,
+                        'paymentType' => $paymenttype,
+                        'fkUserId' => $user,
+                        'fkOrderTaker' => $ordertaker,
+
+                    );
+                    $this->Itemsm->checkoutInsert($data);
+
+
+
+                    $this->session->set_flashdata('successMessage','CheckOut Successfully');
+                    redirect('Items/cart');
+
+
+
+                } else {
+
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Items/cart');
+
+                }
+
+            }
+        }
 
     }
 
