@@ -353,6 +353,7 @@ class Items extends CI_Controller {
 
                     );
                     $orderId=$this->Itemsm->checkoutInsertForGuest($data);
+                    $this->mailInvoice($orderId);
 
 
 
@@ -467,9 +468,19 @@ class Items extends CI_Controller {
 
     }
 
+
+
     public function mailInvoice($orderId){
 
-        $this->load->model('Admin/Userorderm');
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
+
+        $this->load->model('Userorderm');
+
+        $this->email->set_mailtype("html");
+        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to('md.sakibrahman@gmail.com');
+        $this->email->subject('Subject');
 
 
         $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
@@ -478,7 +489,10 @@ class Items extends CI_Controller {
         $this->data['charge'] = $this->Userorderm->getAllCharge();
         $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
 
-        $html = $this->load->view('invoicePdf', $this->data);
+        $message = $this->load->view('invoicePdf', $this->data);
+        $this->email->message($message);
+        $this->email->send();
+
 
 
     }
