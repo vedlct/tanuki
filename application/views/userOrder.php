@@ -111,8 +111,36 @@
                                             </tr>
                                             <?php $total=$total+$price;}}}?>
                                 <tr>
-                                    <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
-                                    <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
+<!--                                    <td style="color: red" colspan="5">Total-(including delevery fee & vat): --><?php //echo $orders->deliveryfee; ?><!--$+--><?php //echo $orders->vat?><!--$ : </td>-->
+<!--                                    <td colspan="1">--><?php //echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?><!--</td>-->
+
+                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+
+                                        <?php foreach ($pointUsed as $pu){
+                                            if ($pu->fkOrderId == $orders->id ){
+
+                                                if (!empty($pu->expedPoints)) {
+                                                    echo " - Points Used :" . $pu->expedPoints;
+                                                }
+                                            }
+
+                                        } ?> )
+                                    </td>
+                                    <td colspan="1">
+
+                                        <?php $pointToMoney=0;foreach ($pointUsed as $pu){
+                                            if ($pu->fkOrderId == $orders->id ){
+
+                                                if (!empty($pu->expedPoints)) {
+                                                    $pointToMoney= ($pu->expedPoints/10);
+
+                                                }
+                                            }
+
+                                        }?>
+                                        <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+
+                                    </td>
 
                                 </tr>
 

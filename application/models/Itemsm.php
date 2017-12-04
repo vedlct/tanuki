@@ -159,6 +159,7 @@ class Itemsm extends CI_Model {
 
             );
             $this->db->insert('orderitems', $data2);
+            return $orderid;
         }
     }
     public function getearnPoint($userid){
