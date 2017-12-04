@@ -131,14 +131,15 @@ class Itemsm extends CI_Model {
             );
             $this->db->insert('orderitems', $data2);
         }
-        if ($this->session->userdata('orderType') != null){
+        if ($this->session->userdata('orderType') != null && $this->session->userdata('expensepoint') !=null ){
         $data3 = array(
             'fkOrderId' => $orderid,
             'fkUserId' => $this->session->userdata('id'),
             'expedPoints' => $this->session->userdata('expensepoint')
         );
+            $this->db->insert('pointdeduct', $data3);
         }
-        $this->db->insert('pointdeduct', $data3);
+
     }
     public function checkoutInsertForGuest($data){
 
@@ -159,8 +160,9 @@ class Itemsm extends CI_Model {
 
             );
             $this->db->insert('orderitems', $data2);
-            return $orderid;
+
         }
+        return $orderid;
     }
     public function getearnPoint($userid){
         $this->db->select('SUM(`earnedPoints`) as earnspoint ');

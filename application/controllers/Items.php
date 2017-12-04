@@ -339,7 +339,7 @@ class Items extends CI_Controller {
                     $vat = $this->session->userdata('vat');
                     $paymenttype = $this->session->userdata('paymentMethod');
                     $user = $this->session->userdata('id');
-                    $ordertaker = "";
+                    $ordertaker = null;
 
                     $data = array(
                         'orderType' => $ordertype,
@@ -353,6 +353,8 @@ class Items extends CI_Controller {
 
                     );
                     $orderId=$this->Itemsm->checkoutInsertForGuest($data);
+
+
 
                     $this->cart->destroy();
 
