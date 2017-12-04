@@ -18,7 +18,8 @@ class Report extends CI_Controller
     public function filterByCustomer(){
         $this->data['allreportcus']= $this->Reportm->filterByCustomer();
         $this->data['allorder']= $this->Reportm->getTotalorderCustomer();
-        $this->load->view('Admin/ReportFilterByCustomer', $this->data);
+        print_r( $this->data['allreportcus']);
+       // $this->load->view('Admin/ReportFilterByCustomer', $this->data);
     }
     public function filterByEmployee(){
         $this->data['allreportemp']= $this->Reportm->filterByEmployee();
@@ -74,6 +75,7 @@ class Report extends CI_Controller
         $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
         $this->load->view('Admin/ReportFilterByItems', $this->data);
     }
+
 
 //// everyday earinig ////////////////////////////////////////////////////////////////////////
 

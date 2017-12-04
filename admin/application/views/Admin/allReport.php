@@ -102,7 +102,7 @@
                                             <th width="" class="center"> SL </th>
                                             <th width="" class="center"> OrderId </th>
                                             <th width="" class="center"> Items </th>
-                                            <th width="" class="center"> Total Amount</th>
+
                                             <th width="" class="center"> Customer</th>
                                             <th width="" class="center"> Order Taken</th>
                                             <th width="" class="center"> Order Type</th>
@@ -139,12 +139,20 @@
                                                                     <td ><?php echo $air->discount?></td>
                                                                     <td ><?php echo $total=$air->quantity * $air->rate?></td>
                                                                 </tr>
+
                                                             <?php  $sumtotal = $sumtotal+$total;  } }?>
+                                                        <tr>
+                                                            <td style="color: red" colspan="4">vat:<?php echo $v = $ar->vatTotal;?>
+                                                            + delivery fee : <?php echo $d =$ar->deliveryfee;?>
+                                                            </td>
+                                                            <td><?php echo $sumtotal+ $v+$d ?></td>
+
+                                                        </tr>
 
 
                                                     </table>
                                                 </td>
-                                                <td class="center"><?php echo $sumtotal ?></td>
+
                                                 <td class="center"><?php echo $ar->customer ?></td>
                                                 <td class="center"><?php echo $ar->waiter ?></td>
                                                 <td class="center"><?php echo $ar->orderType ?></td>
