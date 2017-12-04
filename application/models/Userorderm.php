@@ -88,6 +88,14 @@ class Userorderm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+    public  function getUsedPoint()
+    {
+        $this->db->select('expedPoints, fkOrderId');
+        $this->db->from('pointdeduct');
+
+        $query=$this->db->get();
+        return $query->result();
+    }
 
 
 }

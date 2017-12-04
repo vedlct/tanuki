@@ -16,24 +16,14 @@ class Userorder extends CI_Controller
         $this->data['orders'] = $this->Userorderm->getAllOrders($userId);
 
 
-
-
-
-         $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItems();
+            $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
-         $this->data['StatusDelivered'] = $this->Userorderm->getOrdersStatusDeliveredId();
-//            //print_r($this->data['StatusDelivered']);
+            $this->data['StatusDelivered'] = $this->Userorderm->getOrdersStatusDeliveredId();
+            $this->data['pointUsed'] = $this->Userorderm->getUsedPoint();
+
 
 
             $this->load->view('userOrder', $this->data);
-
-
-//        else {
-//            redirect('Login');
-//        }
-
-
-
 
 
 
