@@ -17,6 +17,8 @@ class Ordersm extends CI_Model
         $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate) BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
+        $this->db->order_by('o.id', 'DESC');
+
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
         $query=$this->db->get();
@@ -176,7 +178,7 @@ class Ordersm extends CI_Model
 
     public  function getDeliveredOrderInfo($orderId)
     {
-        $this->db->select('orders.id,orders.vat');
+        $this->db->select('orders.id,orders.vat,orders.deliveryfee,orders.fkUserId');
         $this->db->from('orders');
         $this->db->where('orders.id',$orderId);
 
@@ -338,6 +340,16 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
+    public  function getUsedPointForParticularOrder($orderId)
+    {
+        $this->db->select('expedPoints');
+        $this->db->from('pointdeduct');
+        $this->db->where('fkOrderId',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     public  function getUsedPoint()
     {
         $this->db->select('expedPoints, fkOrderId');
@@ -347,7 +359,20 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
-   
+    public  function insertIntoPointFordeliveredOrdered($data3)
+    {
+        $this->security->xss_clean($data3);
+
+        $error=$this->db->insert('points', $data3);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 
 

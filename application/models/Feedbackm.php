@@ -77,12 +77,12 @@ class Feedbackm extends CI_Model
 
     }
 
-    public function ratingavg(){
+    public function ratingavg($itemid){
 
 
         //$this->db->select_avg('userRating');
         $this->db->select('id, AVG(userRating) as userRatings');
-//       $this->db->where('fkItemId');
+          $this->db->where('fkItemId',$itemid);
         $this->db->from('userfeedback');
         $query = $this->db->get();
         return $query->result();

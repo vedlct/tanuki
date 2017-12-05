@@ -29,7 +29,7 @@ class Orders extends CI_Controller
             $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
             $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
-          //  print_r($this->data['pointUsed']);
+            //print_r($this->data['orders']);
 
 
             $this->load->view('Admin/allOrders', $this->data);
@@ -53,26 +53,43 @@ class Orders extends CI_Controller
 
                     $this->data['orderInfo'] = $this->Ordersm->getDeliveredOrderInfo($orderId);
                     $this->data['orderItemsInfo'] = $this->Ordersm->getDeliveredOrderItemsInfo($orderId);
+                    $this->data['pointUsedForOrder'] = $this->Ordersm->getUsedPointForParticularOrder($orderId);
+                    $totalPoint=0;
                     foreach ($this->data['orderInfo'] as $orderInfo) {
                         $data1 = array(
                             'fkOrderId' => $orderInfo->id,
                             'vatTotal' => $orderInfo->vat,
                             'transDate' => date('Y-m-d'),
                         );
-                    }
-                    $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
+                        $totalPoint=($orderInfo->vat+$orderInfo->deliveryfee);
 
-                    foreach ($this->data['orderItemsInfo'] as $orderedItems) {
+                        $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
 
-                        $data2 = array(
+                        foreach ($this->data['orderItemsInfo'] as $orderedItems) {
+
+                            $data2 = array(
+                                'fkTransId' => $transectionId,
+                                'fkItemSizeId' => $orderedItems->fkItemSizeId,
+                                'quantity' => $orderedItems->quantity,
+                                'rate' => $orderedItems->rate,
+                                'discount' => $orderedItems->discount,
+                            );
+                            $this->Ordersm->insertdeliveredOrderedItemsToTransection($data2);
+                            foreach ($this->data['pointUsedForOrder'] as $pointUsed){
+                                $pointTomoney = ($pointUsed->expedPoints/10);
+                            }
+                            $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)-$pointTomoney);
+                        }
+
+                        $data3 = array(
                             'fkTransId' => $transectionId,
-                            'fkItemSizeId' => $orderedItems->fkItemSizeId,
-                            'quantity' => $orderedItems->quantity,
-                            'rate' => $orderedItems->rate,
-                            'discount' => $orderedItems->discount,
+                            'fkUserId' => $orderInfo->fkUserId,
+                            'earnedPoints' => $totalPoint,
                         );
-                        $this->Ordersm->insertdeliveredOrderedItemsToTransection($data2);
-                    }
+                          $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
+
+                 }
+
 
                 }
 //                else {

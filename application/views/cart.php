@@ -89,8 +89,8 @@
 				<div class="box_style_2 hidden-xs" id="help">
 					<i class="icon_lifesaver"></i>
 					<h4>Need <span>Help?</span></h4>
-					<a href="tel://004542344599" class="phone">+45 423 445 99</a>
-					<small>Monday to Friday 9.00am - 7.30pm</small>
+                    <a href="tel://004542344599" class="phone">+703-723-8952</a>
+<!--					<small>Monday to Friday 9.00am - 7.30pm</small>-->
 				</div>
                 
 			</div><!-- End col-md-3 -->
@@ -287,11 +287,13 @@
                             <?php } ?>
                         </div>
                         <hr>
+                        <span id="checkOut">
                          <?php if ($this->session->userdata('paymentMethod') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <?php }else { ?>
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>
+                        </span>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
@@ -323,29 +325,26 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+    <?php include ('js.php')?>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
-<script>
-    jQuery('#sidebar').theiaStickySidebar({
-      additionalMarginTop: 80
-    });
-</script>
+<!--<script src="--><?php //echo base_url()?><!--public/js/theia-sticky-sidebar.js"></script>-->
+<!--<script>-->
+<!--    jQuery('#sidebar').theiaStickySidebar({-->
+<!--      additionalMarginTop: 80-->
+<!--    });-->
+<!--</script>-->
 <script>
     function paymentcreditcard() {
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcreditcard/")?>',
+            url:'<?php echo base_url("Items/paymentcreditcard")?>',
             cache: false,
             success:function(data)
             {
-              //  $('#cart_table').load(document.URL +  ' #cart_table');
-               // $('#total_table').load(document.URL +  ' #total_table');
+                $('#checkOut').load(document.URL +  ' #checkOut');
+
             }
 
         });
@@ -355,12 +354,12 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcash/")?>',
+            url:'<?php echo base_url("Items/paymentcash")?>',
             cache: false,
             success:function(data)
             {
-             //   $('#cart_table').load(document.URL +  ' #cart_table');
-              //  $('#total_table').load(document.URL +  ' #total_table');
+
+                $('#checkOut').load(document.URL +  ' #checkOut');
             }
 
         });

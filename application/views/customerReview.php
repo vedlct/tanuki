@@ -87,11 +87,104 @@
                         <form method="post" action="<?php echo base_url() ?>Feedback/newReview/<?php echo $items->id ?>">
 
 
+                            <div class="form-group">
                             <textarea name="review_text" id="review_text" class="form-control form-black" style="height:100px" placeholder="write review..........." ></textarea>
-                            <input type="number" name="rating" max="5" min="0" class="form-control form-black"  placeholder="Give rating here ..........." ></input>
-                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="rating" max="5" min="0" class="form-control form-black"  placeholder="Give rating here ..........." ></input>
+                            </div>
+
                             <input type="submit" style="color: red" class="form-control form-black"  value="Submit" >
                         </form>
+
+                <?php foreach( $allItem as $items) { ?>
+
+
+
+
+                    <?php foreach ($avgrating as $av){
+                        $rating_avg = round($av->userRatings);
+
+
+                    }?>
+                    <?php
+                    switch ($rating_avg) {
+                        case 1:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 2:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 3:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 4:
+                            ?>
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        case 5:
+                            ?>
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+                            break;
+                        default:
+                            ?>
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
+                            <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
+
+                            <?php
+
+                    }
+
+                    ?>
+
+
+
+
+
+
+                    <?php }  ?>
+
+                <?php foreach($userFeedback as $f) { ?>
+
+
+
+                <?php } ?>
 
 
 
@@ -105,18 +198,12 @@
                     <?php foreach( $allItem as $items) { ?>
 
 
-                        <h4> <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b></h4>
+
 
                     <?php }}  ?>
 
 
                 <?php foreach($userFeedback as $f) { ?>
-
-
-
-<!--                    <h4>--><?php //echo $f->name ?><!--</h4>-->
-                        <!---->
-                        <!---->
 
                         <div class="review_strip_single">
                             <h4 style="color: inherit"><?php echo $f->name ?> said</h4>
@@ -134,7 +221,7 @@
 
 
             </div>
-            <!-- End box_style_1 -->
+           <!-- End box_style_1 -->
         </div>
     </div><!-- End row -->
 </div><!-- End container -->
@@ -214,13 +301,14 @@
 </footer>
 <!-- End Footer =============================================== --><!-- End Footer =============================================== -->
 </div>
+
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
-<?php include ('login_logout.php')?>
 
 
+    <div class="layer"></div><!-- Mobile menu overlay mask -->
 
-
+    <?php include ('login_logout.php')?>
 
 <!-- COMMON SCRIPTS -->
 <script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
@@ -251,6 +339,12 @@
         });
     });
 </script>
+
+    <!-- COMMON SCRIPTS -->
+<?php include ('js.php')?>
+
+
+
 
 </body>
 </html>

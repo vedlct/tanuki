@@ -3,7 +3,7 @@
 echo "<script type=\"text/javascript\">
         alert(\"Login First\");
         
-        window.location=\"/tanuki/Admin/Login\";
+        window.location.href='". base_url() ."';
         </script>";
 }
 else
