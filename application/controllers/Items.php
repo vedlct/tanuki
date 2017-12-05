@@ -491,8 +491,6 @@ class Items extends CI_Controller {
         $this->email->message($message);
         $this->email->send();
 
-
-
     }
 
 
