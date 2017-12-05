@@ -242,7 +242,10 @@
                             <tr>
                                 <td>
                                     Discount <span class="pull-right">
-
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+                                        //							{ echo 0.00;} else{
+                                        //									echo $this->session->userdata('discount');
+                                        //								} ?><!-- </span>-->
                                         <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
                                             $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
                                         } echo $totaldis;?>
@@ -252,18 +255,22 @@
                             <tr>
                                 <td>
                                     Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
-                                    $dfee = $char->deliveryfee;
-                                    $vat = $char->vat;
-                                }?>
+								<?php $dfee = 0; $vat = 0;
+                                if ($this->session->userdata('orderType') == "home"){
+                                    foreach ($charges as $char){
+                                        $dfee = $char->deliveryfee;
+                                    } } else?>
                                 <?php echo $dfee ; ?></span>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
+                                    <?php foreach ($charges as $char){
+                                        $vat = $char->vat;
+                                    }?>
                                     <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
-                                    Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
+                                    Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
                                 </td>
                             </tr>
                             <tr>

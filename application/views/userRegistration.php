@@ -5,6 +5,11 @@
 
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
+    <style>
+        label {
+            margin-top: 20px;
+        }
+    </style>
 
 </head>
 
@@ -108,7 +113,7 @@
 
                     </div>
                     <div class="col-md-2 form-group">
-                        <label>Postal Code</label>
+                        <label >Postal Code</label>
                     </div>
                     <div class="col-md-4">
                         <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
