@@ -28,7 +28,7 @@ class Itemsm extends CI_Model {
     }
     public function getAllCategory(){
 
-        $this->db->select('id, name ');
+        $this->db->select('id, name, description ');
         $this->db->from('catagory');
         $query = $this->db->get();
         return $query->result();

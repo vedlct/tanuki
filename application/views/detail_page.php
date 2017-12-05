@@ -66,6 +66,7 @@
                 <ul id="cat_nav">
                     <?php foreach ($allcategory as $cate) {?>
                         <li><a href="#<?php echo $cate->id ?>" class="active"><?php echo $cate->name ?></a></li>
+
                         <?php } ?>
                 </ul>
             </div><!-- End box_style_1 -->
@@ -102,6 +103,7 @@
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
                             <h3 class="nomargin_top" id="<?php echo $cate->id?>"><?php echo $cate->name?></h3>
+                            <?php echo $cate->description ?>
                             <?php break;}}?>
 
                     <?php foreach ($allitem as $item) { ?>
@@ -110,7 +112,8 @@
 					<tr>
 						<td width="">
                         	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
-							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"> <?php echo $item->itemName?></a></h5>
+<!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
+							<h5><a style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
 							<p>
                                 <?php echo $item->description?>
 							</p>
