@@ -17,7 +17,7 @@
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                 <ul>
                     <li>
-                    	<a href="<?php echo base_url()?>">Home</a>
+                    	<a href="<?php echo base_url()?>">Menu</a>
                     </li>
 
                     <?php if($this->session->userdata('loggedin')=="true"){

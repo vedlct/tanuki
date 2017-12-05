@@ -22,24 +22,27 @@ class Profilem extends CI_Model
     }
 
 
-    public function updateuser($id,$name,$email,$password,$address,$fkCity,$contactNo,$postalCode,$memberCardNo){
-
-//updateuser($id,$name,$email,$password,$address,$fkCity,$contactNo,$postalCode)
+    public function updateuser($id,$name,$email,$password,$address,$fkCity,$contactNo,$postalCode){
 
         $data = array(
             'name' => $name,
             'password' => $password,
-            'password' => $password,
             'address' => $address,
             'fkCity' => $fkCity,
             'postalCode' => $postalCode,
-            'memberCardNo' => $memberCardNo,
-            //'country' => country
+            'contactNo'=>$contactNo
+
         );
 
         $data = $this->security->xss_clean($data);
         $this->db->where('id', $id);
         $this->db->where('email',$email);
         $this->db->update('users', $data);
+
+        $data1 = array(
+            'name' => $name,
+        );
+
+        $this->session->set_userdata($data1);
     }
 }

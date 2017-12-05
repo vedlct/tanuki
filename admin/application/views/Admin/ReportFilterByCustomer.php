@@ -18,6 +18,7 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
+
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
                 <?php }
@@ -34,26 +35,27 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByMemberId">
+
+<!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin/Report/searchByMemberId">-->
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Search For Details</label>
-                                                <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
+                                                <input type="text" id="memberid" class="form-control" name="memberid" placeholder="Membership ID">
                                             </div >
                                         </div>
 
 
                                         <div class="btn-group col-md-3 col-sm-3">
 
-                                            <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                            <button style="margin-top: 30px"  id="addRow" onclick="searchMember()" class="btn btn-info">
                                                 submit
                                             </button>
                                         </div>
 
-
-                                    </form>
+<!--                                    </form>-->
                                 </div>
+                                <div class="table table-responsive">
 
                                     <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                         <thead>
@@ -88,6 +90,7 @@
 
                                         </tbody>
                                     </table>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -131,6 +134,33 @@
 
 
 <script>
+    function searchMember() {
+
+        var memberid = document.getElementById('memberid').value;
+
+
+
+        if (memberid == ""){
+
+            alert('Enter a member Id First');
+            return false;
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByMemberId" )?>',
+                data:{'memberid':memberid,},
+                cache: false,
+                success:function(data)
+                {
+                    //alert(data);
+                    $('#example4').html(data);
+                }
+            });
+        }
+
+    }
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
     function selectid1(x)

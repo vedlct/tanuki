@@ -416,7 +416,9 @@ class Items extends CI_Controller {
                             'fkOrderTaker' => $ordertaker,
 
                         );
-                    }else {
+                        $this->Itemsm->checkoutInsert($data);
+                    }
+                    else {
                         $data = array(
                             'orderType' => $ordertype,
                             'orderDate' => $orderdate,
@@ -428,8 +430,12 @@ class Items extends CI_Controller {
                             'fkOrderTaker' => null,
 
                         );
+                        $orderId=$this->Itemsm->checkoutInsert($data);
+                        $this->mailInvoice($orderId);
                     }
-                    $this->Itemsm->checkoutInsert($data);
+
+
+                    $this->cart->destroy();
 
 
         }
@@ -481,7 +487,7 @@ class Items extends CI_Controller {
 
         $this->email->set_mailtype("html");
         $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to('md.sakibrahman@gmail.com');
+        $this->email->to($this->session->userdata('email'));
         $this->email->subject('Subject');
 
 

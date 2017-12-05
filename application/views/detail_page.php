@@ -376,7 +376,7 @@
 					</table>
 					<hr>
 					<div id="ordertypediv">
-					<?php if($this->session->userdata('orderType') != null && !empty($this->cart->contents())){ ?>
+					<?php if($this->session->userdata('orderType') != null ){ ?>
 					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
 					<?php }else { ?>
 						<a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
@@ -607,14 +607,12 @@
 
 	function orderwarning() {
 	    var orderType ='<?php echo $this->session->userdata('orderType')?>';
-	    var cartContent ='<?php echo count($this->cart->contents())?>';
+
 
 	    if (orderType == "" ) {
             alert("Please Select A Order Type");
         }
-        if (cartContent =="" ){
-            alert("Please Select A Item To Order");
-        }
+
 	}
 </script>
 </body>

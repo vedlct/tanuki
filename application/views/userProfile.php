@@ -78,10 +78,11 @@
                         </div >
                         <div class="col-md-6" >
                             <div class="form-group" >
-                                <label > Member Card Number </label >
-                                <input type = "text"  name = "memberCardNo" class="form-control" value="<?php echo $p->memberCardNo; ?>" >
+                                <label > Address</label >
+                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
                             </div >
                         </div >
+
 
                     </div >
                     <div class="row" >
@@ -110,12 +111,7 @@
                                 <input type = "text"  name = "contactNo" class="form-control" value="<?php echo $p->contactNo ?>" >
                             </div >
                         </div >
-                        <div class="col-md-6" >
-                            <div class="form-group" >
-                                <label > Address</label >
-                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
-                            </div >
-                        </div >
+
                     </div ><!--End row-->
 
 
