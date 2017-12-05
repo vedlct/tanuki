@@ -25,7 +25,7 @@
         <div class="form-group">
             <label class="control-label col-md-3">Item Size<span class="required"> * </span></label>
             <div class="col-md-5">
-                <select class="form-control input-height" id="itemSizeId" name="itemSizeId" required onchange="showItemPriceByItemSizeId(this)">
+                <select class="form-control input-height" id="itemSizeId" name="itemSizeId" required ">
                     <option value="">Select...</option>
                 </select>
             </div>
@@ -47,7 +47,13 @@
                 <input type="text" readonly id="ItemRate" name="ItemRate"  placeholder="Please Select an Item Size" required class="form-control input-height" />
             </div>
         </div>
+        <div class="form-group">
 
+            <label class="control-label col-md-3"> Promocode <span class="required"> * </span></label>
+            <div class="col-md-5">
+                <input type="text" id="ItemDiscount" name="ItemDiscount" placeholder="Please give a promocode" onfocus="showItemPriceByItemSizeId(this)" required class="form-control input-height"  readonly/>
+            </div>
+        </div>
         <div class="form-group">
 
             <label class="control-label col-md-3"> Discount<span class="required"> * </span></label>
