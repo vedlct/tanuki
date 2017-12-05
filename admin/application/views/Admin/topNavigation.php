@@ -4,7 +4,7 @@
         <!-- logo start -->
         <div class="page-logo">
             <a href="index-2.html">
-                <img src="<?php echo base_url()?>public/img/logo.png" alt="logo" class="logo-default" /> </a>
+                <img src="<?php echo base_url()?>images/logo/logo.png" alt="logo" class="logo-default" /> </a>
             <div class="menu-toggler sidebar-toggler">
                 <span></span>
             </div>

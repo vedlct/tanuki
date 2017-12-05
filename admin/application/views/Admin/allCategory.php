@@ -32,11 +32,7 @@
                         <div class="card card-topline-red">
                             <div class="card-head">
                                 <header>Category List</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+
                             </div>
                             <div class="card-body ">
                                 <div class="row">
@@ -47,34 +43,15 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> Print </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Name </th>
-                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
+                                        <th width="20%"class="center"> Name </th>
+                                        <th width="40%"class="center"> Description</th>
+                                        <th width="20%"class="center"> Category Add date(d-m-y)</th>
                                         <th width="10%"class="center"> Action </th>
                                     </tr>
                                     </thead>
@@ -85,6 +62,7 @@
 
                                             <td><?php echo $i; ?></td>
                                             <td class="center"><?php echo $category->name; ?></td>
+                                            <td class="center"><?php echo $category->description; ?></td>
                                             <td class="center">
                                                 <?php echo preg_replace("/ /"," Time: ",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
                                             </td>

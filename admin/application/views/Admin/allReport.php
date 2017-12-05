@@ -36,19 +36,20 @@
                                 <div class="row">
 
                                     <div id="date" style="display: none">
-                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByDate">
+<!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin/Report/searchByDate" onsubmit="return checkDate()">-->
+
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">Start Date</label>
-                                                <input type="text" class="form-control docs-date" name="startdate" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="startdate" id="startdate" placeholder="Pick a date">
                                             </div >
                                         </div>
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
                                                 <label for="date">End Date</label>
-                                                <input type="text" class="form-control docs-date" name="enddate" placeholder="Pick a date">
+                                                <input type="text" class="form-control docs-date" name="enddate" id="enddate" placeholder="Pick a date">
                                             </div>
 
 
@@ -56,13 +57,13 @@
                                         </div>
                                         <div class="btn-group col-md-3 col-sm-3">
 
-                                            <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
+                                            <button style="margin-top: 30px"  id="addRow" onclick="checkDate()" onclick="" class="btn btn-info">
                                                 submit
                                             </button>
                                         </div>
 
 
-                                    </form>
+<!--                                    </form>-->
                                     </div>
                                     <form action="<?php echo base_url()?>Admin/Report/searchByOrderId" method="post">
                                     <div id="order" style="display: none;">
@@ -101,7 +102,7 @@
                                             <th width="" class="center"> SL </th>
                                             <th width="" class="center"> OrderId </th>
                                             <th width="" class="center"> Items </th>
-                                            <th width="" class="center"> Total Amount</th>
+
                                             <th width="" class="center"> Customer</th>
                                             <th width="" class="center"> Order Taken</th>
                                             <th width="" class="center"> Order Type</th>
@@ -138,12 +139,20 @@
                                                                     <td ><?php echo $air->discount?></td>
                                                                     <td ><?php echo $total=$air->quantity * $air->rate?></td>
                                                                 </tr>
+
                                                             <?php  $sumtotal = $sumtotal+$total;  } }?>
+                                                        <tr>
+                                                            <td style="color: red" colspan="4">vat:<?php echo $v = $ar->vatTotal;?>
+                                                            + delivery fee : <?php echo $d =$ar->deliveryfee;?>
+                                                            </td>
+                                                            <td><?php echo $sumtotal+ $v+$d ?></td>
+
+                                                        </tr>
 
 
                                                     </table>
                                                 </td>
-                                                <td class="center"><?php echo $sumtotal ?></td>
+
                                                 <td class="center"><?php echo $ar->customer ?></td>
                                                 <td class="center"><?php echo $ar->waiter ?></td>
                                                 <td class="center"><?php echo $ar->orderType ?></td>
@@ -198,10 +207,36 @@
 
 <script>
     function searchbydate(){
-         document.getElementById('searchbydate').style.display='none';
+        document.getElementById('searchbydate').style.display='none';
         document.getElementById('date').style.display='block';
         document.getElementById('order').style.display='none';
         document.getElementById('searchbyoder').style.display='block';
+    }
+    function checkDate() {
+
+        var startdate = document.getElementById('startdate').value;
+        var enddate = document.getElementById('enddate').value;
+
+
+        if (startdate > enddate){
+
+            alert('End Date must be greater than start date');
+            return false;
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByDate" )?>',
+                data:{'startdate':startdate,'enddate':enddate},
+                cache: false,
+                success:function(data)
+                {
+                    $('#example4').html(data);
+                }
+            });
+        }
+
     }
     function searchbydorder(){
         document.getElementById('searchbydate').style.display='block';

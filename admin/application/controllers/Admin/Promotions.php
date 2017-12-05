@@ -120,7 +120,7 @@ class Promotions extends CI_Controller
 
         if ($this->session->userdata('userType') == "Admin") {
             $id = $this->input->post('id');
-            $this->data['allItem'] = $this->Promotionsm->getAllItem();
+            //$this->data['allItem'] = $this->Promotionsm->getAllItem();
             $this->data['promotioninfo'] = $this->Promotionsm->getPromotionById($id);
             $this->load->view('Admin/updatePromotion', $this->data);
         } else {
@@ -139,7 +139,7 @@ class Promotions extends CI_Controller
             $startdate = $this->input->post("startdate");
             $enddate = $this->input->post('enddate');
 //            $promotype = $this->input->post('promotype');
-            $discount = $this->input->post('discount');
+//            $discount = $this->input->post('discount');
             $status = $this->input->post('itemStatus');
             $promotiondata = array(
                 'campainTitle' => $campainTitle,
@@ -147,7 +147,7 @@ class Promotions extends CI_Controller
                 'startDate' => $startdate,
                 'endDate' => $enddate,
 //                'promoType' => $promotype,
-                'discountAmount' => $discount,
+//                'discountAmount' => $discount,
                 'activationStatus' => $status,
             );
 

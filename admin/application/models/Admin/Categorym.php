@@ -11,7 +11,7 @@ class Categorym extends CI_Model
 
     public  function getAllCategoryNameId()
     {
-        $this->db->select('id,name');
+        $this->db->select('id,name,description');
         $this->db->from('catagory');
         $query=$this->db->get();
         return $query->result();
@@ -36,7 +36,7 @@ class Categorym extends CI_Model
     public function getCatgoryById($cat_id)
     {
         $this->db->from('catagory');
-        $this->db->where('id',$cat_id)->select(['id','name']);
+        $this->db->where('id',$cat_id)->select(['id','name','description']);
         $query = $this->db->get();
 
         return $query->result();

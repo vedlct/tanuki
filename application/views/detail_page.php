@@ -2,7 +2,7 @@
 <!--[if IE 9]><html class="ie ie9"> <![endif]-->
 <html>
 <head>
-
+    
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
 
@@ -32,35 +32,36 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
 	<div id="sub_content">
-    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>
-                    <h1>Mexican TacoMex</h1>
-                    <div><em>Mexican / American</em></div>
-                    <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
+<!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
+<!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
+        <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
+        <div><em>Japanese Restaurant</em></div>
+        <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+            Ste 118 Ashburn, VA 20147 </div>
     </div><!-- End sub_content -->
 </div><!-- End subheader -->
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
-    <div id="position">
-        <div class="container">
-            <ul>
-                <li><a href="#0">Home</a></li>
-                <li><a href="#0">Tanuki's Dishes</a></li>
-                <li>Page active</li>
-            </ul>
-            <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
-        </div>
-    </div><!-- Position -->
+
 
 <!-- Content ================================================== -->
 <div class="container-fluid margin_60_35">
 		<div class="row">
 
+            <?php if ($this->session->flashdata('errorMessage')!=null){?>
+                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+            <?php }
+            elseif($this->session->flashdata('successMessage')!=null){?>
+                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+            <?php }?>
+        
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
             <p><a href="list_page.php" class="btn_side">Back to search</a></p>
             <div class="box_style_1">
+
+
 
                 <ul id="cat_nav">
                     <?php foreach ($allcategory as $cate) {?>
@@ -72,11 +73,11 @@
             <div class="box_style_2 hidden-xs" id="help">
                 <i class="icon_lifesaver"></i>
                 <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                <small>Monday to Friday 9.00am - 7.30pm</small>
+                <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
+<!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
         </div><!-- End col-md-3 -->
-
+            
 			<div class="col-md-5">
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
@@ -141,7 +142,7 @@
 					</table>
 				</div><!-- End box_style_1 -->
 			</div><!-- End col-md-6 -->
-
+            
 			<div class="col-md-3" id="sidebar">
             <div class="theiaStickySidebar">
 				<div id="cart_box" >
@@ -172,8 +173,10 @@
 				} ?>
 					</tbody>
 					</table>
-					<hr>
-					<div class="row" id="options_2">
+
+                    <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
+                        <hr>
+                    <div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 						<a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
 						</div>
@@ -181,7 +184,30 @@
 							<a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
 						</div>
 					</div>
+                    <?php }else {
+
+                        $data = array(
+                            'orderType' => "have",
+
+                        );
+
+                        $this->session->set_userdata($data);
+
+                    } ?>
+
+
 					<hr>
+                    <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6">
+                                <label>Membership ID :</label>
+
+                            </div>
+                            <div class="col-lg-6">
+                                <input id="memberid" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="membershipid()" >
+                            </div>
+                        </div>
+                    <?php } else if ($this->session->userdata('userType') == null) { ?>
 					<div class="row" id="options_2">
 						<div class="col-lg-6">
 							<label>Promo Code :</label>
@@ -190,8 +216,19 @@
 						<div class="col-lg-6">
 							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
 						</div>
-					</div><!-- Edn options 2 -->
+					</div>
+                    <?php } else { ?>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6">
+                                <label>Promo Code :</label>
 
+                            </div>
+                            <div class="col-lg-6">
+                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
+                            </div>
+                        </div>
+                        <!-- Edn options 2 -->
+                    <?php } ?>
 					<hr>
 					<table class="table table_summary" id="total_table">
 					<tbody>
@@ -260,7 +297,7 @@
                 </div><!-- End theiaStickySidebar -->
 			</div>
             <!-- End col-md-3 -->
-
+            
 		</div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
@@ -270,9 +307,9 @@
 <!-- End Footer =============================================== -->
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
-
+    
 <?php include ('login_logout.php')?>
-
+    
     <!-- Search Menu -->
 	<div class="search-overlay-menu">
 		<span class="search-overlay-close"><i class="icon_close"></i></span>
@@ -283,7 +320,7 @@
 		</form>
 	</div>
 	<!-- End Search Menu -->
-
+    
 <!-- COMMON SCRIPTS -->
 <script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
 <script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
@@ -462,6 +499,25 @@ $('#cat_nav a[href^="#"]').on('click', function (e) {
 
 		});
 	}
+
+	function membershipid() {
+        var memberid = document.getElementById("memberid").value;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/membershipid/")?>' ,
+            data: {'memberid': memberid},
+            cache: false,
+            success: function (data) {
+             //   $('#cart_table').load(document.URL +  ' #cart_table');
+              //  $('#total_table').load(document.URL +  ' #total_table');
+              //  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+
+                alert(data);
+            }
+
+        });
+
+    }
 
 	function orderwarning() {
 		alert("Please Select A Order Type")

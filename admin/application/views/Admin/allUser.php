@@ -27,58 +27,39 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="tabbable-line">
+
                             <div class="tab-content">
                                 <div class="tab-pane active fontawesome-demo" id="tab1">
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="card card-topline-red">
                                                 <div class="card-head">
-                                                    <header>Uaer List</header>
+                                                    <header>User List</header>
 
                                                 </div>
                                                 <div class="card-body ">
                                                     <div class="row">
                                                         <div class="col-md-6 col-sm-6 col-xs-6">
                                                             <div class="btn-group">
-                                                                <button id="addRow" onclick="selectid1(this)" class="btn btn-info">
+                                                                <button id="addRow" onclick="selectid1(this)" style="z-index: inherit" class="btn btn-info">
                                                                     Add  New  User<i class="fa fa-plus"></i>
                                                                 </button>
                                                             </div>
                                                             <div class="btn-group">
-                                                                <button id="id" onclick="showCustomer()" class="btn btn-success">
+                                                                <button id="id" style="z-index: inherit" onclick="showCustomer()" class="btn btn-success">
                                                                    Customer <i class="fa fa-cubes"></i>
                                                                 </button>
                                                             </div>
                                                             <div class="btn-group">
-                                                                <button id="addRow"   onclick="showAdmin()"  class="btn btn-warning">
+                                                                <button id="addRow"  style="z-index: inherit" onclick="showAdmin()"  class="btn btn-warning">
                                                                     Admintration  <i class="fa fa-anchor">
                                                                     </i>
                                                                 </button>
                                                             </div>
                                                         </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-6">
-                                                            <div class="btn-group pull-right">
-                                                                <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                                    <i class="fa fa-angle-down"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu pull-right">
-                                                                    <li>
-                                                                        <a href="javascript:;">
-                                                                            <i class="fa fa-print"></i> Print </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:;">
-                                                                            <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                                    </li>
-                                                                    <li>
-                                                                        <a href="javascript:;">
-                                                                            <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
+
                                                     </div>
+                                                    <div class="table table-responsive">
                                                     <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                         <thead>
                                                         <tr>
@@ -115,7 +96,7 @@
                                                                     ?></td>
                                                                 <td><?php echo $u->password ; ?></td>
                                                                 <td class="left"><?php echo $u->contactNo ?></td>
-                                                                <td> <?php echo $u->address?>,<?php echo $u->fkcity?>,<?php echo $u->postalCode?>;</td>
+                                                                <td> <?php echo $u->address?>,<?php echo $u->fkcity?>,<?php echo $u->postalCode?></td>
 
                                                                 <td class="center">
                                                                     <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $u->id ?>" onclick="selectid2(this)">
@@ -135,6 +116,7 @@
 
                                                         </tbody>
                                                     </table>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +124,7 @@
                                 </div>
 
                             </div>
-                        </div>
+
                     </div>
                 </div>
 

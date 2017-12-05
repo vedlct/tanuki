@@ -42,11 +42,6 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
-->
-<!-- End Content =============================================== -->
-
-<!-- Footer ================================================== -->
-
 
 <div class="container margin_60">
     <?php if ($this->session->userdata('loggedin')=="true" ){?>
@@ -98,7 +93,6 @@
                         <div class="col-md-6" >
                             <div class="form-group" >
                                 <label > City</label >
-<!--                                <input type = "text"  name = "fkCity" class="form-control" value="--><?php //echo $p->fkcity ?><!--" >-->
                                 <select class="form-control input-height" required name="city">
                                     <?php foreach ($city as $city ) { ?>
                                         <option value="<?php echo $city->id ?>"<?php if (!empty($p->fkCity) && $city->id==$p->fkCity) echo 'selected="selected"'?> ><?php echo $city->name ?></option>
@@ -122,13 +116,7 @@
                             </div >
                         </div >
                     </div ><!--End row-->
-<!--                    <div class="row" >-->
-                        <!--                        <div class="col-md-6" >-->
-                        <!--                            <div class="form-group" >-->
-                        <!--                                <label > Country</label >-->
-                        <!--                                <input type = "text" class="form-control"   id = "country" name = "country" value="--><?php //echo $p->country ?><!--" >-->
-                        <!--                            </div >-->
-                        <!--                        </div >-->
+
 
 
                         <div id = "pass-info" class="clearfix" ></div >

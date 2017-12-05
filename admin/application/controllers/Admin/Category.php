@@ -46,11 +46,14 @@ class Category extends CI_Controller {
         {
 
             $categoryName = $this->input->post('catagoryname');
+            $description = $this->input->post('description');
+
             $userId=$this->session->userdata('id');
 
             $data = array(
                 'name' => $categoryName,
                 'fkInsertBy' =>$userId,
+                'description'=>$description
             );
             $this->data['error'] = $this->Categorym->insertCategory($data);
 
@@ -91,7 +94,9 @@ class Category extends CI_Controller {
         if ($this->session->userdata('userType') == "Admin") {
 
             $data = array(
-                'name' => $this->input->post('catagoryname')
+                'name'=> $this->input->post('catagoryname'),
+            'description'=> $this->input->post('description')
+
             );
 
             $this->data['error'] = $this->Categorym->updateCategoryById($id, $data);

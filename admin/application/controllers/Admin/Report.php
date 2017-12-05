@@ -18,6 +18,7 @@ class Report extends CI_Controller
     public function filterByCustomer(){
         $this->data['allreportcus']= $this->Reportm->filterByCustomer();
         $this->data['allorder']= $this->Reportm->getTotalorderCustomer();
+       // print_r( $this->data['allreportcus']);
         $this->load->view('Admin/ReportFilterByCustomer', $this->data);
     }
     public function filterByEmployee(){
@@ -42,9 +43,10 @@ class Report extends CI_Controller
 
         $startdate= $this->input->post('startdate');
         $enddate= $this->input->post('enddate');
+
         $this->data['allreport']= $this->Reportm->viewAllReportBydate($startdate, $enddate);
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
-        $this->load->view('Admin/allReport', $this->data);
+        $this->load->view('Admin/ReportFilterByDate', $this->data);
     }
     public function searchByOrderId(){
         $orderID= $this->input->post('orderid');
@@ -73,6 +75,7 @@ class Report extends CI_Controller
         $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
         $this->load->view('Admin/ReportFilterByItems', $this->data);
     }
+
 
 //// everyday earinig ////////////////////////////////////////////////////////////////////////
 

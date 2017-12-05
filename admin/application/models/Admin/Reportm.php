@@ -2,7 +2,7 @@
 class Reportm extends CI_Model
 {
     public function viewAllReport(){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, vatTotal, deliveryfee ');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
@@ -11,7 +11,7 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function viewAllReportBydate($startdate, $enddate){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ,vatTotal, deliveryfee');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
@@ -21,7 +21,7 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function viewAllReportByorderid($orderID){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, fkOrderId ');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, fkOrderId, vatTotal, deliveryfee ');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
@@ -66,7 +66,7 @@ class Reportm extends CI_Model
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->from('transactionmaster');
-        $this->db->where('fkUserType=' ,'cus');
+        $this->db->where('users.fkUserType=' ,'cus');
         $this->db->group_by('users.name');
         $query = $this->db->get();
         return $query->result();

@@ -105,7 +105,7 @@
                     <?php foreach( $allItem as $items) { ?>
 
 
-                        <h1> <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b></h1>
+                        <h4> <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b></h4>
 
                     <?php }}  ?>
 

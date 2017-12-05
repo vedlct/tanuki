@@ -9,7 +9,12 @@
                             <div class="col-md-5">
                                 <input type="text" name="catagoryname" placeholder="enter catagory name" required class="form-control input-height" />
                             </div>
-
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3"> Description<span class="required"> * </span></label>
+                            <div class="col-md-5">
+                                <input type="text" name="description" placeholder="Give Offer  description"  class="form-control input-height" />
+                            </div>
                         </div>
                         <div  class="form-group">
                             <div class="form-actions">

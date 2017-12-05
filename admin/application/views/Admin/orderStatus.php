@@ -19,20 +19,6 @@
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
-                <div class="page-bar">
-                    <div class="page-title-breadcrumb">
-                        <div class=" pull-left">
-                            <div class="page-title">Order Status</div>
-                        </div>
-                        <ol class="breadcrumb page-breadcrumb pull-right">
-                            <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index-2.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li><a class="parent-item" href="#">Oder Status</a>&nbsp;<i class="fa fa-angle-right"></i>
-                            </li>
-                            <li class="active">Order Status</li>
-                        </ol>
-                    </div>
-                </div>
 
                 <?php if ($this->session->flashdata('errorMessage')!=null){?>
                     <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
@@ -45,12 +31,8 @@
                     <div class="col-md-12">
                         <div class="card card-topline-red">
                             <div class="card-head">
-                                <header>Orders List</header>
-                                <div class="tools">
-                                    <a class="fa fa-repeat btn-color box-refresh" href="javascript:;"></a>
-                                    <a class="t-collapse btn-color fa fa-chevron-down" href="javascript:;"></a>
-                                    <a class="t-close btn-color fa fa-times" href="javascript:;"></a>
-                                </div>
+                                <header>Orders Status</header>
+
                             </div>
                             <div class="card-body ">
                                 <div class="row">
@@ -61,35 +43,14 @@
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 col-sm-6 col-xs-6">
-                                        <div class="btn-group pull-right">
-                                            <button class="btn green-bgcolor  btn-outline dropdown-toggle" data-toggle="dropdown">Tools
-                                                <i class="fa fa-angle-down"></i>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right">
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-print"></i> Print </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-pdf-o"></i> Save as PDF </a>
-                                                </li>
-                                                <li>
-                                                    <a href="javascript:;">
-                                                        <i class="fa fa-file-excel-o"></i> Export to Excel </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Sequence </th>
-                                        <th width="30%"class="center"> Status</th>
-                                        <th width="10%"class="center"> Action </th>
+                                        <th width="20%"class="center"> Sequence </th>
+                                        <th width="50%"class="center"> Status</th>
+                                        <th width="20%"class="center"> Action </th>
                                     </tr>
                                     </thead>
                                     <tbody>

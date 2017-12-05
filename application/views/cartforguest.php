@@ -32,6 +32,14 @@
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
+
+            <?php if ($this->session->flashdata('errorMessage')!=null){?>
+                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+            <?php }
+            elseif($this->session->flashdata('successMessage')!=null){?>
+                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+            <?php }?>
+
             <h1>Place your order</h1>
             <div class="bs-wizard">
                 <div class="col-xs-4 bs-wizard-step active">
@@ -101,38 +109,56 @@
                 <?php
 
                 ?>
+                <form method="post" action="<?php echo base_url()?>Items/checkoutguest" onsubmit="return registration()">
                 <div class="form-group">
                     <label> Name</label>
-                    <input type="text" class="form-control" id="firstname_order" name="firstname_order" value="" placeholder="First name">
+                    <p><font color="red"> <?php echo form_error('Name'); ?></font></p>
+                    <input type="text" class="form-control" id="Name" value="<?php echo set_value('Name'); ?>" name="Name" placeholder="Full Name" required>
                 </div>
                 <div class="form-group">
                     <label>Telephone/mobile</label>
-                    <input type="number" id="tel_order" name="tel_order" class="form-control" value="" placeholder="Telephone/mobile">
+                    <p><font color="red"> <?php echo form_error('phone'); ?></font></p>
+                    <input type="tel" class="form-control" value="<?php echo set_value('phone'); ?>" name="phone" required id="phone" placeholder="Contact No">
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" id="email_booking_2" name="email_order" class="form-control" value="" placeholder="Your email">
+                    <p><font color="red"> <?php echo form_error('email'); ?></font></p>
+                    <input type="email" class="form-control"name="email" id="email" value="<?php echo set_value('email'); ?>" required placeholder="Email">
                 </div>
 
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" id="password" name="password" class="form-control" value="" placeholder="Your Password">
+                    <p><font color="red"> <?php echo form_error('password'); ?></font></p>
+                    <input type="password" class="form-control" value="<?php echo set_value('password'); ?>" name="password" required placeholder="Password"  id="password">
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <p><font color="red"> <?php echo form_error('conPassword'); ?></font></p>
+                    <input type="password" class="form-control" value="<?php echo set_value('conPassword'); ?>" name="conPassword" required placeholder="Confirm password"  id="conPassword">
                 </div>
                 <div class="form-group">
                     <label>Your full address</label>
-                    <input type="text" id="address_order" name="address_order" class="form-control" value="" placeholder=" Your full address">
+                    <p><font color="red"> <?php echo form_error('address'); ?></font></p>
+                    <textarea type="text" id="address" name="address" cols="3" rows="3" class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>City</label>
-                            <input type="text" id="city_order" name="city_order" class="form-control" value="" placeholder="Your city">
+                            <select class="form-control" id="city" name="city" required>
+                                <option value="">Your city</option>
+                                <?php foreach ($allCity as $cities){?>
+                                    <option <?php echo set_select('city',  $cities->id, False); ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
+                                <?php } ?>
+                            </select>
+
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
                         <div class="form-group">
                             <label>Postal code</label>
-                            <input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="" placeholder=" Your postal code">
+                            <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
+                            <input type="text" id="pcode" value="<?php echo set_value('pcode'); ?>" name="pcode" class="form-control" required placeholder=" Your postal code">
                         </div>
                     </div>
                 </div>
@@ -182,13 +208,13 @@
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <div class="payment_select">
-                    <label><input type="radio" value="" checked name="payment_method" class="">Credit card</label>
+                    <label><input type="radio" value="" onclick="paymentcreditcard()" checked name="payment_method" class="">Credit card</label>
                     <i class="icon_creditcard"></i>
                 </div>
                 <!--End row -->
 
                 <div class="payment_select nomargin">
-                    <label><input type="radio" value="" name="payment_method" class="">Pay with cash</label>
+                    <label><input type="radio" value="" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
                     <i class="icon_wallet"></i>
                 </div>
             </div>
@@ -284,7 +310,10 @@
                         </tbody>
                     </table>
                     <hr>
-                    <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+<!--                    <a class="btn_full" onclick="registration()" href="--><?php //echo base_url()?><!--Items/checkout">Go to checkout</a>-->
+<!--                    <a class="btn_full" type="submit">Go to checkout</a>-->
+                    <input type="submit" class="btn_full" value="Go to checkout">
+                    </form>
                     <a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
@@ -370,3 +399,126 @@
 
 </body>
 </html>
+
+
+<script>
+
+    function registration() {
+
+
+            var name = document.getElementById('Name').value;
+            var address = document.getElementById('address').value;
+            var city = document.getElementById('city').value;
+            var postcode = document.getElementById('pcode').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+            var conPassword = document.getElementById('conPassword').value;
+
+            var phone = document.getElementById('phone').value;
+
+            if (name == "") {
+                alert("Name is Required");
+                return false;
+            }
+
+            if (name.length > 45) {
+                alert("User Name should be less than 45 charecter");
+                return false;
+            }
+            if (address == "") {
+                alert("Address is Required");
+                return false;
+            }
+            if (address.length > 100) {
+                alert("address should be less than 100 charecter");
+                return false;
+            }
+            if (postcode == "") {
+                alert("Postal Code is Required");
+                return false;
+            }
+            if (postcode.length > 11) {
+                alert("Post Code should be less than 11 charecter");
+                return false;
+            }
+        if (city == "") {
+            alert("City is Required");
+            return false;
+        }
+            var chk = /^[0-9]*$/;
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!phone.match(chk)) {
+                alert('Please enter a valid Phone number!!');
+                return false;
+            }
+        if (phone == "") {
+            alert("Phone is Required");
+            return false;
+        }
+            if (phone.length > 18) {
+                alert('Phone number must be less than 18 charecter!!');
+                return false;
+            }
+        if (email == "") {
+            alert("Email is Required");
+            return false;
+        }
+            if (!email.match(mailformat)) {
+                alert("You have entered an invalid email address!");
+                return false;
+            }
+        if (password == "") {
+            alert("Password is Required");
+            return false;
+        }
+        if (conPassword == "") {
+            alert("Confirm Password is Required");
+            return false;
+        }
+
+            if (password!=conPassword){
+                alert('Password and confirm Password does not match');
+                return false;
+            }
+            else {
+
+                return true;
+            }
+
+
+    }
+
+</script>
+
+<script>
+    function paymentcreditcard() {
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Items/paymentcreditcard/")?>',
+            cache: false,
+            success:function(data)
+            {
+                //  $('#cart_table').load(document.URL +  ' #cart_table');
+                // $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
+    function paymentcash() {
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Items/paymentcash/")?>',
+            cache: false,
+            success:function(data)
+            {
+                //   $('#cart_table').load(document.URL +  ' #cart_table');
+                //  $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
+</script>
