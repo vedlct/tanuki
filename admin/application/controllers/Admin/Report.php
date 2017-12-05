@@ -60,6 +60,7 @@ class Report extends CI_Controller
         $this->data['allreport']= $this->Reportm->viewAllReportBymemberid($memberID);
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
         $this->load->view('Admin/ReportFilterByMemberId', $this->data);
+        //echo $memberID;
     }
     public function searchByEmployeeId(){
         $employeeID= $this->input->post('employeeid');

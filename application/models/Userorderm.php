@@ -52,7 +52,7 @@ class Userorderm extends CI_Model
     public  function viewOrderInfoByOrderIdForPrint($orderId)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName,u.contactNo as phone');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderId);
         $this->db->join('users u','u.id = o.fkUserId','left');

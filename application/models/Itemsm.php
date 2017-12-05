@@ -139,6 +139,7 @@ class Itemsm extends CI_Model {
         );
             $this->db->insert('pointdeduct', $data3);
         }
+        return $orderid;
 
     }
     public function checkoutInsertForGuest($data){

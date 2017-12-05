@@ -31,11 +31,11 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function viewAllReportBymemberid($memberID){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->select('transactionmaster.id as tid,orders.id as oid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ,deliveryfee');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
-        $this->db->where('users.memberCardNo =', $memberID);
+        $this->db->where('users.memberCardNo =',$memberID);
         $this->db->from('transactionmaster');
         $query = $this->db->get();
         return $query->result();
