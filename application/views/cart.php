@@ -319,18 +319,15 @@
 	<!-- End Search Menu -->
     
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+    <?php include ('js.php')?>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
-<script>
-    jQuery('#sidebar').theiaStickySidebar({
-      additionalMarginTop: 80
-    });
-</script>
+<!--<script src="--><?php //echo base_url()?><!--public/js/theia-sticky-sidebar.js"></script>-->
+<!--<script>-->
+<!--    jQuery('#sidebar').theiaStickySidebar({-->
+<!--      additionalMarginTop: 80-->
+<!--    });-->
+<!--</script>-->
 <script>
     function paymentcreditcard() {
 
@@ -355,7 +352,7 @@
             cache: false,
             success:function(data)
             {
-                
+
                 $('#checkOut').load(document.URL +  ' #checkOut');
             }
 
