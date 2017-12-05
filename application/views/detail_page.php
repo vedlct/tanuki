@@ -184,10 +184,10 @@
                         <hr>
                     <div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-						<a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
+						<a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
 						</div>
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+							<a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
 						</div>
 					</div>
                     <?php }else {
@@ -264,16 +264,20 @@
 					<tr>
 						<td>
 							 Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
+								<?php $dfee = 0; $vat = 0;
+								if ($this->session->userdata('orderType') == "home"){
+								foreach ($charges as $char){
 									$dfee = $char->deliveryfee;
-									$vat = $char->vat;
-								}?>
+								} } else?>
 								<?php echo $dfee ; ?></span>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
+                            <?php foreach ($charges as $char){
+                            $vat = $char->vat;
+                            }?>
 							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =(($subtotal-$totaldis)*$vat)/100?></span>
                             <?php
                             $data = array(
@@ -296,7 +300,7 @@
 					<?php if($this->session->userdata('orderType') != null && !empty($this->cart->contents())){ ?>
 					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
 					<?php }else { ?>
-						<a class="btn_full" href="#0" onclick="orderwarning()">Order now</a>
+						<a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
 					<?php } ?>
 					</div>
 				</div><!-- End cart_box -->

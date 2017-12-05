@@ -282,10 +282,6 @@ class Orders extends CI_Controller
 
             $itemId = $this->input->post('id');
             $this->data['itemSizeInfo'] = $this->Itemsm->getAllItemSizesNameIdByItem($itemId);
-//            $this->data['promotionType'] = $this->Promotionsm->getPromotionType();
-////            if (empty($this->data['promotionType'])){
-////
-////            }
 
             if (empty($this->data['itemSizeInfo'])) {
 
@@ -345,12 +341,13 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $itemId = $this->input->post('id');
-            $this->data['promotype'] = $this->Ordersm->getPromoType();
+            $promocode= $this->input->post('promocode');
+            $this->data['promotype'] = $this->Ordersm->getPromoType($promocode);
 
             foreach ($this->data['promotype'] as $pt) {
             }
             $promotype = $pt->promoType;
-            $this->data['promotype'] = $this->Ordersm->getPromoType();
+            $this->data['promotype'] = $this->Ordersm->getPromoType($promocode);
             if ($promotype == 'a') {
                 echo $pt->discountAmount;
 

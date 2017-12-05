@@ -298,16 +298,22 @@
                         <tr>
                             <td>
                                 Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
-                                    $dfee = $char->deliveryfee;
-                                    $vat = $char->vat;
-                                }?>
+								<?php $dfee = 0; $vat = 0;
+                                if ($this->session->userdata('orderType') == "home"){
+                                    foreach ($charges as $char){
+                                        $dfee = $char->deliveryfee;
+                                    } } else?>
                                 <?php echo $dfee ; ?></span>
                             </td>
                         </tr>
 
+
                         <tr>
                             <td>
+                                <?php foreach ($charges as $char){
+                                    $vat = $char->vat;
+                                }?>
+                                <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
                                 Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
                             </td>
                         </tr>
