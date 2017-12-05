@@ -345,34 +345,31 @@
 
 
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<?php include ('js.php')?>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>
-<script src="<?php echo base_url()?>public/js/map_single.js"></script>
-<script src="<?php echo base_url()?>public/js/infobox.js"></script>
-<script src="<?php echo base_url()?>public/js/jquery.sliderPro.min.js"></script>
-<script type="text/javascript">
-    $( document ).ready(function( $ ) {
-        $( '#Img_carousel' ).sliderPro({
-            width: 960,
-            height: 500,
-            fade: true,
-            arrows: true,
-            buttons: false,
-            fullScreen: false,
-            smallSize: 500,
-            startSlide: 0,
-            mediumSize: 1000,
-            largeSize: 3000,
-            thumbnailArrows: true,
-            autoplay: false
-        });
-    });
-</script>
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/map_single.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/infobox.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/jquery.sliderPro.min.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    $( document ).ready(function( $ ) {-->
+<!--        $( '#Img_carousel' ).sliderPro({-->
+<!--            width: 960,-->
+<!--            height: 500,-->
+<!--            fade: true,-->
+<!--            arrows: true,-->
+<!--            buttons: false,-->
+<!--            fullScreen: false,-->
+<!--            smallSize: 500,-->
+<!--            startSlide: 0,-->
+<!--            mediumSize: 1000,-->
+<!--            largeSize: 3000,-->
+<!--            thumbnailArrows: true,-->
+<!--            autoplay: false-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

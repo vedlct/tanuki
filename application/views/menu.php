@@ -17,14 +17,9 @@
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                 <ul>
                     <li>
-                    	<a href="index.php">Home</a>
+                    	<a href="<?php echo base_url()?>">Home</a>
                     </li>
-                    <li>
-                    	<a href="<?php echo base_url()?>Category">Tanuki's Dishes</a>
-                    </li>
-                    <li><a href="about.php">About us</a></li>
-                    <li><a href="faq.php">Faq</a></li>
-                    <li><a href="contacts.php">Contacts</a></li>
+
                     <?php if($this->session->userdata('loggedin')=="true"){
                     $username=$this->session->userdata('name');
                     $userId=$this->session->userdata('id');
@@ -59,8 +54,7 @@
                         </li>
                     <?php }}else{?>
                     <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#login_2">User Login</button>
-
-                    <button class="btn btn-sm btn-success"><a href="<?php echo base_url()?>Login/showRegitration">User Register</a></button>
+                     <a href="<?php echo base_url()?>Login/showRegitration"><button class="btn btn-sm btn-success">User Register</button></a>
                     <?php }?>
                 </ul>
             </div><!-- End main-menu -->

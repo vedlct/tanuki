@@ -55,7 +55,7 @@ class Login extends CI_Controller
         else{
             echo "<script>
                         alert('wrong username or password');
-                     window.location=\"/tanuki\";  
+                     window.location.href='". base_url() ."';  
 					
                 </script>";
 
