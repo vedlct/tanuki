@@ -287,11 +287,13 @@
                             <?php } ?>
                         </div>
                         <hr>
+                        <span id="checkOut">
                          <?php if ($this->session->userdata('paymentMethod') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                         <?php }else { ?>
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>
+                        </span>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
                 </div><!-- End theiaStickySidebar -->
@@ -340,12 +342,12 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcreditcard/")?>',
+            url:'<?php echo base_url("Items/paymentcreditcard")?>',
             cache: false,
             success:function(data)
             {
-              //  $('#cart_table').load(document.URL +  ' #cart_table');
-               // $('#total_table').load(document.URL +  ' #total_table');
+                $('#checkOut').load(document.URL +  ' #checkOut');
+
             }
 
         });
@@ -355,12 +357,12 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcash/")?>',
+            url:'<?php echo base_url("Items/paymentcash")?>',
             cache: false,
             success:function(data)
             {
-             //   $('#cart_table').load(document.URL +  ' #cart_table');
-              //  $('#total_table').load(document.URL +  ' #total_table');
+                
+                $('#checkOut').load(document.URL +  ' #checkOut');
             }
 
         });
