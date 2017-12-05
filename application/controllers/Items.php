@@ -355,6 +355,8 @@ class Items extends CI_Controller {
                     $orderId=$this->Itemsm->checkoutInsertForGuest($data);
                     $this->mailInvoice($orderId);
 
+
+
                     $this->cart->destroy();
 
 
