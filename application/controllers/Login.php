@@ -110,7 +110,7 @@ class Login extends CI_Controller
                     'contactNo'=>$phone,
                     'email'=>$email,
                     'password'=>$conPassword,
-                    'userActivationStatus'=>'0',
+                    'userActivationStatus'=>'1',
                     'fkUserType'=>'cus',
 
                 );
