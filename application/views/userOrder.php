@@ -30,7 +30,7 @@
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
-            <h1>Your Order List</h1>
+            <h1><b>Your Order List</b></h1>
             <p></p>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
@@ -39,16 +39,16 @@
 <div class="container left margin_20">
 <!-- start page container -->
 <?php if (!empty($orders)){?>
-    <div class="table table-responsive">
-        <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+    <div style="margin-top:35px;" class="table table-responsive">
+        <table width="600" border="0" cellspacing="0" cellpadding="10" align="center" bgcolor="#ffffff" style="padding:20px; " class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
             <thead>
             <tr >
-                <th width="3%"class="center"> Sr.NO </th>
-                <th width="3%"class="center"> Order Id </th>
-                <th width="10%"class="center"> Order Type & Date</th>
-                <th width="5%"class="center"> Payment Type</th>
-                <th width="44%"class="center"> Items </th>
-                <th width="20%"class="center"> Order Status </th>
+                <th style="text-align:center; vertical-align:middle;" width="3%"class="center"> Sr.NO </th>
+                <th style="text-align:center; vertical-align:middle;" width="3%"class="center"> Order Id </th>
+                <th style="text-align:center; vertical-align:middle;" width="10%"class="center"> Order Type & Date</th>
+                <th style="text-align:center; vertical-align:middle;" width="5%"class="center"> Payment Type</th>
+                <th style="text-align:center; vertical-align:middle;" width="44%"class="center"> Items </th>
+                <th style="text-align:center; vertical-align:middle;" width="20%"class="center"> Order Status </th>
             </tr>
             </thead>
             <tbody>
@@ -150,7 +150,7 @@
 
                     </td>
 
-                    <td class="center">
+                    <td style="text-align:center; vertical-align:middle;" class="center">
 
 
 
