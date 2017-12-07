@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2017 at 12:42 PM
--- Server version: 10.1.25-MariaDB
--- PHP Version: 7.1.7
+-- Generation Time: Dec 05, 2017 at 03:29 PM
+-- Server version: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,19 +30,23 @@ CREATE TABLE `catagory` (
   `id` int(11) NOT NULL,
   `name` varchar(20) NOT NULL,
   `fkInsertBy` int(11) NOT NULL,
-  `insertDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `insertDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `catagory`
 --
 
-INSERT INTO `catagory` (`id`, `name`, `fkInsertBy`, `insertDate`) VALUES
-(1, 'testing 1', 3, '2017-11-21 07:15:11'),
-(3, 'STARTERS', 3, '2017-11-23 07:51:19'),
-(4, 'MAIN COURSES', 3, '2017-11-23 07:51:27'),
-(5, 'BEEF', 3, '2017-11-23 07:51:35'),
-(6, 'DESSERTS', 3, '2017-11-23 07:51:43');
+INSERT INTO `catagory` (`id`, `name`, `fkInsertBy`, `insertDate`, `description`) VALUES
+(10, 'CHEF''S SIGNATURE ROL', 3, '2017-12-05 14:25:08', 'this is test'),
+(11, 'BAKED SPECIAL ROLL', 3, '2017-12-05 11:22:35', ''),
+(12, 'NIGIRI SUSHI & SASHI', 3, '2017-12-05 11:36:26', 'I Oder(2pcs)'),
+(13, 'SPICY ROLLS', 3, '2017-12-05 11:25:24', '1 Order (6 pcs) or Hand Roll(1pcs) Avaliable'),
+(14, 'VEGETABLE ROLLS', 3, '2017-12-05 11:26:14', '1 Order (6 pcs) or Hand Roll(1pcs) Available'),
+(15, 'ROLLS SUSHI ', 3, '2017-12-05 11:26:38', '1 Order (6 pcs) or Hand Roll(1pcs) Available'),
+(16, 'SOUP & SALAD', 3, '2017-12-05 11:27:01', ''),
+(17, 'APPETIZER ', 3, '2017-12-05 11:29:11', '');
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,10 @@ INSERT INTO `items` (`id`, `fkCatagory`, `itemName`, `image`, `description`, `fk
 (12, 5, 'Beef Enchilada Wrap', 'menu-thumb-8.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 08:08:06', 1),
 (13, 5, 'Chicken Fillet Taco', 'menu-thumb-12.jpg', 'Fuisset mentitum deleniti sit ea.', 3, '2017-11-23 08:08:42', 1),
 (14, 1, 'test', '11.png', 'safsf', 3, '2017-11-28 09:56:00', 1),
-(15, 1, 'sdfsf', '10.PNG', 'sdfsafd', 3, '2017-11-28 09:56:46', 1);
+(15, 1, 'sdfsf', '10.PNG', 'sdfsafd', 3, '2017-11-28 09:56:46', 1),
+(16, 10, 'Pink Lady (8pc) ', 'Untitled-1.jpg', 'Spicy Crush Cruncify ', 3, '2017-12-05 11:20:43', 1),
+(17, 11, 'Hawaiian (6pcs)', 'Untitled-1.jpg', 'Salad ,Crab ,Spicy  ', 3, '2017-12-05 11:32:49', 1),
+(18, 11, 'Super Volcano (6 pcs.No Rice)', 'Untitled-1.jpg', 'Spacy  ', 3, '2017-12-05 11:35:19', 1);
 
 -- --------------------------------------------------------
 
@@ -157,7 +162,10 @@ INSERT INTO `itemsizes` (`id`, `fkItemId`, `itemSize`, `price`, `itemSizeStatus`
 (24, 13, 'default', '12.40', 1),
 (25, 6, 'L', '2.00', 1),
 (26, 14, 'default', '10.00', 1),
-(27, 15, 'default', '12.00', 1);
+(27, 15, 'default', '12.00', 1),
+(28, 16, 'default', '11.50', 1),
+(29, 17, 'default', '11.50', 1),
+(30, 18, 'default', '11.50', 1);
 
 -- --------------------------------------------------------
 
@@ -227,7 +235,42 @@ INSERT INTO `logininfo` (`id`, `loginTime`, `sourceIp`, `fkUserId`, `browser`, `
 (46, '2017-11-30 06:00:00', '::1', 3, 'Chrome', '2017-11-30 01:00:00'),
 (47, '2017-11-30 06:14:18', '::1', 3, 'Firefo', '2017-11-30 06:14:18'),
 (48, '2017-11-30 06:00:47', '::1', 9, 'Chrome', '0000-00-00 00:00:00'),
-(49, '2017-11-30 06:05:13', '::1', 9, 'Chrome', '0000-00-00 00:00:00');
+(49, '2017-11-30 06:05:13', '::1', 9, 'Chrome', '0000-00-00 00:00:00'),
+(50, '2017-12-04 07:25:27', '::1', 9, 'Firefo', '2017-12-04 02:25:27'),
+(51, '2017-12-04 07:38:02', '::1', 9, 'Firefo', '2017-12-04 02:38:02'),
+(52, '2017-12-04 07:43:32', '::1', 9, 'Firefo', '2017-12-04 02:43:32'),
+(53, '2017-12-04 07:51:40', '::1', 9, 'Firefo', '2017-12-04 02:51:40'),
+(54, '2017-12-04 09:01:28', '::1', 9, 'Firefo', '2017-12-04 04:01:28'),
+(55, '2017-12-04 09:07:14', '::1', 9, 'Firefo', '2017-12-04 04:07:14'),
+(56, '2017-12-04 09:22:18', '::1', 11, 'Firefo', '2017-12-04 04:22:18'),
+(57, '2017-12-04 09:24:30', '::1', 9, 'Firefo', '2017-12-04 04:24:30'),
+(58, '2017-12-04 09:30:05', '::1', 9, 'Firefo', '2017-12-04 04:30:05'),
+(59, '2017-12-04 09:55:43', '::1', 9, 'Firefo', '2017-12-04 04:55:43'),
+(60, '2017-12-04 10:10:21', '::1', 9, 'Firefo', '0000-00-00 00:00:00'),
+(61, '2017-12-04 10:32:59', '::1', 3, 'Firefo', '2017-12-04 05:32:59'),
+(62, '2017-12-04 10:31:01', '::1', 9, 'Chrome', '2017-12-04 05:31:01'),
+(63, '2017-12-04 10:38:24', '::1', 9, 'Chrome', '2017-12-04 05:38:24'),
+(64, '2017-12-04 10:33:05', '::1', 9, 'Firefo', '0000-00-00 00:00:00'),
+(65, '2017-12-04 10:42:40', '::1', 11, 'Chrome', '2017-12-04 05:42:40'),
+(66, '2017-12-04 12:42:28', '::1', 11, 'Chrome', '2017-12-04 07:42:28'),
+(67, '2017-12-04 13:01:51', '::1', 9, 'Chrome', '2017-12-04 08:01:51'),
+(68, '2017-12-04 13:17:03', '::1', 11, 'Chrome', '2017-12-04 08:17:03'),
+(69, '2017-12-04 13:34:09', '::1', 11, 'Chrome', '2017-12-04 08:34:09'),
+(70, '2017-12-04 13:37:45', '::1', 11, 'Chrome', '2017-12-04 08:37:45'),
+(71, '2017-12-04 13:52:40', '::1', 11, 'Chrome', '0000-00-00 00:00:00'),
+(72, '2017-12-04 14:17:51', '::1', 3, 'Firefo', '2017-12-04 09:17:51'),
+(73, '2017-12-04 14:38:10', '::1', 3, 'Firefo', '2017-12-04 14:38:10'),
+(74, '2017-12-05 06:48:43', '::1', 9, 'Firefo', '2017-12-05 01:48:43'),
+(75, '2017-12-05 07:04:38', '::1', 9, 'Firefo', '2017-12-05 02:04:38'),
+(76, '2017-12-05 10:02:12', '::1', 11, 'Chrome', '2017-12-05 05:02:12'),
+(77, '2017-12-05 10:02:21', '::1', 11, 'Chrome', '0000-00-00 00:00:00'),
+(78, '2017-12-05 13:01:51', '::1', 3, 'Firefo', '2017-12-05 08:01:51'),
+(79, '2017-12-05 11:44:15', '::1', 3, 'Chrome', '2017-12-05 06:44:15'),
+(80, '2017-12-05 11:44:22', '::1', 11, 'Chrome', '0000-00-00 00:00:00'),
+(81, '2017-12-05 13:02:38', '::1', 9, 'Firefo', '2017-12-05 08:02:38'),
+(82, '2017-12-05 13:33:00', '::1', 9, 'Firefo', '2017-12-05 08:33:00'),
+(83, '2017-12-05 13:54:37', '::1', 9, 'Firefo', '2017-12-05 08:54:37'),
+(84, '2017-12-05 13:56:12', '::1', 3, 'Chrome', '2017-12-05 08:56:12');
 
 -- --------------------------------------------------------
 
@@ -286,8 +329,8 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `orderType`, `orderDate`, `fkOrderStatus`, `deliveryfee`, `vat`, `paymentType`, `fkUserId`, `fkOrderTaker`, `orderNotifications`) VALUES
 (6, 'have', '2017-11-06 00:00:00', 6, '50.00', '20.00', 'cs', 3, 9, 1),
 (7, 'have', '2017-11-23 00:00:00', 6, '60.00', '0.00', 'cs', 3, 9, 1),
-(8, 'take', '2017-11-18 00:00:00', 6, '20.00', '0.00', 'crd', 3, 9, 1),
-(10, 'take', '2017-11-30 11:06:00', 4, NULL, '6.75', 'cas', 9, 9, 0);
+(8, 'take', '2017-11-18 00:00:00', 6, '20.00', '0.00', 'crd', 9, 9, 1),
+(10, 'take', '2017-11-30 11:06:00', 4, NULL, '6.75', 'cas', 9, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -490,7 +533,14 @@ CREATE TABLE `userfeedback` (
 --
 
 INSERT INTO `userfeedback` (`id`, `fkItemId`, `fkUserId`, `userRating`, `feedback`, `feedbackTime`) VALUES
-(2, 4, 3, 6, 'gdfgdfg', '2017-11-21 18:00:00');
+(15, 17, 11, 1, 'this is  awosome food', '2017-12-05 12:50:25'),
+(16, 16, 11, 5, 'fdfd', '2017-12-05 12:44:38'),
+(17, 17, 9, 4, 'gfg', '2017-12-05 12:44:44'),
+(18, 4, 9, 3, '', '2017-12-05 05:41:57'),
+(19, 17, 9, 1, '', '2017-12-05 12:50:29'),
+(20, 17, 9, 5, '', '2017-12-05 12:44:55'),
+(21, 4, 9, 3, 'fdfdf', '2017-12-05 05:54:42'),
+(22, 16, 11, 4, '', '2017-12-05 11:44:58');
 
 -- --------------------------------------------------------
 
@@ -520,7 +570,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `address`, `postalCode`, `fkCity`, `memberCardNo`, `contactNo`, `email`, `password`, `userActivationStatus`, `insertDate`, `fkUserType`) VALUES
 (3, 'sakib Rahman dasda', 'sdf', 'sdf', NULL, 'sdf', '122456', 'admin@gmail.com', 'admin@123', 1, '2017-11-28 06:52:28', 'Admin'),
 (9, 'sj', 'baridhada', '1216', 1, '20202', '113213', 'sj@gmail.com', '123', 1, '2017-11-28 10:39:34', 'cus'),
-(11, 'sujon', 'baridhada', '1216', 1, '20202', '113213', 'suj@gmail.com', '123', 1, '2017-11-28 10:39:44', 'cus');
+(11, 'alamin', 'baridhada', '1216', 1, '20202', '113213', 'suj@gmail.com', '123', 1, '2017-12-05 10:01:44', 'cus');
 
 -- --------------------------------------------------------
 
@@ -683,7 +733,7 @@ ALTER TABLE `usertype`
 -- AUTO_INCREMENT for table `catagory`
 --
 ALTER TABLE `catagory`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT for table `charges`
 --
@@ -698,17 +748,17 @@ ALTER TABLE `city`
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `itemsizes`
 --
 ALTER TABLE `itemsizes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `logininfo`
 --
 ALTER TABLE `logininfo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 --
 -- AUTO_INCREMENT for table `orderitems`
 --
@@ -748,7 +798,7 @@ ALTER TABLE `transactionmaster`
 -- AUTO_INCREMENT for table `userfeedback`
 --
 ALTER TABLE `userfeedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `users`
 --
@@ -832,7 +882,6 @@ ALTER TABLE `transactiondetail`
 ALTER TABLE `userfeedback`
   ADD CONSTRAINT `FK_userFeedbackItemId` FOREIGN KEY (`fkItemId`) REFERENCES `items` (`id`),
   ADD CONSTRAINT `FK_userFeedbackUserId` FOREIGN KEY (`fkUserId`) REFERENCES `users` (`id`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
