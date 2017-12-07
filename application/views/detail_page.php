@@ -55,10 +55,10 @@
             elseif($this->session->flashdata('successMessage')!=null){?>
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
-        
+
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
-            <p><a href="list_page.php" class="btn_side">Back to search</a></p>
+
             <div class="box_style_1">
 
 
@@ -90,6 +90,7 @@
 						<th width="60%">
 							 Item
 						</th>
+
 						<th width="30%">
 							 Price
 						</th>
@@ -110,11 +111,16 @@
                         <?php if ($item->fkCatagory == $cate->id) {?>
 
 					<tr>
+
 						<td width="">
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
+
+                                <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
+
+
 <!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
-							<h5><a style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
-							<p>
+							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
+
+                            <p>
                                 <?php echo $item->description?>
 							</p>
 
@@ -190,8 +196,6 @@
                              ?>
                             </div>
                            <!-- rating code -->
-
-
 
 						</td>
 						<td width="">
@@ -297,23 +301,19 @@
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
 					<div class="row" id="options_2">
-						<div class="col-lg-6">
-							<label>Promo Code :</label>
 
-						</div>
-						<div class="col-lg-6">
-							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-						</div>
+							<label class="col-md-5">Promo Code :</label>
+
+							<input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
 					</div>
                     <?php } else { ?>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6">
-                                <label>Promo Code :</label>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-                            </div>
+                                <label class="col-md-5">Promo Code :</label>
+
+                                <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
                         </div>
                         <!-- Edn options 2 -->
                     <?php } ?>

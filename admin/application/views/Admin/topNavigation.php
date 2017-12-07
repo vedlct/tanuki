@@ -109,11 +109,6 @@
                     <ul class="dropdown-menu dropdown-menu-default">
 
                         <li>
-                            <a href="lock_screen.html">
-                                <i class="icon-lock"></i> Lock
-                            </a>
-                        </li>
-                        <li>
                             <a href="<?php echo base_url()?>login/logout">
                                 <i class="icon-logout"></i> Log Out </a>
                         </li>

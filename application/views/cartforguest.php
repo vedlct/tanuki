@@ -96,12 +96,9 @@
                 <p> Sun 12:00pm-9:00pm <br></p> 
                 <p>Mon Closed</p>
                 </p>
-<!--                <hr>
-                <h4>Secure payment <i class="icon_creditcard pull-right"></i></h4>
-                <p>
-                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-                </p>-->
-            </div><!-- End box_style_1 -->
+
+            </div>
+            <!-- End box_style_1 -->
 
             <div class="box_style_2 hidden-xs" id="help">
                 <i class="icon_lifesaver"></i>
@@ -110,7 +107,8 @@
 
             </div>
 
-        </div><!-- End col-md-3 -->
+        </div>
+        <!-- End col-md-3 -->
 
         <div class="col-md-5">
             <div class="box_style_2" id="order_process">

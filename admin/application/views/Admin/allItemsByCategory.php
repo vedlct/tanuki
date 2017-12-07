@@ -17,7 +17,13 @@
         <tr class="odd gradeX">
 
             <td><?php echo $i; ?></td>
-            <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>"></td>
+
+                <?php if ($items->image !=null){?>
+                 <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>"></td>
+                <?php }else{?>
+                <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/noImage.jpg"></td>
+                <?php } ?>
+
             <td class="center"><?php echo $items->itemName; ?></td>
             <td class="center">
                 <table style="margin-bottom: 5px" class="table table-striped table-bordered table-hover table-checkable order-column valign-middle orderexmple" id="example4">

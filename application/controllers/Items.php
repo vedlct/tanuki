@@ -391,7 +391,7 @@ class Items extends CI_Controller {
 //        $vat= $this->session->userdata('vat');
 //        $paymenttype=$this->session->userdata('paymentMethod');
 //        $user=$this->session->userdata('id');
-//        $ordertaker = $this->session->userdata('id')
+//        $ordertaker = $this->session->userdata('id');
 
                     $ordertype = $this->session->userdata('orderType');
                     $orderdate = date("Y-m-d H:i");
@@ -436,6 +436,9 @@ class Items extends CI_Controller {
 
 
                     $this->cart->destroy();
+
+            $this->session->set_flashdata('successMessage','CheckOut Successfully');
+            redirect('Items');
 
 
         }
