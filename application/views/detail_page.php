@@ -55,7 +55,7 @@
             elseif($this->session->flashdata('successMessage')!=null){?>
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
-        
+
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
 
@@ -90,6 +90,7 @@
 						<th width="60%">
 							 Item
 						</th>
+
 						<th width="30%">
 							 Price
 						</th>
@@ -110,11 +111,16 @@
                         <?php if ($item->fkCatagory == $cate->id) {?>
 
 					<tr>
+
 						<td width="">
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
+
+                                <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
+
+
 <!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
-							<h5><a style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
-							<p>
+							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
+
+                            <p>
                                 <?php echo $item->description?>
 							</p>
 
@@ -190,8 +196,6 @@
                              ?>
                             </div>
                            <!-- rating code -->
-
-
 
 						</td>
 						<td width="">
