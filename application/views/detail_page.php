@@ -58,7 +58,7 @@
         
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
-            <p><a href="list_page.php" class="btn_side">Back to search</a></p>
+
             <div class="box_style_1">
 
 
@@ -297,23 +297,19 @@
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
 					<div class="row" id="options_2">
-						<div class="col-lg-6">
-							<label>Promo Code :</label>
 
-						</div>
-						<div class="col-lg-6">
-							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-						</div>
+							<label class="col-md-5">Promo Code :</label>
+
+							<input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
 					</div>
                     <?php } else { ?>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6">
-                                <label>Promo Code :</label>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-                            </div>
+                                <label class="col-md-5">Promo Code :</label>
+
+                                <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
                         </div>
                         <!-- Edn options 2 -->
                     <?php } ?>

@@ -140,10 +140,9 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3">Upload Photo<span class="required"> * </span>
-                                        </label>
+                                        <label class="control-label col-md-3">Upload Photo</label>
                                         <div class="col-md-5">
-                                            <input type="file" name="itemPhoto" placeholder="Item Image" required class="form-control input-height" />
+                                            <input type="file" name="itemPhoto" placeholder="Item Image"  class="form-control input-height" />
                                         </div>
                                     </div>
 
