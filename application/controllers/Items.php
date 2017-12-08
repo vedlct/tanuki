@@ -186,7 +186,7 @@ class Items extends CI_Controller {
            $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem($itemId);
            foreach ($this->data['promotypepp'] as $promo) {
                $discountforitem = $promo->itemdiscount;
-               $dis = ($subtotal * $discountforitem) / 100;
+               $dis = round(($subtotal * $discountforitem) / 100, 2);
 
                $data = array(
                    'rowid' => $rowid,
@@ -383,16 +383,6 @@ class Items extends CI_Controller {
     public function checkout(){
 
 
-//        $ordertype= $this->session->userdata('orderType');
-//        $orderdate= date("Y-m-d H:i");
-//        $re = $this->Itemsm->getorderstatus();
-//        $orderstatus= $re->id;
-//        $deliveryfee=$this->session->userdata('deliverfee');
-//        $vat= $this->session->userdata('vat');
-//        $paymenttype=$this->session->userdata('paymentMethod');
-//        $user=$this->session->userdata('id');
-//        $ordertaker = $this->session->userdata('id');
-
                     $ordertype = $this->session->userdata('orderType');
                     $orderdate = date("Y-m-d H:i");
                     $re = $this->Itemsm->getorderstatus();
@@ -503,6 +493,28 @@ class Items extends CI_Controller {
         $message = $this->load->view('invoicePdf', $this->data);
         $this->email->message($message);
         $this->email->send();
+
+    }
+
+    public function getuserdata($userid){
+
+
+        $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+
+        foreach ($this->data['userdata'] as $userdata){
+            $data = array(
+
+                'paymentMethod' => $userdata->name,
+                'paymentMethod' => $userdata->address,
+                'paymentMethod' => $userdata->postalCode,
+                'paymentMethod' => $userdata->contactNo,
+                'paymentMethod' => $userdata->email,
+
+
+            );
+
+            $this->session->set_userdata($data);
+        }
 
     }
 

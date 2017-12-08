@@ -46,7 +46,7 @@
                 <input type="text" id="promocode" name="promocode" placeholder="Please give a Promocode" required class="form-control input-height" onfocusout="discount()" />
             </div>
         </div>
-        
+
         <div class="form-group">
 
             <label class="control-label col-md-3"> Item Rate<span class="required"> * </span></label>
