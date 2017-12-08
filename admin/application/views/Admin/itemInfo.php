@@ -25,17 +25,17 @@
 
         <div class="form-group">
 
-            <label class="control-label col-md-3"> Item Description<span class="required"> * </span></label>
+            <label class="control-label col-md-3"> Item Description</label>
             <div class="col-md-5">
-                <textarea name="itemDescription"  class="form-control-textarea" required rows="5" cols="5" ><?php echo $itemInfo->description?></textarea>
+                <textarea name="itemDescription"  class="form-control-textarea"  rows="5" cols="5" ><?php echo $itemInfo->description?></textarea>
             </div>
 
         </div>
 
         <div id = "Item_Status" class="form-group">
-            <label class="control-label col-md-3">Status: </label>
+            <label class="control-label col-md-3">Status: <span class="required"> * </span></label>
             <div class="col-md-5">
-                <select class="form-control input-height"  name="itemStatus">
+                <select class="form-control input-height"  required name="itemStatus">
                     <option value="">Select...</option>
 
                     <option  <?php if ($itemInfo->itemStatus=='1')echo 'selected = "selected"';?>value="1">Active</option>
@@ -46,7 +46,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-3">Upload Photo<span class="required"> * </span>
+            <label class="control-label col-md-3">Upload Photo
             </label>
             <div class="col-md-5">
                 <input type="file" name="itemPhoto"placeholder="Item Image"class="form-control input-height" />

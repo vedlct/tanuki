@@ -2757,7 +2757,8 @@ a.btn_filter#search_bt:before {
 
 .thumb_menu_list img {
     width: 60px;
-    height: auto
+    /*height: auto;*/
+    height: 60px;
 }
 
 .dropdown-options .dropdown-menu {

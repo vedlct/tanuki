@@ -61,10 +61,10 @@
         <div class="container">
             <ul>
                 <li><a href="#0">Home</a></li>
-                <li><a href="#0">Category</a></li>
+                <li><a href="#0">Tanuki's Dishes</a></li>
                 <li>Page active</li>
             </ul>
-            <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
+
         </div>
     </div><!-- Position -->
 
@@ -73,25 +73,31 @@
 		<div class="row">
             <div class="col-md-1"></div>
 			<div class="col-md-2">
-            
-				<div class="box_style_2 hidden-xs info">
-					<h4 class="nomargin_top">Delivery time <i class="icon_clock_alt pull-right"></i></h4>
-					<p>
-						Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-					</p>
-					<hr>
-					<h4>Secure payment <i class="icon_creditcard pull-right"></i></h4>
-					<p>
-						Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-					</p>
-				</div><!-- End box_style_1 -->
-                
-				<div class="box_style_2 hidden-xs" id="help">
-					<i class="icon_lifesaver"></i>
-					<h4>Need <span>Help?</span></h4>
-                    <a href="tel://004542344599" class="phone">+703-723-8952</a>
-<!--					<small>Monday to Friday 9.00am - 7.30pm</small>-->
-				</div>
+
+                <div align="center" class="box_style_2 hidden-xs info">
+                    <h4 class="nomargin_top">Open Hours<i style="margin-left:30px;" class="icon_clock_alt "></i></h4>
+                    <p >
+                    <p>Tue-Fri <b>Lunch</b> <br>
+                        11:30am-2.30pm <br></p>
+
+                    <p>Tue-Thur <b> Dinner </b> <br>
+                        4:30pm-10:00pm <br></p>
+                    <p>Fri <b>Dinner </b><br>
+                        4:30pm-10:00pm <br></p>
+                    <p> Sat 12.00pm-10:00pm <br></p>
+                    <p> Sun 12:00pm-9:00pm <br></p>
+                    <p>Mon <b>Closed</b></p>
+                    </p>
+
+                </div>
+                <!-- End box_style_1 -->
+
+                <div class="box_style_2 hidden-xs" id="help">
+                    <i class="icon_lifesaver"></i>
+                    <h4>Need <span>Help?</span></h4>
+                    <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
+
+                </div>
                 
 			</div><!-- End col-md-3 -->
             

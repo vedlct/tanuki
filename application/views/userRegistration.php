@@ -55,7 +55,7 @@
             <li><a href="#0">Tanuki's Dishes</a></li>
             <li>Page active</li>
         </ul>
-        <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
+
     </div>
 </div><!-- Position -->
 
@@ -70,9 +70,9 @@
             <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
         <?php }?>
         <div align="center" style="color: red" class="login_icon"><i class="icon_lock_alt"></i></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
 
-        <div align="center"  class="box_style_2 col-md-6">
+        <div align="center"  class="box_style_2 col-md-8">
 
             <h2>Customer Registration</h2>
             <form method="post" action="<?php echo base_url()?>Login/registerUser" onsubmit="return registration()">
@@ -169,7 +169,7 @@
                 </div>
                                 </form>
                             </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
 
 
                         </div><!-- End row -->
@@ -184,16 +184,6 @@
 
 <?php include ('login_logout.php')?>
 
-<!-- Search Menu -->
-<div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_close"></i></span>
-    <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="search" placeholder="Search..." />
-        <button type="submit"><i class="icon-search-6"></i>
-        </button>
-    </form>
-</div>
-<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>

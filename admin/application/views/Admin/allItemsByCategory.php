@@ -4,7 +4,7 @@
         <th width=""class="center"> Sr.NO </th>
         <th width=""class="center"> Item Image </th>
         <th width=""class="center"> Item Name </th>
-        <th width=""class="center"> Item Size & Price </th>
+        <th width=""class="center"> Item Attribute & Price </th>
 
 
         <th width=""class="center"> Status</th>
