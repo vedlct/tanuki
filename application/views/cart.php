@@ -302,6 +302,9 @@
                         <span id="checkOut">
                          <?php if ($this->session->userdata('paymentMethod') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                         <?php }else if ($this->session->userdata('paymentMethod') == "credit"){ ?>
+                             <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
+
                         <?php }else { ?>
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>
