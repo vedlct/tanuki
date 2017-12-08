@@ -312,7 +312,7 @@
                                     $vat = $char->vat;
                                 }?>
                                 <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
-                                Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
+                                sales tax(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
                             </td>
                         </tr>
                         <tr>

@@ -16,7 +16,7 @@ class Profile extends CI_Controller
     {
         $this->data['profile'] = $this->Profilem->getuser($userId);
         $this->data['city']=$this->Profilem->getAllCity();
-        $this->load->view('userprofile', $this->data);
+        $this->load->view('userProfile', $this->data);
     }
 
     public function update_user(){
