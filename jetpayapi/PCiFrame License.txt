@@ -1,0 +1,116 @@
+JetPay Sample API Scripts v1.0.19 END USER LICENSE AGREEMENT
+
+This document contains the End User License Agreement between JetPay, LLC
+herein referred to as "the company", "we", "us", and "our",
+and the End User (herein referred to as "you", "your", "yours", etc.). By
+installing and using JetPay Sample API Scripts (herein referred to as "the software"), you are
+agreeing to these terms and conditions.
+
+I. TERMS AND DEFINITIONS
+
+	1. An "instance" of the software is a unique installation of the software
+	on a system capable of running it, whether used for production purposes of
+	for testing.
+
+	
+II. RIGHT TO RUN
+
+	Your JetPay Sample API Scripts license grants you the right to make use of a
+	single instance of the software. You may temporarily install an instance of
+	JetPay Sample API Scripts on an internal development server for testing and deployment
+	planning, but only one instance of JetPay Sample API Scripts shall be in operation (available
+	for access to your users or technicians).
+
+	If you wish to run more than one instance of JetPay Sample API Scripts, you must obtain an
+	additional license for each additional instance.
+
+III. ACCURATE LICENSE INFORMATION
+
+	Your right to use a JetPay Sample API Scripts instance under its license requires you
+	to provide accurate information regarding the location (or planned
+	location) of the software instance. 
+
+IV. ALTERATION OF SOURCE CODE
+
+	This set of source code for the JetPay Sample API Scripts, which includes viewable source
+	code, you are permitted to make modifications to the software to suit your
+	needs, subject to these conditions:
+
+	1. You may not distribute the software or any portion thereof, or permit or
+	cause to be exposed any portion of the source code to any other party
+	without the express written consent of JetPay, LLC.
+
+	2. You may not attempt to circumvent any license validation checks.
+
+	3. Unless you have been granted a copyright removal license, all copyright
+	notices must remain intact in the source code.
+
+V. REMOVAL OF COPYRIGHT NOTICES
+
+	If you have not been granted a copyright removal license, all copyright
+	notices included in the software (including in source code and templates)
+	must remain intact. This includes "Powered by JetPay" and similar notices.
+	You may, however, change the appearance of all other aspects of the
+	interface.
+
+	If you have been granted the copyright removal license, you may make any
+	desired changes to templates, including to the copyright notices.
+
+VI. VERIFICATION OF MINIMUM SERVER REQUIREMENTS
+
+	If you have granted a license for a standalone instance of JetPay Sample API Scripts, it is
+	your responsibility to verify your target equipment meets the minimum
+	requirements specified by the software's documentation.
+
+VII. HOSTED JetPay Sample API Scripts LICENSING CONDITIONS
+
+	If you have purchased a license for Hosted JetPay Sample API Scripts (or "Managed JetPay Sample API Scripts"),
+	you must also read and accept the Hosted JetPay Sample API Scripts Terms of Service agreement
+	in order to use the service.
+
+VIII. DISCLAIMER OF LIABILITY
+
+	JETPAY, LLC DISCLAIMS ALL WARRANTIES AND REPRESENTATIONS,
+	WHETHER EXPRESS, IMPLIED, OR OTHERWISE, INCLUDING THE WARRANTIES OF
+	MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. ALSO, THERE IS NO
+	WARRANTY OF NON-INFRINGEMENT AND TITLE OR QUIET ENJOYMENT. HEADSTART
+	SOLUTIONS LIMITED DOES NOT WARRANT THAT THE SOFTWARE IS ERROR-FREE OR WILL
+	OPERATE WITHOUT INTERRUPTION. THE SOFTWARE IS NOT DESIGNED, INTENDED OR
+	LICENSED FOR USE IN HAZARDOUS ENVIRONMENTS REQUIRING FAIL-SAFE CONTROLS,
+	INCLUDING WITHOUT LIMITATION, THE DESIGN, CONSTRUCTION, MAINTENANCE OR
+	OPERATION OF NUCLEAR FACILITIES, AIRCRAFT NAVIGATION OR COMMUNICATION
+	SYSTEMS, AIR TRAFFIC CONTROL, AND LIFE SUPPORT OR WEAPONS SYSTEMS.
+	JETPAY, LLC SPECIFICALLY DISCLAIMS ANY EXPRESS OR IMPLIED
+	WARRANTY OF FITNESS FOR SUCH PURPOSES.
+
+	NO ORAL OR WRITTEN INFORMATION OR ADVICE GIVEN BY HEADSTART SOLUTIONS
+	LIMITED, ITS DEALERS, DISTRIBUTORS, AGENTS OR EMPLOYEES SHALL CREATE A
+	WARRANTY OR IN ANY WAY INCREASE THE SCOPE OF ANY WARRANTY PROVIDED HEREIN.
+
+	JETPAY, LLC SHALL HAVE NO RESPONSIBILITY IF THE SOFTWARE
+	HAS BEEN ALTERED IN ANY WAY, OR FOR ANY FAILURE THAT ARISES OUT OF USE OF
+	THE SOFTWARE WITH OTHER THAN A RECOMMENDED HARDWARE CONFIGURATION, PLATFORM
+	OR OPERATING SYSTEM.
+
+	NEITHER JETPAY, LLC NOR ITS SUPPLIERS SHALL BE LIABLE TO
+	YOU OR ANY THIRD PARTY FOR ANY INDIRECT, SPECIAL, INCIDENTAL, PUNITIVE,
+	COVER OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR
+	THE INABILITY TO USE EQUIPMENT OR ACCESS DATA, LOSS OF BUSINESS, LOSS OF
+	PROFITS, BUSINESS INTERRUPTION OR THE LIKE), ARISING OUT OF THE USE OF, OR
+	INABILITY TO USE, THE SOFTWARE AND BASED ON ANY THEORY OF LIABILITY
+	INCLUDING BREACH OF CONTRACT, BREACH OF WARRANTY, TORT (INCLUDING
+	NEGLIGENCE), PRODUCT LIABILITY OR OTHERWISE, EVEN IF HEADSTART SOLUTIONS
+	LIMITED OR ITS REPRESENTATIVES HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH
+	DAMAGES AND EVEN IF A REMEDY SET FORTH HEREIN IS FOUND TO HAVE FAILED OF
+	ITS ESSENTIAL PURPOSE.
+
+X. TERMINATION OF LICENSE
+
+	JetPay, LLC reserves the right to terminate your license if
+	any clause of this agreement is found to have been violated.
+
+XI. ENFORCABILITY
+
+	If any clause of this license agreement is held to be unenforceable, all
+	remaining clauses of this agreement shall remain in force.
+

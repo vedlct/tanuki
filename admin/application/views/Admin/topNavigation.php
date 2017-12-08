@@ -103,30 +103,11 @@
                 <li class="dropdown dropdown-user">
                     <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
 <!--                        <img alt="" class="img-circle " src="--><?php //echo base_url()?><!--public/img/dp.svg" />-->
-                        <span class="username username-hide-on-mobile"> Kiran </span>
+                        <span class="username username-hide-on-mobile"><?php echo $this->session->userdata('name')?></span>
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-default">
-                        <li>
-                            <a href="user_profile.html">
-                                <i class="icon-user"></i> Profile </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon-settings"></i> Settings
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="icon-directions"></i> Help
-                            </a>
-                        </li>
-                        <li class="divider"> </li>
-                        <li>
-                            <a href="lock_screen.html">
-                                <i class="icon-lock"></i> Lock
-                            </a>
-                        </li>
+
                         <li>
                             <a href="<?php echo base_url()?>login/logout">
                                 <i class="icon-logout"></i> Log Out </a>

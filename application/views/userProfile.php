@@ -28,20 +28,20 @@
 <?php include ('menu.php') ?>
 <!-- End Header =============================================== -->
 
-    <!-- SubHeader =============================================== -->
-    <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
-        <div id="subheader">
-            <div id="sub_content">
-                <!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
-                <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
-                <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
-                <div><em>Japanese Restaurant</em></div>
-                <div><i class="icon_pin"></i> 44260 Ice Rink Plz
-                    Ste 118 Ashburn, VA 20147 </div>
-            </div><!-- End sub_content -->
-        </div><!-- End subheader -->
-    </section><!-- End section -->
-    <!-- End SubHeader ============================================ -->
+<!-- SubHeader =============================================== -->
+<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
+    <div id="subheader">
+        <div id="sub_content">
+            <!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
+            <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
+            <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
+            <div><em>Japanese Restaurant</em></div>
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
+        </div><!-- End sub_content -->
+    </div><!-- End subheader -->
+</section><!-- End section -->
+<!-- End SubHeader ============================================ -->
 
 
 <div class="container margin_60">
@@ -78,10 +78,11 @@
                         </div >
                         <div class="col-md-6" >
                             <div class="form-group" >
-                                <label > Member Card Number </label >
-                                <input type = "text"  name = "memberCardNo" class="form-control" value="<?php echo $p->memberCardNo; ?>" >
+                                <label > Address</label >
+                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
                             </div >
                         </div >
+
 
                     </div >
                     <div class="row" >
@@ -110,27 +111,22 @@
                                 <input type = "text"  name = "contactNo" class="form-control" value="<?php echo $p->contactNo ?>" >
                             </div >
                         </div >
-                        <div class="col-md-6" >
-                            <div class="form-group" >
-                                <label > Address</label >
-                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
-                            </div >
-                        </div >
+
                     </div ><!--End row-->
 
 
 
-                        <div id = "pass-info" class="clearfix" ></div >
-                        <div class="row" >
-                            <div class="col-md-6" >
-                                <label > <input size="55px" type="checkbox" name="vehicle1" value="Bike"> Accept terms and conditions</label >
-                            </div >
-                        </div ><!--End row-->
-                        <hr style = "border-color:#ddd;" >
+                    <div id = "pass-info" class="clearfix" ></div >
+                    <div class="row" >
+                        <div class="col-md-6" >
+                            <label > <input size="55px" type="checkbox" name="vehicle1" value="Bike"> Accept terms and conditions</label >
+                        </div >
+                    </div ><!--End row-->
+                    <hr style = "border-color:#ddd;" >
 
-                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 
-                        <div class="text-center" ><button class="btn_full_outline" type = "submit" > Update</button ></div >
+                    <div class="text-center" ><button class="btn_full_outline" type = "submit" > Update</button ></div >
                 </form >
             <?php } ?>
 
@@ -138,7 +134,7 @@
         </div>
     </div><!-- End col  -->
 </div><!-- End row  -->
-</div><!-- End container  -->
+    </div><!-- End container  -->
 <?php } ?>
 <!-- End Content =============================================== -->
 
@@ -146,15 +142,8 @@
 <?php include ('footer.php') ?>
 <!-- End Footer =============================================== -->
 <?php include ('login_logout.php')?>
-
 <div class="layer"></div><!-- Mobile menu overlay mask -->
-
-
-
-
-
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
-
 </body>
 </html>

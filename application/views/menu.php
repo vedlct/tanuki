@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col--md-4 col-sm-4 col-xs-4">
-                <a href="index.php" id="logo">
+                <a href="<?php echo base_url()?>" id="logo">
                 <img style="margin-top:-15px; padding: 0px" src="<?php echo base_url()?>public/img/logo.png" width="70"  alt="" data-retina="true" class="hidden-xs">
                 <img src="<?php echo base_url()?>public/img/logo_mobile.png" width="50" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
                 </a>
@@ -17,7 +17,7 @@
                 <a href="#" class="open_close" id="close_in"><i class="icon_close"></i></a>
                 <ul>
                     <li>
-                    	<a href="<?php echo base_url()?>">Home</a>
+                    	<a href="<?php echo base_url()?>">Menu</a>
                     </li>
 
                     <?php if($this->session->userdata('loggedin')=="true"){

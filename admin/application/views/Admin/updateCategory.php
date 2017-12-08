@@ -9,7 +9,12 @@
                                 <input class="form-control input-height" type="text" name="catagoryname" required value="<?php echo $find->name ?>">
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="control-label col-md-3"> Description<span class="required"> * </span></label>
+                            <div class="col-md-5">
+                                <input type="text" name="description" placeholder="Give  description"  class="form-control input-height"  value="<?php echo $find->description ?>"/>
+                            </div>
+                        </div>
 
                     <div class="form-group">
 

@@ -372,19 +372,24 @@
 
         });
 
+
+    }
+    function discount() {
+        var itemId=document.getElementById('itemId').value;
+        var promocode = document.getElementById('promocode').value;
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Admin/Orders/setDiscount")?>',
-            data: {id: itemId},
+            data: {id: itemId,promocode: promocode},
             cache: false,
             success: function (data) {
-
 
                 document.getElementById("ItemDiscount").value = data;
 
             }
 
         });
+
     }
 
     function showItemPriceByItemSizeId(x)
@@ -395,7 +400,7 @@
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Admin/Orders/getItemPriceByItemSize")?>',
-            data: {id: itemSizeId},
+            data: {id: itemSizeId },
             cache: false,
             success: function (data) {
 

@@ -140,11 +140,12 @@ class Ordersm extends CI_Model
         }
     }
 
-    public function getPromoType(){
+    public function getPromoType($promocode){
 
         $this->db->select('promoType, discountAmount');
         $this->db->where('startDate <',date('Y-m-d'));
         $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoCode',$promocode);
         $this->db->from('promotions');
         $query = $this->db->get();
         return $query->result();

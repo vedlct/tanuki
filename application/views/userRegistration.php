@@ -5,6 +5,11 @@
 
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
+    <style>
+        label {
+            margin-top: 20px;
+        }
+    </style>
 
 </head>
 
@@ -32,11 +37,12 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
-            <div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>
-            <h1>Mexican TacoMex</h1>
-            <div><em>Mexican / American</em></div>
-            <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
+            <!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
+            <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
+            <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
+            <div><em>Japanese Restaurant</em></div>
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
 </section><!-- End section -->
@@ -49,7 +55,7 @@
             <li><a href="#0">Tanuki's Dishes</a></li>
             <li>Page active</li>
         </ul>
-        <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
+
     </div>
 </div><!-- Position -->
 
@@ -64,9 +70,9 @@
             <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
         <?php }?>
         <div align="center" style="color: red" class="login_icon"><i class="icon_lock_alt"></i></div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
 
-        <div align="center"  class="box_style_2 col-md-6">
+        <div align="center"  class="box_style_2 col-md-8">
 
             <h2>Customer Registration</h2>
             <form method="post" action="<?php echo base_url()?>Login/registerUser" onsubmit="return registration()">
@@ -108,7 +114,7 @@
 
                     </div>
                     <div class="col-md-2 form-group">
-                        <label>Postal Code</label>
+                        <label >Postal Code</label>
                     </div>
                     <div class="col-md-4">
                         <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
@@ -163,7 +169,7 @@
                 </div>
                                 </form>
                             </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
 
 
                         </div><!-- End row -->
@@ -178,16 +184,6 @@
 
 <?php include ('login_logout.php')?>
 
-<!-- Search Menu -->
-<div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_close"></i></span>
-    <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="search" placeholder="Search..." />
-        <button type="submit"><i class="icon-search-6"></i>
-        </button>
-    </form>
-</div>
-<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>

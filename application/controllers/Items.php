@@ -7,6 +7,7 @@ class Items extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Itemsm');
+//        $this->load->moedel('feedbackm');
 
     }
     public function index()
@@ -22,6 +23,7 @@ class Items extends CI_Controller {
         $this->data['allcategory']= $this->Itemsm->getAllCategory();
         $this->data['alldefault']= $this->Itemsm->getDefualtItemSize();
         $this->data['charges'] = $this->Itemsm->getcharges();
+        $this->data['avgrating']= $this->Itemsm->ratingavgitemshow();
         $this->load->view('detail_page', $this->data);
     }
 
@@ -184,7 +186,7 @@ class Items extends CI_Controller {
            $this->data['promotypepp'] = $this->Itemsm->setDiscountforSelectItem($itemId);
            foreach ($this->data['promotypepp'] as $promo) {
                $discountforitem = $promo->itemdiscount;
-               $dis = ($subtotal * $discountforitem) / 100;
+               $dis = round(($subtotal * $discountforitem) / 100, 2);
 
                $data = array(
                    'rowid' => $rowid,
@@ -381,16 +383,6 @@ class Items extends CI_Controller {
     public function checkout(){
 
 
-//        $ordertype= $this->session->userdata('orderType');
-//        $orderdate= date("Y-m-d H:i");
-//        $re = $this->Itemsm->getorderstatus();
-//        $orderstatus= $re->id;
-//        $deliveryfee=$this->session->userdata('deliverfee');
-//        $vat= $this->session->userdata('vat');
-//        $paymenttype=$this->session->userdata('paymentMethod');
-//        $user=$this->session->userdata('id');
-//        $ordertaker = $this->session->userdata('id')
-
                     $ordertype = $this->session->userdata('orderType');
                     $orderdate = date("Y-m-d H:i");
                     $re = $this->Itemsm->getorderstatus();
@@ -414,7 +406,9 @@ class Items extends CI_Controller {
                             'fkOrderTaker' => $ordertaker,
 
                         );
-                    }else {
+                        $this->Itemsm->checkoutInsert($data);
+                    }
+                    else {
                         $data = array(
                             'orderType' => $ordertype,
                             'orderDate' => $orderdate,
@@ -426,8 +420,15 @@ class Items extends CI_Controller {
                             'fkOrderTaker' => null,
 
                         );
+                        $orderId=$this->Itemsm->checkoutInsert($data);
+                        $this->mailInvoice($orderId);
                     }
-                    $this->Itemsm->checkoutInsert($data);
+
+
+                    $this->cart->destroy();
+
+            $this->session->set_flashdata('successMessage','CheckOut Successfully');
+            redirect('Items');
 
 
         }
@@ -479,7 +480,7 @@ class Items extends CI_Controller {
 
         $this->email->set_mailtype("html");
         $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to('md.sakibrahman@gmail.com');
+        $this->email->to($this->session->userdata('email'));
         $this->email->subject('Subject');
 
 
@@ -493,7 +494,29 @@ class Items extends CI_Controller {
         $this->email->message($message);
         $this->email->send();
 
+    }
 
+    public function checkoutforcredit(){
+
+        $userid = $this->session->userdata('id');
+
+        $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+
+        foreach ($this->data['userdata'] as $userdata){
+            $data = array(
+
+                'name' => $userdata->name,
+                'address1' => $userdata->address,
+                'zip' => $userdata->postalCode,
+                'paymentMethod' => $userdata->contactNo,
+                'email' => $userdata->email,
+                'country' => $userdata->country,
+
+
+            );
+
+            $this->session->set_userdata($data);
+        }
 
     }
 

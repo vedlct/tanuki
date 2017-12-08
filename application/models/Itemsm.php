@@ -28,7 +28,7 @@ class Itemsm extends CI_Model {
     }
     public function getAllCategory(){
 
-        $this->db->select('id, name ');
+        $this->db->select('id, name, description ');
         $this->db->from('catagory');
         $query = $this->db->get();
         return $query->result();
@@ -139,6 +139,7 @@ class Itemsm extends CI_Model {
         );
             $this->db->insert('pointdeduct', $data3);
         }
+        return $orderid;
 
     }
     public function checkoutInsertForGuest($data){
@@ -186,6 +187,16 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function ratingavgitemshow(){
+        $this->db->select('fkItemId, AVG(userRating) as userRatings');
+        $this->db->group_by('fkItemId');
+        $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+
 
 }
 ?>

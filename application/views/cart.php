@@ -61,10 +61,10 @@
         <div class="container">
             <ul>
                 <li><a href="#0">Home</a></li>
-                <li><a href="#0">Category</a></li>
+                <li><a href="#0">Tanuki's Dishes</a></li>
                 <li>Page active</li>
             </ul>
-            <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
+
         </div>
     </div><!-- Position -->
 
@@ -73,25 +73,31 @@
 		<div class="row">
             <div class="col-md-1"></div>
 			<div class="col-md-2">
-            
-				<div class="box_style_2 hidden-xs info">
-					<h4 class="nomargin_top">Delivery time <i class="icon_clock_alt pull-right"></i></h4>
-					<p>
-						Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-					</p>
-					<hr>
-					<h4>Secure payment <i class="icon_creditcard pull-right"></i></h4>
-					<p>
-						Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-					</p>
-				</div><!-- End box_style_1 -->
-                
-				<div class="box_style_2 hidden-xs" id="help">
-					<i class="icon_lifesaver"></i>
-					<h4>Need <span>Help?</span></h4>
-                    <a href="tel://004542344599" class="phone">+703-723-8952</a>
-<!--					<small>Monday to Friday 9.00am - 7.30pm</small>-->
-				</div>
+
+                <div align="center" class="box_style_2 hidden-xs info">
+                    <h4 class="nomargin_top">Open Hours<i style="margin-left:30px;" class="icon_clock_alt "></i></h4>
+                    <p >
+                    <p>Tue-Fri <b>Lunch</b> <br>
+                        11:30am-2.30pm <br></p>
+
+                    <p>Tue-Thur <b> Dinner </b> <br>
+                        4:30pm-10:00pm <br></p>
+                    <p>Fri <b>Dinner </b><br>
+                        4:30pm-10:00pm <br></p>
+                    <p> Sat 12.00pm-10:00pm <br></p>
+                    <p> Sun 12:00pm-9:00pm <br></p>
+                    <p>Mon <b>Closed</b></p>
+                    </p>
+
+                </div>
+                <!-- End box_style_1 -->
+
+                <div class="box_style_2 hidden-xs" id="help">
+                    <i class="icon_lifesaver"></i>
+                    <h4>Need <span>Help?</span></h4>
+                    <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
+
+                </div>
                 
 			</div><!-- End col-md-3 -->
             
@@ -242,7 +248,10 @@
                             <tr>
                                 <td>
                                     Discount <span class="pull-right">
-
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+                                        //							{ echo 0.00;} else{
+                                        //									echo $this->session->userdata('discount');
+                                        //								} ?><!-- </span>-->
                                         <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
                                             $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
                                         } echo $totaldis;?>
@@ -252,23 +261,32 @@
                             <tr>
                                 <td>
                                     Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
-                                    $dfee = $char->deliveryfee;
-                                    $vat = $char->vat;
-                                }?>
+								<?php $dfee = 0; $vat = 0;
+                                if ($this->session->userdata('orderType') == "home"){
+                                    foreach ($charges as $char){
+                                        $dfee = $char->deliveryfee;
+                                    } } else?>
                                 <?php echo $dfee ; ?></span>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
+                                    <?php foreach ($charges as $char){
+                                        $vat = $char->vat;
+                                    }?>
                                     <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
-                                    Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
+                                    Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="total">
-                                    TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
+                                    TOTAL <span class="pull-right"><?php echo $total = $subtotal+$dfee+$vatt-$totaldis?></span>
+                                     <?php $data = array(
+
+                                    'amount' => $total,
+                                    );
+                                    $this->session->set_userdata($data); ?>
                                 </td>
                             </tr>
                             </tbody>
@@ -290,6 +308,9 @@
                         <span id="checkOut">
                          <?php if ($this->session->userdata('paymentMethod') != null){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                         <?php }else if ($this->session->userdata('paymentMethod') == "credit"){ ?>
+                             <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
+
                         <?php }else { ?>
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>

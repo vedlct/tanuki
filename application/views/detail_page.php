@@ -43,6 +43,17 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#0">Home</a></li>
+                <li><a href="#0">Tanuki's Dishes</a></li>
+                <li>Page active</li>
+            </ul>
+
+        </div>
+    </div><!-- Position -->
+
 
 
 <!-- Content ================================================== -->
@@ -55,10 +66,10 @@
             elseif($this->session->flashdata('successMessage')!=null){?>
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
-        
+
 			<div class="col-md-1"></div>
         	<div class="col-md-2">
-            <p><a href="list_page.php" class="btn_side">Back to search</a></p>
+
             <div class="box_style_1">
 
 
@@ -66,6 +77,7 @@
                 <ul id="cat_nav">
                     <?php foreach ($allcategory as $cate) {?>
                         <li><a href="#<?php echo $cate->id ?>" class="active"><?php echo $cate->name ?></a></li>
+
                         <?php } ?>
                 </ul>
             </div><!-- End box_style_1 -->
@@ -89,6 +101,7 @@
 						<th width="60%">
 							 Item
 						</th>
+
 						<th width="30%">
 							 Price
 						</th>
@@ -98,23 +111,108 @@
 					</tr>
 					</thead>
 					<tbody>
+
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
                             <h3 class="nomargin_top" id="<?php echo $cate->id?>"><?php echo $cate->name?></h3>
+                            <?php echo $cate->description ?>
                             <?php break;}}?>
 
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
 
 					<tr>
-						<td width="60%">
-                        	<figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
-							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"> <?php echo $item->itemName?></a></h5>
-							<p>
+
+						<td width="">
+
+                            <?php if ($item->image == null){?>
+                                <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
+                                <?php }else{?>
+                                <figure class="thumb_menu_list"><img height="80px" width="80px" src="<?php echo base_url()?>admin/images/itemImages/<?php echo $item->image?> " alt="thumb"></figure>
+                                <?php }?>
+
+<!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
+							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
+
+                            <p>
                                 <?php echo $item->description?>
 							</p>
+
+                            <!-- rating code -->
+
+                            <div style="margin-bottom: 30px">
+                            <?php foreach ($avgrating as $av){
+
+                                if ( $item->id == $av->fkItemId){
+                                    $rating_avg = round($av->userRatings);
+                            switch ($rating_avg) {
+                                case 1:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"      width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+
+                                    <?php
+                                    break;
+                                case 2:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                    <?php
+                                    break;
+                                case 3:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                    <?php
+                                    break;
+                                case 4:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                    <?php
+                                    break;
+                                case 5:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+
+                                    <?php
+                                    break;
+                                default:
+                                    ?>
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                    <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                    <?php
+
+                             } } }
+                             ?>
+                            </div>
+                           <!-- rating code -->
+
 						</td>
-						<td width="30%">
+						<td width="">
 							<strong><?php echo $item->price?></strong>
 						</td>
 						<td class="options" width="10%">
@@ -143,7 +241,9 @@
                         </div>
                     </td>
 					</tr>
-					<?php } } }  ?>
+					<?php } ?>
+
+                    <?php } }  ?>
 					</tbody>
 					</table>
 				</div><!-- End box_style_1 -->
@@ -165,7 +265,7 @@
 							<input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
                         </td>
                         <td><?php echo htmlspecialchars($c['name'])?>
-                        <?php echo $c['id']?>
+
                         </td>
                         <td> <?php  if ($c['options']['Size'] == "defualt"){}else
 							{echo $c['options']['Size'];}?></td>
@@ -184,10 +284,10 @@
                         <hr>
                     <div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-						<a href="#0" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
+						<a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
 						</div>
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<a href="#0" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+							<a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
 						</div>
 					</div>
                     <?php }else {
@@ -215,23 +315,19 @@
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
 					<div class="row" id="options_2">
-						<div class="col-lg-6">
-							<label>Promo Code :</label>
 
-						</div>
-						<div class="col-lg-6">
-							<input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-						</div>
+							<label class="col-md-5">Promo Code :</label>
+
+							<input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
 					</div>
                     <?php } else { ?>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6">
-                                <label>Promo Code :</label>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="promocode" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="discount()" >
-                            </div>
+                                <label class="col-md-5">Promo Code :</label>
+
+                                <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+
                         </div>
                         <!-- Edn options 2 -->
                     <?php } ?>
@@ -264,17 +360,21 @@
 					<tr>
 						<td>
 							 Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
+								<?php $dfee = 0; $vat = 0;
+								if ($this->session->userdata('orderType') == "home"){
+								foreach ($charges as $char){
 									$dfee = $char->deliveryfee;
-									$vat = $char->vat;
-								}?>
+								} } else?>
 								<?php echo $dfee ; ?></span>
 						</td>
 					</tr>
 
 					<tr>
 						<td>
-							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =(($subtotal-$totaldis)*$vat)/100?></span>
+                            <?php foreach ($charges as $char){
+                            $vat = $char->vat;
+                            }?>
+							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round((($subtotal-$totaldis)*$vat)/100, 2)?></span>
                             <?php
                             $data = array(
                                 'vat' => $vatt,
@@ -293,10 +393,10 @@
 					</table>
 					<hr>
 					<div id="ordertypediv">
-					<?php if($this->session->userdata('orderType') != null && !empty($this->cart->contents())){ ?>
+					<?php if($this->session->userdata('orderType') != null ){ ?>
 					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
 					<?php }else { ?>
-						<a class="btn_full" href="#0" onclick="orderwarning()">Order now</a>
+						<a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
 					<?php } ?>
 					</div>
 				</div><!-- End cart_box -->
@@ -524,14 +624,12 @@
 
 	function orderwarning() {
 	    var orderType ='<?php echo $this->session->userdata('orderType')?>';
-	    var cartContent ='<?php echo count($this->cart->contents())?>';
+
 
 	    if (orderType == "" ) {
             alert("Please Select A Order Type");
         }
-        if (cartContent =="" ){
-            alert("Please Select A Item To Order");
-        }
+
 	}
 </script>
 </body>

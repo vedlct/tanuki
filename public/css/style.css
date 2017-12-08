@@ -2113,7 +2113,7 @@ select.form-control.form-white {
 
 .form-control {
     color: #333;
-    height: 45px;
+    height: 67px;
     border-radius: 3px;
     border: 1px solid #ddd;
     box-shadow: 0
@@ -2757,7 +2757,8 @@ a.btn_filter#search_bt:before {
 
 .thumb_menu_list img {
     width: 60px;
-    height: auto
+    /*height: auto;*/
+    height: 60px;
 }
 
 .dropdown-options .dropdown-menu {
