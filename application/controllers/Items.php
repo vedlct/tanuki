@@ -496,19 +496,21 @@ class Items extends CI_Controller {
 
     }
 
-    public function getuserdata($userid){
+    public function checkoutforcredit(){
 
+        $userid = $this->session->userdata('id');
 
         $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
 
         foreach ($this->data['userdata'] as $userdata){
             $data = array(
 
-                'paymentMethod' => $userdata->name,
-                'paymentMethod' => $userdata->address,
-                'paymentMethod' => $userdata->postalCode,
+                'name' => $userdata->name,
+                'address1' => $userdata->address,
+                'zip' => $userdata->postalCode,
                 'paymentMethod' => $userdata->contactNo,
-                'paymentMethod' => $userdata->email,
+                'email' => $userdata->email,
+                'country' => $userdata->country,
 
 
             );
