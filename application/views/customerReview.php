@@ -43,6 +43,17 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="#0">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
+            <li>Page active</li>
+        </ul>
+
+    </div>
+</div><!-- Position -->
+
 
 
 <!-- Content ================================================== -->
@@ -53,19 +64,20 @@
 
         <div class="col-md-3">
 
-                <div class="box_style_2 hidden-xs info">
+                <div align="center" class="box_style_2 hidden-xs info">
                     <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
 
-                    <p>Tue-Fri Lunch <br>
+                    <p>Tue-Fri <b>Lunch</b> <br>
                         11:30am-2.30pm <br></p>
 
-                    <p>Tue-Thur Dinner <br>
+                    <p>Tue-Thur <b> Dinner</b> <br>
                         4:30pm-10:00pm <br></p>
-                    <p>Fri Dinner <br>
+                    <p>Fri <b>Dinner</b> <br>
                         4:30pm-10:00pm <br></p>
                     <p> Sat 12.00pm-10:00pm <br></p>
                     <p> Sun 12:00pm-9:00pm <br></p>
-                    <p>Mon Closed</p>
+                    <p>Mon <b>Closed </b></p>
+
 
 
                 </div>

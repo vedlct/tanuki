@@ -43,6 +43,17 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
+    <div id="position">
+        <div class="container">
+            <ul>
+                <li><a href="#0">Home</a></li>
+                <li><a href="#0">Tanuki's Dishes</a></li>
+                <li>Page active</li>
+            </ul>
+
+        </div>
+    </div><!-- Position -->
+
 
 
 <!-- Content ================================================== -->
@@ -114,8 +125,11 @@
 
 						<td width="">
 
-                                <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/menu-thumb-1.jpg" alt="thumb"></figure>
-
+                            <?php if ($item->image == null){?>
+                                <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
+                                <?php }else{?>
+                                <figure class="thumb_menu_list"><img height="80px" width="80px" src="<?php echo base_url()?>admin/images/itemImages/<?php echo $item->image?> " alt="thumb"></figure>
+                                <?php }?>
 
 <!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
 							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
