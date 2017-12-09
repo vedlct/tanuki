@@ -147,7 +147,7 @@ else
     var old_notification = "<?php echo $ordernotification?>";
 
     var old_unseen = parseInt(old_notification);
-    var new_unseen =0;
+    var new_unseen ="0";
     setInterval(function(){
         $.ajax({
             type : 'POST',

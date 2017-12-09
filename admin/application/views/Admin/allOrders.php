@@ -105,8 +105,10 @@
                                             <td class="center"><?php if ($orders->paymentType=="cs"){echo "Cash";}
                                                                  elseif($orders->paymentType=="crd"){echo "Card";}?>
                                             </td>
+
                                             <td class="center">
                                                 <div class="table table-responsive">
+                                                    <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
                                                     <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
                                                         <th width="50%"class="center">Name</th >
@@ -195,10 +197,94 @@
                                                     </tr>
 
                                                 </table>
+
+                                                    <?php }else{ ?>
+
+                                                        <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                                            <tr>
+                                                                <th width="50%"class="center">Name</th >
+                                                                <th width="10%"class="center">Size</th >
+                                                                <th width="10%"class="center">Quantity</th >
+                                                                <th width="10%"class="center">Rate</th >
+                                                                <th width="10%"class="center">Discount($)</th >
+                                                                <th width="10%"class="center">Total</th >
+
+                                                            </tr>
+                                                            <?php
+                                                            $total=0;
+                                                            foreach ($ordersItems as $orderItem){
+
+
+                                                                if ($orders->id==$orderItem->fkOrderId){
+
+
+
+                                                                    $this->db->select('is.itemSize,i.itemName');
+                                                                    $this->db->from('itemsizes is');
+                                                                    $this->db->Where('is.id',$orderItem->fkItemSizeId);
+                                                                    $this->db->join('items i','i.id = is.fkItemId','left');
+                                                                    $query1=$this->db->get();
+
+
+
+                                                                    foreach ( $query1->result() as $res ) {?>
+
+                                                                        <tr>
+                                                                            <td><?php echo $res->itemName?></td>
+                                                                            <td><?php echo $res->itemSize?></td>
+                                                                            <td><?php echo $orderItem->quantity?></td>
+                                                                            <td><?php echo $orderItem->rate?></td>
+
+                                                                            <td><?php echo $discount=$orderItem->discount?></td>
+                                                                            <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
+
+
+
+                                                                        </tr>
+                                                                        <?php $total=$total+$price;}}} ?>
+                                                            <tr>
+
+                                                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+
+                                                                    <?php foreach ($pointUsed as $pu){
+                                                                        if ($pu->fkOrderId == $orders->id ){
+
+                                                                            if (!empty($pu->expedPoints)) {
+                                                                                echo " - Points Used :" . $pu->expedPoints;
+                                                                            }
+                                                                        }
+
+                                                                    } ?> )
+                                                                </td>
+
+                                                                <td colspan="1">
+
+                                                                    <?php $pointToMoney=0;foreach ($pointUsed as $pu){
+                                                                        if ($pu->fkOrderId == $orders->id ){
+
+                                                                            if (!empty($pu->expedPoints)) {
+                                                                                $pointToMoney= ($pu->expedPoints/10);
+
+                                                                            }
+                                                                        }
+
+                                                                    }?>
+                                                                    <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+
+                                                                </td>
+
+                                                            </tr>
+
+                                                        </table>
+
+
+
+                                                    <?php } ?>
                                                     
                                                 </div>
 
                                             </td>
+
 
                                             <td class="center">
 
