@@ -374,7 +374,7 @@
                             <?php foreach ($charges as $char){
                             $vat = $char->vat;
                             }?>
-							Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round((($subtotal-$totaldis)*$vat)/100, 2)?></span>
+                            sales tax(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round((($subtotal-$totaldis)*$vat)/100, 2)?></span>
                             <?php
                             $data = array(
                                 'vat' => $vatt,
