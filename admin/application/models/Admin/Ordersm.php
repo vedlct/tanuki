@@ -14,7 +14,7 @@ class Ordersm extends CI_Model
         $this->security->xss_clean($data);
         $error=$this->db->update('orders', $data);
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate) BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
         $this->db->order_by('o.id', 'DESC');
@@ -312,7 +312,7 @@ public function  updateOrderById($id, $data)
     public  function viewOrderInfoByOrderIdForPrint($orderId)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderId);
         $this->db->join('users u','u.id = o.fkUserId','left');
@@ -366,6 +366,23 @@ public function  updateOrderById($id, $data)
         $this->security->xss_clean($data3);
 
         $error=$this->db->insert('points', $data3);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public  function insertDeliveryTime($data,$orderId)
+    {
+        $this->security->xss_clean($data);
+
+        $this->db->where('id',$orderId);
+        $error=$this->db->update('orders',$data);
+
         if (empty($error))
         {
             return $this->db->error();

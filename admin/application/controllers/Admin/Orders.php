@@ -158,6 +158,34 @@ class Orders extends CI_Controller
 
     }
 
+    public function addDeliveryTime()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $time = $this->input->post('time');
+            $orderId = $this->input->post('orderId');
+            $data=array(
+                'deliveryTime'=>$time
+            );
+            $this->data['error'] = $this->Ordersm->insertDeliveryTime($data,$orderId);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'Delivery Time Inserted SuccessFully & mail Successfully');
+                $this->mailInvoice($orderId);
+
+            } else {
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+
+            }
+
+
+        } else {
+            redirect('Login');
+        }
+
+    }
+
     public function updateOrderItemById($id)
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -508,6 +536,32 @@ class Orders extends CI_Controller
         } else {
             redirect('Login');
         }
+    }
+
+    public function mailInvoice($orderId){
+
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
+
+        $this->load->model('Ordersm');
+
+        $this->email->set_mailtype("html");
+        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($this->session->userdata('email'));
+        $this->email->subject('Subject');
+
+
+        $this->data['orders'] = $this->Ordersm->viewOrderInfoByOrderIdForPrint($orderId);
+        $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItemsForPrint($orderId);
+        $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+        $this->data['charge'] = $this->Ordersm->getAllCharge();
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
+
+        $message = $this->load->view('invoiceMail', $this->data);
+
+        $this->email->message($message);
+        $this->email->send();
+
     }
 
 

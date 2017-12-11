@@ -118,7 +118,7 @@
                                                         <th width="10%"class="center">Rate</th >
                                                         <th width="10%"class="center">Discount($)</th >
                                                         <th width="10%"class="center">Total</th >
-                                                        <th width="5%"class="center">Action</th >
+                                                        <th width="5%"class="center">Order Delivery Time & Status</th >
                                                     </tr>
                                                     <?php
                                                     $total=0;
@@ -288,6 +288,33 @@
 
 
                                             <td class="center">
+
+                                                <label>Delivery time</label>
+
+                                                <select class="form-control input-height"  id="<?php echo $orders->id?>" onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
+                                                    <option value="">Select time</option>
+                                                    <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 30){ echo 'selected = "selected"';}?> value="30">30 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 45){ echo 'selected = "selected"';}?> value="45">45 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 60){ echo 'selected = "selected"';}?> value="60">1 hour</option>
+                                                    <option <?php if ($orders->deliveryTime == 75){ echo 'selected = "selected"';}?> value="75">1 hour 15 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 90){ echo 'selected = "selected"';}?> value="90">1 hour 30 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 105){ echo 'selected = "selected"';}?> value="105">1 hour 45 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 120){ echo 'selected = "selected"';}?> value="120">2 hour</option>
+                                                    <option <?php if ($orders->deliveryTime == 135){ echo 'selected = "selected"';}?> value="135">2 hour 15 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 150){ echo 'selected = "selected"';}?> value="150">2 hour 30 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 165){ echo 'selected = "selected"';}?> value="165">2 hour 45 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 180){ echo 'selected = "selected"';}?> value="180">3 hour</option>
+                                                    <option <?php if ($orders->deliveryTime == 195){ echo 'selected = "selected"';}?> value="195">3 hour 15 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 210){ echo 'selected = "selected"';}?> value="210">3 hour 30 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 225){ echo 'selected = "selected"';}?> value="225">3 hour 45 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 240){ echo 'selected = "selected"';}?> value="240">4 hour</option>
+                                                    <option <?php if ($orders->deliveryTime == 255){ echo 'selected = "selected"';}?> value="255">4 hour 15 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 270){ echo 'selected = "selected"';}?> value="270">4 hour 30 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 285){ echo 'selected = "selected"';}?> value="285">4 hour 45 min</option>
+                                                    <option <?php if ($orders->deliveryTime == 300){ echo 'selected = "selected"';}?> value="300">5 hour</option>
+                                                </select>
+                                                <hr>
 
                                                 <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
                                                     <i class="fa fa-print"></i> Print </a>
@@ -521,6 +548,29 @@
 
         });
         modal.style.display = "block";
+    }
+
+    function deliveryTime(x)
+    {
+        var time = document.getElementById(x).value;
+
+        //document.getElementById(x).disabled=true;
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Admin/Orders/addDeliveryTime" )?>',
+            data:{time:time,orderId:x},
+            cache: false,
+            success:function(data)
+            {
+                document.getElementById(x).disabled=true;
+
+            }
+
+        });
+
+
+
     }
 
     function searchByOrderId()
