@@ -486,4 +486,15 @@
         });
 
     }
+    $(function() {  $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 250) {
+            document.getElementById("logo").style.display = "block";
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+
+    });
+    });
 </script>
