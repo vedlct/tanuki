@@ -304,6 +304,7 @@ public function  updateOrderById($id, $data)
         $this->db->where('DATE(o.orderDate)',date('Y-m-d'));
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $this->db->order_by('o.id', 'DESC');
         $query=$this->db->get();
         return $query->result();
     }

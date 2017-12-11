@@ -7,7 +7,7 @@ class Items extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Itemsm');
-//        $this->load->moedel('feedbackm');
+
 
     }
     public function index()
@@ -333,6 +333,12 @@ class Items extends CI_Controller {
 
                     $this->session->set_userdata($data);
 
+                    if ($this->session->userdata('paymentMethod')== "cash")
+                    {
+                        $paymentMethod="cs";
+                    }elseif ($this->session->userdata('paymentMethod')== "credit"){
+                        $paymentMethod="crd";
+                    }
 
                     $ordertype = $this->session->userdata('orderType');
                     $orderdate = date("Y-m-d H:i");
@@ -340,7 +346,7 @@ class Items extends CI_Controller {
                     $orderstatus = $re->id;
                     $deliveryfee = $this->session->userdata('deliverfee');
                     $vat = $this->session->userdata('vat');
-                    $paymenttype = $this->session->userdata('paymentMethod');
+                    $paymenttype = $paymentMethod;
                     $user = $this->session->userdata('id');
                     $ordertaker = null;
 
@@ -383,6 +389,13 @@ class Items extends CI_Controller {
     }
     public function checkout(){
 
+                    if ($this->session->userdata('paymentMethod')== "cash")
+                    {
+                        $paymentMethod="cs";
+                    }elseif ($this->session->userdata('paymentMethod')== "credit"){
+                        $paymentMethod="crd";
+                    }
+
 
                     $ordertype = $this->session->userdata('orderType');
                     $orderdate = date("Y-m-d H:i");
@@ -390,7 +403,7 @@ class Items extends CI_Controller {
                     $orderstatus = $re->id;
                     $deliveryfee = $this->session->userdata('deliverfee');
                     $vat = $this->session->userdata('vat');
-                    $paymenttype = $this->session->userdata('paymentMethod');
+                    $paymenttype = $paymentMethod;
                     $user = $this->session->userdata('id');
                     $ordertaker = $this->session->userdata('id');
                     $memberid = $this->session->userdata('memberuserid');

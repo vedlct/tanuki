@@ -75,7 +75,8 @@
                                         <th width="5%"class="center"> Payment Type</th>
                                         <th width="44%"class="center"> Items </th>
 
-                                        <th width="20%"class="center"> Print & Order Status </th>
+<!--                                        <th width="20%"class="center"> Print & Order Status </th>-->
+                                        <th width="20%"class="center"> Actions </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -291,6 +292,7 @@
                                                 <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
                                                     <i class="fa fa-print"></i> Print </a>
 
+
                                                 <hr>
 
 
@@ -303,9 +305,12 @@
                                                                     <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
                                                                 <?php }?>
 
-
-
                                                             </select>
+
+                                                <a href="#" target="_blank">
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Cancel Order</a>
+
+
                                                 <?php }else{?>
                                                 Already Delivery
                                                 <?php } ?>

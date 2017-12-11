@@ -327,7 +327,7 @@
 <!--                    <a class="btn_full" type="submit">Go to checkout</a>-->
                     <input type="submit" class="btn_full" value="Go to checkout">
                     </form>
-                    <a class="btn_full_outline" href="detail_page.php"><i class="icon-right"></i> Add other items</a>
+                    <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
         </div>
@@ -346,16 +346,6 @@
 <?php include ('login_logout.php')?>
 <!-- end login logout modal-->
 
-<!-- Search Menu -->
-<div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_close"></i></span>
-    <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="search" placeholder="Search..." />
-        <button type="submit"><i class="icon-search-6"></i>
-        </button>
-    </form>
-</div>
-<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
@@ -464,8 +454,8 @@
             cache: false,
             success:function(data)
             {
-                //  $('#cart_table').load(document.URL +  ' #cart_table');
-                // $('#total_table').load(document.URL +  ' #total_table');
+
+               // $('#checkOut').load(document.URL +  ' #checkOut');
             }
 
         });
@@ -479,8 +469,7 @@
             cache: false,
             success:function(data)
             {
-                //   $('#cart_table').load(document.URL +  ' #cart_table');
-                //  $('#total_table').load(document.URL +  ' #total_table');
+               // $('#checkOut').load(document.URL +  ' #checkOut');
             }
 
         });
