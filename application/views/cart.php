@@ -4,7 +4,7 @@
 <head>
     
     <?php include ('head.php') ?>
-    <title>RAK - Quality Delivery or Take Away Food</title>
+    <title>Tanuki- Japanis Food</title>
 
 </head>
 
@@ -29,7 +29,7 @@
 	<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
     	<div id="sub_content">
     	 <h1>Place your order</h1>
@@ -75,7 +75,7 @@
 			<div class="col-md-2">
 
                 <div align="center" class="box_style_2 hidden-xs info">
-                    <h4 class="nomargin_top">Open Hours<i style="margin-left:30px;" class="icon_clock_alt "></i></h4>
+                    <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
                     <p >
                     <p>Tue-Fri <b>Lunch</b> <br>
                         11:30am-2.30pm <br></p>
@@ -133,7 +133,13 @@
 						<div class="col-md-6 col-sm-6">
 							<div class="form-group">
 								<label>City</label>
-								<input type="text" id="city_order" name="city_order" class="form-control" value="<?php echo $ud->fkCity?>" placeholder="Your city">
+<!--								<input type="text" id="city_order" name="city_order" class="form-control" value="--><?php //echo $ud->fkCity?><!--" placeholder="Your city">-->
+                                <select class="form-control" id="city" name="city" required>
+                                    <option value="">Your city</option>
+                                    <?php foreach ($allCity as $cities){?>
+                                        <option <?php if ($ud->fkCity !=null && $ud->fkCity== $cities->id) echo 'selected = "selected"'; ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
+                                    <?php } ?>
+                                </select>
 							</div>
 						</div>
 						<div class="col-md-6 col-sm-6">
@@ -191,13 +197,13 @@
                 <div class="box_style_2">
                     <h2 class="inner">Payment methods</h2>
                     <div class="payment_select">
-                        <label><input type="radio" value="" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
+                        <label><input type="radio" value="1" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
                         <i class="icon_creditcard"></i>
                     </div>
                     <!--End row -->
 
                     <div class="payment_select nomargin">
-                        <label><input type="radio" value="" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
+                        <label><input type="radio" value="2" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
                         <i class="icon_wallet"></i>
                     </div>
                 </div>
@@ -306,14 +312,17 @@
                         </div>
                         <hr>
                         <span id="checkOut">
-                         <?php if ($this->session->userdata('paymentMethod') != null){ ?>
+
+                         <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
-                         <?php }else if ($this->session->userdata('paymentMethod') == "credit"){ ?>
+                         <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
                              <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
 
-                        <?php }else { ?>
+                        <?php }else {  ?>
+
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>
+
                         </span>
                         <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                     </div><!-- End cart_box -->
@@ -366,6 +375,7 @@
             {
                 $('#checkOut').load(document.URL +  ' #checkOut');
 
+
             }
 
         });
@@ -381,6 +391,7 @@
             {
 
                 $('#checkOut').load(document.URL +  ' #checkOut');
+
             }
 
         });

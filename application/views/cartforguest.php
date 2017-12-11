@@ -4,7 +4,7 @@
 <head>
 
     <?php include ('head.php') ?>
-    <title>RAK - Quality Delivery or Take Away Food</title>
+    <title>Tanuki- Japanis Food</title>
 
 </head>
 
@@ -215,13 +215,13 @@
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <div class="payment_select">
-                    <label><input type="radio" value="" onclick="paymentcreditcard()" checked name="payment_method" class="">Credit card</label>
+                    <label><input type="radio"  onclick="paymentcreditcard()" name="payment_method" class="">Credit card</label>
                     <i class="icon_creditcard"></i>
                 </div>
                 <!--End row -->
 
                 <div class="payment_select nomargin">
-                    <label><input type="radio" value="" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
+                    <label><input type="radio" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
                     <i class="icon_wallet"></i>
                 </div>
             </div>
@@ -360,13 +360,7 @@
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
 
-<!-- SPECIFIC SCRIPTS -->
-<!--<script src="--><?php //echo base_url()?><!--public/js/theia-sticky-sidebar.js"></script>-->
-<!--<script>-->
-<!--    jQuery('#sidebar').theiaStickySidebar({-->
-<!--        additionalMarginTop: 80-->
-<!--    });-->
-<!--</script>-->
+
 
 </body>
 </html>
