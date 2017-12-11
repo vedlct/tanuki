@@ -38,6 +38,13 @@ class Report extends CI_Controller
         $this->data['allreportexpensepoint']= $this->Reportm->expensePointCount();
         $this->load->view('Admin/ReportFilterByPoint', $this->data);
     }
+
+    public function searchByMemberIdForPoint()
+    {       $memberID= $this->input->post('memberid');
+        $this->data['allreportearnpoint']= $this->Reportm->earnPointCountfromMemberId($memberID);
+        $this->data['allreportexpensepoint']= $this->Reportm->expensePointCount();
+        $this->load->view('Admin/ReportFilterByPointAfterSearch', $this->data);
+    }
 //////////////////////////////ALL search CODE/////////////////////
     public function searchByDate(){
 
@@ -75,7 +82,7 @@ class Report extends CI_Controller
 
         $this->data['allreportitem']= $this->Reportm->filterByItemsDate($startdate,$enddate );
         $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
-        $this->load->view('Admin/afterReportFilterByItems', $this->data);
+        $this->load->view('Admin/AfterReportFilterByItems', $this->data);
 
     }
 
