@@ -73,7 +73,7 @@ class Report extends CI_Controller
         $employeeID= $this->input->post('employeeid');
         $this->data['allreport']= $this->Reportm->viewAllReportByemployeeid($employeeID);
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
-        $this->load->view('Admin/ReportFilterByEmloyeeId.php', $this->data);
+        $this->load->view('Admin/ReportFilterByEmloyeeId', $this->data);
     }
 
     public function searchByItemsDate(){
