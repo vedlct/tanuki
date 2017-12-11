@@ -89,11 +89,11 @@ class Reportm extends CI_Model
 
     public function filterByItems()
     {
-        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem');
-
+        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem,fkOrderId');
+        $this->db->join('transactiondetail', 'transactionmaster.id  = transactiondetail.fkTransId', 'left');
         $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
         $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
-        $this->db->from('transactiondetail');
+        $this->db->from('transactionmaster');
         $this->db->group_by('items.id');
         $query = $this->db->get();
         return $query->result();
@@ -102,12 +102,12 @@ class Reportm extends CI_Model
 
     public function filterByItemsDate($startdate,$enddate )
     {
-        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem');
-        $this->db->join('transactionmaster', 'transactionmaster.id  = transactiondetail.fkTransId', 'left');
+        $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem,fkOrderId');
+        $this->db->join('transactiondetail', 'transactionmaster.id  = transactiondetail.fkTransId', 'left');
         $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
         $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
         $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
-        $this->db->from('transactiondetail');
+        $this->db->from('transactionmaster');
         $this->db->group_by('items.id');
         $query = $this->db->get();
         return $query->result();
@@ -169,6 +169,19 @@ class Reportm extends CI_Model
         $this->db->from('pointdeduct');
         $this->db->group_by('users.id');
         $this->db->where('fkUserType =' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
+    public function earnPointCountfromMemberId($memberID)
+    {
+        $this->db->select('users.name as username,memberCardNo, users.id as uid,  SUM(earnedPoints) as earnpoint');
+        $this->db->join('users', 'users.id = points.fkUserId', 'left');
+        $this->db->from('points');
+        $this->db->group_by('users.id');
+        $this->db->where('fkUserType =' ,'cus');
+        $this->db->where('memberCardNo =' ,$memberID);
         $query = $this->db->get();
         return $query->result();
 
