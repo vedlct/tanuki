@@ -90,6 +90,7 @@ class Reportm extends CI_Model
     public function filterByItems()
     {
         $this->db->select('items.id as itemid , items.itemName as itemname, COUNT(items.itemName) as totalitem');
+
         $this->db->join('itemsizes', 'itemsizes.id  = transactiondetail.fkItemSizeId', 'left');
         $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
         $this->db->from('transactiondetail');
