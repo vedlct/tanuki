@@ -72,9 +72,11 @@ class Report extends CI_Controller
     public function searchByItemsDate(){
         $startdate= $this->input->post('startdate');
         $enddate= $this->input->post('enddate');
+
         $this->data['allreportitem']= $this->Reportm->filterByItemsDate($startdate,$enddate );
         $this->data['allreportitemsize']= $this->Reportm->filterByItemsSize();
-        $this->load->view('Admin/ReportFilterByItems', $this->data);
+        $this->load->view('Admin/afterReportFilterByItems', $this->data);
+
     }
 
 
