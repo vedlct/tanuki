@@ -519,6 +519,8 @@ class Items extends CI_Controller {
             $this->session->set_userdata($data);
         }
 
+        header("Location: http://sakibrahman.com/demo/tanuki/jetpayapi/orderform.php");
+
     }
 
 

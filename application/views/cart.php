@@ -311,14 +311,16 @@
                             <?php } ?>
                         </div>
                         <hr>
+
                         <span id="checkOut">
+
 
                          <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
                         <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
                          <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
                              <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
 
-                        <?php }else {  ?>
+                        <?php } else { ?>
 
                         <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                         <?php } ?>
@@ -374,8 +376,6 @@
             success:function(data)
             {
                 $('#checkOut').load(document.URL +  ' #checkOut');
-
-
             }
 
         });
@@ -391,7 +391,6 @@
             {
 
                 $('#checkOut').load(document.URL +  ' #checkOut');
-
             }
 
         });
