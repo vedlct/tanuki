@@ -73,10 +73,9 @@
                                         <th width="10%"class="center"> Order Type & Date</th>
 
                                         <th width="5%"class="center"> Payment Type</th>
-                                        <th width="44%"class="center"> Items </th>
-
-<!--                                        <th width="20%"class="center"> Print & Order Status </th>-->
-                                        <th width="20%"class="center"> Actions </th>
+                                        <th width="39%"class="center"> Items </th>
+                                        <th width="20%"class="center">Order Delivery Time & Status</th>
+                                        <th width="5%"class="center">Print & Cancel</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -99,7 +98,7 @@
                                             </td>
                                             <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
                                                                 elseif($orders->orderType=="take"){echo "Take Away";}
-                                                                elseif($orders->orderType=="home"){echo "Online";}?><hr>
+                                                                elseif($orders->orderType=="home"){echo "Home Delivery";}?><hr>
                                                 <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
                                             </td>
 
@@ -118,7 +117,7 @@
                                                         <th width="10%"class="center">Rate</th >
                                                         <th width="10%"class="center">Discount($)</th >
                                                         <th width="10%"class="center">Total</th >
-                                                        <th width="5%"class="center">Order Delivery Time & Status</th >
+                                                        <th width="5%"class="center">Actions</th >
                                                     </tr>
                                                     <?php
                                                     $total=0;
@@ -288,9 +287,8 @@
 
 
                                             <td class="center">
-
+                                                <?php if ($orders->orderType != "have"){?>
                                                 <label>Delivery time</label>
-
                                                 <select class="form-control input-height"  id="<?php echo $orders->id?>" onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
                                                     <option value="">Select time</option>
                                                     <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
@@ -314,13 +312,9 @@
                                                     <option <?php if ($orders->deliveryTime == 285){ echo 'selected = "selected"';}?> value="285">4 hour 45 min</option>
                                                     <option <?php if ($orders->deliveryTime == 300){ echo 'selected = "selected"';}?> value="300">5 hour</option>
                                                 </select>
-                                                <hr>
-
-                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
-                                                    <i class="fa fa-print"></i> Print </a>
-
 
                                                 <hr>
+                                                <?php } ?>
 
 
                                                 <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
@@ -334,13 +328,18 @@
 
                                                             </select>
 
-                                                <a href="#" target="_blank">
-                                                    <i class="fa fa-times" aria-hidden="true"></i> Cancel Order</a>
-
-
                                                 <?php }else{?>
                                                 Already Delivery
                                                 <?php } ?>
+
+                                            </td>
+                                            <td>
+                                                <a href="<?php echo  base_url()?>Admin/PdfMaker/OrderBillPdf/<?php echo $orders->id?>" target="_blank">
+                                                    <i class="fa fa-print"></i> Print </a>
+                                                <hr>
+
+                                                <a href="#" target="_blank">
+                                                    <i class="fa fa-times" aria-hidden="true"></i> Cancel Order</a>
 
                                             </td>
 

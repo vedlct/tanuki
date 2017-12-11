@@ -262,7 +262,7 @@
                                                                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                                                 <tbody>
                                                                                 <tr>
-                                                                                    <td valign="top" width="60"><img src="<?php echo base_url()?>public/img/emailTemp/Untitled-1.png" alt="Logo" title="Logo" width="60" height="60" data-max-width="100"></td>
+                                                                                    <td valign="top" width="60"><img src="<?php echo base_url()?>images/emailTemp/Untitled-1.png" alt="Logo" title="Logo" width="60" height="60" data-max-width="100"></td>
                                                                                     <td width="10" valign="top">&nbsp;</td>
                                                                                     <td valign="middle" style='vertical-align: middle;'>
                                                                                         <div class='contentEditableContainer contentTextEditable'>
@@ -308,7 +308,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td valign="top" width="580"><div class='contentEditableContainer contentImageEditable'>
-                                                                    <div class='contentEditable' style="text-align: center;"><img class="banner" src="<?php echo base_url()?>public/img/emailTemp/main.jpg" alt="Logo" title="Logo" width="580" height="221" border="0"></div></div></td>
+                                                                    <div class='contentEditable' style="text-align: center;"><img class="banner" src="<?php echo base_url()?>images/emailTemp/main.jpg" alt="Logo" title="Logo" width="580" height="221" border="0"></div></div></td>
                                                         </tr>
                                                         </tbody>
                                                     </table>
@@ -366,7 +366,7 @@
                                                                                             <h4 style="color: #4C4C4C;">Shipping Address</h4>
                                                                                             <p style="color: #4C4C4C;"><?php echo $allOrder->address?>,<?php echo $allOrder->postalCode?></p>
                                                                                             <p style="color: #4C4C4C; margin: 0 auto;"><?php echo $allOrder->cityName?>,US</p>
-                                                                                            <p style="color: #4C4C4C; margin: 0 auto;"><?php echo $allOrder->phone ?></p>
+                                                                                            <p style="color: #4C4C4C; margin: 0 auto;">Phone :<?php echo $allOrder->phone ?></p>
                                                                                         </td>
                                                                                     </tr>
                                                                                 </table>
@@ -478,7 +478,7 @@
                                                             <td></td>
                                                             <?php foreach ($charge as $charges){?>
                                                                 <td style="width: 18%">sales tax <?php echo $charges->vat?>%</td>
-                                                            <?php }if (!empty($allOrder->vat)){?>
+                                                            <?php }if ($allOrder->vat != null){?>
                                                                 <td>$<?php echo  $allOrder->vat?></td>
                                                             <?php } else{ ?>
                                                                 <td>$0.00</td>
@@ -569,7 +569,7 @@
                                                                                         <td width='40'>
                                                                                             <div class='contentEditableContainer contentFacebookEditable'>
                                                                                                 <div class='contentEditable' style='text-align: center;color:#AAAAAA;'>
-                                                                                                    <img src="<?php echo base_url()?>public/img/emailTemp/facebook.png" alt="facebook" width='40' height='40' data-max-width="40" data-customIcon="true" border="0">
+                                                                                                    <img src="<?php echo base_url()?>images/emailTemp/facebook.png" alt="facebook" width='40' height='40' data-max-width="40" data-customIcon="true" border="0">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>
@@ -577,7 +577,7 @@
                                                                                         <td width='40'>
                                                                                             <div class='contentEditableContainer contentTwitterEditable'>
                                                                                                 <div class='contentEditable' style='text-align: center;color:#AAAAAA;'>
-                                                                                                    <img src="<?php echo base_url()?>public/img/emailTemp/twitter.png" alt="twitter" width='40' height='40' data-max-width="40" data-customIcon="true" border="0">
+                                                                                                    <img src="<?php echo base_url()?>images/emailTemp/twitter.png" alt="twitter" width='40' height='40' data-max-width="40" data-customIcon="true" border="0">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>
@@ -585,7 +585,7 @@
                                                                                         <td width='40'>
                                                                                             <div class='contentEditableContainer contentImageEditable'>
                                                                                                 <div class='contentEditable' style='text-align: center;color:#AAAAAA;'>
-                                                                                                    <img src="<?php echo base_url()?>public/img/emailTemp/red.png" alt="Pinterest" width='40' height='40' data-max-width="40" border="0">
+                                                                                                    <img src="<?php echo base_url()?>images/emailTemp/red.png" alt="Pinterest" width='40' height='40' data-max-width="40" border="0">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>
@@ -593,7 +593,7 @@
                                                                                         <td width='40'>
                                                                                             <div class='contentEditableContainer contentImageEditable'>
                                                                                                 <div class='contentEditable' style='text-align: center;color:#AAAAAA;'>
-                                                                                                    <img src="<?php echo base_url()?>public/img/emailTemp/blue.png" alt="Social media" width='40' height='40' data-max-width="40" border="0">
+                                                                                                    <img src="<?php echo base_url()?>images/emailTemp/blue.png" alt="Social media" width='40' height='40' data-max-width="40" border="0">
                                                                                                 </div>
                                                                                             </div>
                                                                                         </td>

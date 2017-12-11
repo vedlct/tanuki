@@ -540,32 +540,32 @@ class Orders extends CI_Controller
 
     public function mailInvoice($orderId){
 
-        $this->load->helper(array('email'));
-        $this->load->library(array('email'));
+//        $this->load->helper(array('email'));
+//        $this->load->library(array('email'));
 
-        $this->load->model('Ordersm');
+        $this->load->model('Admin/Chargem');
 
         $this->data['orders'] = $this->Ordersm->viewOrderInfoByOrderIdForPrint($orderId);
         $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItemsForPrint($orderId);
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
-        $this->data['charge'] = $this->Ordersm->getAllCharge();
+        $this->data['charge'] = $this->Chargem->getAllCharge();
         $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
         foreach ($this->data['orders'] as $ordermail){
             $email=$ordermail->email;
         }
 
-        $this->email->set_mailtype("html");
-        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to($email);
-        $this->email->subject('Subject');
+//        $this->email->set_mailtype("html");
+//        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+//        $this->email->to($email);
+//        $this->email->subject('Subject');
 
 
 
 
-        $message = $this->load->view('invoiceMail', $this->data);
+        $message = $this->load->view('Admin/invoiceMail', $this->data);
 
-        $this->email->message($message);
-        $this->email->send();
+//        $this->email->message($message);
+//        $this->email->send();
 
     }
 
