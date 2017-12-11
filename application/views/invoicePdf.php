@@ -476,7 +476,7 @@
                                                             <td></td>
                                                             <td></td>
                                                             <?php foreach ($charge as $charges){?>
-                                                            <td style="width: 18%">Tax <?php echo $charges->vat?>%</td>
+                                                            <td style="width: 18%">sales tax <?php echo $charges->vat?>%</td>
                                                             <?php }if (!empty($allOrder->vat)){?>
                                                             <td>$<?php echo  $allOrder->vat?></td>
                                                             <?php } else{ ?>

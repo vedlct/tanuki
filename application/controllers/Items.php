@@ -119,6 +119,7 @@ class Items extends CI_Controller {
             $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
             $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
             $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
             $this->load->view('cart', $this->data);
         }
     }
