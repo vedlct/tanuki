@@ -8,7 +8,8 @@
 
 </head>
 
-<body>
+<body id="body">
+
 
     <!--[if lte IE 8]>
         <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
@@ -32,10 +33,12 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
 	<div id="sub_content">
-<!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
+    	<div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
 <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
-        <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
-        <div><em>Japanese Restaurant</em></div>
+
+
+<!--        <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>-->
+<!--        <div><em>Japanese Restaurant</em></div>-->
         <div><i class="icon_pin"></i> 44260 Ice Rink Plz
             Ste 118 Ashburn, VA 20147 </div>
     </div><!-- End sub_content -->
@@ -57,7 +60,7 @@
 
 
 <!-- Content ================================================== -->
-<div class="container-fluid margin_60_35">
+<div id="myDIV" class="container-fluid margin_60_35">
 		<div class="row">
 
             <?php if ($this->session->flashdata('errorMessage')!=null){?>
@@ -429,29 +432,7 @@
     
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
-<!--<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
 
-<!-- SPECIFIC SCRIPTS -->
-<!--<script  src="--><?php //echo base_url()?><!--public/js/cat_nav_mobile.js"></script>-->
-<!--<script>$('#cat_nav').mobileMenu();</script>-->
-<!--<script src="--><?php //echo base_url()?><!--public/js/theia-sticky-sidebar.js"></script>-->
-<!--<script>-->
-<!--    jQuery('#sidebar').theiaStickySidebar({-->
-<!--      additionalMarginTop: 80-->
-<!--    });-->
-<!--</script>-->
-<!--<script>-->
-<!--$('#cat_nav a[href^="#"]').on('click', function (e) {-->
-<!--			e.preventDefault();-->
-<!--			var target = this.hash;-->
-<!--			var $target = $(target);-->
-<!--			$('html, body').stop().animate({-->
-<!--				'scrollTop': $target.offset().top - 70-->
-<!--			}, 900, 'swing', function () {-->
-<!--				window.location.hash = target;-->
-<!--			});-->
-<!--		});-->
-<!--</script>-->
 
 <script>
 	function addcart(x) {
@@ -631,6 +612,18 @@
         }
 
 	}
+
+    $(function() {  $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 250) {
+            document.getElementById("logo").style.display = "block";
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+
+    });
+    });
 </script>
 </body>
 </html>
