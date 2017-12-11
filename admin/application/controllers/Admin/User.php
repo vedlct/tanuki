@@ -228,7 +228,7 @@ class User extends CI_Controller {
             $data['city']=$this->Userm->getAllCity();
             $data['userTypeinfo']=$this->Userm->getuserType();
             $data['user'] = $this->Userm->getCustomer();
-            $this->load->view('Admin/allcustomer', $data);
+            $this->load->view('Admin/allCustomer', $data);
         }
 
         else{
