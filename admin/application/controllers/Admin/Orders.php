@@ -27,6 +27,7 @@ class Orders extends CI_Controller
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
             $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
+            $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
             $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
             //print_r($this->data['orders']);
@@ -538,10 +539,41 @@ class Orders extends CI_Controller
         }
     }
 
+    public function cancelOrder($orderId)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $cancelTitle=$this->Ordersm->cancelOrderId();
+
+            $data = array(
+                'fkOrderStatus' => $cancelTitle->id,
+
+            );
+
+            $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'order  Cancel Successfully');
+                redirect('Admin-Orders');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Orders');
+
+            }
+
+
+        } else {
+            redirect('Login');
+        }
+    }
+
     public function mailInvoice($orderId){
 
-//        $this->load->helper(array('email'));
-//        $this->load->library(array('email'));
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
 
         $this->load->model('Admin/Chargem');
 
@@ -554,18 +586,18 @@ class Orders extends CI_Controller
             $email=$ordermail->email;
         }
 
-//        $this->email->set_mailtype("html");
-//        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-//        $this->email->to($email);
-//        $this->email->subject('Subject');
+        $this->email->set_mailtype("html");
+        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($email);
+        $this->email->subject('Subject');
 
 
 
 
         $message = $this->load->view('Admin/invoiceMail', $this->data);
 
-//        $this->email->message($message);
-//        $this->email->send();
+        $this->email->message($message);
+        $this->email->send();
 
     }
 

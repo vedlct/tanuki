@@ -342,6 +342,18 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
+    public  function cancelOrderId()
+    {
+        $this->db->select('id');
+        $this->db->where('sequece',"0");
+        $this->db->from('orderstatus');
+
+        $query=$this->db->get();
+        return $query->row();
+
+
+    }
+
     public  function getUsedPointForParticularOrder($orderId)
     {
         $this->db->select('expedPoints');
