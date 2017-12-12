@@ -41,16 +41,37 @@ class Reportm extends CI_Model
         return $query->result();
     }
     public function viewAllReportByemployeeid($employeeID){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ');
+        $this->db->select('transactionmaster.id as tid, users.name as employee  ,users.id as uid, paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
+        $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
-        $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
-        $this->db->where('u.id =', $employeeID);
+        //$this->db->from('transactionmaster');
+        $this->db->where('users.fkUserType !=' ,'cus');
+        //$this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('orders.orderType =' ,'have');
+        $this->db->where('users.memberCardNo =', $employeeID);
         $this->db->from('transactionmaster');
+        $this->db->group_by('users.name');
         $query = $this->db->get();
         return $query->result();
     }
+    public function viewAllReportByemployeeidBYdate($startdate,$enddate){
+        $this->db->select('transactionmaster.id as tid, users.name as employee  ,users.id as uid, paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
+        $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
+        $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
+        $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
+        //$this->db->from('transactionmaster');
+        $this->db->where('users.fkUserType !=' ,'cus');
+        //$this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('orders.orderType =' ,'have');
+//        $this->db->where('users.memberCardNo =', $employeeID)
+        $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
 
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.name');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function viewAllItemReport(){
         $this->db->select('fkTransId, fkItemSizeId , quantity , rate , discount, itemName, itemSize');
         $this->db->join('itemsizes ', 'itemsizes.id = transactiondetail.fkItemSizeId ', 'left');
@@ -74,13 +95,15 @@ class Reportm extends CI_Model
 
     public function filterByEmployee(){
 
-        $this->db->select('users.id as uid, users.name as employee  , paymentType , orderType , memberCardNo, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount  ');
+        $this->db->select('transactionmaster.id as tid, users.name as employee  ,users.id as uid, paymentType , orderType , memberCardNo, COUNT(fkOrderId) as totalorder, COUNT(transactionmaster.fkOrderId)  as totalorder,COUNT(transactiondetail.fkItemSizeId) as totalitem,  SUM((transactiondetail.quantity*transactiondetail.rate)- transactiondetail.discount) as totalammount ');
         $this->db->join('transactiondetail', 'transactiondetail.fkTransId = transactionmaster.id ', 'left');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
-        $this->db->join('users', 'orders.fkOrderTaker = users.id ', 'left');
+        $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
+
         $this->db->from('transactionmaster');
-        $this->db->where('fkUserType !=' ,'cus');
-        $this->db->where('orderType =' ,'have');
+        $this->db->where('users.fkUserType !=' ,'cus');
+        //$this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('orders.orderType =' ,'have');
         $this->db->group_by('users.name');
         $query = $this->db->get();
         return $query->result();
@@ -108,6 +131,7 @@ class Reportm extends CI_Model
         $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
         $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
         $this->db->from('transactionmaster');
+        $this->db->where('orders.orderType =' ,'have');
         $this->db->group_by('items.id');
         $query = $this->db->get();
         return $query->result();
@@ -142,14 +166,43 @@ class Reportm extends CI_Model
 
         $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
         $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
-        $this->db->join('users', 'orders.fkOrderTaker  = users.id', 'left');
+        $this->db->join('users', 'orders.fkUserId  = users.id', 'left');
+
         $this->db->from('transactionmaster');
         $this->db->group_by('users.id');
+        //$this->db->where('fkUserType !=' ,'cus');
         $this->db->where('fkUserType !=' ,'cus');
         $query = $this->db->get();
         return $query->result();
     }
 
+    public function  getOrderEmployees($employeeID){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkUserId  = users.id', 'left');
+        $this->db->where('users.memberCardNo =', $employeeID);
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        $this->db->where('orders.orderType =' ,'have');
+        //$this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('fkUserType !=' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function  getOrderEmployeesBydate($startdate,$enddate){
+
+        $this->db->select('COUNT(`fkOrderId`) as totalorder,  users.id as uid ');
+        $this->db->join('orders', 'transactionmaster.fkOrderId  = orders.id', 'left');
+        $this->db->join('users', 'orders.fkUserId  = users.id', 'left');
+        $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
+        $this->db->from('transactionmaster');
+        $this->db->group_by('users.id');
+        //$this->db->where('fkUserType !=' ,'cus');
+        $this->db->where('fkUserType !=' ,'cus');
+        $query = $this->db->get();
+        return $query->result();
+    }
     public function earnPointCount()
     {
         $this->db->select('users.name as username,memberCardNo, users.id as uid,  SUM(earnedPoints) as earnpoint');

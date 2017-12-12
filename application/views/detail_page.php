@@ -287,7 +287,7 @@
                         <hr>
                     <div class="row" id="options_2">
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-						<a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Take Away</a>
+						<a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 6px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
 						</div>
 						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
 							<a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
@@ -339,7 +339,7 @@
 					<tbody>
 					<tr>
 					<td>
-						Oder Type <span class="pull-right"><?php echo $this->session->userdata('orderType') ?></span>
+						Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
 					</td>
 					</tr>
 					<tr>
