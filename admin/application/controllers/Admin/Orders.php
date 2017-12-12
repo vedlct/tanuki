@@ -44,14 +44,10 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-
             $orderStatus = $this->input->post('status');
             $delivered = $this->Ordersm->checkDelivery($orderStatus);
-
-
             foreach ($delivered as $status) {
                 if ($status->statusTitle == "delivered") {
-
                     $this->data['orderInfo'] = $this->Ordersm->getDeliveredOrderInfo($orderId);
                     $this->data['orderItemsInfo'] = $this->Ordersm->getDeliveredOrderItemsInfo($orderId);
                     $this->data['pointUsedForOrder'] = $this->Ordersm->getUsedPointForParticularOrder($orderId);
@@ -63,11 +59,8 @@ class Orders extends CI_Controller
                             'transDate' => date('Y-m-d'),
                         );
                         $totalPoint=($orderInfo->vat+$orderInfo->deliveryfee);
-
                         $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
-
                         foreach ($this->data['orderItemsInfo'] as $orderedItems) {
-
                             $data2 = array(
                                 'fkTransId' => $transectionId,
                                 'fkItemSizeId' => $orderedItems->fkItemSizeId,
@@ -81,17 +74,13 @@ class Orders extends CI_Controller
                             }
                             $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)-$pointTomoney);
                         }
-
                         $data3 = array(
                             'fkTransId' => $transectionId,
                             'fkUserId' => $orderInfo->fkUserId,
                             'earnedPoints' => $totalPoint,
                         );
-                          $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
-
-                 }
-
-
+                        $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
+                    }
                 }
 //                else {
 //                    $data = array(
@@ -103,30 +92,18 @@ class Orders extends CI_Controller
 //                    $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
 //                }
             }
-
             $data = array(
                 'fkOrderStatus' => $orderStatus,
-
-
             );
-
             $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
-
             if (empty($this->data['error'])) {
-
                 $this->session->set_flashdata('successMessage', 'Order Updated Successfully');
-
-
             } else {
                 $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
-
             }
-
-
         } else {
             redirect('Login');
         }
-
     }
 
     public function editOrderItems()
