@@ -470,7 +470,7 @@
 
                                                 <?php }else{ ?>
 
-                                                     Cancelled 
+                                                     Cancelled
 
                                                 <?php } ?>
 
@@ -482,6 +482,7 @@
 
                                     </tbody>
                                 </table>
+
                                 </div>
                             </div>
                         </div>

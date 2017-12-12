@@ -523,6 +523,9 @@ class Orders extends CI_Controller
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
         $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
 
+        $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
+
         $this->load->view('Admin/OrderSearchFilterByOrderId', $this->data);
     }
 
