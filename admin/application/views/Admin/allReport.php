@@ -227,7 +227,7 @@
         {
             $.ajax({
                 type:'POST',
-                url:'<?php echo base_url("Admin/Report/searchByDate" )?>',
+                url:'<?php echo base_url("Admin/Report/searchByEmployDate" )?>',
                 data:{'startdate':startdate,'enddate':enddate},
                 cache: false,
                 success:function(data)
