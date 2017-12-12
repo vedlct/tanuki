@@ -131,6 +131,7 @@ class Reportm extends CI_Model
         $this->db->join('items', 'items.id = itemsizes.fkItemId  ', 'left');
         $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
         $this->db->from('transactionmaster');
+        $this->db->where('orders.orderType =' ,'have');
         $this->db->group_by('items.id');
         $query = $this->db->get();
         return $query->result();
@@ -183,6 +184,7 @@ class Reportm extends CI_Model
         $this->db->where('users.memberCardNo =', $employeeID);
         $this->db->from('transactionmaster');
         $this->db->group_by('users.id');
+        $this->db->where('orders.orderType =' ,'have');
         //$this->db->where('fkUserType !=' ,'cus');
         $this->db->where('fkUserType !=' ,'cus');
         $query = $this->db->get();
