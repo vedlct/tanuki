@@ -82,7 +82,7 @@
         <tr>
             <td colspan="2"></td>
             <?php foreach ($charge as $charges){?>
-            <td colspan="4">VAT <?php echo $charges->vat?>%</td>
+            <td colspan="4">sales tax <?php echo $charges->vat?>%</td>
             <?php }if ($allOrder->vat !=null){?>
             <td>$<?php echo  $allOrder->vat?></td>
             <?php }else{ ?>

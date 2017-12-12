@@ -462,22 +462,22 @@
                                                     <hr>
                                                     <table>
                                                         <tr>
-                                                            <td style="width: 75%"></td>
+                                                            <td style="width: 50%"></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td style="width: 15%">Sub Total</td>
+                                                            <td style="width: 50%">Sub Total</td>
                                                             <td>$<?php echo $total?></td>
                                                         </tr>
                                                         <tr>
-                                                            <td style="width: 75%"></td>
+                                                            <td style="width: 50%"></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <?php foreach ($charge as $charges){?>
-                                                                <td style="width: 18%">sales tax <?php echo $charges->vat?>%</td>
+                                                                <td style="width: 50%">sales tax(<?php echo $charges->vat?>%)&nbsp </td>
                                                             <?php }if ($allOrder->vat != null){?>
                                                                 <td>$<?php echo  $allOrder->vat?></td>
                                                             <?php } else{ ?>
@@ -485,12 +485,12 @@
                                                             <?php } ?>
                                                         </tr>
                                                         <tr>
-                                                            <td style="width: 75%"></td>
+                                                            <td style="width: 50%"></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td>Delevary Fee</td>
+                                                            <td style="width: 50%">Delevary Fee</td>
                                                             <?php $delveryFee=0;if (!empty($allOrder->deliveryfee)){?>
                                                                 <td>$<?php echo $delveryFee=$allOrder->deliveryfee?></td>
                                                             <?php }else {?>
@@ -500,23 +500,23 @@
                                                         </tr>
                                                         <?php $pointTk=0;if (!empty($pointUsed)){foreach ($pointUsed as $usedPoint){?>
                                                             <tr>
-                                                                <td style="width: 75%"></td>
+                                                                <td style="width: 50%"></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
                                                                 <td></td>
-                                                                <td>Used Point <?php echo $usedPoint->expedPoints?></td>
+                                                                <td style="width: 50%">Used Point <?php echo $usedPoint->expedPoints?></td>
                                                                 <td>- $<?php echo $pointTk=($usedPoint->expedPoints/10) ?></td>
                                                             </tr>
                                                         <?php }} ?>
 
                                                         <tr>
-                                                            <td style="width: 60%"></td>
+                                                            <td style="width: 50%"></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
                                                             <td></td>
-                                                            <td>TOTAL</td>
+                                                            <td style="width: 50%">TOTAL</td>
                                                             <td>$<?php echo $Total=(($total+$delveryFee+$allOrder->vat)-$pointTk)?></td>
                                                         </tr>
                                                     </table>

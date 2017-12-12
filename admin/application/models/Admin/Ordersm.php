@@ -28,7 +28,7 @@ class Ordersm extends CI_Model
     public  function viewOrderInfoByOrderId($orderID)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderID);
         $this->db->join('users u','u.id = o.fkUserId','left');
@@ -340,6 +340,18 @@ public function  updateOrderById($id, $data)
 
         $query=$this->db->get();
         return $query->result();
+    }
+
+    public  function cancelOrderId()
+    {
+        $this->db->select('id');
+        $this->db->where('sequece',"0");
+        $this->db->from('orderstatus');
+
+        $query=$this->db->get();
+        return $query->row();
+
+
     }
 
     public  function getUsedPointForParticularOrder($orderId)

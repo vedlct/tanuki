@@ -170,45 +170,45 @@
                     </div>
                 </div>
                 <hr>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Delivery Day</label>
-                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">
-                                <option value="" selected>Select day</option>
-                                <option value="Today">Today</option>
-                                <option value="Tomorrow">Tomorrow</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Delivery time</label>
-                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">
-                                <option value="" selected>Select time</option>
-                                <option value="11.30am">11.30am</option>
-                                <option value="11.45am">11.45am</option>
-                                <option value="12.15am">12.15am</option>
-                                <option value="12.30am">12.30am</option>
-                                <option value="12.45am">12.45am</option>
-                                <option value="01.00pm">01.00pm</option>
-                                <option value="01.15pm">01.15pm</option>
-                                <option value="01.30pm">01.30pm</option>
-                                <option value="01.45pm">01.45pm</option>
-                                <option value="02.00pm">02.00pm</option>
-                                <option value="07.00pm">07.00pm</option>
-                                <option value="07.15pm">07.15pm</option>
-                                <option value="07.30pm">07.30pm</option>
-                                <option value="07.45pm">07.45pm</option>
-                                <option value="08.00pm">08.00pm</option>
-                                <option value="08.15pm">08.15pm</option>
-                                <option value="08.30pm">08.30pm</option>
-                                <option value="08.45pm">08.45pm</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
+<!--                <div class="row">-->
+<!--                    <div class="col-md-6 col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Delivery Day</label>-->
+<!--                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">-->
+<!--                                <option value="" selected>Select day</option>-->
+<!--                                <option value="Today">Today</option>-->
+<!--                                <option value="Tomorrow">Tomorrow</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-md-6 col-sm-6">-->
+<!--                        <div class="form-group">-->
+<!--                            <label>Delivery time</label>-->
+<!--                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">-->
+<!--                                <option value="" selected>Select time</option>-->
+<!--                                <option value="11.30am">11.30am</option>-->
+<!--                                <option value="11.45am">11.45am</option>-->
+<!--                                <option value="12.15am">12.15am</option>-->
+<!--                                <option value="12.30am">12.30am</option>-->
+<!--                                <option value="12.45am">12.45am</option>-->
+<!--                                <option value="01.00pm">01.00pm</option>-->
+<!--                                <option value="01.15pm">01.15pm</option>-->
+<!--                                <option value="01.30pm">01.30pm</option>-->
+<!--                                <option value="01.45pm">01.45pm</option>-->
+<!--                                <option value="02.00pm">02.00pm</option>-->
+<!--                                <option value="07.00pm">07.00pm</option>-->
+<!--                                <option value="07.15pm">07.15pm</option>-->
+<!--                                <option value="07.30pm">07.30pm</option>-->
+<!--                                <option value="07.45pm">07.45pm</option>-->
+<!--                                <option value="08.00pm">08.00pm</option>-->
+<!--                                <option value="08.15pm">08.15pm</option>-->
+<!--                                <option value="08.30pm">08.30pm</option>-->
+<!--                                <option value="08.45pm">08.45pm</option>-->
+<!--                            </select>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!---->
+<!--                </div>-->
 
 
             </div><!-- End box_style_1 -->
