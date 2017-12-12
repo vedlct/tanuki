@@ -412,7 +412,7 @@
 
                     <hr>
 
-                    <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
+                    <select disabled class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                         <option value="">Select</option>
 
                         <?php foreach ($ordersStatus as $Status){?>
