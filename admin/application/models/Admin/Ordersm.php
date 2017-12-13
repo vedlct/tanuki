@@ -28,7 +28,7 @@ class Ordersm extends CI_Model
     public  function viewOrderInfoByOrderId($orderID)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.deliveryTime,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderID);
         $this->db->join('users u','u.id = o.fkUserId','left');
@@ -50,6 +50,7 @@ class Ordersm extends CI_Model
     {
         $this->db->select('os.id,os.statusTitle');
         $this->db->from('orderstatus os');
+        $this->db->where('os.sequece !=',"0");
         $this->db->order_by('os.sequece', 'ASC');
         $query=$this->db->get();
         return $query->result();
@@ -233,6 +234,7 @@ class Ordersm extends CI_Model
         $this->db->from('orderstatus');
         $this->db->where('id',$orderStatus);
 
+
         $query=$this->db->get();
         return $query->result();
     }
@@ -287,6 +289,7 @@ public function  updateOrderById($id, $data)
     {
         $this->db->select('id,sequece,statusTitle');
         $this->db->from('orderstatus');
+        $this->db->where('sequece !=',"0");
         $query=$this->db->get();
         return $query->result();
     }

@@ -98,7 +98,7 @@
                                             <?php $total=$total+$price;}}} ?>
                                 <tr>
 
-                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
 
                                         <?php foreach ($pointUsed as $pu){
                                             if ($pu->fkOrderId == $orders->id ){
@@ -179,7 +179,7 @@
                                             <?php $total=$total+$price;}}} ?>
                                 <tr>
 
-                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
 
                                         <?php foreach ($pointUsed as $pu){
                                             if ($pu->fkOrderId == $orders->id ){
@@ -260,7 +260,7 @@
                                         <?php $total=$total+$price;}}} ?>
                             <tr>
 
-                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + vat:$<?php echo $orders->vat?>
+                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
 
                                     <?php foreach ($pointUsed as $pu){
                                         if ($pu->fkOrderId == $orders->id ){
@@ -304,38 +304,70 @@
 
 
             <td class="center">
+
                 <?php if ($StatusCancel->id != $orders->fkOrderStatus){?>
                     <?php if ($orders->orderType != "have"){?>
                         <label>Delivery time</label>
-                        <select class="form-control input-height" id="<?php echo $orders->id?>" onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
-                            <option value="">Select time</option>
-                            <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
-                            <option <?php if ($orders->deliveryTime == 30){ echo 'selected = "selected"';}?> value="30">30 min</option>
-                            <option <?php if ($orders->deliveryTime == 45){ echo 'selected = "selected"';}?> value="45">45 min</option>
-                            <option <?php if ($orders->deliveryTime == 60){ echo 'selected = "selected"';}?> value="60">1 hour</option>
-                            <option <?php if ($orders->deliveryTime == 75){ echo 'selected = "selected"';}?> value="75">1 hour 15 min</option>
-                            <option <?php if ($orders->deliveryTime == 90){ echo 'selected = "selected"';}?> value="90">1 hour 30 min</option>
-                            <option <?php if ($orders->deliveryTime == 105){ echo 'selected = "selected"';}?> value="105">1 hour 45 min</option>
-                            <option <?php if ($orders->deliveryTime == 120){ echo 'selected = "selected"';}?> value="120">2 hour</option>
-                            <option <?php if ($orders->deliveryTime == 135){ echo 'selected = "selected"';}?> value="135">2 hour 15 min</option>
-                            <option <?php if ($orders->deliveryTime == 150){ echo 'selected = "selected"';}?> value="150">2 hour 30 min</option>
-                            <option <?php if ($orders->deliveryTime == 165){ echo 'selected = "selected"';}?> value="165">2 hour 45 min</option>
-                            <option <?php if ($orders->deliveryTime == 180){ echo 'selected = "selected"';}?> value="180">3 hour</option>
-                            <option <?php if ($orders->deliveryTime == 195){ echo 'selected = "selected"';}?> value="195">3 hour 15 min</option>
-                            <option <?php if ($orders->deliveryTime == 210){ echo 'selected = "selected"';}?> value="210">3 hour 30 min</option>
-                            <option <?php if ($orders->deliveryTime == 225){ echo 'selected = "selected"';}?> value="225">3 hour 45 min</option>
-                            <option <?php if ($orders->deliveryTime == 240){ echo 'selected = "selected"';}?> value="240">4 hour</option>
-                            <option <?php if ($orders->deliveryTime == 255){ echo 'selected = "selected"';}?> value="255">4 hour 15 min</option>
-                            <option <?php if ($orders->deliveryTime == 270){ echo 'selected = "selected"';}?> value="270">4 hour 30 min</option>
-                            <option <?php if ($orders->deliveryTime == 285){ echo 'selected = "selected"';}?> value="285">4 hour 45 min</option>
-                            <option <?php if ($orders->deliveryTime == 300){ echo 'selected = "selected"';}?> value="300">5 hour</option>
-                        </select>
+                        <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
+                            <select class="form-control input-height"  id="<?php echo $orders->id?>" onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
+                                <option value="">Select time</option>
+                                <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
+                                <option <?php if ($orders->deliveryTime == 30){ echo 'selected = "selected"';}?> value="30">30 min</option>
+                                <option <?php if ($orders->deliveryTime == 45){ echo 'selected = "selected"';}?> value="45">45 min</option>
+                                <option <?php if ($orders->deliveryTime == 60){ echo 'selected = "selected"';}?> value="60">1 hour</option>
+                                <option <?php if ($orders->deliveryTime == 75){ echo 'selected = "selected"';}?> value="75">1 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 90){ echo 'selected = "selected"';}?> value="90">1 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 105){ echo 'selected = "selected"';}?> value="105">1 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 120){ echo 'selected = "selected"';}?> value="120">2 hour</option>
+                                <option <?php if ($orders->deliveryTime == 135){ echo 'selected = "selected"';}?> value="135">2 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 150){ echo 'selected = "selected"';}?> value="150">2 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 165){ echo 'selected = "selected"';}?> value="165">2 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 180){ echo 'selected = "selected"';}?> value="180">3 hour</option>
+                                <option <?php if ($orders->deliveryTime == 195){ echo 'selected = "selected"';}?> value="195">3 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 210){ echo 'selected = "selected"';}?> value="210">3 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 225){ echo 'selected = "selected"';}?> value="225">3 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 240){ echo 'selected = "selected"';}?> value="240">4 hour</option>
+                                <option <?php if ($orders->deliveryTime == 255){ echo 'selected = "selected"';}?> value="255">4 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 270){ echo 'selected = "selected"';}?> value="270">4 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 285){ echo 'selected = "selected"';}?> value="285">4 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 300){ echo 'selected = "selected"';}?> value="300">5 hour</option>
+                            </select>
+                        <?php }else{ ?>
+
+                            <select class="form-control input-height"  disabled id="<?php echo $orders->id?>" onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
+                                <option value="">Select time</option>
+                                <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
+                                <option <?php if ($orders->deliveryTime == 30){ echo 'selected = "selected"';}?> value="30">30 min</option>
+                                <option <?php if ($orders->deliveryTime == 45){ echo 'selected = "selected"';}?> value="45">45 min</option>
+                                <option <?php if ($orders->deliveryTime == 60){ echo 'selected = "selected"';}?> value="60">1 hour</option>
+                                <option <?php if ($orders->deliveryTime == 75){ echo 'selected = "selected"';}?> value="75">1 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 90){ echo 'selected = "selected"';}?> value="90">1 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 105){ echo 'selected = "selected"';}?> value="105">1 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 120){ echo 'selected = "selected"';}?> value="120">2 hour</option>
+                                <option <?php if ($orders->deliveryTime == 135){ echo 'selected = "selected"';}?> value="135">2 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 150){ echo 'selected = "selected"';}?> value="150">2 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 165){ echo 'selected = "selected"';}?> value="165">2 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 180){ echo 'selected = "selected"';}?> value="180">3 hour</option>
+                                <option <?php if ($orders->deliveryTime == 195){ echo 'selected = "selected"';}?> value="195">3 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 210){ echo 'selected = "selected"';}?> value="210">3 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 225){ echo 'selected = "selected"';}?> value="225">3 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 240){ echo 'selected = "selected"';}?> value="240">4 hour</option>
+                                <option <?php if ($orders->deliveryTime == 255){ echo 'selected = "selected"';}?> value="255">4 hour 15 min</option>
+                                <option <?php if ($orders->deliveryTime == 270){ echo 'selected = "selected"';}?> value="270">4 hour 30 min</option>
+                                <option <?php if ($orders->deliveryTime == 285){ echo 'selected = "selected"';}?> value="285">4 hour 45 min</option>
+                                <option <?php if ($orders->deliveryTime == 300){ echo 'selected = "selected"';}?> value="300">5 hour</option>
+                            </select>
+
+
+
+                        <?php } ?>
 
                         <hr>
                     <?php } ?>
 
 
                     <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
+
                         <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                             <option value="">Select</option>
 
@@ -344,15 +376,17 @@
                                 <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
                             <?php }?>
 
+
+
                         </select>
 
                     <?php }else{?>
-                        Already Delivery
+                        Already Delivered
                     <?php }}else{?>
 
                     <label>Delivery time</label>
 
-                    <select class="form-control input-height"  id="<?php echo $orders->id?>" disabled onChange="deliveryTime(this.id)" name="delivery_schedule_time">
+                    <select class="form-control input-height"  id="<?php echo $orders->id?>" disabled onChange="deliveryTime(this.id)" name="delivery_schedule_time"<?php if ($orders->deliveryTime != null){echo 'disabled = "disabled"';}?>>
                         <option value="">Select time</option>
                         <option <?php if ($orders->deliveryTime == 15){ echo 'selected = "selected"';}?> value="15">15 min</option>
                         <option <?php if ($orders->deliveryTime == 30){ echo 'selected = "selected"';}?> value="30">30 min</option>
@@ -378,7 +412,7 @@
 
                     <hr>
 
-                    <select  disabled class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
+                    <select disabled class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                         <option value="">Select</option>
 
                         <?php foreach ($ordersStatus as $Status){?>
@@ -386,9 +420,17 @@
                             <option <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
                         <?php }?>
 
+
+
                     </select>
 
                 <?php }?>
+
+
+
+
+
+
 
             </td>
             <td>
@@ -396,15 +438,19 @@
                     <i class="fa fa-print"></i> Print </a>
 
                 <hr>
+                <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
+                    <?php if ($StatusCancel->id != $orders->fkOrderStatus){?>
 
-                <?php if ($StatusCancel->id != $orders->fkOrderStatus){?>
+                        <a href="<?php echo  base_url()?>Admin/Orders/cancelOrder/<?php echo $orders->id?>" onclick="return confirm('Are you sure To Cancel This Order?')">
+                            <i class="fa fa-times-circle" aria-hidden="true"></i>Cancel</a>
 
-                    <a href="<?php echo  base_url()?>Admin/Orders/cancelOrder/<?php echo $orders->id?>">
-                        <i class="fa fa-times-circle" aria-hidden="true"></i>Cancel</a>
+                    <?php }else{ ?>
 
-                <?php }else{ ?>
+                        Cancelled
 
-                    Cancelled
+                    <?php }}else{ ?>
+
+                    Delivered
 
                 <?php } ?>
 

@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
+<!--                <hr>-->
 <!--                <div class="row">-->
 <!--                    <div class="col-md-6 col-sm-6">-->
 <!--                        <div class="form-group">-->
@@ -272,7 +272,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                Oder Type <span class="pull-right"><?php echo $this->session->userdata('orderType') ?></span>
+                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
                             </td>
                         </tr>
                         <tr>
