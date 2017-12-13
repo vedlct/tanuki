@@ -39,6 +39,13 @@ class Feedbackm extends CI_Model
     }
 
 
+    public function getitemByIdAll()
+    {
+        $this->db->select('id,itemName','userRating');
+        $this->db->from('items');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getitemById($itemid)
     {
@@ -54,6 +61,16 @@ class Feedbackm extends CI_Model
         $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
         $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
         $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function feedbackbyitemAll(){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name,userRating');
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $this->db->order_by('userfeedback.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -83,6 +100,15 @@ class Feedbackm extends CI_Model
         //$this->db->select_avg('userRating');
         $this->db->select('id, AVG(userRating) as userRatings');
           $this->db->where('fkItemId',$itemid);
+        $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function ratingavgall(){
+
+
+        //$this->db->select_avg('userRating');
+        $this->db->select('id, AVG(userRating) as userRatings');
         $this->db->from('userfeedback');
         $query = $this->db->get();
         return $query->result();
