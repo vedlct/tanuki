@@ -452,6 +452,8 @@ class Orders extends CI_Controller
 
             $status_id = $this->input->post('id');
             $data['orderstatusinfo'] = $this->Ordersm->getOrderStatusId($status_id);
+            $data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+            //print_r($this->data['ordersStatus']);
             $this->load->view('Admin/updateOrderstatus', $data);
 
         } else {

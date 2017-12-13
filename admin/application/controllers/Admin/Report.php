@@ -12,6 +12,10 @@ class Report extends CI_Controller
     public function viewReport(){
         $this->data['allreport']= $this->Reportm->viewAllReport();
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+
+        $this->load->model('Admin/Ordersm');
+
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
         $this->load->view('Admin/allReport', $this->data);
     }
 
@@ -59,10 +63,16 @@ class Report extends CI_Controller
         $this->load->view('Admin/ReportFilterByDate', $this->data);
     }
     public function searchByOrderId(){
+
         $orderID= $this->input->post('orderid');
         $this->data['allreport']= $this->Reportm->viewAllReportByorderid($orderID);
 //        print_r($this->data['allreport']);
         $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+
+        $this->load->model('Admin/Ordersm');
+
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
+
         $this->load->view('Admin/allReport', $this->data);
     }
     public function searchByMemberId(){
@@ -93,6 +103,30 @@ class Report extends CI_Controller
 
 
     }
+
+    public function reportsearchByDate()
+    {
+        $startdate= $this->input->post('startdate');
+        $enddate= $this->input->post('enddate');
+
+//        $this->data['allreportemp']= $this->Reportm->viewAllReportByemployeeidBYdate($startdate,$enddate);
+//        $this->data['allorder']= $this->Reportm->getOrderEmployeesBydate($startdate,$enddate);
+//        $this->load->view('Admin/ReportFilterByEmloyeeId', $this->data);
+
+        $orderID= $this->input->post('orderid');
+        $this->data['allreport']= $this->Reportm->viewAllReportByDate($startdate,$enddate);
+        $this->data['allItemreport']= $this->Reportm->viewAllItemReport();
+
+        $this->load->model('Admin/Ordersm');
+
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
+
+        $this->load->view('Admin/reportByDateAfterSearch', $this->data);
+
+
+    }
+
+
     public function searchByItemsDate(){
         $startdate= $this->input->post('startdate');
         $enddate= $this->input->post('enddate');
