@@ -15,7 +15,20 @@
 
             <label class="control-label col-md-3"> Delivery  Status<span class="required"> * </span></label>
             <div class="col-md-5">
-                <input type="text" name="statusTitle" placeholder="enter Delivery Status" value="<?php echo $orderinfo->statusTitle ?>" required class="form-control input-height" />
+<!--                <input type="text" name="statusTitle" placeholder="enter Delivery Status" value="--><?php //echo $orderinfo->statusTitle ?><!--" required class="form-control input-height" />-->
+
+                <select class="form-control input-height"  name="statusTitle" required>
+                    <option value="">Select</option>
+
+                    <?php foreach ($ordersStatus as $Status){?>
+
+                        <option <?php if (!empty($orderinfo->id) && $orderinfo->id==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
+                    <?php }?>
+
+
+
+                </select>
+
             </div>
 
         </div>

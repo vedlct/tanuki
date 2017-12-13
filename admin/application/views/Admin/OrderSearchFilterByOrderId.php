@@ -31,7 +31,7 @@
                 <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
             </td>
             <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
-                elseif($orders->orderType=="take"){echo "Take Away";}
+                elseif($orders->orderType=="take"){echo "Pick Up";}
                 elseif($orders->orderType=="home"){echo "Home Delivery";}?><hr>
                 <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
             </td>
