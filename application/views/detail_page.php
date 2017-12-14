@@ -148,6 +148,8 @@
 
                                 if ( $item->id == $av->fkItemId){
                                     $rating_avg = round($av->userRatings);
+                                    if( $rating_avg>3)
+                                    {
                             switch ($rating_avg) {
                                 case 1:
                                     ?>
@@ -209,9 +211,10 @@
 
                                     <?php
 
-                             } } }
+                             } } }}
                              ?>
                             </div>
+
                            <!-- rating code -->
 
 						</td>

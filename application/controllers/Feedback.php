@@ -14,8 +14,8 @@ class Feedback extends CI_Controller
 
      public function index()
      {
-
-
+         $this->data['allItem'] = $this->Feedbackm->getitemByIdAll();
+         $this->data['avgrating']= $this->Feedbackm->ratingavgAll();
         $data['userFeedback'] = $this->Feedbackm->allUserfeedback();
         $this->load->view('userReview', $data);
 

@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <hr>
+<!--                <hr>-->
 <!--                <div class="row">-->
 <!--                    <div class="col-md-6 col-sm-6">-->
 <!--                        <div class="form-group">-->

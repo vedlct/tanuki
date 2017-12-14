@@ -142,10 +142,40 @@
 
                                                             <?php  $sumtotal = $sumtotal+$total;  } }?>
                                                         <tr>
-                                                            <td style="color: red" colspan="4">vat:<?php echo $v = $ar->vatTotal;?>
-                                                            + delivery fee : <?php echo $d =$ar->deliveryfee;?>
+<!--                                                            <td style="color: red" colspan="4">sales tax::--><?php //echo $v = $ar->vatTotal;?>
+<!--                                                            + delivery fee : --><?php //echo $d =$ar->deliveryfee;?>
+<!--                                                            </td>-->
+<!--                                                            <td>--><?php //echo $sumtotal+ $v+$d ?><!--</td>-->
+
+                                                            <td style="color: red" colspan="4">Total=(<?php $delivaryFee=0; if (!empty($ar->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$ar->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $ar->vatTotal?>
+
+                                                                <?php foreach ($pointUsed as $pu){
+                                                                    if ($pu->fkOrderId == $ar->fkOrderId ){
+
+                                                                        if (!empty($pu->expedPoints)) {
+                                                                            echo " - Points Used :" . $pu->expedPoints;
+                                                                        }
+                                                                    }
+
+                                                                } ?> )
                                                             </td>
-                                                            <td><?php echo $sumtotal+ $v+$d ?></td>
+
+                                                            <td colspan="1">
+
+                                                                <?php $pointToMoney=0;foreach ($pointUsed as $pu){
+                                                                    if ($pu->fkOrderId == $ar->fkOrderId ){
+
+                                                                        if (!empty($pu->expedPoints)) {
+                                                                            $pointToMoney= ($pu->expedPoints/10);
+
+                                                                        }
+                                                                    }
+
+                                                                }?>
+                                                                <?php echo $Ftotal=(($sumtotal+$ar->deliveryfee+$ar->vatTotal)-$pointToMoney);?>
+
+                                                            </td>
+
 
                                                         </tr>
 
@@ -227,7 +257,7 @@
         {
             $.ajax({
                 type:'POST',
-                url:'<?php echo base_url("Admin/Report/searchByEmployDate" )?>',
+                url:'<?php echo base_url("Admin/Report/reportsearchByDate" )?>',
                 data:{'startdate':startdate,'enddate':enddate},
                 cache: false,
                 success:function(data)
