@@ -67,15 +67,16 @@
                                 <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th width="3%"class="center"> Sr.NO </th>
-                                        <th width="3%"class="center"> Order Id </th>
-                                        <th width="15%"class="center"> User & Order Tacker Name</th>
-                                        <th width="10%"class="center"> Order Type & Date</th>
+<!--                                        <th width="3%"class="center">Sr.NO </th>-->
+                                        <th width="3%"class="center">Order Id </th>
+<!--                                        <th width="15%"class="center">User & Order Tacker Name</th>-->
+<!--                                        <th width="10%"class="center">Order Type & Date</th>-->
 
-                                        <th width="5%"class="center"> Payment Type</th>
-                                        <th width="39%"class="center"> Items </th>
-                                        <th width="20%"class="center">Order Delivery Time & Status</th>
-                                        <th width="5%"class="center">Print & Cancel</th>
+<!--                                        <th width="5%"class="center">Payment Type</th>-->
+                                        <th width="5%"class="center">Order Info</th>
+                                        <th width="60%"class="center">Items Information</th>
+                                        <th width="25%"class="center">Order Delivery Time & Status</th>
+                                        <th width="7%"class="center">Print & Cancel</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -84,26 +85,30 @@
 
                                         <tr class="odd gradeX">
 
-                                            <td><?php echo $i;?></td>
+<!--                                            <td>--><?php //echo $i;?><!--</td>-->
                                             <td><?php echo $orders->id;?></td>
-                                            <td class="center"><?php echo $orders->userName; ?>
+<!--                                            <td class="center">--><?php //echo $orders->userName;?>
+<!---->
+<!--                                                <div class="btn-group">-->
+<!--                                                    <button class="btn btn-primary btn-xs" style="z-index: inherit" data-panel-id="--><?php //echo $orders->fkUserId ?><!--"onclick="ShowUserInfo(this)">-->
+<!--                                                        <i class="fa fa-info"></i>-->
+<!--                                                    </button>-->
+<!--                                                </div><hr>-->
+<!---->
+<!--                                               <b>Order Taker:</b> --><?php //echo $orders->orderTaker; ?>
+<!--                                            </td>-->
+<!--                                            <td class="center">--><?php // if ($orders->orderType=="have"){echo "Restaurant";}
+//                                                                elseif($orders->orderType=="take"){echo "Pick Up";}
+//                                                                elseif($orders->orderType=="home"){echo "Home Delivery";}?><!--<hr>-->
+<!--                                                --><?php //echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
+<!--                                            </td>-->
 
-                                                <div class="btn-group">
-                                                    <button class="btn btn-primary btn-xs" style="z-index: inherit" data-panel-id="<?php echo $orders->fkUserId ?>"onclick="ShowUserInfo(this)">
-                                                        <i class="fa fa-info"></i>
-                                                    </button>
-                                                </div><hr>
+<!--                                            <td class="center">--><?php //if ($orders->paymentType=="cs"){echo "Cash";}
+//                                                                 elseif($orders->paymentType=="crd"){echo "Card";}?>
+<!--                                            </td>-->
 
-                                               <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
-                                            </td>
-                                            <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
-                                                                elseif($orders->orderType=="take"){echo "Pick Up";}
-                                                                elseif($orders->orderType=="home"){echo "Home Delivery";}?><hr>
-                                                <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
-                                            </td>
-
-                                            <td class="center"><?php if ($orders->paymentType=="cs"){echo "Cash";}
-                                                                 elseif($orders->paymentType=="crd"){echo "Card";}?>
+                                            <td>
+                                                <button data-panel-id="<?php echo $orders->id ?>" onclick="orderInformation(this)" style="width: 100%; margin:0 auto" class="btn btn-success btnorder"><i style="font-size: 20px; " class="fa fa-info-circle"></i></button>
                                             </td>
 
                                             <td class="center">
@@ -113,11 +118,11 @@
                                                     <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                     <tr>
                                                         <th width="50%"class="center">Name</th >
-                                                        <th width="10%"class="center">Size</th >
-                                                        <th width="10%"class="center">Quantity</th >
-                                                        <th width="10%"class="center">Rate</th >
-                                                        <th width="10%"class="center">Discount($)</th >
-                                                        <th width="10%"class="center">Total</th >
+                                                        <th width="15%"class="center">Size</th >
+                                                        <th width="7%"class="center">Quan</th >
+                                                        <th width="7%"class="center">Rate</th >
+                                                        <th width="7%"class="center">Dis($)</th >
+                                                        <th width="9%"class="center">Total</th >
                                                         <th width="5%"class="center">Actions</th >
                                                     </tr>
                                                     <?php
@@ -204,11 +209,12 @@
                                                         <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                             <tr>
                                                                 <th width="50%"class="center">Name</th >
-                                                                <th width="10%"class="center">Size</th >
-                                                                <th width="10%"class="center">Quantity</th >
-                                                                <th width="10%"class="center">Rate</th >
-                                                                <th width="10%"class="center">Discount($)</th >
-                                                                <th width="10%"class="center">Total</th >
+                                                                <th width="15%"class="center">Size</th >
+                                                                <th width="7%"class="center">Quan</th >
+                                                                <th width="7%"class="center">Rate</th >
+                                                                <th width="7%"class="center">Dis($)</th >
+                                                                <th width="9%"class="center">Total</th >
+
 
                                                             </tr>
                                                             <?php
@@ -284,12 +290,13 @@
 
                                                         <table style="margin-bottom: 5px" class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                                             <tr>
-                                                                <th width="50%"class="center">Name</th >
-                                                                <th width="10%"class="center">Size</th >
-                                                                <th width="10%"class="center">Quantity</th >
-                                                                <th width="10%"class="center">Rate</th >
-                                                                <th width="10%"class="center">Discount($)</th >
+                                                                <th width="51%"class="center">Name</th >
+                                                                <th width="15%"class="center">Size</th >
+                                                                <th width="8%"class="center">Quan</th >
+                                                                <th width="8%"class="center">Rate</th >
+                                                                <th width="8%"class="center">Dis($)</th >
                                                                 <th width="10%"class="center">Total</th >
+
 
                                                             </tr>
                                                             <?php
@@ -434,7 +441,7 @@
 
                                                 <?php if ($StatusDelivered->id != $orders->fkOrderStatus){?>
 
-                                                        <select class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
+                                                        <select class="form-control input-height" id="s<?= $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                                                             <option value="">Select</option>
 
                                                             <?php foreach ($ordersStatus as $Status){?>
@@ -478,7 +485,7 @@
 
                                                     <hr>
 
-                                                    <select disabled class="form-control input-height" id="<?php echo $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
+                                                    <select disabled class="form-control input-height" id="s<?= $orders->id ?>"  name="orderStatus" required onchange="changeStatus(this.id)">
                                                         <option value="">Select</option>
 
                                                         <?php foreach ($ordersStatus as $Status){?>
@@ -491,11 +498,6 @@
                                                     </select>
 
                                                 <?php }?>
-
-
-
-
-
 
 
                                             </td>
@@ -632,6 +634,26 @@
 
     }
 
+    function orderInformation(x)
+    {
+
+        btn = $(x).data('panel-id');
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Admin/Orders/orderInfo")?>',
+            data: {id: btn},
+            cache: false,
+            success: function (data) {
+                $('#txtHint').html(data);
+                //alert(data);
+            }
+
+        });
+        modal.style.display = "block";
+
+    }
+
     function showItemByCategory(x)
     {
 
@@ -733,7 +755,7 @@
     {
         var time = document.getElementById(x).value;
 
-        alert(time);
+        //alert(time);
 
         //document.getElementById(x).disabled=true;
 
@@ -804,12 +826,13 @@
 
 
             var option = document.getElementById(v).value;
-            //alert(option);
+            var orderId = v.substr(1);
+           // alert(orderId);
 
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url("Admin/Orders/changeOrderStatus/")?>' + v,
+                url: '<?php echo base_url("Admin/Orders/changeOrderStatus/")?>' + orderId,
                 data: {status: option},
                 cache: false,
                 success: function (data) {
