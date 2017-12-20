@@ -50,7 +50,6 @@ class Feedback extends CI_Controller
 
             );
 
-            print_r($data);
 
 
          $data['userFeedback'] = $this->Feedbackm->insertFeedback($data);
