@@ -33,12 +33,9 @@
     <div id="subheader">
         <div id="sub_content">
 
-            <?php if ($this->session->flashdata('errorMessage')!=null){?>
-                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
-            <?php }
-            elseif($this->session->flashdata('successMessage')!=null){?>
-                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
-            <?php }?>
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+
+
 
             <h1>Place your order</h1>
             <div class="bs-wizard">
@@ -111,6 +108,14 @@
         <!-- End col-md-3 -->
 
         <div class="col-md-5">
+
+            <?php if ($this->session->flashdata('errorMessage')!=null){?>
+                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+            <?php }
+            elseif($this->session->flashdata('successMessage')!=null){?>
+                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+            <?php }?>
+
             <div class="box_style_2" id="order_process">
                 <h2 class="inner">Your order details</h2>
                 <?php
@@ -227,7 +232,7 @@
             </div>
         </div><!-- End col-md-6 -->
         <div class="col-md-3" id="sidebar">
-            <div class="theiaStickySidebar">
+            <div class="theiaStickySidebar scrolldiv">
                 <div id="cart_box" >
                     <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
                     <table id="cart_table" class="table table_summary">
@@ -536,4 +541,26 @@
 
     });
     });
+</script>
+<script>
+    (function($) {
+        var element = $('.scrolldiv'),
+            originalY = element.offset().top;
+
+        // Space between element and top of screen (when scrolling)
+        var topMargin = 40;
+
+        // Should probably be set in CSS; but here just for emphasis
+        element.css('position', 'relative');
+
+        $(window).on('scroll', function(event) {
+            var scrollTop = $(window).scrollTop();
+
+            element.stop(false, false).animate({
+                top: scrollTop < originalY
+                    ? 0
+                    : scrollTop - originalY + topMargin
+            }, 300);
+        });
+    })(jQuery);
 </script>

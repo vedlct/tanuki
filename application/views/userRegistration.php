@@ -37,9 +37,9 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
-            <!--    	<div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>-->
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
             <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
-            <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>
+<!--            <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>-->
             <div><em>Japanese Restaurant</em></div>
             <div><i class="icon_pin"></i> 44260 Ice Rink Plz
                 Ste 118 Ashburn, VA 20147 </div>

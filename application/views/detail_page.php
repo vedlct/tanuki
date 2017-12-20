@@ -129,10 +129,12 @@
 						<td width="">
 
                             <?php if ($item->image == null){?>
+
                                 <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
                                 <?php }else{?>
                                 <figure class="thumb_menu_list"><img height="80px" width="80px" src="<?php echo base_url()?>admin/images/itemImages/<?php echo $item->image?> " alt="thumb"></figure>
                                 <?php }?>
+
 
 <!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
 							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>

@@ -30,13 +30,19 @@
 <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
-            <h1><b>Your Order List</b></h1>
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <div><em>Japanese Restaurant</em></div>
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
+
             <p></p>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
 </section>
 
 <div class="container left margin_20">
+
+    <h1 style="text-align: center"><b>Your Order List</b></h1>
     <!-- start page container -->
     <?php if (!empty($orders)){?>
         <div style="margin-top:35px;" class="table table-responsive">
@@ -180,3 +186,17 @@
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
+
+<script>
+    $(function() {  $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 250) {
+            document.getElementById("logo").style.display = "block";
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+
+    });
+    });
+</script>
