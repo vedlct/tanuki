@@ -388,10 +388,10 @@
                 alert("address should be less than 100 charecter");
                 return false;
             }
-            if (postcode == "") {
-                alert("Postal Code is Required");
-                return false;
-            }
+//            if (postcode == "") {
+//                alert("Postal Code is Required");
+//                return false;
+//            }
             if (postcode.length > 11) {
                 alert("Post Code should be less than 11 charecter");
                 return false;
@@ -446,6 +446,56 @@
 </script>
 
 <script>
+
+    function minus(x) {
+
+        var btn = $(x).data('panel-id');
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x-1;
+
+        document.getElementById(btn).value = newx;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+                //  alert(data);
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+            }
+
+        });
+
+    }
+    function plus(x) {
+
+        var btn = $(x).data('panel-id');
+
+        var x = parseInt(document.getElementById(btn).value);
+        var newx= x+1;
+
+
+        document.getElementById(btn).value = newx;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/updateCart/")?>' + btn,
+            data: {'id':btn, 'amount':newx },
+            cache: false,
+            success: function (data) {
+                // $('#txt').html(data);
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+
+            }
+
+        });
+
+
+    }
+
     function paymentcreditcard() {
 
         $.ajax({

@@ -102,99 +102,60 @@
 			</div><!-- End col-md-3 -->
             
 			<div class="col-md-5">
-				<div class="box_style_2" id="order_process">
-					<h2 class="inner">Your order details</h2>
-                    <?php
-
-                    ?>
-					<?php foreach ($userdata as $ud) { ?>
-                    <div class="form-group">
-						<label> Name</label>
-						<input type="text" class="form-control" id="firstname_order" name="firstname_order" value="<?php echo $ud->name?>" placeholder="First name">
-					</div>
-					<div class="form-group">
-						<label>Telephone/mobile</label>
-						<input type="number" id="tel_order" name="tel_order" class="form-control" value="<?php echo $ud->contactNo?>" placeholder="Telephone/mobile">
-					</div>
-					<div class="form-group">
-						<label>Email</label>
-						<input type="email" id="email_booking_2" name="email_order" class="form-control" value="<?php echo $ud->email?>" placeholder="Your email">
-					</div>
-
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" id="password" name="password" class="form-control" value="<?php echo $ud->email?>" placeholder="Your Password">
-                    </div>
-					<div class="form-group">
-						<label>Your full address</label>
-						<input type="text" id="address_order" name="address_order" class="form-control" value="<?php echo $ud->address?>" placeholder=" Your full address">
-					</div>
-					<div class="row">
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>City</label>
-<!--								<input type="text" id="city_order" name="city_order" class="form-control" value="--><?php //echo $ud->fkCity?><!--" placeholder="Your city">-->
-                                <select class="form-control" id="city" name="city" required>
-                                    <option value="">Your city</option>
-                                    <?php foreach ($allCity as $cities){?>
-                                        <option <?php if ($ud->fkCity !=null && $ud->fkCity== $cities->id) echo 'selected = "selected"'; ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
-                                    <?php } ?>
-                                </select>
-							</div>
-						</div>
-						<div class="col-md-6 col-sm-6">
-							<div class="form-group">
-								<label>Postal code</label>
-								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="<?php echo $ud->postalCode?>" placeholder=" Your postal code">
-							</div>
-						</div>
-					</div>
-<!--					<hr>-->
+<!--				<div class="box_style_2" id="order_process">-->
+<!--					<h2 class="inner">Your order details</h2>-->
+<!--                    --><?php
+//
+//                    ?>
+<!--					--><?php //foreach ($userdata as $ud) { ?>
+<!--                    <div class="form-group">-->
+<!--						<label> Name</label>-->
+<!--						<input type="text" class="form-control" id="firstname_order" name="firstname_order" value="--><?php //echo $ud->name?><!--" placeholder="First name">-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<label>Telephone/mobile</label>-->
+<!--						<input type="number" id="tel_order" name="tel_order" class="form-control" value="--><?php //echo $ud->contactNo?><!--" placeholder="Telephone/mobile">-->
+<!--					</div>-->
+<!--					<div class="form-group">-->
+<!--						<label>Email</label>-->
+<!--						<input type="email" id="email_booking_2" name="email_order" class="form-control" value="--><?php //echo $ud->email?><!--" placeholder="Your email">-->
+<!--					</div>-->
+<!---->
+<!--                    <div class="form-group">-->
+<!--                        <label>Password</label>-->
+<!--                        <input type="password" id="password" name="password" class="form-control" value="--><?php //echo $ud->email?><!--" placeholder="Your Password">-->
+<!--                    </div>-->
+<!--					<div class="form-group">-->
+<!--						<label>Your full address</label>-->
+<!--						<input type="text" id="address_order" name="address_order" class="form-control" value="--><?php //echo $ud->address?><!--" placeholder=" Your full address">-->
+<!--					</div>-->
 <!--					<div class="row">-->
 <!--						<div class="col-md-6 col-sm-6">-->
 <!--							<div class="form-group">-->
-<!--								<label>Delivery Day</label>-->
-<!--								<select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">-->
-<!--									<option value="" selected>Select day</option>-->
-<!--									<option value="Today">Today</option>-->
-<!--									<option value="Tomorrow">Tomorrow</option>-->
-<!--								</select>-->
+<!--								<label>City</label>-->
+<!---->
+<!--                                <select class="form-control" id="city" name="city" required>-->
+<!--                                    <option value="">Your city</option>-->
+<!--                                    --><?php //foreach ($allCity as $cities){?>
+<!--                                        <option --><?php //if ($ud->fkCity !=null && $ud->fkCity== $cities->id) echo 'selected = "selected"'; ?><!-- value="--><?php //echo $cities->id?><!--">--><?php //echo $cities->name?><!--</option>-->
+<!--                                    --><?php //} ?>
+<!--                                </select>-->
 <!--							</div>-->
 <!--						</div>-->
 <!--						<div class="col-md-6 col-sm-6">-->
 <!--							<div class="form-group">-->
-<!--								<label>Delivery time</label>-->
-<!--								<select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">-->
-<!--									<option value="" selected>Select time</option>-->
-<!--									<option value="11.30am">11.30am</option>-->
-<!--									<option value="11.45am">11.45am</option>-->
-<!--									<option value="12.15am">12.15am</option>-->
-<!--									<option value="12.30am">12.30am</option>-->
-<!--									<option value="12.45am">12.45am</option>-->
-<!--									<option value="01.00pm">01.00pm</option>-->
-<!--									<option value="01.15pm">01.15pm</option>-->
-<!--									<option value="01.30pm">01.30pm</option>-->
-<!--									<option value="01.45pm">01.45pm</option>-->
-<!--									<option value="02.00pm">02.00pm</option>-->
-<!--									<option value="07.00pm">07.00pm</option>-->
-<!--									<option value="07.15pm">07.15pm</option>-->
-<!--									<option value="07.30pm">07.30pm</option>-->
-<!--									<option value="07.45pm">07.45pm</option>-->
-<!--									<option value="08.00pm">08.00pm</option>-->
-<!--									<option value="08.15pm">08.15pm</option>-->
-<!--									<option value="08.30pm">08.30pm</option>-->
-<!--									<option value="08.45pm">08.45pm</option>-->
-<!--								</select>-->
+<!--								<label>Postal code</label>-->
+<!--								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="--><?php //echo $ud->postalCode?><!--" placeholder=" Your postal code">-->
 <!--							</div>-->
 <!--						</div>-->
-<!--                        -->
 <!--					</div>-->
-                    <?php } ?>
-					<hr>
-					<div class="row">
-
-					</div>
-				</div><!-- End box_style_1 -->
+<!--                    --><?php //} ?>
+<!--					<hr>-->
+<!--					<div class="row">-->
+<!---->
+<!--					</div>-->
+<!--				</div>-->
+                <!-- End box_style_1 -->
                 <div class="box_style_2">
                     <h2 class="inner">Payment methods</h2>
                     <div class="payment_select">
@@ -209,6 +170,7 @@
                     </div>
                 </div>
 			</div><!-- End col-md-6 -->
+
             <div class="col-md-3" id="sidebar">
                 <div class="theiaStickySidebar">
                     <div id="cart_box" >

@@ -255,17 +255,6 @@ class Items extends CI_Controller {
 
 
 
-
-//        $ordertype= $this->session->userdata('orderType');
-//        $orderdate= date("Y-m-d H:i");
-//        $re = $this->Itemsm->getorderstatus();
-//        $orderstatus= $re->id;
-//        $deliveryfee=$this->session->userdata('deliverfee');
-//        $vat= $this->session->userdata('vat');
-//        $paymenttype=$this->session->userdata('paymentMethod');
-//        $user=$this->session->userdata('id');
-//        $ordertaker = $this->session->userdata('id');
-
     public function checkoutguest(){
 
 
@@ -274,7 +263,10 @@ class Items extends CI_Controller {
 
         if (!$this->form_validation->run('userRes')) {
 
-            $this->load->view('cartforguest');
+            $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
+
+            $this->load->view('cartforguest',$this->data);
 
         }
         else {

@@ -49,8 +49,18 @@
             <td class="center"><?php echo $sumtotal ?></td>
             <td class="center"><?php echo $ar->customer ?></td>
             <td class="center"><?php echo $ar->waiter ?></td>
-            <td class="center"><?php echo $ar->orderType ?></td>
-            <td class="center"><?php echo $ar->paymentType ?></td>
+<!--            <td class="center">--><?php //echo $ar->orderType ?><!--</td>-->
+            <td>
+                <?php  if ($ar->orderType=="have"){echo "Restaurant";}
+                elseif($ar->orderType=="take"){echo "Pick Up";}
+                elseif($ar->orderType=="home"){echo "Home Delivery";}?>
+            </td>
+<!--            <td class="center">--><?php //echo $ar->paymentType ?><!--</td>-->
+            <td>
+                <?php if ($ar->paymentType=="cs"){echo "Cash";}
+                elseif($ar->paymentType=="crd"){echo "Card";}?>
+            </td>
+
             <td class="center"><?php echo $ar->transDate ?></td>
         </tr>
         <tr>

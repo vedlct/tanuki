@@ -311,12 +311,10 @@
 					<hr>
                     <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6">
+                            <div class="col-md-12">
                                 <label>Membership ID :</label>
 
-                            </div>
-                            <div class="col-lg-6">
-                                <input id="memberid" type="textbox" value="" style="   margin-left: -50px" name="option_2"  onfocusout="membershipid()" >
+                                <input id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
                             </div>
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
