@@ -83,6 +83,12 @@ else
                         <span class="title">User Feedback</span>
                     </a>
                 </li>
+                <li class="nav-item">
+
+                    <a href="<?php echo base_url()?>Admin/Feedback/allRestaurantsReview" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Restaurant Review</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="<?php echo base_url()?>Admin/Charge/allCharges" class="nav-link nav-toggle"><i class="fa fa-gift"></i>

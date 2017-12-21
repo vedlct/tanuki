@@ -120,6 +120,22 @@ class Orders extends CI_Controller
 
     }
 
+    public function orderInfo()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $orderId = $this->input->post('id');
+            
+            $this->data['orderInformation'] = $this->Ordersm->getOrderInformation($orderId);
+
+            $this->load->view('Admin/orderInformation', $this->data);
+            
+        } else {
+            redirect('Login');
+        }
+
+    }
+
     public function getTotalOrderSeen()
     {
         if ($this->session->userdata('userType') == "Admin") {

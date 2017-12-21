@@ -1,99 +1,101 @@
-<form role="form" action="<?php echo base_url()?>Registation/newRegistaion" method="post" class="registration-form form-horizontal" onsubmit="return formvalidate()">
-
-		                        
-		                            <div class="form-bottom">
-                                    <h2 style="font-weight:bold; font-size:17px; margin-bottom:20px; text-align:center; text-decoration:underline">Personal Details</h2>
-                                        <div class="form-group">
-                                            <label class="control-label col-md-2">Type:</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('type'); ?></font></p>
-                                                <select style="width: 100%"  id="type" required name="type">
-
-                                                    <option value="" selected><?php echo SELECT_TYPE?></option>
-                                                    <?php for ($i=0;$i<count(Type);$i++){?>
-                                                        <option <?php echo set_select('type',  Type[$i], False); ?>><?php echo Type[$i]?></option>
-                                                    <?php } ?>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                    	<div class="form-group">
-                                                    <label class="control-label col-md-2">Title:</label>
-                                                    <div class="col-md-10">
-                                                        <p><font color="red"> <?php echo form_error('title'); ?></font></p>
-                                                        <select style="width: 100%"  id="title" required name="title">
-
-                                                            <option value="" selected><?php echo SELECT_TITLE?></option>
-                                                            <?php for ($i=0;$i<count(Title);$i++){?>
-                                                                <option <?php echo set_select('title',  Title[$i], False); ?>><?php echo Title[$i]?></option>
-                                                            <?php } ?>
-
-                                                            </select> 
-                                                    </div>
-                                                </div>
-
-
-				                    	<div class="form-group">
-				                    		<label class="control-label col-md-2">First Name*</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('firstname'); ?></font></p>
-				                        		<input type="text" name="firstname" placeholder="" required value="<?php echo set_value('firstname'); ?>" class="form-control" id="firstname">
-                                            </div>
-				                        </div>
-				                        <div class="form-group">
-				                        	<label class="control-label col-md-2">Surname*</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('surname'); ?></font></p>
-				                        		<input type="text" name="surname" required value="<?php echo set_value('surname'); ?>" class="form-control" id="surname">
-                                            </div>
-				                        </div>
-                                        <div class="form-group">
-				                    		<label class="control-label col-md-2">Email Address*</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('email'); ?></font></p>
-				                        		<input type="email" name="email" required value="<?php echo set_value('email'); ?>" placeholder="" class="form-control" id="email">
-                                            </div>
-				                        </div>
-                                        <div class="form-group">
-                                        	<label class="control-label col-md-2">Gender:</label>
-                                          	<div class="col-md-10" >
-                                                <p><font color="red"> <?php echo form_error('gender'); ?></font></p>
-                                            	<input type="radio" required name="gender" value="male"> Male&nbsp;&nbsp;
-                                                <input type="radio" required name="gender" value="female"> Female&nbsp;&nbsp;
-                                                <input type="radio" required name="gender" value="other"> Other
-                                          	</div>
-				                        </div><br>
-                                        
-                                        <h2 style="font-weight:bold; font-size:17px; margin-bottom:20px; text-align:center; text-decoration:underline">Password</h2>
-                                        
-                                        <div class="form-group">
-				                    		<label class="control-label col-md-2">Password*</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('password'); ?></font></p>
-				                        		<input type="password" name="password" required value="<?php echo set_value('password'); ?>" placeholder="Enter Password" class="form-control" id="password">
-                                            </div>
-				                        </div>
-                                        
-                                        <div class="form-group">
-				                    		<label class="control-label col-md-2">Repassword*</label>
-                                            <div class="col-md-10">
-                                                <p><font color="red"> <?php echo form_error('confirmpassword'); ?></font></p>
-				                        		<input type="password" name="confirmpassword" required value="<?php echo set_value('confirmpassword'); ?>" placeholder="Re type Password" class="form-control" id="confirmpassword">
-                                            </div>
-				                        </div>
-                                        
-                                        <div class="form-group">        
-                                          <div class="col-sm-offset-2 col-md-10">
-                                            <button type="submit"  class="btn btn-next">Submit</button>
-                                          </div>
-                                        </div>
-				                        
-				                    </div>
-
-		                    </form>
-
-                    </div><!-- /col-md-9 -->
-
-                </div>
-            </div>
-        </section>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+class Login extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('loginm');
+    }
+    public function check_user()
+    {
+        $this->load->library('user_agent');
+        $result = $this->loginm->validate_user($_POST);
+        if (!empty($result)) {
+            if ($result->userType == "cus" && $result->userActivationStatus == "0")
+            {
+                echo "<script>
+                    alert('Your Id is not Active Yet Please Try again Sometime');
+                    window.location.href= '" . base_url()."';
+                    </script>";
+            }
+            else if ($result->userType == "cus" && $result->userActivationStatus == "1") {
+                $data1 = array(
+                    'sourceIp' => $this->input->ip_address(),
+                    'fkUserId' => $result->userId,
+                    'browser' => $this->agent->browser()
+                );
+                $loginId = $this->loginm->loginInfo($data1);
+                $data = array(
+                    'name' => $result->name,
+                    'email' => $result->email,
+                    'id' => $result->userId,
+                    'userType' => $result->userType,
+                    'loggedin' => "true",
+                    'loginId' => $loginId,
+                );
+                $this->session->set_userdata($data);
+                redirect('Items/itemShow');
+            }
+        }
+        else{
+            echo "<script>
+                        alert('wrong username or password');
+                     window.location.href='". base_url() ."';  
+					
+                </script>";
+        }
+    }
+    public function logout()
+    {
+        $data = array(
+            'logOutTime'=>date('Y-m-d H:i:s')
+        );
+        $id=$this->session->userdata('loginId');
+        $this->loginm->logout($id,$data);
+        $this->session->sess_destroy();
+        redirect('Items/itemShow');
+    }
+    public function showRegitration()
+    {
+        $this->load->view('userRegistration');
+    }
+    public function registerUser()
+    {
+        $this->load->library('form_validation');
+        if (!$this->form_validation->run('userRes')) {
+            $this->load->view('userRegistration');
+        }
+        else {
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
+            if ($password == $conPassword) {
+                $data=array(
+                    'name'=>$name,
+                    'address'=>$address,
+                    'postalCode'=>$postal,
+                    'fkCity'=>$city,
+                    'contactNo'=>$phone,
+                    'email'=>$email,
+                    'password'=>$conPassword,
+                    'userActivationStatus'=>'1',
+                    'fkUserType'=>'cus',
+                );
+                $this->data['error']=$this->loginm->customerRegister($data);
+                if (empty($this->data['error'])) {
+                    $this->session->set_flashdata('successMessage','Customer Created Successfully');
+                    redirect('Login/showRegitration');
+                } else {
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Login/showRegitration');
+                }
+            }
+        }
+    }
+}

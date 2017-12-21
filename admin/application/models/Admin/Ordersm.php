@@ -12,7 +12,7 @@ class Ordersm extends CI_Model
         );
 
         $this->security->xss_clean($data);
-        $error=$this->db->update('orders', $data);
+        $error=$this->db->update('orders',$data);
 
         $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
         $this->db->from('orders o');
@@ -25,6 +25,8 @@ class Ordersm extends CI_Model
         return $query->result();
     }
 
+
+
     public  function viewOrderInfoByOrderId($orderID)
     {
 
@@ -33,6 +35,20 @@ class Ordersm extends CI_Model
         $this->db->where('o.id',$orderID);
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    public  function getOrderInformation($orderId)
+    {
+
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,
+        ,u.name as userName,u.name as orderTaker, u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        $this->db->from('orders o');
+        $this->db->where('o.id',$orderId);
+        $this->db->join('users u','u.id = o.fkUserId','left');
+        $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $this->db->join('city c', 'c.id = u.fkCity', 'left');
         $query=$this->db->get();
         return $query->result();
     }

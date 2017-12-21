@@ -106,6 +106,7 @@ class Itemsm extends CI_Model {
     public function getorderstatus(){
         $this->db->select('id');
         $this->db->from('orderstatus');
+        $this->db->where('sequece !=', "0");
         $this->db->order_by('sequece', 'ASC');
         $this->db->limit(1);
         $query = $this->db->get();

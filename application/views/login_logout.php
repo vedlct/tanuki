@@ -14,7 +14,8 @@
             </form>
         </div>
     </div>
-</div><!-- End modal -->
+</div>
+<!-- End modal -->
 
 <!-- Register modal -->
 <div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="myRegister" aria-hidden="true">
