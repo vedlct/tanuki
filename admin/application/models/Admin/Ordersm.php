@@ -14,7 +14,7 @@ class Ordersm extends CI_Model
         $this->security->xss_clean($data);
         $error=$this->db->update('orders',$data);
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate) BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
         $this->db->order_by('o.id', 'DESC');
@@ -30,7 +30,7 @@ class Ordersm extends CI_Model
     public  function viewOrderInfoByOrderId($orderID)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.deliveryTime,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.deliveryTime,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderID);
         $this->db->join('users u','u.id = o.fkUserId','left');
@@ -43,12 +43,13 @@ class Ordersm extends CI_Model
     {
 
         $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,
-        ,u.name as userName,u.name as orderTaker, u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        ,u.name as userName,us.name as orderTaker, u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
         $this->db->from('orders o');
-        $this->db->where('o.id',$orderId);
+
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
         $this->db->join('city c', 'c.id = u.fkCity', 'left');
+        $this->db->where('o.id',$orderId);
         $query=$this->db->get();
         return $query->result();
     }
@@ -316,7 +317,7 @@ public function  updateOrderById($id, $data)
     {
 
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate)',date('Y-m-d'));
         $this->db->join('users u','u.id = o.fkUserId','left');

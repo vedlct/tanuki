@@ -57,15 +57,6 @@ class Feedback extends CI_Controller
 
            }
 
-           public function allReview()
-           {
-               $data = $this->Feedbackm->allUserfeedback();
-
-
-               print_r($data);
-
-               //$this->load->view('userReview',$this->data);
-           }
 
 
 
