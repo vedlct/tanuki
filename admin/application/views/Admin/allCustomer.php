@@ -37,7 +37,6 @@
 
                                                                 <td class="center">
                                                                     <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $u->id ?>" onclick="selectid2(this)">
-
                                                                         <i class="fa fa-pencil"></i>
                                                                     </button>
 

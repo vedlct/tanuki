@@ -16,8 +16,11 @@
     <!-- GOOGLE WEB FONT -->
     <link href='<?php echo base_url()?>public/css/googleFont.css' rel='stylesheet' type='text/css'>
 
+
     <!-- BASE CSS -->
     <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>public/css/modal.css" rel="stylesheet">
+
 
 
     <!-- Modernizr -->

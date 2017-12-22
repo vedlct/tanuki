@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Login extends CI_Controller
 {
     public function __construct()
@@ -8,16 +7,11 @@ class Login extends CI_Controller
         parent::__construct();
         $this->load->model('loginm');
     }
-
-
     public function check_user()
     {
-
         $this->load->library('user_agent');
         $result = $this->loginm->validate_user($_POST);
-
         if (!empty($result)) {
-
             if ($result->userType == "cus" && $result->userActivationStatus == "0")
             {
                 echo "<script>
@@ -26,17 +20,12 @@ class Login extends CI_Controller
                     </script>";
             }
             else if ($result->userType == "cus" && $result->userActivationStatus == "1") {
-
-
                 $data1 = array(
-
                     'sourceIp' => $this->input->ip_address(),
                     'fkUserId' => $result->userId,
                     'browser' => $this->agent->browser()
-
                 );
                 $loginId = $this->loginm->loginInfo($data1);
-
                 $data = array(
                     'name' => $result->name,
                     'email' => $result->email,
@@ -45,11 +34,8 @@ class Login extends CI_Controller
                     'loggedin' => "true",
                     'loginId' => $loginId,
                 );
-
                 $this->session->set_userdata($data);
-
                 redirect('Items/itemShow');
-
             }
         }
         else{
@@ -58,37 +44,27 @@ class Login extends CI_Controller
                      window.location.href='". base_url() ."';  
 					
                 </script>";
-
         }
-
     }
     public function logout()
     {
         $data = array(
             'logOutTime'=>date('Y-m-d H:i:s')
         );
-
         $id=$this->session->userdata('loginId');
         $this->loginm->logout($id,$data);
         $this->session->sess_destroy();
-
         redirect('Items/itemShow');
-
     }
-
     public function showRegitration()
     {
         $this->load->view('userRegistration');
     }
-
     public function registerUser()
     {
         $this->load->library('form_validation');
-
         if (!$this->form_validation->run('userRes')) {
-
             $this->load->view('userRegistration');
-
         }
         else {
             $name = $this->input->post('Name');
@@ -99,9 +75,7 @@ class Login extends CI_Controller
             $password = $this->input->post('password');
             $conPassword = $this->input->post('conPassword');
             $phone = $this->input->post('phone');
-
             if ($password == $conPassword) {
-
                 $data=array(
                     'name'=>$name,
                     'address'=>$address,
@@ -112,34 +86,16 @@ class Login extends CI_Controller
                     'password'=>$conPassword,
                     'userActivationStatus'=>'1',
                     'fkUserType'=>'cus',
-
                 );
-
                 $this->data['error']=$this->loginm->customerRegister($data);
-
                 if (empty($this->data['error'])) {
-
                     $this->session->set_flashdata('successMessage','Customer Created Successfully');
                     redirect('Login/showRegitration');
-
                 } else {
-
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
                     redirect('Login/showRegitration');
-
                 }
-
             }
         }
     }
-
-
-
-
-
-
-
 }
-
-
-

@@ -250,8 +250,6 @@ class Ordersm extends CI_Model
         $this->db->select('statusTitle');
         $this->db->from('orderstatus');
         $this->db->where('id',$orderStatus);
-
-
         $query=$this->db->get();
         return $query->result();
     }

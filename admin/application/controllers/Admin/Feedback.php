@@ -15,15 +15,25 @@ class Feedback extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
 
-            $data['userFeedback'] = $this->Feedbackm->allUserfeedback();
+            $this->data['userFeedback'] = $this->Feedbackm->allUserfeedback();
 
-            $this->load->view('Admin/userFeedBackDetail', $data);
+            $this->load->view('Admin/userFeedBackDetail', $this->data);
         } else {
            
 		   redirect('Login');
 
         }
     }
+
+    public function  allRestaurantsReview()
+    {
+        $this->data['allRestaurantsReview'] = $this->Feedbackm->allRestaurantReview();
+
+        //print_r($this->data['allRestaurantsReview']);
+
+         $this->load->view ('Admin/allRestaurantReview',$this->data);
+    }
+
 
 
     public  function updateUserFeedback()
@@ -77,7 +87,19 @@ class Feedback extends CI_Controller
         }
 
 
+ public function  deleteResturantFeedbackById()
+ {
+     if ($this->session->userdata('userType') == "Admin") {
 
+         $id = $this->input->post('id');
+         $this->Feedbackm->deleteResturantFeedbackById($id);
+         //echo $id;
+     }
+     else{
+         redirect('Login');
+     }
+
+ }
 
 
 

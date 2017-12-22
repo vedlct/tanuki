@@ -60,7 +60,6 @@
     </div><!-- Position -->
 
 
-
 <!-- Content ================================================== -->
 <div id="myDIV" class="container-fluid margin_60_35">
 		<div class="row">

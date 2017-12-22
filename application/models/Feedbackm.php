@@ -18,6 +18,24 @@ class Feedbackm extends CI_Model
 
 
 
+    public function allResturantUserfeedback()
+{
+    $this->db->select('id,name,feedback,feedbackTime');
+    $this->db->from('resFeedback');
+    $query = $this->db->get();
+    return $query->result();
+
+}
+
+
+public function newRestuirantreview($data)
+
+{
+    $query = $this->db->insert('resFeedback',$data);
+
+}
+
+
     public function allaItems()
     {
         $this->db->select('id,itemName','userRating');

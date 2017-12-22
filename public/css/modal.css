@@ -1,6 +1,6 @@
 
     /* The Modal (background) */
-.modal {
+.modal1 {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -16,7 +16,7 @@
 }
 
 /* Modal Content */
-.modal-content {
+.modal1-content {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
