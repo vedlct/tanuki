@@ -40,6 +40,17 @@
     </div><!-- End subheader -->
 </section>
 
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
+            <li>Page active</li>
+        </ul>
+
+    </div>
+</div><!-- Position -->
+
 <div class="container left margin_20">
 
     <h1 style="text-align: center"><b>Your Order List</b></h1>

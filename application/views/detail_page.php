@@ -30,7 +30,9 @@
 	<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
+<!--<section class="parallax-window" data-parallax="scroll" data-image-src="--><?php //echo base_url()?><!--public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">-->
+<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;
+        background-size:cover;">
     <div id="subheader">
 	<div id="sub_content">
     	<div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
@@ -49,7 +51,7 @@
     <div id="position">
         <div class="container">
             <ul>
-                <li><a href="#0">Home</a></li>
+                <li><a href="<?php echo  base_url()?>">Home</a></li>
                 <li><a href="#0">Tanuki's Dishes</a></li>
                 <li>Page active</li>
             </ul>
@@ -86,9 +88,9 @@
             </div><!-- End box_style_1 -->
 
             <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
-                <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
 <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
         </div><!-- End col-md-3 -->
@@ -97,7 +99,7 @@
 				<div class="box_style_2" id="main_menu">
 					<h2 class="inner">Menu</h2>
                     <?php foreach ($allcategory as $cate) {?>
-<!--					<h3 class="nomargin_top" id="--><?php //echo $cate->id?><!--">--><?php //echo $cate->name?><!--</h3>-->
+
 					<table class="table table-striped cart-list">
 					<thead>
 					<tr>
@@ -135,8 +137,6 @@
                                 <figure class="thumb_menu_list"><img height="80px" width="80px" src="<?php echo base_url()?>admin/images/itemImages/<?php echo $item->image?> " alt="thumb"></figure>
                                 <?php }?>
 
-
-<!--							<h5><a href="--><?php //echo base_url()?><!--Feedback/getReview/--><?php //echo $item->id?><!--"> --><?php //echo $item->itemName?><!--</a></h5>-->
 							<h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
 
                             <p>
@@ -422,16 +422,7 @@
     
 <?php include ('login_logout.php')?>
     
-    <!-- Search Menu -->
-	<div class="search-overlay-menu">
-		<span class="search-overlay-close"><i class="icon_close"></i></span>
-		<form role="search" id="searchform" method="get">
-			<input value="" name="q" type="search" placeholder="Search..." />
-			<button type="submit"><i class="icon-search-6"></i>
-			</button>
-		</form>
-	</div>
-	<!-- End Search Menu -->
+
     
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>

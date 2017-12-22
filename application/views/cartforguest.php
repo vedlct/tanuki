@@ -65,7 +65,7 @@
 <div id="position">
     <div class="container">
         <ul>
-            <li><a href="#0">Home</a></li>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
             <li><a href="#0">Tanuki's Dishes</a></li>
             <li>Page active</li>
         </ul>
@@ -98,9 +98,10 @@
             <!-- End box_style_1 -->
 
             <div class="box_style_2 hidden-xs" id="help">
+
+                <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
-                <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+1 703-723-8952</a>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
 
             </div>
 

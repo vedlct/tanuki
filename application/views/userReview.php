@@ -60,18 +60,28 @@
             <p>
                 <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap">View on map</a>
             </p>
-            <div class="box_style_2">
-                <h4 class="nomargin_top">Opening time <i class="icon_clock_alt pull-right"></i></h4>
-                <ul class="opening_list">
+            <div align="center" class="box_style_2 hidden-xs info">
+                <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
 
-                    <h1>demo</h1>
-                </ul>
+                <p>Tue-Fri <b>Lunch</b> <br>
+                    11:30am-2.30pm <br></p>
+
+                <p>Tue-Thur <b> Dinner</b> <br>
+                    4:30pm-10:00pm <br></p>
+                <p>Fri <b>Dinner</b> <br>
+                    4:30pm-10:00pm <br></p>
+                <p> Sat 12.00pm-10:00pm <br></p>
+                <p> Sun 12:00pm-9:00pm <br></p>
+                <p>Mon <b>Closed </b></p>
+
+
+
             </div>
             <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
-                <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                <small>Monday to Friday 9.00am - 7.30pm</small>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
         </div>
 

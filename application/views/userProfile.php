@@ -43,6 +43,17 @@
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
+            <li>Page active</li>
+        </ul>
+
+    </div>
+</div><!-- Position -->
+
 
 <div class="container margin_60">
     <?php if ($this->session->userdata('loggedin')=="true" ){?>

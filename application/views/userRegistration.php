@@ -51,7 +51,7 @@
 <div id="position">
     <div class="container">
         <ul>
-            <li><a href="#0">Home</a></li>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
             <li><a href="#0">Tanuki's Dishes</a></li>
             <li>Page active</li>
         </ul>
