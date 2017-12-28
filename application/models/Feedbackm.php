@@ -21,7 +21,7 @@ class Feedbackm extends CI_Model
     public function allResturantUserfeedback()
 {
     $this->db->select('id,name,feedback,feedbackTime');
-    $this->db->from('resFeedback');
+    $this->db->from('resfeedback');
     $query = $this->db->get();
     return $query->result();
 
@@ -31,7 +31,7 @@ class Feedbackm extends CI_Model
 public function newRestuirantreview($data)
 
 {
-    $query = $this->db->insert('resFeedback',$data);
+    $query = $this->db->insert('resfeedback',$data);
 
 }
 

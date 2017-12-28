@@ -22,7 +22,7 @@ class Feedbackm extends CI_Model
 
     public function deleteResturantFeedbackById($id)
     {
-        $this->db->where('id', $id)->delete('resFeedback');
+        $this->db->where('id', $id)->delete('resfeedback');
 
     }
 
@@ -31,7 +31,7 @@ class Feedbackm extends CI_Model
     {
 
         $this->db->select('id,name,feedback,feedbackTime');
-        $this->db->from('resFeedback');
+        $this->db->from('resfeedback');
         $query = $this->db->get();
         return $query->result();
 
