@@ -134,7 +134,11 @@
 
                                     <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
                                     <?php }else{?>
-                                    <figure class="thumb_menu_list"><img height="80px" width="80px" src="<?php echo base_url()?>admin/images/itemImages/<?php echo $item->image?> " alt="thumb"></figure>
+                                    <figure class="thumb_menu_list">
+<!--                                        <img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
+                                        <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'80','80')); ?>" alt="image">
+
+                                    </figure>
                                     <?php }?>
                                 </div>
                                 
