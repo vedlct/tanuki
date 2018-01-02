@@ -2,7 +2,7 @@
 <!--[if IE 9]><html class="ie ie9"> <![endif]-->
 <html>
 <head>
-    
+
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
 
@@ -11,68 +11,68 @@
 <body id="body">
 
 
-    <!--[if lte IE 8]>
-        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
-    <![endif]-->
+<!--[if lte IE 8]>
+<p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
+<![endif]-->
 
-    <div id="preloader">
-        <div class="sk-spinner sk-spinner-wave" id="status">
-            <div class="sk-rect1"></div>
-            <div class="sk-rect2"></div>
-            <div class="sk-rect3"></div>
-            <div class="sk-rect4"></div>
-            <div class="sk-rect5"></div>
-        </div>
-    </div><!-- End Preload -->
+<div id="preloader">
+    <div class="sk-spinner sk-spinner-wave" id="status">
+        <div class="sk-rect1"></div>
+        <div class="sk-rect2"></div>
+        <div class="sk-rect3"></div>
+        <div class="sk-rect4"></div>
+        <div class="sk-rect5"></div>
+    </div>
+</div><!-- End Preload -->
 
-    <!-- Header ================================================== -->
-    <?php include ('menu.php') ?>
-	<!-- End Header =============================================== -->
+<!-- Header ================================================== -->
+<?php include ('menu.php') ?>
+<!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
 <!--<section class="parallax-window" data-parallax="scroll" data-image-src="--><?php //echo base_url()?><!--public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">-->
 <section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;
         background-size:cover;">
     <div id="subheader">
-	<div id="sub_content">
-    	<div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
-<!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
+        <div id="sub_content">
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
 
 
-<!--        <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>-->
-<!--        <div><em>Japanese Restaurant</em></div>-->
-        <div><i class="icon_pin"></i> 44260 Ice Rink Plz
-            Ste 118 Ashburn, VA 20147 </div>
-    </div><!-- End sub_content -->
-</div><!-- End subheader -->
+            <!--        <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>-->
+            <!--        <div><em>Japanese Restaurant</em></div>-->
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
+        </div><!-- End sub_content -->
+    </div><!-- End subheader -->
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
-    <div id="position">
-        <div class="container">
-            <ul>
-                <li><a href="<?php echo  base_url()?>">Home</a></li>
-                <li><a href="#0">Tanuki's Dishes</a></li>
-                <li>Page active</li>
-            </ul>
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
+            <li>Page active</li>
+        </ul>
 
-        </div>
-    </div><!-- Position -->
+    </div>
+</div><!-- Position -->
 
 
 <!-- Content ================================================== -->
 <div id="myDIV" class="container-fluid margin_60_35">
-		<div class="row">
+    <div class="row">
 
-            <?php if ($this->session->flashdata('errorMessage')!=null){?>
-                <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
-            <?php }
-            elseif($this->session->flashdata('successMessage')!=null){?>
-                <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
-            <?php }?>
+        <?php if ($this->session->flashdata('errorMessage')!=null){?>
+            <div class="alert alert-danger" align="center"><strong><?php echo $this->session->flashdata('errorMessage');?></strong></div>
+        <?php }
+        elseif($this->session->flashdata('successMessage')!=null){?>
+            <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
+        <?php }?>
 
-			<div class="col-md-1"></div>
-        	<div class="col-md-2">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
 
             <div class="box_style_1">
 
@@ -82,7 +82,7 @@
                     <?php foreach ($allcategory as $cate) {?>
                         <li><a href="#<?php echo $cate->id ?>" class="active"><?php echo $cate->name ?></a></li>
 
-                        <?php } ?>
+                    <?php } ?>
                 </ul>
             </div><!-- End box_style_1 -->
 
@@ -90,31 +90,31 @@
                 <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
-<!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
         </div><!-- End col-md-3 -->
-            
-			<div class="col-md-5">
-				<div class="box_style_2" id="main_menu">
-					<h2 class="inner">Menu</h2>
-                    <?php foreach ($allcategory as $cate) {?>
 
-					<table class="table table-striped cart-list">
-					<thead>
-					<tr>
-						<th width="60%">
-							 Item
-						</th>
+        <div class="col-md-5">
+            <div class="box_style_2" id="main_menu">
+                <h2 class="inner">Menu</h2>
+                <?php foreach ($allcategory as $cate) {?>
 
-						<th width="30%">
-							 Price
-						</th>
-						<th width="10%">
-							 Order
-						</th>
-					</tr>
-					</thead>
-					<tbody>
+                <table class="table table-striped cart-list">
+                    <thead>
+                    <tr>
+                        <th width="60%">
+                            Item
+                        </th>
+
+                        <th width="30%">
+                            Price
+                        </th>
+                        <th width="10%">
+                            Order
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
@@ -125,156 +125,153 @@
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
 
-					<tr>
+                            <tr>
 
-						<td width="">
-                            <div class="left-img">
-                            <?php if ($item->image == null){?>
-                                
+                                <td width="">
+                                    <div class="left-img">
+                                        <?php if ($item->image == null){?>
 
-                                    <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
-                                    <?php }else{?>
-                                    <figure class="thumb_menu_list">
-<!--                                        <img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
-                                        <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'80','80')); ?>" alt="image">
 
-                                    </figure>
-                                    <?php }?>
-                                </div>
-                                
-                                <div class="right-content">
-                                    <h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
+                                            <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
+                                        <?php }else{?>
+                                            <figure class="thumb_menu_list">
+                                                <!--                                        <img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
+                                                <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'80','80')); ?>" alt="image">
 
-                                    <p>
-                                        <?php echo $item->description?>
-                                    </p>
+                                            </figure>
+                                        <?php }?>
+                                    </div>
+
+                                    <div class="right-content">
+                                        <h5><a href="<?php echo base_url()?>Feedback/getReview/<?php echo $item->id?>"style="cursor: pointer"> <?php echo $item->itemName?></a></h5>
+
+                                        <p>
+                                            <?php echo $item->description?>
+                                        </p>
+
+                                        <!-- rating code -->
+
+                                        <div style="margin-bottom: 30px">
+                                            <?php foreach ($avgrating as $av){
+                                                if ( $item->id == $av->fkItemId){
+                                                    $rating_avg = round($av->userRatings);
+                                                    if( $rating_avg>3)
+                                                    {
+                                                        switch ($rating_avg) {
+                                                            case 1:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"   width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+
+                                                                <?php
+                                                                break;
+                                                            case 2:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                                                <?php
+                                                                break;
+                                                            case 3:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                                                <?php
+                                                                break;
+                                                            case 4:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                                                <?php
+                                                                break;
+                                                            case 5:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+
+                                                                <?php
+                                                                break;
+                                                            default:
+                                                                ?>
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+
+                                                                <?php
+                                                        } } }}
+                                            ?>
+                                        </div>
+                                    </div>
+
+
 
                                     <!-- rating code -->
 
-                                    <div style="margin-bottom: 30px">
-                                        <?php foreach ($avgrating as $av){
+                                </td>
+                                <td width="">
+                                    <strong><?php echo $item->price?></strong>
+                                </td>
+                                <td class="options" width="10%">
+                                    <div class="dropdown dropdown-options">
+                                        <?php foreach ($alldefault as $defualt){?>
+                                            <?php if ($item->id == $defualt->fkItemId) {?>
+                                                <?php if ($defualt->itemSize == "default" && $defualt->itemsizeStatus == "1" ) {?>
+                                                    <a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
+                                                <?php } else { ?>
+                                                    <a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
 
-    if ( $item->id == $av->fkItemId){
-        $rating_avg = round($av->userRatings);
-        if( $rating_avg>3)
-        {
-            switch ($rating_avg) {
-                case 1:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"   width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+                                                <?php	} } }?>
 
-                                        <?php
-                                            break;
-                case 2:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
 
-                                        <?php
-                                            break;
-                case 3:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                        <div class="dropdown-menu">
+                                            <h5>Select an option</h5>
+                                            <?php foreach ($allitemsize as $itemsize) { ?>
+                                                <?php if ($itemsize->fkItemId == $item->id && $itemsize->itemSize != "default") { ?>
+                                                    <label>
+                                                        <input type="checkbox"id="check1" value="<?php echo $itemsize->id?>" class="chk" name="options_1"><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
+                                                    </label>
+                                                <?php } }?>
+                                            <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()" >Add to cart</a>
+                                        </div>
 
-                                        <?php
-                                            break;
-                case 4:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-
-                                        <?php
-                                            break;
-                case 5:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-
-                                        <?php
-                                            break;
-                default:
-                                        ?>
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                        <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-
-                                        <?php
-
-            } } }}
-                                        ?>
                                     </div>
-                                </div>
-
-
-
-                           <!-- rating code -->
-
-						</td>
-						<td width="">
-							<strong><?php echo $item->price?></strong>
-						</td>
-						<td class="options" width="10%">
-                        <div class="dropdown dropdown-options">
-							<?php foreach ($alldefault as $defualt){?>
-                            	<?php if ($item->id == $defualt->fkItemId) {?>
-									<?php if ($defualt->itemSize == "default" && $defualt->itemsizeStatus == "1" ) {?>
-										<a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
-							<?php } else { ?>
-										<a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-
-                            <?php	} } }?>
-
-
-                            <div class="dropdown-menu">
-                                <h5>Select an option</h5>
-								<?php foreach ($allitemsize as $itemsize) { ?>
-								<?php if ($itemsize->fkItemId == $item->id && $itemsize->itemSize != "default") { ?>
-                                <label>
-                                <input type="checkbox"id="check1" value="<?php echo $itemsize->id?>" class="chk" name="options_1"><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
-                                </label>
-								<?php } }?>
-                                <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()" >Add to cart</a>
-                            </div>
-
-                        </div>
-                    </td>
-					</tr>
-					<?php } ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
 
                     <?php } }  ?>
-					</tbody>
-					</table>
-				</div><!-- End box_style_1 -->
-			</div><!-- End col-md-6 -->
-            
-			<div style="position: sticky; top: 70px;" class="col-md-3 " id="sidebar">
-                <div class="theiaStickySidebar scrolldiv cf">
-				<div id="cart_box" >
-					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
+                    </tbody>
+                </table>
+            </div><!-- End box_style_1 -->
+        </div><!-- End col-md-6 -->
+
+        <div style="position: sticky; top: 70px;" class="col-md-3 " id="sidebar">
+            <div class="theiaStickySidebar scrolldiv cf">
+                <div id="cart_box" >
+                    <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
                     <div class="makescroll">
                         <table style="height: 50px; overflow: scroll ;" id="cart_table" class="table table_summary">
                             <tbody class="giveheight">
-                                <?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
-
+                            <?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
                                 ?>
                                 <tr>
                                     <td>
@@ -286,42 +283,37 @@
 
                                     </td>
                                     <td> <?php  if ($c['options']['Size'] == "defualt"){}else
-                                {echo $c['options']['Size'];}?></td>
+                                        {echo $c['options']['Size'];}?></td>
                                     <td>
                                         <strong class="pull-right"><?php echo $c['subtotal'];?></strong>
                                     </td>
                                 </tr>
                                 <?php
-
-    $subtotal = $subtotal + $c['subtotal'];
-} ?>
+                                $subtotal = $subtotal + $c['subtotal'];
+                            } ?>
                             </tbody>
                         </table>
                     </div>
 
                     <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
                         <hr>
-                    <div class="row" id="options_2">
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-						<a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 6px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
-						</div>
-						<div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-							<a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
-						</div>
-					</div>
+                        <div class="row" id="options_2">
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 6px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
+                            </div>
+                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                <a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+                            </div>
+                        </div>
                     <?php }else {
-
                         $data = array(
                             'orderType' => "have",
-
                         );
-
                         $this->session->set_userdata($data);
-
                     } ?>
 
 
-					<hr>
+                    <hr>
                     <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
                         <div class="row" id="options_2">
                             <div class="col-md-12">
@@ -331,142 +323,132 @@
                             </div>
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
-					<div class="row" id="options_2">
+                        <div class="row" id="options_2">
 
-							<label class="col-md-5">Promo Code :</label>
+                            <label class="col-md-5">Promo Code :</label>
 
-							<input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+                            <input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
 
-					</div>
+                        </div>
                     <?php } else { ?>
                         <div class="row" id="options_2">
 
-                                <label class="col-md-5">Promo Code :</label>
+                            <label class="col-md-5">Promo Code :</label>
 
-                                <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+                            <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
 
                         </div>
                         <!-- Edn options 2 -->
                     <?php } ?>
-					<hr>
-					<table class="table table_summary" id="total_table">
-					<tbody>
-					<tr>
-					<td>
-						Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
-					</td>
-					</tr>
-					<tr>
-						<td>
-							 Subtotal <span class="pull-right"><?php echo $subtotal?></span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							Discount <span class="pull-right">
+                    <hr>
+                    <table class="table table_summary" id="total_table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Subtotal <span class="pull-right"><?php echo $subtotal?></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Discount <span class="pull-right">
 <!--                                --><?php //if ( $this->session->userdata('discount') == null)
-//							{ echo 0.00;} else{
-//									echo $this->session->userdata('discount');
-//								} ?><!-- </span>-->
-                                <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
-                                    $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
-                                } echo $totaldis;?>
+                                    //							{ echo 0.00;} else{
+                                    //									echo $this->session->userdata('discount');
+                                    //								} ?><!-- </span>-->
+                                    <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
+                                        $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
+                                    } echo $totaldis;?>
                             </span>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							 Delivery fee <span class="pull-right">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Delivery fee <span class="pull-right">
 								<?php $dfee = 0; $vat = 0;
-								if ($this->session->userdata('orderType') == "home"){
-								foreach ($charges as $char){
-									$dfee = $char->deliveryfee;
-								} } else?>
-								<?php echo $dfee ; ?></span>
-						</td>
-					</tr>
+                                if ($this->session->userdata('orderType') == "home"){
+                                    foreach ($charges as $char){
+                                        $dfee = $char->deliveryfee;
+                                    } } else?>
+                                <?php echo $dfee ; ?></span>
+                            </td>
+                        </tr>
 
-					<tr>
-						<td>
-                            <?php foreach ($charges as $char){
-                            $vat = $char->vat;
-                            }?>
-                            sales tax(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round((($subtotal-$totaldis)*$vat)/100, 2)?></span>
-                            <?php
-                            $data = array(
-                                'vat' => $vatt,
+                        <tr>
+                            <td>
+                                <?php foreach ($charges as $char){
+                                    $vat = $char->vat;
+                                }?>
+                                sales tax(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round((($subtotal-$totaldis)*$vat)/100, 2)?></span>
+                                <?php
+                                $data = array(
+                                    'vat' => $vatt,
+                                );
+                                $this->session->set_userdata($data);
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="total">
+                                TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <div id="ordertypediv">
+                        <?php if($this->session->userdata('orderType') != null ){ ?>
+                            <a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
+                        <?php }else { ?>
+                            <a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
+                        <?php } ?>
+                    </div>
+                </div><!-- End cart_box -->
+            </div><!-- End theiaStickySidebar -->
+        </div>
+        <!-- End col-md-3 -->
 
-                            );
-                            $this->session->set_userdata($data);
-                            ?>
-						</td>
-					</tr>
-					<tr>
-						<td class="total">
-							 TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
-						</td>
-					</tr>
-					</tbody>
-					</table>
-					<hr>
-					<div id="ordertypediv">
-					<?php if($this->session->userdata('orderType') != null ){ ?>
-					<a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
-					<?php }else { ?>
-						<a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
-					<?php } ?>
-					</div>
-				</div><!-- End cart_box -->
-                </div><!-- End theiaStickySidebar -->
-			</div>
-            <!-- End col-md-3 -->
-            
-		</div><!-- End row -->
+    </div><!-- End row -->
 </div><!-- End container -->
 <!-- End Content =============================================== -->
 
 <!-- Footer ================================================== -->
-	<?php include ('footer.php') ?>
+<?php include ('footer.php') ?>
 <!-- End Footer =============================================== -->
 
 <div class="layer"></div><!-- Mobile menu overlay mask -->
-    
-<?php include ('login_logout.php')?>
-    
 
-    
+<?php include ('login_logout.php')?>
+
+
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
-
-
 <script>
-	function addcart(x) {
-	    //alert("hellasdasdado");
-		btn = $(x).data('panel-id');
-
-		//alert(btn);
-
-		$.ajax({
-			type:'POST',
-			url:'<?php echo base_url("Items/insertCart/")?>'+btn,
-			data:{'id':btn},
-			cache: false,
-			success:function(data)
-			{
-				$('#cart_table').load(document.URL +  ' #cart_table');
-				$('#total_table').load(document.URL +  ' #total_table');
-			}
-
-		});
-	}
+    function addcart(x) {
+        //alert("hellasdasdado");
+        btn = $(x).data('panel-id');
+        //alert(btn);
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Items/insertCart/")?>'+btn,
+            data:{'id':btn},
+            cache: false,
+            success:function(data)
+            {
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+            }
+        });
+    }
     function minus(x) {
-
         var btn = $(x).data('panel-id');
         var x = parseInt(document.getElementById(btn).value);
         var newx= x-1;
-
         document.getElementById(btn).value = newx;
-
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/updateCart/")?>' + btn,
@@ -475,21 +457,15 @@
             success: function (data) {
                 // $('#txt').html(data);
                 //  alert(data);
-				$('#cart_table').load(document.URL +  ' #cart_table');
-				$('#total_table').load(document.URL +  ' #total_table');
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
             }
-
         });
-
     }
     function plus(x) {
-
         var btn = $(x).data('panel-id');
-
         var x = parseInt(document.getElementById(btn).value);
         var newx= x+1;
-
-
         document.getElementById(btn).value = newx;
         $.ajax({
             type: 'POST',
@@ -498,18 +474,12 @@
             cache: false,
             success: function (data) {
                 // $('#txt').html(data);
-				$('#cart_table').load(document.URL +  ' #cart_table');
-				$('#total_table').load(document.URL +  ' #total_table');
-
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
             }
-
         });
-
-
     }
-
-	function addcartwithitemsize() {
-
+    function addcartwithitemsize() {
         //    alert("hellow");
         var chkArray = [];
         var i;
@@ -517,8 +487,6 @@
         $(".chk:checked").each(function () {
             chkArray.push($(this).val());
         });
-
-
         for (i = 0; i < chkArray.length; i++) {
             $.ajax({
                 type: 'POST',
@@ -528,68 +496,55 @@
                 success: function (data) {
                     // $('#txt').html(data);
                     //alert(data);
-                      $('#cart_table').load(document.URL +  ' #cart_table');
-					$('#total_table').load(document.URL +  ' #total_table');
+                    $('#cart_table').load(document.URL +  ' #cart_table');
+                    $('#total_table').load(document.URL +  ' #total_table');
                 }
-
             });
-             $("input:checkbox").attr('checked', false);
-
+            $("input:checkbox").attr('checked', false);
         }
     }
-
     function discount() {
-
-		var promocode = document.getElementById("promocode").value;
-
-			$.ajax({
-			type: 'POST',
-			url: '<?php echo base_url("Items/promocode/")?>' ,
-			data: {'promocode': promocode},
-			cache: false,
-			success: function (data) {
-				if (data == "00"){
-					alert ("Promo code not Valid");
-				}else  {
-					$('#cart_table').load(document.URL +  ' #cart_table');
-					$('#total_table').load(document.URL +  ' #total_table');
-				}
-			}
-
-		});
-	}
-
-	function takeaway() {
-		$.ajax({
-			type: 'POST',
-			url: '<?php echo base_url("Items/takeaway/")?>' ,
-			cache: false,
-			success: function (data) {
-				$('#cart_table').load(document.URL +  ' #cart_table');
-				$('#total_table').load(document.URL +  ' #total_table');
-				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
-			}
-
-		});
-	}
-
-	function homedelivary() {
-
-		$.ajax({
-			type: 'POST',
-			url: '<?php echo base_url("Items/homedelivary/")?>' ,
-			cache: false,
-			success: function (data) {
-				$('#cart_table').load(document.URL +  ' #cart_table');
-				$('#total_table').load(document.URL +  ' #total_table');
-				$('#ordertypediv').load(document.URL +  ' #ordertypediv');
-
-			}
-
-		});
-	}
-
-	function membershipid() {
+        var promocode = document.getElementById("promocode").value;
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/promocode/")?>' ,
+            data: {'promocode': promocode},
+            cache: false,
+            success: function (data) {
+                if (data == "00"){
+                    alert ("Promo code not Valid");
+                }else  {
+                    $('#cart_table').load(document.URL +  ' #cart_table');
+                    $('#total_table').load(document.URL +  ' #total_table');
+                }
+            }
+        });
+    }
+    function takeaway() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/takeaway/")?>' ,
+            cache: false,
+            success: function (data) {
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+            }
+        });
+    }
+    function homedelivary() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/homedelivary/")?>' ,
+            cache: false,
+            success: function (data) {
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+            }
+        });
+    }
+    function membershipid() {
         var memberid = document.getElementById("memberid").value;
         $.ajax({
             type: 'POST',
@@ -597,36 +552,26 @@
             data: {'memberid': memberid},
             cache: false,
             success: function (data) {
-             //   $('#cart_table').load(document.URL +  ' #cart_table');
-              //  $('#total_table').load(document.URL +  ' #total_table');
-              //  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
-
-               // alert(data);
+                //   $('#cart_table').load(document.URL +  ' #cart_table');
+                //  $('#total_table').load(document.URL +  ' #total_table');
+                //  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+                // alert(data);
             }
-
         });
-
     }
-
-	function orderwarning() {
-	    var orderType ='<?php echo $this->session->userdata('orderType')?>';
-
-
-	    if (orderType == "" ) {
+    function orderwarning() {
+        var orderType ='<?php echo $this->session->userdata('orderType')?>';
+        if (orderType == "" ) {
             alert("Please Select A Order Type");
         }
-
-	}
-
+    }
     $(function() {  $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-
         if (scroll >= 250) {
             document.getElementById("logo").style.display = "block";
         } else {
             document.getElementById("logo").style.display = "none";
         }
-
     });
     });
 </script>
@@ -634,16 +579,12 @@
         (function($) {
             var element = $('.scrolldiv'),
                 originalY = element.offset().top;
-
             // Space between element and top of screen (when scrolling)
             var topMargin = 40;
-
             // Should probably be set in CSS; but here just for emphasis
             element.css('position', 'relative');
-
             $(window).on('scroll', function(event) {
                 var scrollTop = $(window).scrollTop();
-
                 element.stop(false, false).animate({
                     top: scrollTop < originalY
                         ? 0
