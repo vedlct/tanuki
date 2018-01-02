@@ -29,13 +29,16 @@
 
                         <b>Order Taker:</b> <?php echo $orders->orderTaker; ?>
                     </td>
-                    <td class="center"><?php  if ($orders->orderType=="have"){echo "Restaurant";}
-                        elseif($orders->orderType=="take"){echo "Take Away";}
-                        elseif($orders->orderType=="home"){echo "Online";}?><hr>
+                    <td class="center">
+                        <?php  if ($orders->orderType=="have"){echo "Restaurant";}
+                        elseif($orders->orderType=="take"){echo "Pick Up";}
+                        elseif($orders->orderType=="home"){echo "Home Delivery";}?><hr>
+
                         <?php echo preg_replace("/ /","<br>",date('d-m-Y h:i A',strtotime($orders->orderDate)),1);?>
                     </td>
 
-                    <td class="center"><?php if ($orders->paymentType=="cs"){echo "Cash";}
+                    <td class="center">
+                        <?php if ($orders->paymentType=="cs"){echo "Cash";}
                         elseif($orders->paymentType=="crd"){echo "Card";}?>
                     </td>
                     <td class="center">
@@ -83,8 +86,36 @@
                                             </tr>
                                             <?php $total=$total+$price;}}}?>
                                 <tr>
-                                    <td style="color: red" colspan="5">Total-(including delevery fee & vat): <?php echo $orders->deliveryfee; ?>$+<?php echo $orders->vat?>$ : </td>
-                                    <td colspan="1"><?php echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?></td>
+<!--                                    <td style="color: red" colspan="5">Total-(including delevery fee & vat): --><?php //echo $orders->deliveryfee; ?><!--$+--><?php //echo $orders->vat?><!--$ : </td>-->
+<!--                                    <td colspan="1">--><?php //echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?><!--</td>-->
+
+                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + Sales Tax:$<?php echo $orders->vat?>
+
+                                        <?php foreach ($pointUsed as $pu){
+                                            if ($pu->fkOrderId == $orders->id ){
+
+                                                if (!empty($pu->expedPoints)) {
+                                                    echo " - Points Used :" . $pu->expedPoints;
+                                                }
+                                            }
+
+                                        } ?> )
+                                    </td>
+                                    <td colspan="1">
+
+                                        <?php $pointToMoney=0;foreach ($pointUsed as $pu){
+                                            if ($pu->fkOrderId == $orders->id ){
+
+                                                if (!empty($pu->expedPoints)) {
+                                                    $pointToMoney= ($pu->expedPoints/10);
+
+                                                }
+                                            }
+
+                                        }?>
+                                        <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+
+                                    </td>
 
                                 </tr>
 

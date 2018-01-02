@@ -34,63 +34,70 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Report/searchByDate">
-                                        <div class="col-md-3 col-sm-3" >
-                                            <div class="form-group" >
+                                    <!--                                    <form method="post" action="--><?php //echo base_url()?><!--Report/searchByDate">-->
+                                    <div class="col-md-3 col-sm-3" >
+                                        <div class="form-group" >
 
-                                                <label for="date">Search For Details</label>
-                                                <input type="text" class="form-control" name="memberid" placeholder="Membership ID">
-                                            </div >
-                                        </div>
-                                        <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
-                                            submit
-                                        </button>
+                                            <label for="date">Search For Details</label>
+                                            <input type="text" class="form-control" id="memberid" name="memberid" placeholder="Membership ID">
+                                        </div >
+                                    </div>
+                                    <button style="margin-top: 30px"  id="addRow" onclick="searchMember()" class="btn btn-info">
+                                        submit
+                                    </button>
+                                    <!--                                    </form>-->
 
                                 </div>
 
-                                </form>
 
 
-                                <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
-                                    <thead>
-                                    <tr>
-                                        <th width="" class="center"> SL </th>
-                                        <th width="" class="center"> Customer Name </th>
-                                        <th width="" class="center"> Membership No </th>
-                                        <th width="" class="center"> Earn Point</th>
-                                        <th width="" class="center"> Expense Point </th>
-                                        <th width="" class="center"> Left Point </th>
-
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php $count = 1; ;$qun= 0; $rate=0;$discount=0; foreach ($allreportearnpoint as $er) {  ?>
-
+                                <div class="table table-responsive">
+                                    <table class="table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
+                                        <thead>
                                         <tr>
-                                            <td class="center"><?php echo $count ?></td>
-                                            <td class="center"><?php echo $er->username ?></td>
-                                            <td class="center"><?php echo $er->memberCardNo ?></td>
-                                            <td class="center"><?php echo $earnpoint = $er->earnpoint ?></td>
-                                            <td class="center"><?php foreach ($allreportexpensepoint as $en){
-                                                    if ($er->uid == $en->uid){
-                                                        echo $expensepoint = $en->expensepoint ;
-                                                    }
-                                                }?></td>
-                                            <td class="center"><?php echo $earnpoint - $expensepoint?></td>
-
+                                            <th width="" class="center"> SL </th>
+                                            <th width="" class="center"> Customer Name </th>
+                                            <th width="" class="center"> Membership No </th>
+                                            <th width="" class="center"> Earn Point</th>
+                                            <th width="" class="center"> Expense Point </th>
+                                            <th width="" class="center"> Left Point </th>
 
                                         </tr>
-                                        <?php  $count++;} ?>
+                                        </thead>
+                                        <tbody>
+                                        <?php $count = 1; ;$qun= 0; $rate=0;$discount=0; foreach ($allreportearnpoint as $er) {  ?>
 
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                                <td class="center"><?php echo $count ?></td>
+                                                <td class="center"><?php echo $er->username ?></td>
+                                                <td class="center"><?php echo $er->memberCardNo ?></td>
+                                                <td class="center"><?php echo $earnpoint = $er->earnpoint ?></td>
+
+                                                <?php $expensepoint ="0";foreach ($allreportexpensepoint as $en){
+                                                    if ($er->uid == $en->uid){?>
+                                                        <td class="center"><?php echo $expensepoint = $en->expensepoint ;?></td>
+                                                    <?php }else{ ?>
+                                                        <td class="center"><?php echo $expensepoint ;?></td>
+                                                    <?php }?>
+
+                                                    <td class="center"><?php echo ($earnpoint - $expensepoint) ?></td>
+                                                <?php }  ?>
+
+
+
+                                            </tr>
+                                            <?php  $count++;} ?>
+
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+     </div>
 
 
 
@@ -98,23 +105,12 @@
 
     <!-- end page content -->
 
-    <div id="myModal" class="modal">
-        <br/><br/><br/>
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">×</span>
-
-            <div id="txtHint"></div>
-
-        </div>
 
 
-    </div>
-
-</div>
+  </div>
 <!-- end page container -->
 
-<?php include ("footer.php") ?>
+ <?php include ("footer.php") ?>
 
 </div>
 
@@ -129,59 +125,32 @@
 <script>
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
-    function selectid1(x)
-    {
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Category/newCategory" )?>',
-            data:{},
-            cache: false,
-            success:function(data)
-            {
-                $('#txtHint').html(data);
-            }
-        });
-        modal.style.display = "block";
-    }
-    function selectid2(x)
-    {
-        btn = $(x).data('panel-id');
-        $.ajax({
-            type:'POST',
-            url:'<?php echo base_url("Admin/Category/getCategoryById")?>',
-            data:{id:btn},
-            cache: false,
-            success:function(data) {
-                $('#txtHint').html(data);
-            }
-        });
-        modal.style.display = "block";
-    }
-    function selectid3(x)
-    {
-        if (confirm("are you sure to delete this Category?"))
+
+    function searchMember() {
+
+        var memberid = document.getElementById('memberid').value;
+
+
+
+        if (memberid == ""){
+
+            alert('Enter a member Id First');
+            return false;
+        }
+        else
         {
-            btn = $(x).data('panel-id');
             $.ajax({
-                type: 'POST',
-                url: '<?php echo base_url("Admin/Category/deleteCategoryById")?>',
-                data: {id: btn},
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByMemberIdForPoint" )?>',
+                data:{'memberid':memberid,},
                 cache: false,
-                success: function (data) {
-                    alert('Category deleted Successfully');
-                    location.reload();
+                success:function(data)
+                {
+                    //alert(data);
+                    $('#example4').html(data);
                 }
             });
         }
-    }
-    // When the user clicks * of the modal, close it
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
+
     }
 </script>

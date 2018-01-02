@@ -28,19 +28,18 @@
 <section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
-            <div id="thumb"><img src="<?php echo base_url()?>public/img/thumb_restaurant.jpg" alt=""></div>
-            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> ( <small><a href="#0">98 reviews</a></small> )</div>
-            <h1>Mexican TacoMex</h1>
-            <div><em>Mexican / American</em></div>
-            <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
+            
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
+            
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
 </section><!-- End section -->
 <div id="position">
     <div class="container">
         <ul>
-            <li><a href="<?php echo base_url()?>Home">Home</a></li>
-            <li><a href="<?php echo base_url()?>Restaurants">RAK's Dishes</a></li>
+            <li><a href="<?php echo base_url()?>">Home</a></li>
             <li><a href="<?php echo base_url()?>Item_Menu/show_menu/9">Item Menu</a></li>
             <li><a href="<?php echo $this->uri->segment(3); ?>">Item Review</a></li>
             <li>Page active</li>
@@ -61,199 +60,56 @@
             <p>
                 <a class="btn_map" data-toggle="collapse" href="#collapseMap" aria-expanded="false" aria-controls="collapseMap">View on map</a>
             </p>
-            <div class="box_style_2">
-                <h4 class="nomargin_top">Opening time <i class="icon_clock_alt pull-right"></i></h4>
-                <ul class="opening_list">
+            <div align="center" class="box_style_2 hidden-xs info">
+                <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
 
-                    <h1>demo</h1>
-                </ul>
+                <p>Tue-Fri <b>Lunch</b> <br>
+                    11:30am-2.30pm <br></p>
+
+                <p>Tue-Thur <b> Dinner</b> <br>
+                    4:30pm-10:00pm <br></p>
+                <p>Fri <b>Dinner</b> <br>
+                    4:30pm-10:00pm <br></p>
+                <p> Sat 12.00pm-10:00pm <br></p>
+                <p> Sun 12:00pm-9:00pm <br></p>
+                <p>Mon <b>Closed </b></p>
+
+
+
             </div>
             <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
-                <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                <small>Monday to Friday 9.00am - 7.30pm</small>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
         </div>
 
         <div class="col-md-8">
             <div class="box_style_2">
                 <h2 class="inner"> Review </h2>
-                <?php if ($this->session->userdata('loggedin')=="true" ){?>
-                    <?php foreach ($avgrating as $av){
-                        $rating_avg = round($av->userRatings);
 
-
-                    }?>
-                    <?php
-                    switch ($rating_avg) {
-                        case 1:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 2:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 3:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 4:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 5:
-                            ?>
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        default:
-                            ?>
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-
-                    }
-
-                    ?>
-
-
-
-                    <?php foreach( $allItem as $items) { ?>
-                        <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
-
-
-                        <form method="post" action="<?php echo base_url() ?>Feedback/newReview/<?php echo $items->id ?>">
-
-
-                            <textarea name="review_text" id="review_text" class="form-control form-black" style="height:100px" placeholder="write review..........." ></textarea>
-                            <input type="number" name="rating" max="5" min="0">
-
-                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-                            <input type="submit" value="Submit" >
-                        </form>
-                    <?php }}else{?>
-
-
-                    <?php foreach ($avgrating as $av){
-                        $rating_avg = round($av->userRatings);
-
-
-                    }?>
-                    <?php
-                    switch ($rating_avg) {
-                        case 1:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 2:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 3:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 4:
-                            ?>
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>public/img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        case 5:
-                            ?>
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/yellow.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-                            break;
-                        default:
-                            ?>
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgA<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncA(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgB<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"  onclick="myfuncB(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgC<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>"onclick="myfuncC(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgD<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncD(this)" width="20px" style="float: left">
-                            <img src="<?php echo base_url()?>img/blank.png" id="imgE<?= $av->id ?>" class="img-responsive" data-panel-id="<?= $av->id ?>" onclick="myfuncE(this)" width="20px" style="float: left">
-
-                            <?php
-
-                    }
-
-                    ?>
-
-
-
-                    <?php foreach( $allItem as $items) { ?>
-                        <b>Item Name :</b><b style="color: red"><?php echo $items->itemName;?></b>
-
-
-                    <?php }}  ?>
 
                 <?php foreach($userFeedback as $f) { ?>
 
 
-                    <h4><?php echo $f->name ?></h4>
-                    <?php break; } ?>
+                <div class="review_strip_single">
 
+                    <p>
+                    <h2><?php echo $f->itemName ?></h2>
+                    <h4><?php echo $f->name ?> Said</h4>
+
+
+                    <small>  - <?php echo $f->feedbackTime ?></small>
+                    </p>
+
+
+                    <p><?php echo $f->feedback ?></p>
+                    <p>User Rating:<?php echo $f->userRating ?> </p>
+
+
+                </div>
+<?php } ?>
 
             </div>
             <!-- End box_style_1 -->
@@ -345,34 +201,31 @@
 
 
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<?php include ('js.php')?>
 
 <!-- SPECIFIC SCRIPTS -->
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>
-<script src="<?php echo base_url()?>public/js/map_single.js"></script>
-<script src="<?php echo base_url()?>public/js/infobox.js"></script>
-<script src="<?php echo base_url()?>public/js/jquery.sliderPro.min.js"></script>
-<script type="text/javascript">
-    $( document ).ready(function( $ ) {
-        $( '#Img_carousel' ).sliderPro({
-            width: 960,
-            height: 500,
-            fade: true,
-            arrows: true,
-            buttons: false,
-            fullScreen: false,
-            smallSize: 500,
-            startSlide: 0,
-            mediumSize: 1000,
-            largeSize: 3000,
-            thumbnailArrows: true,
-            autoplay: false
-        });
-    });
-</script>
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAs_JyKE9YfYLSQujbyFToZwZy-wc09w7s"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/map_single.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/infobox.js"></script>-->
+<!--<script src="--><?php //echo base_url()?><!--public/js/jquery.sliderPro.min.js"></script>-->
+<!--<script type="text/javascript">-->
+<!--    $( document ).ready(function( $ ) {-->
+<!--        $( '#Img_carousel' ).sliderPro({-->
+<!--            width: 960,-->
+<!--            height: 500,-->
+<!--            fade: true,-->
+<!--            arrows: true,-->
+<!--            buttons: false,-->
+<!--            fullScreen: false,-->
+<!--            smallSize: 500,-->
+<!--            startSlide: 0,-->
+<!--            mediumSize: 1000,-->
+<!--            largeSize: 3000,-->
+<!--            thumbnailArrows: true,-->
+<!--            autoplay: false-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
 
 </body>
 </html>

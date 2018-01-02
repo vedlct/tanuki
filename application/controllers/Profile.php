@@ -16,7 +16,7 @@ class Profile extends CI_Controller
     {
         $this->data['profile'] = $this->Profilem->getuser($userId);
         $this->data['city']=$this->Profilem->getAllCity();
-        $this->load->view('userprofile', $this->data);
+        $this->load->view('userProfile', $this->data);
     }
 
     public function update_user(){
@@ -32,12 +32,12 @@ class Profile extends CI_Controller
         $fkCity=$this->input->post('city');
         $contactNo=$this->input->post('contactNo');
         $postalCode=$this->input->post('postalCode');
-        $memberCardNo=$this->input->post('memberCardNo');
+        //$memberCardNo=$this->input->post('memberCardNo');
         //$country=$this->input->post('country');
         //print_r($memberCardNo);
 
 
-        $this->Profilem->updateuser($id,$name,$email,$password,$address,$fkCity,$contactNo,$postalCode,$memberCardNo,$memberCardNo);
+        $this->Profilem->updateuser($id,$name,$email,$password,$address,$fkCity,$contactNo,$postalCode);
         redirect( 'Profile/showuser/'.$id);
 
     }

@@ -14,10 +14,13 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php echo base_url()?>public/img/apple-touch-icon-144x144-precomposed.png">
     
     <!-- GOOGLE WEB FONT -->
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic,300,300italic' rel='stylesheet' type='text/css'>
+    <link href='<?php echo base_url()?>public/css/googleFont.css' rel='stylesheet' type='text/css'>
+
 
     <!-- BASE CSS -->
     <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>public/css/modal.css" rel="stylesheet">
+
 
 
     <!-- Modernizr -->

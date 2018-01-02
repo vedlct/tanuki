@@ -16,13 +16,26 @@ class Feedbackm extends CI_Model
         return $query->result();
     }
 
-//    public function getAllitem()
-//    {
-//        $this->db->select('id,itemName');
-//        $this->db->from('items');
-//        $query = $this->db->get();
-//        return $query->result();
-//    }
+
+
+    public function allResturantUserfeedback()
+{
+    $this->db->select('id,name,feedback,feedbackTime');
+    $this->db->from('resfeedback');
+    $query = $this->db->get();
+    return $query->result();
+
+}
+
+
+public function newRestuirantreview($data)
+
+{
+    $query = $this->db->insert('resfeedback',$data);
+
+}
+
+
     public function allaItems()
     {
         $this->db->select('id,itemName','userRating');
@@ -44,12 +57,50 @@ class Feedbackm extends CI_Model
     }
 
 
+    public function getitemByIdAll()
+    {
+        $this->db->select('id,itemName','userRating');
+        $this->db->from('items');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function getitemById($itemid)
     {
-        $this->db->where('id', $itemid);
+        $this->db->where('items.id', $itemid);
         $this->db->select('id,itemName','userRating');
         $this->db->from('items');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function feedbackbyitemfeedback(){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name');
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function feedbackbyitemAll(){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name,userRating');
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $this->db->order_by('userfeedback.id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+
+    public function feedbackbyitem($itemid){
+
+        $this->db->select('itemName, ,feedback ,name, feedbackTime, fkUserId,name,userRating');
+        $this->db->where('items.id', $itemid);
+        $this->db->join('items', 'userfeedback.fkItemId = items.id', 'left');
+        $this->db->join('users ', 'userfeedback.fkUserId = users.id', 'left');
+        $this->db->from('userfeedback');
+        $this->db->order_by('userfeedback.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
@@ -66,7 +117,16 @@ class Feedbackm extends CI_Model
 
         //$this->db->select_avg('userRating');
         $this->db->select('id, AVG(userRating) as userRatings');
-        $this->db->where('fkItemId', $itemid);
+          $this->db->where('fkItemId',$itemid);
+        $this->db->from('userfeedback');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function ratingavgall(){
+
+
+        //$this->db->select_avg('userRating');
+        $this->db->select('id, AVG(userRating) as userRatings');
         $this->db->from('userfeedback');
         $query = $this->db->get();
         return $query->result();

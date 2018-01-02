@@ -12,25 +12,44 @@ class Ordersm extends CI_Model
         );
 
         $this->security->xss_clean($data);
-        $error=$this->db->update('orders', $data);
+        $error=$this->db->update('orders',$data);
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate) BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()');
+        $this->db->order_by('o.id', 'DESC');
+
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
         $query=$this->db->get();
         return $query->result();
     }
 
+
+
     public  function viewOrderInfoByOrderId($orderID)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.deliveryTime,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderID);
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+    public  function getOrderInformation($orderId)
+    {
+
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,
+        ,u.name as userName,us.name as orderTaker, u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        $this->db->from('orders o');
+
+        $this->db->join('users u','u.id = o.fkUserId','left');
+        $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $this->db->join('city c', 'c.id = u.fkCity', 'left');
+        $this->db->where('o.id',$orderId);
         $query=$this->db->get();
         return $query->result();
     }
@@ -48,6 +67,7 @@ class Ordersm extends CI_Model
     {
         $this->db->select('os.id,os.statusTitle');
         $this->db->from('orderstatus os');
+        $this->db->where('os.sequece !=',"0");
         $this->db->order_by('os.sequece', 'ASC');
         $query=$this->db->get();
         return $query->result();
@@ -138,11 +158,12 @@ class Ordersm extends CI_Model
         }
     }
 
-    public function getPromoType(){
+    public function getPromoType($promocode){
 
         $this->db->select('promoType, discountAmount');
         $this->db->where('startDate <',date('Y-m-d'));
         $this->db->where('endDate >',date('Y-m-d'));
+        $this->db->where('promoCode',$promocode);
         $this->db->from('promotions');
         $query = $this->db->get();
         return $query->result();
@@ -176,7 +197,7 @@ class Ordersm extends CI_Model
 
     public  function getDeliveredOrderInfo($orderId)
     {
-        $this->db->select('orders.id,orders.vat');
+        $this->db->select('orders.id,orders.vat,orders.deliveryfee,orders.fkUserId');
         $this->db->from('orders');
         $this->db->where('orders.id',$orderId);
 
@@ -229,7 +250,6 @@ class Ordersm extends CI_Model
         $this->db->select('statusTitle');
         $this->db->from('orderstatus');
         $this->db->where('id',$orderStatus);
-
         $query=$this->db->get();
         return $query->result();
     }
@@ -284,6 +304,7 @@ public function  updateOrderById($id, $data)
     {
         $this->db->select('id,sequece,statusTitle');
         $this->db->from('orderstatus');
+        $this->db->where('sequece !=',"0");
         $query=$this->db->get();
         return $query->result();
     }
@@ -296,11 +317,12 @@ public function  updateOrderById($id, $data)
     {
 
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate)',date('Y-m-d'));
         $this->db->join('users u','u.id = o.fkUserId','left');
         $this->db->join('users us','us.id = o.fkOrderTaker','left');
+        $this->db->order_by('o.id', 'DESC');
         $query=$this->db->get();
         return $query->result();
     }
@@ -308,7 +330,7 @@ public function  updateOrderById($id, $data)
     public  function viewOrderInfoByOrderIdForPrint($orderId)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.deliveryTime,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName,u.contactNo as phone');
         $this->db->from('orders o');
         $this->db->where('o.id',$orderId);
         $this->db->join('users u','u.id = o.fkUserId','left');
@@ -338,6 +360,28 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
+    public  function cancelOrderId()
+    {
+        $this->db->select('id');
+        $this->db->where('sequece',"0");
+        $this->db->from('orderstatus');
+
+        $query=$this->db->get();
+        return $query->row();
+
+
+    }
+
+    public  function getUsedPointForParticularOrder($orderId)
+    {
+        $this->db->select('expedPoints');
+        $this->db->from('pointdeduct');
+        $this->db->where('fkOrderId',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
     public  function getUsedPoint()
     {
         $this->db->select('expedPoints, fkOrderId');
@@ -347,7 +391,37 @@ public function  updateOrderById($id, $data)
         return $query->result();
     }
 
-   
+    public  function insertIntoPointFordeliveredOrdered($data3)
+    {
+        $this->security->xss_clean($data3);
+
+        $error=$this->db->insert('points', $data3);
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public  function insertDeliveryTime($data,$orderId)
+    {
+        $this->security->xss_clean($data);
+
+        $this->db->where('id',$orderId);
+        $error=$this->db->update('orders',$data);
+
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else
+        {
+            return null;
+        }
+    }
 
 
 

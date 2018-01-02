@@ -29,24 +29,30 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" data-parallax="scroll" data-image-src="img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
+<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
-            <div id="thumb"><img src="img/thumb_restaurant.jpg" alt=""></div>
-            <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="detail_page_2.php">Read 98 reviews</a></small>)</div>
-            <h1>Mexican TacoMex</h1>
-            <div><em>Mexican / American</em></div>
-            <div><i class="icon_pin"></i> 135 Newtownards Road, Belfast, BT4 1AB - <strong>Delivery charge:</strong> $10, free over $15.</div>
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
+<!--            <h1 style="font-weight:bold; color:#ED1C24;">Tanuki</h1>-->
+            <div><em>Japanese Restaurant</em></div>
+            <div><i class="icon_pin"></i> 44260 Ice Rink Plz
+                Ste 118 Ashburn, VA 20147 </div>
         </div><!-- End sub_content -->
     </div><!-- End subheader -->
 </section><!-- End section -->
 <!-- End SubHeader ============================================ -->
 
-->
-<!-- End Content =============================================== -->
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
+            <li>Page active</li>
+        </ul>
 
-<!-- Footer ================================================== -->
-<?php include ('footer.php') ?>
+    </div>
+</div><!-- Position -->
 
 
 <div class="container margin_60">
@@ -83,10 +89,11 @@
                         </div >
                         <div class="col-md-6" >
                             <div class="form-group" >
-                                <label > Member Card Number </label >
-                                <input type = "text"  name = "memberCardNo" class="form-control" value="<?php echo $p->memberCardNo; ?>" >
+                                <label > Address</label >
+                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
                             </div >
                         </div >
+
 
                     </div >
                     <div class="row" >
@@ -99,7 +106,6 @@
                         <div class="col-md-6" >
                             <div class="form-group" >
                                 <label > City</label >
-<!--                                <input type = "text"  name = "fkCity" class="form-control" value="--><?php //echo $p->fkcity ?><!--" >-->
                                 <select class="form-control input-height" required name="city">
                                     <?php foreach ($city as $city ) { ?>
                                         <option value="<?php echo $city->id ?>"<?php if (!empty($p->fkCity) && $city->id==$p->fkCity) echo 'selected="selected"'?> ><?php echo $city->name ?></option>
@@ -116,33 +122,22 @@
                                 <input type = "text"  name = "contactNo" class="form-control" value="<?php echo $p->contactNo ?>" >
                             </div >
                         </div >
+
+                    </div ><!--End row-->
+
+
+
+                    <div id = "pass-info" class="clearfix" ></div >
+                    <div class="row" >
                         <div class="col-md-6" >
-                            <div class="form-group" >
-                                <label > Address</label >
-                                <input type = "text"  name = "address" class="form-control" value="<?php echo $p->address ?>" >
-                            </div >
+                            <label > <input size="55px" type="checkbox" name="vehicle1" value="Bike"> Accept terms and conditions</label >
                         </div >
                     </div ><!--End row-->
-<!--                    <div class="row" >-->
-                        <!--                        <div class="col-md-6" >-->
-                        <!--                            <div class="form-group" >-->
-                        <!--                                <label > Country</label >-->
-                        <!--                                <input type = "text" class="form-control"   id = "country" name = "country" value="--><?php //echo $p->country ?><!--" >-->
-                        <!--                            </div >-->
-                        <!--                        </div >-->
+                    <hr style = "border-color:#ddd;" >
 
+                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
 
-                        <div id = "pass-info" class="clearfix" ></div >
-                        <div class="row" >
-                            <div class="col-md-6" >
-                                <label ><input name = "mobile" type = "checkbox" value = "" class="icheck" checked > Accept <a href = "#0" > terms and conditions </a >.</label >
-                            </div >
-                        </div ><!--End row-->
-                        <hr style = "border-color:#ddd;" >
-
-                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name();?>" value="<?php echo $this->security->get_csrf_hash();?>">
-
-                        <div class="text-center" ><button class="btn_full_outline" type = "submit" > Update</button ></div >
+                    <div class="text-center" ><button class="btn_full_outline" type = "submit" > Update</button ></div >
                 </form >
             <?php } ?>
 
@@ -150,7 +145,7 @@
         </div>
     </div><!-- End col  -->
 </div><!-- End row  -->
-</div><!-- End container  -->
+    </div><!-- End container  -->
 <?php } ?>
 <!-- End Content =============================================== -->
 
@@ -158,18 +153,22 @@
 <?php include ('footer.php') ?>
 <!-- End Footer =============================================== -->
 <?php include ('login_logout.php')?>
-
 <div class="layer"></div><!-- Mobile menu overlay mask -->
-
-
-
-
-
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo  base_url() ?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo  base_url() ?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo  base_url() ?>public/js/functions.js"></script>
-<script src="<?php echo  base_url() ?>public/assets/validate.js"></script>
-
+<?php include ('js.php')?>
 </body>
 </html>
+
+<script>
+    $(function() {  $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+
+        if (scroll >= 250) {
+            document.getElementById("logo").style.display = "block";
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+
+    });
+    });
+</script>

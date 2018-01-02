@@ -27,9 +27,10 @@ class Orders extends CI_Controller
             $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
             $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
             $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
+            $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
             $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
-          //  print_r($this->data['pointUsed']);
+            //print_r($this->data['orders']);
 
 
             $this->load->view('Admin/allOrders', $this->data);
@@ -43,37 +44,43 @@ class Orders extends CI_Controller
     {
         if ($this->session->userdata('userType') == "Admin") {
 
-
             $orderStatus = $this->input->post('status');
             $delivered = $this->Ordersm->checkDelivery($orderStatus);
-
-
             foreach ($delivered as $status) {
                 if ($status->statusTitle == "delivered") {
-
                     $this->data['orderInfo'] = $this->Ordersm->getDeliveredOrderInfo($orderId);
                     $this->data['orderItemsInfo'] = $this->Ordersm->getDeliveredOrderItemsInfo($orderId);
+                    $this->data['pointUsedForOrder'] = $this->Ordersm->getUsedPointForParticularOrder($orderId);
+                    $totalPoint=0;
                     foreach ($this->data['orderInfo'] as $orderInfo) {
                         $data1 = array(
                             'fkOrderId' => $orderInfo->id,
                             'vatTotal' => $orderInfo->vat,
                             'transDate' => date('Y-m-d'),
                         );
-                    }
-                    $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
-
-                    foreach ($this->data['orderItemsInfo'] as $orderedItems) {
-
-                        $data2 = array(
+                        $totalPoint=($orderInfo->vat+$orderInfo->deliveryfee);
+                        $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
+                        foreach ($this->data['orderItemsInfo'] as $orderedItems) {
+                            $data2 = array(
+                                'fkTransId' => $transectionId,
+                                'fkItemSizeId' => $orderedItems->fkItemSizeId,
+                                'quantity' => $orderedItems->quantity,
+                                'rate' => $orderedItems->rate,
+                                'discount' => $orderedItems->discount,
+                            );
+                            $this->Ordersm->insertdeliveredOrderedItemsToTransection($data2);
+                            foreach ($this->data['pointUsedForOrder'] as $pointUsed){
+                                $pointTomoney = ($pointUsed->expedPoints/10);
+                            }
+                            $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)-$pointTomoney);
+                        }
+                        $data3 = array(
                             'fkTransId' => $transectionId,
-                            'fkItemSizeId' => $orderedItems->fkItemSizeId,
-                            'quantity' => $orderedItems->quantity,
-                            'rate' => $orderedItems->rate,
-                            'discount' => $orderedItems->discount,
+                            'fkUserId' => $orderInfo->fkUserId,
+                            'earnedPoints' => $totalPoint,
                         );
-                        $this->Ordersm->insertdeliveredOrderedItemsToTransection($data2);
+                        $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
                     }
-
                 }
 //                else {
 //                    $data = array(
@@ -85,30 +92,18 @@ class Orders extends CI_Controller
 //                    $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
 //                }
             }
-
             $data = array(
                 'fkOrderStatus' => $orderStatus,
-
-
             );
-
             $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
-
             if (empty($this->data['error'])) {
-
                 $this->session->set_flashdata('successMessage', 'Order Updated Successfully');
-
-
             } else {
                 $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
-
             }
-
-
         } else {
             redirect('Login');
         }
-
     }
 
     public function editOrderItems()
@@ -125,6 +120,22 @@ class Orders extends CI_Controller
 
     }
 
+    public function orderInfo()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $orderId = $this->input->post('id');
+            
+            $this->data['orderInformation'] = $this->Ordersm->getOrderInformation($orderId);
+
+            $this->load->view('Admin/orderInformation', $this->data);
+            
+        } else {
+            redirect('Login');
+        }
+
+    }
+
     public function getTotalOrderSeen()
     {
         if ($this->session->userdata('userType') == "Admin") {
@@ -135,6 +146,34 @@ class Orders extends CI_Controller
             }
 
             echo $newUnseen;
+        } else {
+            redirect('Login');
+        }
+
+    }
+
+    public function addDeliveryTime()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $time = $this->input->post('time');
+            $orderId = $this->input->post('orderId');
+            $data=array(
+                'deliveryTime'=>$time
+            );
+            $this->data['error'] = $this->Ordersm->insertDeliveryTime($data,$orderId);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'Delivery Time Inserted SuccessFully & mail Successfully');
+                $this->mailInvoice($orderId);
+
+            } else {
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+
+            }
+
+
         } else {
             redirect('Login');
         }
@@ -265,10 +304,6 @@ class Orders extends CI_Controller
 
             $itemId = $this->input->post('id');
             $this->data['itemSizeInfo'] = $this->Itemsm->getAllItemSizesNameIdByItem($itemId);
-//            $this->data['promotionType'] = $this->Promotionsm->getPromotionType();
-////            if (empty($this->data['promotionType'])){
-////
-////            }
 
             if (empty($this->data['itemSizeInfo'])) {
 
@@ -328,12 +363,13 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $itemId = $this->input->post('id');
-            $this->data['promotype'] = $this->Ordersm->getPromoType();
+            $promocode= $this->input->post('promocode');
+            $this->data['promotype'] = $this->Ordersm->getPromoType($promocode);
 
             foreach ($this->data['promotype'] as $pt) {
             }
             $promotype = $pt->promoType;
-            $this->data['promotype'] = $this->Ordersm->getPromoType();
+            $this->data['promotype'] = $this->Ordersm->getPromoType($promocode);
             if ($promotype == 'a') {
                 echo $pt->discountAmount;
 
@@ -432,6 +468,8 @@ class Orders extends CI_Controller
 
             $status_id = $this->input->post('id');
             $data['orderstatusinfo'] = $this->Ordersm->getOrderStatusId($status_id);
+            $data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+            //print_r($this->data['ordersStatus']);
             $this->load->view('Admin/updateOrderstatus', $data);
 
         } else {
@@ -480,6 +518,9 @@ class Orders extends CI_Controller
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
         $this->data['StatusDelivered'] = $this->Ordersm->getOrdersStatusDeliveredId();
 
+        $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
+
         $this->load->view('Admin/OrderSearchFilterByOrderId', $this->data);
     }
 
@@ -494,6 +535,68 @@ class Orders extends CI_Controller
         } else {
             redirect('Login');
         }
+    }
+
+    public function cancelOrder($orderId)
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $cancelTitle=$this->Ordersm->cancelOrderId();
+
+            $data = array(
+                'fkOrderStatus' => $cancelTitle->id,
+
+            );
+
+            $this->data['error'] = $this->Ordersm->changeOrderStatus($orderId, $data);
+
+            if (empty($this->data['error'])) {
+
+                $this->session->set_flashdata('successMessage', 'order  Cancel Successfully');
+                redirect('Admin-Orders');
+
+            } else {
+
+                $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-Orders');
+
+            }
+
+
+        } else {
+            redirect('Login');
+        }
+    }
+
+    public function mailInvoice($orderId){
+
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
+
+        $this->load->model('Admin/Chargem');
+
+        $this->data['orders'] = $this->Ordersm->viewOrderInfoByOrderIdForPrint($orderId);
+        $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItemsForPrint($orderId);
+        $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
+        $this->data['charge'] = $this->Chargem->getAllCharge();
+        $this->data['pointUsed'] = $this->Ordersm->getUsedPointForOrder($orderId);
+        foreach ($this->data['orders'] as $ordermail){
+            $email=$ordermail->email;
+        }
+
+        $this->email->set_mailtype("html");
+        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($email);
+        $this->email->subject('Subject');
+
+
+
+
+        $message = $this->load->view('Admin/invoiceMail', $this->data);
+
+        $this->email->message($message);
+        $this->email->send();
+
     }
 
 

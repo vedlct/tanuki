@@ -34,24 +34,74 @@
                             </div>
                             <div class="card-body ">
                                 <div class="row">
-                                    <form method="post" action="<?php echo base_url()?>Admin/Report/searchByEmployeeId">
+                                    <div id="date" style="display: none">
+                                        <!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin/Report/searchByDate" onsubmit="return checkDate()">-->
+
                                         <div class="col-md-3 col-sm-3" >
                                             <div class="form-group" >
 
-                                                <label for="date">Search For Details</label>
-                                                <input type="text" class="form-control" name="employeeid" placeholder="Membership ID">
+                                                <label for="date">Start Date</label>
+                                                <input type="text" class="form-control docs-date" name="startdate" id="startdate" placeholder="Pick a date">
                                             </div >
+                                        </div>
+                                        <div class="col-md-3 col-sm-3" >
+                                            <div class="form-group" >
+
+                                                <label for="date">End Date</label>
+                                                <input type="text" class="form-control docs-date" name="enddate" id="enddate" placeholder="Pick a date">
+                                            </div>
+
+
+
+                                        </div>
+                                        <div class="btn-group col-md-3 col-sm-3">
+
+                                            <button style="margin-top: 30px"  id="addRow" onclick="checkDate()" onclick="" class="btn btn-info">
+                                                submit
+                                            </button>
                                         </div>
 
 
-                                <div class="btn-group col-md-3 col-sm-3">
+                                        <!--                                    </form>-->
+                                    </div>
+<!--                                    <form method="post" action="--><?php //echo base_url()?><!--Admin/Report/searchByEmployeeId">-->
+                                    <div id="searchEmplyee" style="display: none" >
+<!--                                    <form action="--><?php //echo base_url()?><!--Admin/Report/searchByEmployeeId" method="post">-->
 
-                                    <button style="margin-top: 30px"  id="addRow" onclick="" class="btn btn-info">
-                                        submit
-                                    </button>
-                                </div>
-                                    </form>
-                                </div>
+                                            <div class="col-md-3 col-sm-3" >
+                                                <div class="form-group" >
+
+                                                    <label for="date">Membership ID</label>
+                                                    <input type="text" class="form-control " id="employeeid" name="employeeid" placeholder="Membership ID">
+                                                </div >
+
+                                            </div>
+
+                                        <div class="btn-group col-md-3 col-sm-3">
+
+                                            <button style="margin-top: 30px"   onclick="searchByEmp()" class="btn btn-info">
+                                                submit
+                                            </button>
+                                        </div>
+
+
+<!--                                    </form>-->
+                                    </div>
+                                    <div class="btn-group col-md-3 col-sm-3" id="searchbydate">
+
+                                        <button style="margin-top: 30px"   onclick="searchbydate()" class="btn btn-info">
+                                            Search By Date
+                                        </button>
+                                    </div>
+
+                                    <div class="btn-group col-md-3 col-sm-3" id="employid">
+
+                                        <button style="margin-top: 30px"  id="employeeid" onclick="searchbydorder()" class="btn btn-info">
+                                            Search By embership ID
+                                        </button>
+                                    </div>
+
+
 
 
 
@@ -61,7 +111,7 @@
                                     <tr >
                                         <th width="" class="center"> SL </th>
                                         <th width="" class="center"> Employee Name </th>
-                                        <th width="" class="center"> Employee ID</th>
+                                        <th width="" class="center"> Employee Membership</th>
                                         <th width="" class="center"> Total Order </th>
                                         <th width="" class="center"> Total Item </th>
                                         <th width="" class="center"> Total Amount</th>
@@ -75,7 +125,7 @@
                                         <tr>
                                             <td class="center"><?php echo $count ?></td>
                                             <td class="center"><?php echo $ar->employee ?></td>
-                                            <td class="center"><?php echo $ar->uid ?></td>
+                                            <td class="center"><?php echo $ar->memberCardNo ?></td>
                                             <td class="center"><?php foreach ($allorder as $ao){
                                                     if ($ar->uid == $ao->uid){
                                                         echo $ao->totalorder ;
@@ -132,6 +182,76 @@
 
 
 <script>
+    function searchbydate(){
+        document.getElementById('searchbydate').style.display='none';
+        document.getElementById('searchEmplyee').style.display='none';
+        document.getElementById('date').style.display='block';
+        document.getElementById('employid').style.display='block';
+    }
+    function checkDate() {
+
+        var startdate = document.getElementById('startdate').value;
+        var enddate = document.getElementById('enddate').value;
+
+
+        if (startdate > enddate){
+
+            alert('End Date must be greater than start date');
+            return false;
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByEmployDate" )?>',
+                data:{'startdate':startdate,'enddate':enddate},
+                cache: false,
+                success:function(data)
+                {
+                    $('#example4').html(data);
+                }
+            });
+        }
+
+    }
+
+    function searchByEmp() {
+
+        var employeeId = document.getElementById('employeeid').value;
+
+
+
+        if (employeeId == null){
+
+            alert('Please enter Employee Member Id');
+            return false;
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Admin/Report/searchByEmployeeId" )?>',
+                data:{'employeeid':employeeId},
+                cache: false,
+                success:function(data)
+                {
+                    $('#example4').html(data);
+                }
+            });
+        }
+
+    }
+
+
+    function searchbydorder(){
+        document.getElementById('searchbydate').style.display='block';
+        document.getElementById('searchEmplyee').style.display='block';
+        document.getElementById('date').style.display='none';
+        document.getElementById('employid').style.display='none';
+
+    }
+
+
     var modal = document.getElementById('myModal');
     var span = document.getElementsByClassName("close")[0];
     function selectid1(x)

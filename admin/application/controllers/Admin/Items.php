@@ -21,6 +21,7 @@ class Items extends CI_Controller
     public function insertItem()
     {
         if ($this->session->userdata('userType') == "Admin") {
+
             $catId=$this->input->post('categoryName');
             $itemname=$this->input->post('itemname');
             $itemDescription=$this->input->post('itemDescription');
@@ -31,62 +32,82 @@ class Items extends CI_Controller
             $textbox = $this->input->post('textbox[]');
             $textprice = $this->input->post('textprice[]');
             $itemsizeStatus = $this->input->post('itemsizeStatus[]');
-            $this->load->library('upload');
-            $config = array(
-                'upload_path' => "images/itemImages/",
-                'allowed_types' => "jpg|png|jpeg|gif",
-                'max_size' => "4096",
-                'overwrite' => TRUE,
-                'remove_spaces' => FALSE,
-                'mod_mime_fix' => FALSE,
-            );
-            $this->upload->initialize($config);
-            if ($this->upload->do_upload('itemPhoto')) {
-                // if something need after image upload
+
+            if ($itemImage !=null){
+
+                $this->load->library('upload');
+                $config = array(
+                    'upload_path' => "images/itemImages/",
+                    'allowed_types' => "jpg|png|jpeg|gif",
+                    'max_size' => "4096",
+                    'overwrite' => TRUE,
+                    'remove_spaces' => FALSE,
+                    'mod_mime_fix' => FALSE,
+                );
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('itemPhoto')) {
+                    // if something need after image upload
+                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'80','80');
+                    $itemdata = array(
+                        'fkCatagory' => $catId,
+                        'itemName' => $itemname,
+                        'image' => $itemImage,
+                        'description' => $itemDescription,
+                        'fkInsertBy' => $userid,
+                        'insertDate' => date('Y-m-d H:i:s'),
+                        'itemStatus' => $status,
+                    );
+
+
+            }else{
+                    $error = array('error' => $this->upload->display_errors());
+                    $che = json_encode($error);
+                    echo "<script>
+                    alert($che.error);
+                    window.location.href= '" . base_url() . "Admin/Items/addItems';
+                    </script>";
+                    return false;
+
+                }
+            }else{
                 $itemdata = array(
                     'fkCatagory' => $catId,
                     'itemName' => $itemname,
-                    'image' => $itemImage,
+
                     'description' => $itemDescription,
                     'fkInsertBy' => $userid,
                     'insertDate' => date('Y-m-d H:i:s'),
                     'itemStatus' => $status,
                 );
-                $itemId= $this->Itemsm->insertItemdata($itemdata);
-                if(array_filter($textbox)==null && array_filter($textprice) ==null) {
+
+            }
+            $itemId= $this->Itemsm->insertItemdata($itemdata);
+
+            if(array_filter($textbox)==null && array_filter($textprice) ==null) {
+                $itemSizedata = array(
+                    'fkItemId'=>$itemId,
+                    'price' => $price,
+                    'itemsizeStatus'=>$status,
+                );
+                $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
+            }
+            else {
+                for ($i = 0; $i < count($textbox); $i++) {
                     $itemSizedata = array(
                         'fkItemId'=>$itemId,
-                        'price' => $price,
-                        'itemsizeStatus'=>$status,
+                        'price' => $textprice[$i],
+                        'itemSize'=>$textbox[$i],
+                        'itemsizeStatus'=>$itemsizeStatus[$i]
                     );
                     $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
                 }
-                else {
-                    for ($i = 0; $i < count($textbox); $i++) {
-                        $itemSizedata = array(
-                            'fkItemId'=>$itemId,
-                            'price' => $textprice[$i],
-                            'itemSize'=>$textbox[$i],
-                            'itemsizeStatus'=>$itemsizeStatus[$i]
-                        );
-                        $this->data['error'] = $this->Itemsm->insertItemSizedata($itemSizedata);
-                    }
-                }
-                if (empty($this->data['error'])) {
-                    $this->session->set_flashdata('successMessage','Item Added Successfully');
-                    redirect('Admin-addItems');
-                } else {
-                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
-                    redirect('Admin-addItems');
-                }
+            }
+            if (empty($this->data['error'])) {
+                $this->session->set_flashdata('successMessage','Item Added Successfully');
+                redirect('Admin-addItems');
             } else {
-                $error = array('error' => $this->upload->display_errors());
-                $che = json_encode($error);
-                echo "<script>
-                    alert($che.error);
-                    window.location.href= '" . base_url() . "Admin/Items/addItems';
-                    </script>";
-                return false;
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Admin-addItems');
             }
         }
         else
@@ -190,6 +211,7 @@ class Items extends CI_Controller
                 );
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('itemPhoto')) {
+                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'80','80');
                     $itemdata = array(
                         'fkCatagory' => $catId,
                         'itemName' => $itemName,

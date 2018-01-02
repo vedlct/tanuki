@@ -464,7 +464,7 @@ body {
     float: left;
     display: block;
     width: 235px;
-    height: 60px;
+    height: 70px;
     padding-left: 20px;
     padding-right: 20px;
     background: #383e52;
@@ -795,8 +795,8 @@ body {
     float: left
 }
 .page-header.navbar .page-logo .logo-default {
-    margin: 7px 0 0;
-    height: 34px;
+    height: 65px;
+    margin: 4px 50px 0px;
 }
 .page-header.navbar .page-logo .logo-mini {
     display: none;
@@ -2514,7 +2514,8 @@ form.search-form-opened .btn.submit {
     background-color: #eaeef3;
 }
 .page-full-width .page-content {
-    margin-left: 0 !important
+    margin-left: 0 !important;
+
 }
 /**************************************************************
 

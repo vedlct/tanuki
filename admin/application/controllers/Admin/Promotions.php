@@ -76,14 +76,14 @@ class Promotions extends CI_Controller
                     );
                         $promotionId = $this->Promotionsm->insertPromotion($promotiondata);
                         for ($i = 0; $i < count($itemlist); $i++) {
-                         $promotionItemdata = array(
+                           $promotionItemdata = array(
                            'fkPromotionId' => $promotionId,
                           'fkItemId' => $itemlist[$i],
                            'discountAmount' => $itemDiscount[$i],
                     );
 
 
-                     $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
+                           $this->Promotionsm->insertPromotionItemdata($promotionItemdata);
 
                 }
             }

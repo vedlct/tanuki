@@ -49,8 +49,9 @@
                                     <thead>
                                     <tr >
                                         <th width="10%"class="center"> Sr.NO </th>
-                                        <th width="50%"class="center"> Name </th>
-                                        <th width="30%"class="center"> Category Add date(d-m-y)</th>
+                                        <th width="20%"class="center"> Name </th>
+                                        <th width="40%"class="center"> Description</th>
+                                        <th width="20%"class="center"> Category Add date(d-m-y)</th>
                                         <th width="10%"class="center"> Action </th>
                                     </tr>
                                     </thead>
@@ -61,6 +62,7 @@
 
                                             <td><?php echo $i; ?></td>
                                             <td class="center"><?php echo $category->name; ?></td>
+                                            <td class="center"><?php echo $category->description; ?></td>
                                             <td class="center">
                                                 <?php echo preg_replace("/ /"," Time: ",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
                                             </td>

@@ -120,7 +120,7 @@ class Itemsm extends CI_Model
         $this->db->where('fkItemId',$itemId);
         $this->db->where('itemSize',"default");
         $query=$this->db->get('itemsizes');
-        if (!empty($query->result())){
+        if ($query->result()!=null){
 
             foreach ($query->result() as $itemSizes){
                 $id=$itemSizes->id;

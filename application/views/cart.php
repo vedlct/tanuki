@@ -89,8 +89,8 @@
             <div class="box_style_2 hidden-xs" id="help">
                 <i class="icon_lifesaver"></i>
                 <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+45 423 445 99</a>
-                <small>Monday to Friday 9.00am - 7.30pm</small>
+                <a href="tel://004542344599" class="phone">+703-723-8952</a>
+                <!--					<small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
 
         </div><!-- End col-md-3 -->
@@ -184,7 +184,7 @@
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <div class="payment_select">
-                    <label><input type="radio" value="" onclick="paymentcreditcard()" checked name="payment_method" class="">Credit card</label>
+                    <label><input type="radio" value="" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
                     <i class="icon_creditcard"></i>
                 </div>
                 <!--End row -->
@@ -239,28 +239,35 @@
                         <tr>
                             <td>
                                 Discount <span class="pull-right">
-
-                                        <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
-                                            $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
-                                        } echo $totaldis;?>
+<!--                                --><?php //if ( $this->session->userdata('discount') == null)
+                                    //							{ echo 0.00;} else{
+                                    //									echo $this->session->userdata('discount');
+                                    //								} ?><!-- </span>-->
+                                    <?php $totaldis = 0 ;foreach ($this->cart->contents() as $c){
+                                        $totaldis= ((float)$c['coupon'])+ ((float)$totaldis);
+                                    } echo $totaldis;?>
                             </span>
                             </td>
                         </tr>
                         <tr>
                             <td>
                                 Delivery fee <span class="pull-right">
-								<?php $dfee = 0; $vat = 0; foreach ($charges as $char){
-                                    $dfee = $char->deliveryfee;
-                                    $vat = $char->vat;
-                                }?>
+								<?php $dfee = 0; $vat = 0;
+                                if ($this->session->userdata('orderType') == "home"){
+                                    foreach ($charges as $char){
+                                        $dfee = $char->deliveryfee;
+                                    } } else?>
                                 <?php echo $dfee ; ?></span>
                             </td>
                         </tr>
 
                         <tr>
                             <td>
+                                <?php foreach ($charges as $char){
+                                    $vat = $char->vat;
+                                }?>
                                 <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
-                                Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =($subtotal*$vat)/100?></span>
+                                Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
                             </td>
                         </tr>
                         <tr>
@@ -276,13 +283,21 @@
                     foreach ($exensepoint  as $exp){ $expense = $exp->expenspoint;}
                     ?>
                     <div>
-                        <h4 style="color: red; width: 50%">Your Total Points : <?php echo $totalpoint = $earn - $expense ?></h4>
+                        <h4 style="color: red; width: 50%">Your Total Points : <?php  $totalpoint = $earn - $expense ;
+                            if ($totalpoint <0 ){ echo 0;}else { echo $totalpoint;}
+                            ?></h4>
                         <?php if ($totalpoint >100) { ?>
                             <button style="float: right; margin-top: -40px" class="btn btn-sm btn-success" onclick="usepoints()">Use Points</button>
                         <?php } ?>
                     </div>
                     <hr>
-                    <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                    <span id="checkOut">
+                         <?php if ($this->session->userdata('paymentMethod') != null){ ?>
+                             <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                         <?php }else { ?>
+                             <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
+                         <?php } ?>
+                        </span>
                     <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
@@ -314,39 +329,34 @@
 <!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/jquery-2.2.4.min.js"></script>
-<script src="<?php echo base_url()?>public/js/common_scripts_min.js"></script>
-<script src="<?php echo base_url()?>public/js/functions.js"></script>
-<script src="<?php echo base_url()?>public/assets/validate.js"></script>
+<?php include ('js.php')?>
 <!-- SPECIFIC SCRIPTS -->
-<script src="<?php echo base_url()?>public/js/theia-sticky-sidebar.js"></script>
-<script>
-    jQuery('#sidebar').theiaStickySidebar({
-        additionalMarginTop: 80
-    });
-</script>
+<!--<script src="--><?php //echo base_url()?><!--public/js/theia-sticky-sidebar.js"></script>-->
+<!--<script>-->
+<!--    jQuery('#sidebar').theiaStickySidebar({-->
+<!--      additionalMarginTop: 80-->
+<!--    });-->
+<!--</script>-->
 <script>
     function paymentcreditcard() {
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcreditcard/")?>',
+            url:'<?php echo base_url("Items/paymentcreditcard")?>',
             cache: false,
             success:function(data)
             {
-                //  $('#cart_table').load(document.URL +  ' #cart_table');
-                // $('#total_table').load(document.URL +  ' #total_table');
+                $('#checkOut').load(document.URL +  ' #checkOut');
             }
         });
     }
     function paymentcash() {
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("Items/paymentcash/")?>',
+            url:'<?php echo base_url("Items/paymentcash")?>',
             cache: false,
             success:function(data)
             {
-                //   $('#cart_table').load(document.URL +  ' #cart_table');
-                //  $('#total_table').load(document.URL +  ' #total_table');
+                $('#checkOut').load(document.URL +  ' #checkOut');
             }
         });
     }
@@ -401,5 +411,8 @@
                 // alert(data);
             }
         });
+    }
+    function paymentalert() {
+        alert("please select the payment method")
     }
 </script>

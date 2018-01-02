@@ -32,6 +32,13 @@ class Userm extends CI_Model
         $query = $this->db->get('users');
         return $query->result();
     }
+    public function checkEmailFromUpdate($userId,$email)
+    {
+        $this->db->where('email',$email);
+        $this->db->where('id !=',$userId);
+        $query = $this->db->get('users');
+        return $query->result();
+    }
 
 
     public function user($data)

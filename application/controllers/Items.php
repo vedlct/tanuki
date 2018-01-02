@@ -5,6 +5,7 @@ class Items extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Itemsm');
+//        $this->load->moedel('feedbackm');
     }
     public function index()
     {
@@ -16,6 +17,7 @@ class Items extends CI_Controller {
         $this->data['allcategory']= $this->Itemsm->getAllCategory();
         $this->data['alldefault']= $this->Itemsm->getDefualtItemSize();
         $this->data['charges'] = $this->Itemsm->getcharges();
+        $this->data['avgrating']= $this->Itemsm->ratingavgitemshow();
         $this->load->view('detail_page', $this->data);
     }
     public function insertCart(){
@@ -92,6 +94,7 @@ class Items extends CI_Controller {
         $userid = $this->session->userdata('id');
         if ($userid == "") {
             $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
             $this->load->view('cartforguest', $this->data);
         } else {
             $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
@@ -183,29 +186,151 @@ class Items extends CI_Controller {
         );
         $this->session->set_userdata($data);
     }
-    public function checkout(){
-        $ordertype= $this->session->userdata('orderType');
-        $orderdate= date("Y-m-d H:i");
-        $re = $this->Itemsm->getorderstatus();
-        $orderstatus= $re->id;
-        $deliveryfee=$this->session->userdata('deliverfee');
-        $vat= $this->session->userdata('vat');;
-        $paymenttype=$this->session->userdata('paymentMethod');
-        $user=$this->session->userdata('id');
-        $ordertaker = $this->session->userdata('id');
+    public function membershipid(){
+        $memberid = $this->input->post('memberid');
+        $this->data['memberid'] = $this->Itemsm->getuserdatabymemberid($memberid);
+        foreach ($this->data['memberid'] as $member){
+            $m = $member->id;
+        }
         $data = array(
-            'orderType' => $ordertype ,
-            'orderDate' => $orderdate,
-            'fkOrderStatus' => $orderstatus,
-            'deliveryfee' => $deliveryfee,
-            'vat' => $vat,
-            'paymentType' => $paymenttype,
-            'fkUserId' => $user,
-            'fkOrderTaker' => $ordertaker,
+            'memberuserid' => $m,
         );
-        $this->Itemsm->checkoutInsert($data);
-
-
+        $this->session->set_userdata($data);
+    }
+//        $ordertype= $this->session->userdata('orderType');
+//        $orderdate= date("Y-m-d H:i");
+//        $re = $this->Itemsm->getorderstatus();
+//        $orderstatus= $re->id;
+//        $deliveryfee=$this->session->userdata('deliverfee');
+//        $vat= $this->session->userdata('vat');
+//        $paymenttype=$this->session->userdata('paymentMethod');
+//        $user=$this->session->userdata('id');
+//        $ordertaker = $this->session->userdata('id');
+    public function checkoutguest(){
+        $this->load->library('form_validation');
+        if (!$this->form_validation->run('userRes')) {
+            $this->load->view('cartforguest');
+        }
+        else {
+            $this->load->model('loginm');
+            $this->load->library('user_agent');
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
+            if ($password == $conPassword) {
+                $data = array(
+                    'name' => $name,
+                    'address' => $address,
+                    'postalCode' => $postal,
+                    'fkCity' => $city,
+                    'contactNo' => $phone,
+                    'email' => $email,
+                    'password' => $conPassword,
+                    'userActivationStatus' => '1',
+                    'fkUserType' => 'cus',
+                );
+                $this->data['error'] = $this->loginm->guestRegister($data);
+                if (empty($this->data['error'])) {
+                    $data1 = array(
+                        'sourceIp' => $this->input->ip_address(),
+                        'fkUserId' => $this->session->userdata('id'),
+                        'browser' => $this->agent->browser()
+                    );
+                    $loginId = $this->loginm->loginInfo($data1);
+                    $data = array(
+                        'name' => $name,
+                        'email' => $email,
+                        'id' => $this->session->userdata('id'),
+                        'userType' => "cus",
+                        'loggedin' => "true",
+                        'loginId' => $loginId,
+                    );
+                    $this->session->set_userdata($data);
+                    $ordertype = $this->session->userdata('orderType');
+                    $orderdate = date("Y-m-d H:i");
+                    $re = $this->Itemsm->getorderstatus();
+                    $orderstatus = $re->id;
+                    $deliveryfee = $this->session->userdata('deliverfee');
+                    $vat = $this->session->userdata('vat');
+                    $paymenttype = $this->session->userdata('paymentMethod');
+                    $user = $this->session->userdata('id');
+                    $ordertaker = null;
+                    $data = array(
+                        'orderType' => $ordertype,
+                        'orderDate' => $orderdate,
+                        'fkOrderStatus' => $orderstatus,
+                        'deliveryfee' => $deliveryfee,
+                        'vat' => $vat,
+                        'paymentType' => $paymenttype,
+                        'fkUserId' => $user,
+                        'fkOrderTaker' => $ordertaker,
+                    );
+                    $orderId=$this->Itemsm->checkoutInsertForGuest($data);
+                    $this->mailInvoice($orderId);
+                    $this->cart->destroy();
+                    $this->session->set_flashdata('successMessage','CheckOut Successfully');
+                    redirect('Items');
+                } else {
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Items');
+                }
+            }
+        }
+    }
+    public function checkout(){
+//        $ordertype= $this->session->userdata('orderType');
+//        $orderdate= date("Y-m-d H:i");
+//        $re = $this->Itemsm->getorderstatus();
+//        $orderstatus= $re->id;
+//        $deliveryfee=$this->session->userdata('deliverfee');
+//        $vat= $this->session->userdata('vat');
+//        $paymenttype=$this->session->userdata('paymentMethod');
+//        $user=$this->session->userdata('id');
+//        $ordertaker = $this->session->userdata('id');
+        $ordertype = $this->session->userdata('orderType');
+        $orderdate = date("Y-m-d H:i");
+        $re = $this->Itemsm->getorderstatus();
+        $orderstatus = $re->id;
+        $deliveryfee = $this->session->userdata('deliverfee');
+        $vat = $this->session->userdata('vat');
+        $paymenttype = $this->session->userdata('paymentMethod');
+        $user = $this->session->userdata('id');
+        $ordertaker = $this->session->userdata('id');
+        $memberid = $this->session->userdata('memberuserid');
+        if ($this->session->userdata('orderType') == "have") {
+            $data = array(
+                'orderType' => $ordertype,
+                'orderDate' => $orderdate,
+                'fkOrderStatus' => $orderstatus,
+                'deliveryfee' => $deliveryfee,
+                'vat' => $vat,
+                'paymentType' => $paymenttype,
+                'fkUserId' => $memberid,
+                'fkOrderTaker' => $ordertaker,
+            );
+            $this->Itemsm->checkoutInsert($data);
+        }
+        else {
+            $data = array(
+                'orderType' => $ordertype,
+                'orderDate' => $orderdate,
+                'fkOrderStatus' => $orderstatus,
+                'deliveryfee' => $deliveryfee,
+                'vat' => $vat,
+                'paymentType' => $paymenttype,
+                'fkUserId' => $user,
+                'fkOrderTaker' => null,
+            );
+            $orderId=$this->Itemsm->checkoutInsert($data);
+            $this->mailInvoice($orderId);
+        }
+        $this->cart->destroy();
+        $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }
     public function usepoints(){
@@ -233,21 +358,21 @@ class Items extends CI_Controller {
         }
         echo $newtotal;
     }
-
-    public function Email(){
-
+    public function mailInvoice($orderId){
         $this->load->helper(array('email'));
         $this->load->library(array('email'));
+        $this->load->model('Userorderm');
         $this->email->set_mailtype("html");
-        $this->email->from('test@gmail.com', 'test@gmail.com');
-        $this->email->to('md.sakibrahman@gmail.com');
+        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($this->session->userdata('email'));
         $this->email->subject('Subject');
-
-        $mail_data['subject'] = 'Email Subject';
-        $mail_data['description'] = "Email body contents..Here you can use HTML tables to format your data..And use \n to print date in a new line";
-
-         $message = $this->load->view('email_page', $mail_data, true);
-         $this->email->message($message);
+        $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
+        $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItemsForPrint($orderId);
+        $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
+        $this->data['charge'] = $this->Userorderm->getAllCharge();
+        $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
+        $message = $this->load->view('invoicePdf', $this->data);
+        $this->email->message($message);
         $this->email->send();
     }
 }

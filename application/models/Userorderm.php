@@ -49,4 +49,53 @@ class Userorderm extends CI_Model
 //        return $query->result();
 //    }
 
+    public  function viewOrderInfoByOrderIdForPrint($orderId)
+    {
+
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,u.email,u.address,u.postalCode,u.fkCity,city.name as cityName,u.contactNo as phone');
+        $this->db->from('orders o');
+        $this->db->where('o.id',$orderId);
+        $this->db->join('users u','u.id = o.fkUserId','left');
+        $this->db->join('city','city.id = u.fkCity','left');
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function getAllOrdersItemsForPrint($orderId)
+    {
+        $this->db->select('os.id,os.fkOrderId,os.fkItemSizeId,os.quantity,os.rate,os.discount,is.itemSize,i.itemName,is.fkItemId,i.description');
+        $this->db->from('orderitems os');
+        $this->db->where('os.fkOrderId',$orderId);
+        $this->db->join('itemsizes is','is.id = os.fkItemSizeId','left');
+        $this->db->join('items i','i.id = is.fkItemId','left');
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function  getAllCharge()
+    {
+
+        $this->db->select('id,deliveryfee,vat');
+        $this->db->from('charges');
+        $query=$this->db->get();
+        return $query->result();
+
+    }
+    public  function getUsedPointForOrder($orderId)
+    {
+        $this->db->select('expedPoints');
+        $this->db->from('pointdeduct');
+        $this->db->where('fkOrderId',$orderId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function getUsedPoint()
+    {
+        $this->db->select('expedPoints, fkOrderId');
+        $this->db->from('pointdeduct');
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+
+
 }

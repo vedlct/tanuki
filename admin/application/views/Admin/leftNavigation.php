@@ -3,7 +3,7 @@
 echo "<script type=\"text/javascript\">
         alert(\"Login First\");
         
-        window.location=\"/tanuki/Admin/Login\";
+        window.location.href='". base_url() ."';
         </script>";
 }
 else
@@ -83,6 +83,12 @@ else
                         <span class="title">User Feedback</span>
                     </a>
                 </li>
+                <li class="nav-item">
+
+                    <a href="<?php echo base_url()?>Admin/Feedback/allRestaurantsReview" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                        <span class="title">Restaurant Review</span>
+                    </a>
+                </li>
 
                 <li class="nav-item">
                     <a href="<?php echo base_url()?>Admin/Charge/allCharges" class="nav-link nav-toggle"><i class="fa fa-gift"></i>
@@ -147,7 +153,7 @@ else
     var old_notification = "<?php echo $ordernotification?>";
 
     var old_unseen = parseInt(old_notification);
-    var new_unseen =0;
+    var new_unseen ="0";
     setInterval(function(){
         $.ajax({
             type : 'POST',
