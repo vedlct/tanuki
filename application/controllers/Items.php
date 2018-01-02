@@ -204,6 +204,8 @@ class Items extends CI_Controller {
             'fkOrderTaker' => $ordertaker,
         );
         $this->Itemsm->checkoutInsert($data);
+
+
         redirect('Items');
     }
     public function usepoints(){
@@ -230,5 +232,22 @@ class Items extends CI_Controller {
             $this->session->set_userdata($data);
         }
         echo $newtotal;
+    }
+
+    public function Email(){
+
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
+        $this->email->set_mailtype("html");
+        $this->email->from('test@gmail.com', 'test@gmail.com');
+        $this->email->to('md.sakibrahman@gmail.com');
+        $this->email->subject('Subject');
+
+        $mail_data['subject'] = 'Email Subject';
+        $mail_data['description'] = "Email body contents..Here you can use HTML tables to format your data..And use \n to print date in a new line";
+
+         $message = $this->load->view('email_page', $mail_data, true);
+         $this->email->message($message);
+        $this->email->send();
     }
 }
