@@ -266,32 +266,34 @@
                 <div class="theiaStickySidebar scrolldiv cf">
 				<div id="cart_box" >
 					<h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
-					<table id="cart_table" class="table table_summary">
-					<tbody>
-				<?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
+                    <div class="makescroll">
+                        <table style="height: 50px; overflow: scroll ;" id="cart_table" class="table table_summary">
+                            <tbody class="giveheight">
+                                <?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
 
-				    ?>
-					<tr>
-						<td>
-							<input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
-                            <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
-							<input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
-                        </td>
-                        <td><?php echo htmlspecialchars($c['name'])?>
+                                ?>
+                                <tr>
+                                    <td>
+                                        <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
+                                        <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
+                                        <input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+                                    </td>
+                                    <td><?php echo htmlspecialchars($c['name'])?>
 
-                        </td>
-                        <td> <?php  if ($c['options']['Size'] == "defualt"){}else
-							{echo $c['options']['Size'];}?></td>
-						<td>
-							<strong class="pull-right"><?php echo $c['subtotal'];?></strong>
-						</td>
-					</tr>
-					<?php
+                                    </td>
+                                    <td> <?php  if ($c['options']['Size'] == "defualt"){}else
+                                {echo $c['options']['Size'];}?></td>
+                                    <td>
+                                        <strong class="pull-right"><?php echo $c['subtotal'];?></strong>
+                                    </td>
+                                </tr>
+                                <?php
 
-				$subtotal = $subtotal + $c['subtotal'];
-				} ?>
-					</tbody>
-					</table>
+    $subtotal = $subtotal + $c['subtotal'];
+} ?>
+                            </tbody>
+                        </table>
+                    </div>
 
                     <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
                         <hr>
