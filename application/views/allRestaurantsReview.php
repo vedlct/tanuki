@@ -14,9 +14,9 @@
             </form>
 
 
-            <div class="">
+            <div class="" style="margin-top: 20px">
 
-                <p>Users  Review:</p>
+                <p style="text-align: center;color: red"><b>Users  Review:</b></p>
 
                 <?php foreach($userFeedback as $f) { ?>
 
