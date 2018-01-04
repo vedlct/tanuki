@@ -19,7 +19,10 @@
             <td><?php echo $i; ?></td>
 
                 <?php if ($items->image !=null){?>
-                 <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>"></td>
+                 <td class="center">
+                     <img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/<?php echo $items->image; ?>">
+
+                 </td>
                 <?php }else{?>
                 <td class="center"><img height="80px" width="80px" src="<?php echo base_url()?>images/itemImages/noImage.jpg"></td>
                 <?php } ?>

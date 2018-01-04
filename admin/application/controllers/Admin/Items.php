@@ -47,6 +47,7 @@ class Items extends CI_Controller
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('itemPhoto')) {
                     // if something need after image upload
+                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'80','80');
                     $itemdata = array(
                         'fkCatagory' => $catId,
                         'itemName' => $itemname,
@@ -210,6 +211,7 @@ class Items extends CI_Controller
                 );
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('itemPhoto')) {
+                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'80','80');
                     $itemdata = array(
                         'fkCatagory' => $catId,
                         'itemName' => $itemName,
