@@ -47,13 +47,15 @@ class Category extends CI_Controller {
 
             $categoryName = $this->input->post('catagoryname');
             $description = $this->input->post('description');
+            $catStatus = $this->input->post('catStatus');
 
             $userId=$this->session->userdata('id');
 
             $data = array(
                 'name' => $categoryName,
                 'fkInsertBy' =>$userId,
-                'description'=>$description
+                'description'=>$description,
+                'categoryStatus'=>$catStatus
             );
             $this->data['error'] = $this->Categorym->insertCategory($data);
 
@@ -95,7 +97,8 @@ class Category extends CI_Controller {
 
             $data = array(
                 'name'=> $this->input->post('catagoryname'),
-            'description'=> $this->input->post('description')
+            'description'=> $this->input->post('description'),
+            'categoryStatus'=> $this->input->post('catStatus'),
 
             );
 

@@ -48,11 +48,12 @@
                                 <table class="orderexmple table table-striped table-bordered table-hover table-checkable order-column valign-middle" id="example4">
                                     <thead>
                                     <tr >
-                                        <th width="10%"class="center"> Sr.NO </th>
+                                        <th width="5%"class="center"> Sr.NO </th>
                                         <th width="20%"class="center"> Name </th>
                                         <th width="40%"class="center"> Description</th>
+                                        <th width="10%"class="center"> Status</th>
                                         <th width="20%"class="center"> Category Add date(d-m-y)</th>
-                                        <th width="10%"class="center"> Action </th>
+                                        <th width="5%"class="center">Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -63,6 +64,19 @@
                                             <td><?php echo $i; ?></td>
                                             <td class="center"><?php echo $category->name; ?></td>
                                             <td class="center"><?php echo $category->description; ?></td>
+                                            <td class="center">
+                                                <?php if( $category->categoryStatus==1)
+                                                {
+                                                    echo "Active";
+                                                }
+                                                else
+                                                {
+                                                    echo " Inactive ";
+                                                }
+
+                                                ?>
+
+                                            </td>
                                             <td class="center">
                                                 <?php echo preg_replace("/ /"," Time: ",date('d-m-Y h:i A',strtotime($category->insertDate)),1);?>
                                             </td>

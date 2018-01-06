@@ -99,6 +99,8 @@
                 <h2 class="inner">Menu</h2>
                 <?php foreach ($allcategory as $cate) {?>
 
+
+
                 <table class="table table-striped cart-list">
                     <thead>
                     <tr>
@@ -116,6 +118,7 @@
                     </thead>
                     <tbody>
 
+
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
                             <h3 class="nomargin_top" id="<?php echo $cate->id?>"><?php echo $cate->name?></h3>
@@ -123,7 +126,7 @@
                             <?php break;}}?>
 
                     <?php foreach ($allitem as $item) { ?>
-                        <?php if ($item->fkCatagory == $cate->id) {?>
+                        <?php if ($item->fkCatagory == $cate->id){?>
 
                             <tr>
 
@@ -135,8 +138,8 @@
                                             <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
                                         <?php }else{?>
                                             <figure class="thumb_menu_list">
-                                                <!--                                        <img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
-                                                <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'80','80')); ?>" alt="image">
+                                                <!--<img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
+                                                <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'60','60')); ?>" alt="image">
 
                                             </figure>
                                         <?php }?>
@@ -238,7 +241,6 @@
                                                     <a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
                                                 <?php } else { ?>
                                                     <a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-
                                                 <?php	} } }?>
 
 
@@ -250,7 +252,7 @@
                                                         <input type="checkbox"id="check1" value="<?php echo $itemsize->id?>" class="chk" name="options_1"><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
                                                     </label>
                                                 <?php } }?>
-                                            <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()" >Add to cart</a>
+                                            <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()">Add to cart</a>
                                         </div>
 
                                     </div>
@@ -261,6 +263,7 @@
                     <?php } }  ?>
                     </tbody>
                 </table>
+
             </div><!-- End box_style_1 -->
         </div><!-- End col-md-6 -->
 
@@ -275,9 +278,15 @@
                                 ?>
                                 <tr>
                                     <td>
-                                        <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
+                                        <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-">
                                         <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
-                                        <input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+<!--                                        <span id="--><?php //echo $c['rowid']?><!--">--><?php //echo $c['qty']?><!--</span>-->
+                                        <input type="button" class="btn btn-default" data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+<!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--" onclick="minus(this)">-</span>-->
+
+<!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--"  value="+" onclick="plus(this)">+</span>-->
+<!--                                        <input type="text" disabled name="qty" id="--><?php //echo $c['rowid']?><!--" style="text-align: center; border-right:none;" value="--><?php //echo $c['qty'];?><!--">-->
+
                                     </td>
                                     <td><?php echo htmlspecialchars($c['name'])?>
 
@@ -298,11 +307,11 @@
                     <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
                         <hr>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 6px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
+                            <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px;" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
                             </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
                     <?php }else {
@@ -345,7 +354,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
+                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else if ($this->session->userdata('orderType')=="home"){echo "Delivery";}else echo $this->session->userdata('orderType');?></span>
                             </td>
                         </tr>
                         <tr>
@@ -446,8 +455,9 @@
     }
     function minus(x) {
         var btn = $(x).data('panel-id');
-        var x = parseInt(document.getElementById(btn).value);
-        var newx= x-1;
+//        var xx = parseInt(document.getElementById(btn).innerHTML);
+        var xx = parseInt(document.getElementById(btn).value);
+        var newx= xx-1;
         document.getElementById(btn).value = newx;
         $.ajax({
             type: 'POST',
@@ -464,9 +474,11 @@
     }
     function plus(x) {
         var btn = $(x).data('panel-id');
-        var x = parseInt(document.getElementById(btn).value);
-        var newx= x+1;
+//        var xx = parseInt(document.getElementById(btn).innerHTML);
+        var xx = parseInt(document.getElementById(btn).value);
+        var newx= xx+1;
         document.getElementById(btn).value = newx;
+
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/updateCart/")?>' + btn,

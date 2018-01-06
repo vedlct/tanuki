@@ -6,6 +6,7 @@ class Itemsm extends CI_Model {
         $this->db->select('items.id as id, fkCatagory , itemName, image, description, price');
         $this->db->join('itemsizes ', 'itemsizes.fkItemId = items.id ', 'left');
         $this->db->from('items');
+        $this->db->where('itemStatus',"1");
         $this->db->group_by('itemsizes.fkItemId');
         $query = $this->db->get();
         return $query->result();
@@ -28,8 +29,9 @@ class Itemsm extends CI_Model {
     }
     public function getAllCategory(){
 
-        $this->db->select('id, name, description ');
+        $this->db->select('id,name,description');
         $this->db->from('catagory');
+        $this->db->where('categoryStatus', "1");
         $query = $this->db->get();
         return $query->result();
     }
