@@ -35,7 +35,7 @@
         background-size:cover;">
     <div id="subheader">
         <div id="sub_content">
-            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
             <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
 
 
@@ -62,6 +62,7 @@
 
 <!-- Content ================================================== -->
 <div id="myDIV" class="container-fluid margin_60_35">
+   
     <div class="row">
 
         <?php if ($this->session->flashdata('errorMessage')!=null){?>
@@ -73,7 +74,12 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-2">
-
+            <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
+                <i class="icon_lifesaver"></i>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+            </div>
             <div class="box_style_1">
 
 
@@ -86,12 +92,7 @@
                 </ul>
             </div><!-- End box_style_1 -->
 
-            <div class="box_style_2 hidden-xs" id="help">
-                <h2 class="inner">Need <span>Help?</span></h2>
-                <i class="icon_lifesaver"></i>
-                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
-                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
-            </div>
+
         </div><!-- End col-md-3 -->
 
         <div class="col-md-5">
@@ -280,10 +281,10 @@
                                     <td>
                                         <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-">
                                         <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
-<!--                                        <span id="--><?php //echo $c['rowid']?><!--">--><?php //echo $c['qty']?><!--</span>-->
+
                                         <input type="button" class="btn btn-default" data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
 <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--" onclick="minus(this)">-</span>-->
-
+<!--                                        <span id="--><?php //echo $c['rowid']?><!--">--><?php //echo $c['qty']?><!--</span>-->
 <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--"  value="+" onclick="plus(this)">+</span>-->
 <!--                                        <input type="text" disabled name="qty" id="--><?php //echo $c['rowid']?><!--" style="text-align: center; border-right:none;" value="--><?php //echo $c['qty'];?><!--">-->
 
@@ -350,7 +351,7 @@
                         <!-- Edn options 2 -->
                     <?php } ?>
                     <hr>
-                    <table class="table table_summary" id="total_table">
+                    <table style="margin-bottom :2px;" class="table table_summary" id="total_table">
                         <tbody>
                         <tr>
                             <td>
@@ -408,7 +409,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <hr>
+                  
                     <div id="ordertypediv">
                         <?php if($this->session->userdata('orderType') != null ){ ?>
                             <a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>

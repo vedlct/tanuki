@@ -73,7 +73,12 @@
 		<div class="row">
             <div class="col-md-1"></div>
 			<div class="col-md-2">
-
+                <div class="box_style_2 hidden-xs" id="help">
+                    <h2 class="inner">Need <span>Help?</span></h2>
+                    <i class="icon_lifesaver"></i>
+                    <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                    <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+                </div>
                 <div align="center" class="box_style_2 hidden-xs info">
                     <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
                     <p >
@@ -92,12 +97,7 @@
                 </div>
                 <!-- End box_style_1 -->
 
-                <div class="box_style_2 hidden-xs" id="help">
-                    <h2 class="inner">Need <span>Help?</span></h2>
-                    <i class="icon_lifesaver"></i>
-                    <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
-                    <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
-                </div>
+
                 
 			</div><!-- End col-md-3 -->
             
