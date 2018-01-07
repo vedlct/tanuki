@@ -6,10 +6,87 @@
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+
 </head>
 
 <body id="body">
 
+<style>
+    .spinner {
+        width: 23px;
+    }
+
+    .input-group-btn-vertical {
+        position: relative;
+        white-space: nowrap;
+        width: 1%;
+        vertical-align: middle;
+        display: table-cell;
+    }
+    .input-group-btn-vertical > .btn {
+        display: block;
+        float: none;
+        max-width: 100%;
+        padding: 7px;
+        position: relative;
+        border-radius: 0;
+        width:25px;
+        color:#fff;
+        margin-bottom: 0;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        background: #ED1C24;
+        border: 1px solid #ED1C24;
+        border-radius: 0px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+    }
+
+    .input-group-btn-vertical > .btn:hover {
+        background: #fff;
+        color: #ED1C24;
+        border: 1px solid #ED1C24;
+    }
+
+    .input-group-btn-vertical > .btn:first-child {
+        border-top-right-radius: 0px;
+    }
+    .input-group-btn-vertical > .btn:last-child {
+        margin-top: -2px;
+        border-bottom-right-radius: 0px;
+    }
+    .input-group-btn-vertical i {
+        position: absolute;
+        top: 0;
+        left: 5px;
+    }
+
+    .input-group-btn-vertical > .form-control {
+        display: block;
+        height: 25px;
+        padding: 3px;
+        font-size: 14px;
+        line-height: 0;
+        color: #555;
+        vertical-align: middle;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ED1C24;
+        border-radius: 0px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        /* box-shadow: inset 0 1px 1px rgba(0,0,0,0.075); */
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+</style>
 
 <!--[if lte IE 8]>
 <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a>.</p>
@@ -32,10 +109,10 @@
 <!-- SubHeader =============================================== -->
 <!--<section class="parallax-window" data-parallax="scroll" data-image-src="--><?php //echo base_url()?><!--public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">-->
 <section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;
-        background-size:cover;">
+    background-size:cover;">
     <div id="subheader">
         <div id="sub_content">
-            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="150px" alt=""></div>
+            <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
             <!--                     <div class="rating"><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star voted"></i><i class="icon_star"></i> (<small><a href="<?php echo base_url() ?>feedback">Read Items reviews</a></small>)</div>-->
 
 
@@ -62,6 +139,7 @@
 
 <!-- Content ================================================== -->
 <div id="myDIV" class="container-fluid margin_60_35">
+
     <div class="row">
 
         <?php if ($this->session->flashdata('errorMessage')!=null){?>
@@ -73,7 +151,12 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-2">
-
+            <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
+                <i class="icon_lifesaver"></i>
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+            </div>
             <div class="box_style_1">
 
 
@@ -86,18 +169,15 @@
                 </ul>
             </div><!-- End box_style_1 -->
 
-            <div class="box_style_2 hidden-xs" id="help">
-                <h2 class="inner">Need <span>Help?</span></h2>
-                <i class="icon_lifesaver"></i>
-                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
-                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
-            </div>
+
         </div><!-- End col-md-3 -->
 
         <div class="col-md-5">
             <div class="box_style_2" id="main_menu">
                 <h2 class="inner">Menu</h2>
                 <?php foreach ($allcategory as $cate) {?>
+
+
 
                 <table class="table table-striped cart-list">
                     <thead>
@@ -116,6 +196,7 @@
                     </thead>
                     <tbody>
 
+
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
                             <h3 class="nomargin_top" id="<?php echo $cate->id?>"><?php echo $cate->name?></h3>
@@ -123,7 +204,7 @@
                             <?php break;}}?>
 
                     <?php foreach ($allitem as $item) { ?>
-                        <?php if ($item->fkCatagory == $cate->id) {?>
+                        <?php if ($item->fkCatagory == $cate->id){?>
 
                             <tr>
 
@@ -135,7 +216,7 @@
                                             <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
                                         <?php }else{?>
                                             <figure class="thumb_menu_list">
-                                                <!--                                        <img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
+                                                <!--<img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
                                                 <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'60','60')); ?>" alt="image">
 
                                             </figure>
@@ -238,7 +319,6 @@
                                                     <a href="#0"> <i class="icon_plus_alt2"  data-panel-id="<?= $item->id ?>" onclick="addcart(this)"></i></a>
                                                 <?php } else { ?>
                                                     <a href="#" class="dropdown-toggle"   data-toggle="dropdown" aria-expanded="true"><i class="icon_plus_alt2"></i></a>
-
                                                 <?php	} } }?>
 
 
@@ -250,7 +330,7 @@
                                                         <input type="checkbox"id="check1" value="<?php echo $itemsize->id?>" class="chk" name="options_1"><?php echo $itemsize->itemSize?><span> $<?php echo $itemsize->price?> </span>
                                                     </label>
                                                 <?php } }?>
-                                            <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()" >Add to cart</a>
+                                            <a href="#0" class="add_to_basket" onclick="addcartwithitemsize()">Add to cart</a>
                                         </div>
 
                                     </div>
@@ -261,6 +341,7 @@
                     <?php } }  ?>
                     </tbody>
                 </table>
+
             </div><!-- End box_style_1 -->
         </div><!-- End col-md-6 -->
 
@@ -275,18 +356,31 @@
                                 ?>
                                 <tr>
                                     <td>
-                                        <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
-                                        <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
-                                        <input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+                                        <div class="input-group spinner">
+                                        <div class="input-group-btn-vertical">
+                                        <button type="button"  class="btn btn-default" style="" data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)" value=""><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                                        <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="" value="<?php echo $c['qty']?>"/>
+
+                                        <button type="button" class="btn btn-default" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)"  style="" value=""><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                                        <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--" onclick="minus(this)">-</span>-->
+                                        <!--                                        <span id="--><?php //echo $c['rowid']?><!--">--><?php //echo $c['qty']?><!--</span>-->
+                                        <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--"  value="+" onclick="plus(this)">+</span>-->
+                                        <!--                                        <input type="text" disabled name="qty" id="--><?php //echo $c['rowid']?><!--" style="text-align: center; border-right:none;" value="--><?php //echo $c['qty'];?><!--">-->
+
+                                            </div>
+                                            </div>
                                     </td>
-                                    <td><?php echo htmlspecialchars($c['name'])?>
+
+                                    <td> <div style="margin-top: 20px"><?php echo htmlspecialchars($c['name'])?></div>
 
                                     </td>
-                                    <td> <?php  if ($c['options']['Size'] == "defualt"){}else
-                                        {echo $c['options']['Size'];}?></td>
-                                    <td>
-                                        <strong class="pull-right"><?php echo $c['subtotal'];?></strong>
+                                    <td> <div style="margin-top: 20px"><?php  if ($c['options']['Size'] == "defualt"){}else
+                                        {echo $c['options']['Size'];}?></div>
                                     </td>
+                                    <td>
+                                        <div style="margin-top: 20px"><strong class="pull-right"><?php echo $c['subtotal'];?></strong></div>
+                                    </td>
+
                                 </tr>
                                 <?php
                                 $subtotal = $subtotal + $c['subtotal'];
@@ -298,11 +392,11 @@
                     <?php if ($this->session->userdata('userType') == "cus" || $this->session->userdata('userType') == null  ) { ?>
                         <hr>
                         <div class="row" id="options_2">
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a style="cursor: pointer" onclick="takeaway()">	<img style="width: 40px; margin-left: 6px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
+                            <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px;" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
                             </div>
-                            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
-                                <a style="cursor: pointer" onclick="homedelivary()"> <img style="width: 40px; margin-left: 16px" src="<?php echo base_url()?>public/img/homedeli.png"><br>Home Deliver</a>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                                <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
                     <?php }else {
@@ -341,11 +435,11 @@
                         <!-- Edn options 2 -->
                     <?php } ?>
                     <hr>
-                    <table class="table table_summary" id="total_table">
+                    <table style="margin-bottom :2px;" class="table table_summary" id="total_table">
                         <tbody>
                         <tr>
                             <td>
-                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
+                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else if ($this->session->userdata('orderType')=="home"){echo "Delivery";}else echo $this->session->userdata('orderType');?></span>
                             </td>
                         </tr>
                         <tr>
@@ -399,7 +493,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <hr>
+
                     <div id="ordertypediv">
                         <?php if($this->session->userdata('orderType') != null ){ ?>
                             <a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
@@ -423,8 +517,6 @@
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
 <?php include ('login_logout.php')?>
-
-
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
 <script>
@@ -446,8 +538,9 @@
     }
     function minus(x) {
         var btn = $(x).data('panel-id');
-        var x = parseInt(document.getElementById(btn).value);
-        var newx= x-1;
+//        var xx = parseInt(document.getElementById(btn).innerHTML);
+        var xx = parseInt(document.getElementById(btn).value);
+        var newx= xx-1;
         document.getElementById(btn).value = newx;
         $.ajax({
             type: 'POST',
@@ -464,8 +557,9 @@
     }
     function plus(x) {
         var btn = $(x).data('panel-id');
-        var x = parseInt(document.getElementById(btn).value);
-        var newx= x+1;
+//        var xx = parseInt(document.getElementById(btn).innerHTML);
+        var xx = parseInt(document.getElementById(btn).value);
+        var newx= xx+1;
         document.getElementById(btn).value = newx;
         $.ajax({
             type: 'POST',

@@ -16,6 +16,17 @@
                                 <input type="text" name="description" placeholder="Give Offer  description"  class="form-control input-height" />
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Status :</label>
+                            <div class="col-md-5">
+                                <select class="form-control input-height"  name="catStatus">
+                                    <option value="">Select...</option>
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactive</option>
+
+                                </select>
+                            </div>
+                        </div>
                         <div  class="form-group">
                             <div class="form-actions">
                                 <div class="row">

@@ -1064,7 +1064,6 @@ a.strip_list:hover h3 {
     border-radius: 3px;
     border: 1px solid #ededed;
     margin-bottom: 25px;
-    padding: 15px
 }
 
 #cart_box h3 {
@@ -3143,4 +3142,13 @@ thead {
     height: 140px;
     overflow: scroll;
     overflow-x: hidden;
+}
+
+
+
+
+
+
+.authorize img {
+    width: 240px;
 }

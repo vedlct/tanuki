@@ -4,7 +4,7 @@
 <head>
 
     <?php include ('head.php') ?>
-    <title>RAK - Quality Delivery or Take Away Food</title>
+    <title>Tanuki- Japanis Food</title>
 
 </head>
 
@@ -29,7 +29,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
             <h1>Place your order</h1>
@@ -60,11 +60,11 @@
 <div id="position">
     <div class="container">
         <ul>
-            <li><a href="#0">Home</a></li>
-            <li><a href="#0">Category</a></li>
+            <li><a href="<?php echo  base_url()?>">Home</a></li>
+            <li><a href="#0">Tanuki's Dishes</a></li>
             <li>Page active</li>
         </ul>
-        <a href="#0" class="search-overlay-menu-btn"><i class="icon-search-6"></i> Search</a>
+
     </div>
 </div><!-- Position -->
 
@@ -73,130 +73,106 @@
     <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-2">
-
-            <div class="box_style_2 hidden-xs info">
-                <h4 class="nomargin_top">Delivery time <i class="icon_clock_alt pull-right"></i></h4>
-                <p>
-                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-                </p>
-                <hr>
-                <h4>Secure payment <i class="icon_creditcard pull-right"></i></h4>
-                <p>
-                    Lorem ipsum dolor sit amet, in pri partem essent. Qui debitis meliore ex, tollit debitis conclusionemque te eos.
-                </p>
-            </div><!-- End box_style_1 -->
-
             <div class="box_style_2 hidden-xs" id="help">
+                <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
-                <h4>Need <span>Help?</span></h4>
-                <a href="tel://004542344599" class="phone">+703-723-8952</a>
-                <!--					<small>Monday to Friday 9.00am - 7.30pm</small>-->
+                <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
             </div>
+            <div align="center" class="box_style_2 hidden-xs info">
+                <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
+                <p >
+                <p>Tue-Fri <b>Lunch</b> <br>
+                    11:30am-2.30pm <br></p>
+
+                <p>Tue-Thur <b> Dinner </b> <br>
+                    4:30pm-10:00pm <br></p>
+                <p>Fri <b>Dinner </b><br>
+                    4:30pm-10:00pm <br></p>
+                <p> Sat 12.00pm-10:00pm <br></p>
+                <p> Sun 12:00pm-9:00pm <br></p>
+                <p>Mon <b>Closed</b></p>
+                </p>
+
+            </div>
+            <!-- End box_style_1 -->
+
+
 
         </div><!-- End col-md-3 -->
 
         <div class="col-md-5">
-            <div class="box_style_2" id="order_process">
-                <h2 class="inner">Your order details</h2>
-                <?php
-                ?>
-                <?php foreach ($userdata as $ud) { ?>
-                <div class="form-group">
-                    <label> Name</label>
-                    <input type="text" class="form-control" id="firstname_order" name="firstname_order" value="<?php echo $ud->name?>" placeholder="First name">
-                </div>
-                <div class="form-group">
-                    <label>Telephone/mobile</label>
-                    <input type="number" id="tel_order" name="tel_order" class="form-control" value="<?php echo $ud->contactNo?>" placeholder="Telephone/mobile">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email_booking_2" name="email_order" class="form-control" value="<?php echo $ud->email?>" placeholder="Your email">
-                </div>
-
-                <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" id="password" name="password" class="form-control" value="<?php echo $ud->email?>" placeholder="Your Password">
-                </div>
-                <div class="form-group">
-                    <label>Your full address</label>
-                    <input type="text" id="address_order" name="address_order" class="form-control" value="<?php echo $ud->address?>" placeholder=" Your full address">
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <input type="text" id="city_order" name="city_order" class="form-control" value="<?php echo $ud->fkCity?>" placeholder="Your city">
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Postal code</label>
-                            <input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="<?php echo $ud->postalCode?>" placeholder=" Your postal code">
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Delivery Day</label>
-                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">
-                                <option value="" selected>Select day</option>
-                                <option value="Today">Today</option>
-                                <option value="Tomorrow">Tomorrow</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Delivery time</label>
-                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">
-                                <option value="" selected>Select time</option>
-                                <option value="11.30am">11.30am</option>
-                                <option value="11.45am">11.45am</option>
-                                <option value="12.15am">12.15am</option>
-                                <option value="12.30am">12.30am</option>
-                                <option value="12.45am">12.45am</option>
-                                <option value="01.00pm">01.00pm</option>
-                                <option value="01.15pm">01.15pm</option>
-                                <option value="01.30pm">01.30pm</option>
-                                <option value="01.45pm">01.45pm</option>
-                                <option value="02.00pm">02.00pm</option>
-                                <option value="07.00pm">07.00pm</option>
-                                <option value="07.15pm">07.15pm</option>
-                                <option value="07.30pm">07.30pm</option>
-                                <option value="07.45pm">07.45pm</option>
-                                <option value="08.00pm">08.00pm</option>
-                                <option value="08.15pm">08.15pm</option>
-                                <option value="08.30pm">08.30pm</option>
-                                <option value="08.45pm">08.45pm</option>
-                            </select>
-                        </div>
-                    </div>
-                    <?php } ?>
-                </div>
-                <hr>
-                <div class="row">
-
-                </div>
-            </div><!-- End box_style_1 -->
+            <!--				<div class="box_style_2" id="order_process">-->
+            <!--					<h2 class="inner">Your order details</h2>-->
+            <!--                    --><?php
+            //
+            //                    ?>
+            <!--					--><?php //foreach ($userdata as $ud) { ?>
+            <!--                    <div class="form-group">-->
+            <!--						<label> Name</label>-->
+            <!--						<input type="text" class="form-control" id="firstname_order" name="firstname_order" value="--><?php //echo $ud->name?><!--" placeholder="First name">-->
+            <!--					</div>-->
+            <!--					<div class="form-group">-->
+            <!--						<label>Telephone/mobile</label>-->
+            <!--						<input type="number" id="tel_order" name="tel_order" class="form-control" value="--><?php //echo $ud->contactNo?><!--" placeholder="Telephone/mobile">-->
+            <!--					</div>-->
+            <!--					<div class="form-group">-->
+            <!--						<label>Email</label>-->
+            <!--						<input type="email" id="email_booking_2" name="email_order" class="form-control" value="--><?php //echo $ud->email?><!--" placeholder="Your email">-->
+            <!--					</div>-->
+            <!---->
+            <!--                    <div class="form-group">-->
+            <!--                        <label>Password</label>-->
+            <!--                        <input type="password" id="password" name="password" class="form-control" value="--><?php //echo $ud->email?><!--" placeholder="Your Password">-->
+            <!--                    </div>-->
+            <!--					<div class="form-group">-->
+            <!--						<label>Your full address</label>-->
+            <!--						<input type="text" id="address_order" name="address_order" class="form-control" value="--><?php //echo $ud->address?><!--" placeholder=" Your full address">-->
+            <!--					</div>-->
+            <!--					<div class="row">-->
+            <!--						<div class="col-md-6 col-sm-6">-->
+            <!--							<div class="form-group">-->
+            <!--								<label>City</label>-->
+            <!---->
+            <!--                                <select class="form-control" id="city" name="city" required>-->
+            <!--                                    <option value="">Your city</option>-->
+            <!--                                    --><?php //foreach ($allCity as $cities){?>
+            <!--                                        <option --><?php //if ($ud->fkCity !=null && $ud->fkCity== $cities->id) echo 'selected = "selected"'; ?><!-- value="--><?php //echo $cities->id?><!--">--><?php //echo $cities->name?><!--</option>-->
+            <!--                                    --><?php //} ?>
+            <!--                                </select>-->
+            <!--							</div>-->
+            <!--						</div>-->
+            <!--						<div class="col-md-6 col-sm-6">-->
+            <!--							<div class="form-group">-->
+            <!--								<label>Postal code</label>-->
+            <!--								<input type="text" id="pcode_oder" name="pcode_oder" class="form-control" value="--><?php //echo $ud->postalCode?><!--" placeholder=" Your postal code">-->
+            <!--							</div>-->
+            <!--						</div>-->
+            <!--					</div>-->
+            <!--                    --><?php //} ?>
+            <!--					<hr>-->
+            <!--					<div class="row">-->
+            <!---->
+            <!--					</div>-->
+            <!--				</div>-->
+            <!-- End box_style_1 -->
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <div class="payment_select">
-                    <label><input type="radio" value="" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
+                    <label><input type="radio" value="1" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
                     <i class="icon_creditcard"></i>
                 </div>
                 <!--End row -->
 
                 <div class="payment_select nomargin">
-                    <label><input type="radio" value="" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
+                    <label><input type="radio" value="2" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
                     <i class="icon_wallet"></i>
                 </div>
             </div>
         </div><!-- End col-md-6 -->
+
         <div class="col-md-3" id="sidebar">
-            <div class="theiaStickySidebar">
+            <div class="theiaStickySidebar scrolldiv">
                 <div id="cart_box" >
                     <h3>Your order <i class="icon_cart_alt pull-right"></i></h3>
                     <table id="cart_table" class="table table_summary">
@@ -228,7 +204,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                Oder Type <span class="pull-right"><?php echo $this->session->userdata('orderType') ?></span>
+                                Oder Type <span class="pull-right"><?php if ($this->session->userdata('orderType') == "take"){echo "Pick Up";}else echo $this->session->userdata('orderType') ?></span>
                             </td>
                         </tr>
                         <tr>
@@ -267,12 +243,16 @@
                                     $vat = $char->vat;
                                 }?>
                                 <?php $subtotal = $subtotal -$this->session->userdata('expensepoint'); ?>
-                                Vat(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
+                                sales tax(<?php echo $vat."%"?>) <span class="pull-right"><?php echo  $vatt =round(($subtotal*$vat)/100 , 2)?></span>
                             </td>
                         </tr>
                         <tr>
                             <td class="total">
-                                TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
+                                TOTAL <span class="pull-right"><?php echo $total = $subtotal+$dfee+$vatt-$totaldis?></span>
+                                <?php $data = array(
+                                    'amount' => $total,
+                                );
+                                $this->session->set_userdata($data); ?>
                             </td>
                         </tr>
                         </tbody>
@@ -291,12 +271,20 @@
                         <?php } ?>
                     </div>
                     <hr>
+
                     <span id="checkOut">
-                         <?php if ($this->session->userdata('paymentMethod') != null){ ?>
+
+
+                         <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
                              <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
-                         <?php }else { ?>
+                         <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
+                             <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
+
+                         <?php } else { ?>
+
                              <a class="btn_full" href="#0" onclick="paymentalert()">Go to checkout</a>
                          <?php } ?>
+
                         </span>
                     <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
@@ -317,16 +305,6 @@
 <?php include ('login_logout.php')?>
 <!-- end login logout modal-->
 
-<!-- Search Menu -->
-<div class="search-overlay-menu">
-    <span class="search-overlay-close"><i class="icon_close"></i></span>
-    <form role="search" id="searchform" method="get">
-        <input value="" name="q" type="search" placeholder="Search..." />
-        <button type="submit"><i class="icon-search-6"></i>
-        </button>
-    </form>
-</div>
-<!-- End Search Menu -->
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
@@ -415,4 +393,31 @@
     function paymentalert() {
         alert("please select the payment method")
     }
+    $(function() {  $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll >= 250) {
+            document.getElementById("logo").style.display = "block";
+        } else {
+            document.getElementById("logo").style.display = "none";
+        }
+    });
+    });
+</script>
+<script>
+    (function($) {
+        var element = $('.scrolldiv'),
+            originalY = element.offset().top;
+        // Space between element and top of screen (when scrolling)
+        var topMargin = 40;
+        // Should probably be set in CSS; but here just for emphasis
+        element.css('position', 'relative');
+        $(window).on('scroll', function(event) {
+            var scrollTop = $(window).scrollTop();
+            element.stop(false, false).animate({
+                top: scrollTop < originalY
+                    ? 0
+                    : scrollTop - originalY + topMargin
+            }, 300);
+        });
+    })(jQuery);
 </script>

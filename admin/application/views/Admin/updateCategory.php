@@ -16,6 +16,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Category Status <span class="required"> * </span></label>
+                            <div class="col-md-5">
+                                <select class="form-control input-height"  required name="catStatus">
+                                    <option value="">Select...</option>
+
+                                    <option  <?php if ($find->categoryStatus=='1')echo 'selected = "selected"';?>value="1">Active</option>
+                                    <option  <?php if ($find->categoryStatus=='0')echo 'selected = "selected"';?>value="0">Inactive</option>
+
+                                </select>
+                            </div>
+                        </div>
+
                     <div class="form-group">
 
                             <div class="form-actions">
