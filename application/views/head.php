@@ -16,9 +16,10 @@
     <!-- GOOGLE WEB FONT -->
     <link href='<?php echo base_url()?>public/css/googleFont.css' rel='stylesheet' type='text/css' media="screen print projection">
 
-
     <!-- BASE CSS -->
-    <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet" >
+<!--    <link href="--><?php //echo base_url()?><!--public/css/base.css" rel="stylesheet" >-->
+    <link href="<?php echo base_url()?>public/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="<?php echo base_url()?>public/css/merge.css" rel="stylesheet" >
 <!--    <link href="--><?php //echo base_url()?><!--public/css/modal.css" rel="stylesheet">-->
 
     <style>

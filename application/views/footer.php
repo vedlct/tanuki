@@ -5,7 +5,7 @@
             <div class="row">
                
                 <div class="col-md-4 col-sm-3">
-                    <div class="authorize">
+                    <div align="center" class="authorize">
                         <h3>Secure payments with</h3>
                         <p class="jetpay"><img src="<?php echo base_url()?>public/img/logo_lg.png" alt="" class="img-responsive"></p>
                     </div>
