@@ -38,6 +38,7 @@ function thumb($src, $width, $height, $image_thumb = '') {
 		$config['width'] = $width;
 		$config['height'] = $height;
         $config['maintain_ratio'] = FALSE;
+        $config['quality'] = '90%';
 
 		$CI->image_lib->initialize($config);
 		$CI->image_lib->resize();
