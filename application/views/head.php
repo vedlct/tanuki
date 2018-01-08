@@ -21,12 +21,3 @@
     <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet">
     <link href="<?php echo base_url()?>public/css/modal.css" rel="stylesheet">
 
-
-
-    <!-- Modernizr -->
-	<script src="<?php echo base_url()?>public/js/modernizr.js"></script>
-
-    <!--[if lt IE 9]>
-      <script src="<?php echo base_url()?>public/js/html5shiv.min.js"></script>
-      <script src="<?php echo base_url()?>public/js/respond.min.js"></script>
-    <![endif]-->

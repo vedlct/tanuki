@@ -29,7 +29,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="470">
     <div id="subheader">
         <div id="sub_content">
             <h1>Place your order</h1>
@@ -305,6 +305,9 @@
 <?php include ('login_logout.php')?>
 <!-- end login logout modal-->
 
+</body>
+</html>
+
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
@@ -339,8 +342,7 @@
         });
     }
 </script>
-</body>
-</html>
+
 <script>
     function minus(x) {
         var btn = $(x).data('panel-id');

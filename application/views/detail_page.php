@@ -108,8 +108,7 @@
 
 <!-- SubHeader =============================================== -->
 <!--<section class="parallax-window" data-parallax="scroll" data-image-src="--><?php //echo base_url()?><!--public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">-->
-<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;
-    background-size:cover;">
+<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;background-size:cover;">
     <div id="subheader">
         <div id="sub_content">
             <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
@@ -177,8 +176,6 @@
                 <h2 class="inner">Menu</h2>
                 <?php foreach ($allcategory as $cate) {?>
 
-
-
                 <table class="table table-striped cart-list">
                     <thead>
                     <tr>
@@ -196,12 +193,12 @@
                     </thead>
                     <tbody>
 
-
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id) {?>
                             <h3 class="nomargin_top" id="<?php echo $cate->id?>"><?php echo $cate->name?></h3>
-                            <?php echo $cate->description ?>
+                            <div style="margin-bottom: 5px"><?php echo $cate->description ?></div>
                             <?php break;}}?>
+
 
                     <?php foreach ($allitem as $item) { ?>
                         <?php if ($item->fkCatagory == $cate->id){?>
@@ -213,11 +210,11 @@
                                         <?php if ($item->image == null){?>
 
 
-                                            <figure class="thumb_menu_list"><img src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
+                                            <figure class="thumb_menu_list"><img width="60px" height="60px" src="<?php echo base_url()?>public/img/noImage.jpg" alt="thumb"></figure>
                                         <?php }else{?>
                                             <figure class="thumb_menu_list">
                                                 <!--<img height="80px" width="80px" src="--><?php //echo base_url()?><!--admin/images/itemImages/--><?php //echo $item->image?><!-- " alt="image">-->
-                                                <img src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'60','60')); ?>" alt="image">
+                                                <img width="60px" height="60px" src="<?php echo base_url('admin/images/itemImages/'.thumb('admin/images/itemImages/'.$item->image,'60','60')); ?>" alt="thumb">
 
                                             </figure>
                                         <?php }?>
@@ -241,61 +238,61 @@
                                                         switch ($rating_avg) {
                                                             case 1:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"   width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"   height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px"width="20px" style="float: left">
 
                                                                 <?php
                                                                 break;
                                                             case 2:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px" width="20px" style="float: left">
 
                                                                 <?php
                                                                 break;
                                                             case 3:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
 
                                                                 <?php
                                                                 break;
                                                             case 4:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png"  height="22px"width="20px" style="float: left">
 
                                                                 <?php
                                                                 break;
                                                             case 5:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/yellow.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/yellow.png" height="22px" width="20px" style="float: left">
 
                                                                 <?php
                                                                 break;
                                                             default:
                                                                 ?>
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png" width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
-                                                                <img src="<?php echo base_url()?>public/img/blank.png"  width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px"width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px" width="20px" style="float: left">
+                                                                <img src="<?php echo base_url()?>public/img/blank.png" height="22px" width="20px" style="float: left">
 
                                                                 <?php
                                                         } } }}
@@ -337,10 +334,12 @@
                                 </td>
                             </tr>
                         <?php } ?>
-
-                    <?php } }  ?>
+                    <?php }  ?>
                     </tbody>
                 </table>
+                    <br>
+                <?php } ?>
+
 
             </div><!-- End box_style_1 -->
         </div><!-- End col-md-6 -->
@@ -393,10 +392,10 @@
                         <hr>
                         <div class="row" id="options_2">
                             <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px;" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
+                                <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px; height: 40px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                                <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
+                                <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px;height: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
                     <?php }else {
@@ -518,7 +517,12 @@
 
 <?php include ('login_logout.php')?>
 <!-- COMMON SCRIPTS -->
+
+</body>
+</html>
+
 <?php include ('js.php')?>
+
 <script>
     function addcart(x) {
         //alert("hellasdasdado");
@@ -687,5 +691,3 @@
             });
         })(jQuery);
     </script>-->
-</body>
-</html>
