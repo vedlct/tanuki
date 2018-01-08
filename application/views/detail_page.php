@@ -394,7 +394,7 @@
                             <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px; height: 40px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px;height: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
@@ -409,26 +409,27 @@
                     <hr>
                     <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
                         <div class="row" id="options_2">
-                            <div class="col-md-12">
-                                <label>Membership ID :</label>
+                            <div style="text-align: center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6">Membership ID :</label>
 
-                                <input id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
+                                <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
                             </div>
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
-                        <div class="row" id="options_2">
+                        <div style="text-align: center" class="row" id="options_2">
 
-                            <label class="col-md-5">Promo Code :</label>
+                            <label class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Promo Code :</label>
 
-                            <input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+<!--                            <input class="col-md-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >-->
+                            <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-left: 10px" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
 
                         </div>
                     <?php } else { ?>
-                        <div class="row" id="options_2">
+                        <div style="text-align: center" class="row" id="options_2">
 
-                            <label class="col-md-5">Promo Code :</label>
+                            <label class="col-lg-5 col-md-5 col-sm-5 col-xs-5">Promo Code :</label>
 
-                            <input class="col-md-6"  id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
+                            <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="promocode" type="textbox" value=""  name="option_2"  onfocusout="discount()" >
 
                         </div>
                         <!-- Edn options 2 -->
