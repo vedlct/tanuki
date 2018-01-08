@@ -14,11 +14,11 @@
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="<?php echo base_url()?>public/img/apple-touch-icon-144x144-precomposed.png">
     
     <!-- GOOGLE WEB FONT -->
-    <link href='<?php echo base_url()?>public/css/googleFont.css' rel='stylesheet' type='text/css'>
+    <link href='<?php echo base_url()?>public/css/googleFont.css' rel='stylesheet' type='text/css' media="screen print projection">
 
 
     <!-- BASE CSS -->
-    <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>public/css/base.css" rel="stylesheet" >
 <!--    <link href="--><?php //echo base_url()?><!--public/css/modal.css" rel="stylesheet">-->
 
     <style>

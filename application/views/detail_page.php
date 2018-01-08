@@ -107,8 +107,8 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<!--<section class="parallax-window" data-parallax="scroll" data-image-src="--><?php //echo base_url()?><!--public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">-->
-<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;background-size:cover;">
+<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
+
     <div id="subheader">
         <div id="sub_content">
             <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
