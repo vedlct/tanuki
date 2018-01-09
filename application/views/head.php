@@ -18,7 +18,12 @@
 
     <!-- BASE CSS -->
 <!--    <link href="--><?php //echo base_url()?><!--public/css/base.css" rel="stylesheet" >-->
+
     <link href="<?php echo base_url()?>public/css/bootstrap.min.css" rel="stylesheet" >
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+
     <link href="<?php echo base_url()?>public/css/merge.css" rel="stylesheet" >
 <!--    <link href="--><?php //echo base_url()?><!--public/css/modal.css" rel="stylesheet">-->
 
