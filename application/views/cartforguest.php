@@ -5,9 +5,83 @@
 
     <?php include ('head.php') ?>
     <title>Tanuki- Japanis Food</title>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 </head>
+<style>
+    .spinner {
+        width: 23px;
+    }
 
+    .input-group-btn-vertical {
+        position: relative;
+        white-space: nowrap;
+        width: 1%;
+        vertical-align: middle;
+        display: table-cell;
+    }
+    .input-group-btn-vertical > .btn {
+        display: block;
+        float: none;
+        max-width: 100%;
+        padding: 7px;
+        position: relative;
+        border-radius: 0;
+        width:25px;
+        color:#fff;
+        margin-bottom: 0;
+        font-size: 12px;
+        font-weight: normal;
+        line-height: 1.428571429;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        cursor: pointer;
+        background: #ED1C24;
+        border: 1px solid #ED1C24;
+        border-radius: 0px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        -o-user-select: none;
+    }
+
+    .input-group-btn-vertical > .btn:hover {
+        background: #fff;
+        color: #ED1C24;
+        border: 1px solid #ED1C24;
+    }
+
+    .input-group-btn-vertical > .btn:first-child {
+        border-top-right-radius: 0px;
+    }
+    .input-group-btn-vertical > .btn:last-child {
+        margin-top: -2px;
+        border-bottom-right-radius: 0px;
+    }
+    .input-group-btn-vertical i {
+        position: absolute;
+        top: 0;
+        left: 5px;
+    }
+
+    .input-group-btn-vertical > .form-control {
+        display: block;
+        height: 25px;
+        padding: 3px;
+        font-size: 14px;
+        line-height: 0;
+        color: #555;
+        vertical-align: middle;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ED1C24;
+        border-radius: 0px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+        /* box-shadow: inset 0 1px 1px rgba(0,0,0,0.075); */
+        -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+</style>
 <body>
 
 <!--[if lte IE 8]>
@@ -29,7 +103,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="470">
+    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
 
@@ -243,15 +317,28 @@
                             ?>
                             <tr>
                                 <td>
-                                    <input type="button"  class="btn btn-default" style="background:#ec008c; text-align: center; width:19px; color: #fff; font-weight: bold; padding:6px 0px;  border-radius:0px; float: left" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)" value="-"/>
-                                    <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="text-align: center; border-right:none; border-left:none; border-radius:0px; width: 20px; padding:6px 2px; height:auto; float: left" value="<?php echo $c['qty']?>"/>
-                                    <input type="button" class="btn btn-default"data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)"  style="background:#ec008c; font-weight: bold; color: #fff; text-align: center; border-radius:0px; width: 19px; padding: 6px 0px; float: left" value="+">
+                                    <div class="input-group spinner">
+                                        <div class="input-group-btn-vertical">
+                                            <button type="button"  class="btn btn-default" style="" data-panel-id="<?= $c['rowid'] ?>" onclick="plus(this)" value=""><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+                                            <input type="text"  name="qty" id="<?php echo $c['rowid']?>" class="form-control" style="" value="<?php echo $c['qty']?>"/>
+
+                                            <button type="button" class="btn btn-default" data-panel-id="<?= $c['rowid'] ?>" onclick="minus(this)"  style="" value=""><i class="fa fa-chevron-down" aria-hidden="true"></i></button>
+                                            <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--" onclick="minus(this)">-</span>-->
+                                            <!--                                        <span id="--><?php //echo $c['rowid']?><!--">--><?php //echo $c['qty']?><!--</span>-->
+                                            <!--                                        <span style="cursor: pointer" data-panel-id="--><?//= $c['rowid'] ?><!--"  value="+" onclick="plus(this)">+</span>-->
+                                            <!--                                        <input type="text" disabled name="qty" id="--><?php //echo $c['rowid']?><!--" style="text-align: center; border-right:none;" value="--><?php //echo $c['qty'];?><!--">-->
+
+                                        </div>
+                                    </div>
                                 </td>
-                                <td><?php echo htmlspecialchars($c['name'])?></td>
-                                <td> <?php  if ($c['options']['Size'] == "defualt"){}else
-                                    {echo $c['options']['Size'];}?></td>
+                                <td> <div style="margin-top: 15px"><?php echo htmlspecialchars($c['name'])?></div>
+
+                                </td>
+                                <td> <div style="margin-top: 15px"><?php  if ($c['options']['Size'] == "defualt"){}else
+                                        {echo $c['options']['Size'];}?></div>
+                                </td>
                                 <td>
-                                    <strong class="pull-right"><?php echo $c['subtotal'];?></strong>
+                                    <div style="margin-top: 15px"><strong class="pull-right"><?php echo $c['subtotal'];?></strong></div>
                                 </td>
                             </tr>
                             <?php
@@ -358,8 +445,6 @@
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
-
-
 
 
 
@@ -545,25 +630,25 @@
     });
     });
 </script>
-<script>
-    (function($) {
-        var element = $('.scrolldiv'),
-            originalY = element.offset().top;
-
-        // Space between element and top of screen (when scrolling)
-        var topMargin = 40;
-
-        // Should probably be set in CSS; but here just for emphasis
-        element.css('position', 'relative');
-
-        $(window).on('scroll', function(event) {
-            var scrollTop = $(window).scrollTop();
-
-            element.stop(false, false).animate({
-                top: scrollTop < originalY
-                    ? 0
-                    : scrollTop - originalY + topMargin
-            }, 300);
-        });
-    })(jQuery);
-</script>
+<!--<script>-->
+<!--    (function($) {-->
+<!--        var element = $('.scrolldiv'),-->
+<!--            originalY = element.offset().top;-->
+<!---->
+<!--        // Space between element and top of screen (when scrolling)-->
+<!--        var topMargin = 40;-->
+<!---->
+<!--        // Should probably be set in CSS; but here just for emphasis-->
+<!--        element.css('position', 'relative');-->
+<!---->
+<!--        $(window).on('scroll', function(event) {-->
+<!--            var scrollTop = $(window).scrollTop();-->
+<!---->
+<!--            element.stop(false, false).animate({-->
+<!--                top: scrollTop < originalY-->
+<!--                    ? 0-->
+<!--                    : scrollTop - originalY + topMargin-->
+<!--            }, 300);-->
+<!--        });-->
+<!--    })(jQuery);-->
+<!--</script>-->

@@ -4,7 +4,7 @@
 <head>
 
     <?php include ('head.php') ?>
-    <title>Tanuki- Japanis Food</title>
+    <title>RAK - Quality Delivery or Take Away Food</title>
 
 </head>
 

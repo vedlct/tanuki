@@ -107,8 +107,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section class="parallax-window" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_2.jpg" data-natural-width="1400" data-natural-height="470">
-
+<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;background-size:cover;">
     <div id="subheader">
         <div id="sub_content">
             <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
@@ -343,6 +342,16 @@
 
             </div><!-- End box_style_1 -->
         </div><!-- End col-md-6 -->
+        
+        
+        
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+        <div class="ordercart" style="position:fixed; top:0; left: 70%; cursor:pointer;">
+            <i class="icon_cart_alt"></i>
+        </div>
+        
+        
 
         <div style="position: sticky; top: 70px;" class="col-md-3 " id="sidebar">
             <div class="theiaStickySidebar scrolldiv cf">
@@ -523,6 +532,45 @@
 </html>
 
 <?php include ('js.php')?>
+
+
+<script>
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById("myBtn").style.display = "block";
+        } else {
+            document.getElementById("myBtn").style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+
+<script>
+
+    $.fn.scrollView = function () {
+        return this.each(function () {
+            $('html, body').animate({
+                scrollTop: $(this).offset().top
+            }, 1000);
+        });
+    }
+    
+    $('.ordercart').click(function (event) {
+        event.preventDefault();
+        $('#sidebar').scrollView();
+    });
+    
+</script>
+
+
 
 <script>
     function addcart(x) {

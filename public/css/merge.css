@@ -679,6 +679,8 @@ header {
 }
 
 header.sticky {
+    z-index: 1;
+    
     background-color: #ed1c24;
     -webkit-box-shadow: 0 2px 10px -2px rgba(0, 0, 0, .41);
     -moz-box-shadow: 0 2px 10px -2px rgba(0, 0, 0, .41);
@@ -2802,6 +2804,35 @@ header#map_listing_header {
     padding: 0
 }
 
+.ordercart {
+    color: white;
+    font-size: 30px;
+    z-index: 9999;
+    display: none;
+}
+
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+#myBtn:hover {
+    background-color: #555;
+}
+
+
+
+
 .content-left {
     height: 100%;
     min-height: 100%;
@@ -3585,6 +3616,14 @@ thead {
     .strip_list .go_to {
         height: auto
     }
+    
+    .ordercart {
+        color: white;
+        display: block;
+        font-size: 30px;
+        z-index: 9999;
+    }
+    
     #sub_content h1 {
         font-size: 42px
     }
