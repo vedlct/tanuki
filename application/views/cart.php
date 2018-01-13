@@ -392,6 +392,9 @@
 <?php include ('login_logout.php')?>
 <!-- end login logout modal-->
 
+</body>
+</html>
+
 
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
@@ -426,8 +429,7 @@
         });
     }
 </script>
-</body>
-</html>
+
 <script>
     function minus(x) {
         var btn = $(x).data('panel-id');

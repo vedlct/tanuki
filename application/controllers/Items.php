@@ -371,7 +371,7 @@ class Items extends CI_Controller {
         $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
         $this->data['charge'] = $this->Userorderm->getAllCharge();
         $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
-        $message = $this->load->view('invoicePdf', $this->data);
+        $message = $this->load->view('invoicePdf', $this->data , true);
         $this->email->message($message);
         $this->email->send();
     }

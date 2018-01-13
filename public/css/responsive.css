@@ -1,3 +1,8 @@
+@media only screen and (max-width :1920px) {
+
+}
+
+
 @media only screen and (max-width :1370px) {
     .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
         border-top: 1px solid #ddd;
@@ -5,18 +10,22 @@
         padding: 2px;
         vertical-align: top;
     }
+
 }
 
 @media only screen and (max-width :1200px) {
     #sub_content h1 {
         font-size: 50px
     }
+
 }
 
 @media (max-width:1024px) {
     .parallax-window-2 {
         background-attachment: scroll
     }
+
+
 }
 
 @media only screen and (max-width :992px) {
@@ -28,12 +37,12 @@
         float: left;
         margin: 0 5px;
     }
-    
+
     #header_menu > img {
         height: 45px;
         width: 60px;
     }
-    
+
     header {
         padding: 10px 0
     }
@@ -101,10 +110,10 @@
     #sub_content h1 {
         font-size: 42px
     }
-    #hero_video {
-        background: url(../img/sub_header_home.jpg) center center #333;
-        background-size: cover
-    }
+    /*#hero_video {*/
+    /*background: url(../img/sub_header_home.jpg) center center #333;*/
+    /*background-size: cover*/
+    /*}*/
     .content-left {
         height: auto;
         overflow-y: scroll;
@@ -116,6 +125,13 @@
     #map_listing {
         width: 100%;
         height: 400px
+    }
+
+    .ordercart {
+        color: blue;
+        display: block;
+        font-size: 40px;
+        z-index: 9999;
     }
 }
 
@@ -255,7 +271,7 @@
         height: 50px;
         margin: 0;
         font-weight: 400;
-        -moz-appearance: window;
+        /*-moz-appearance: window;*/
         -webkit-appearance: none;
         cursor: pointer;
         color: #888
@@ -280,7 +296,7 @@
         left: 15px;
         top: 12px
     }
-    ,
+
     .styled-select-cat::-ms-expand {
         display: none
     }

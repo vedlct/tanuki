@@ -11,7 +11,6 @@
     .spinner {
         width: 23px;
     }
-
     .input-group-btn-vertical {
         position: relative;
         white-space: nowrap;
@@ -44,13 +43,11 @@
         -ms-user-select: none;
         -o-user-select: none;
     }
-
     .input-group-btn-vertical > .btn:hover {
         background: #fff;
         color: #ED1C24;
         border: 1px solid #ED1C24;
     }
-
     .input-group-btn-vertical > .btn:first-child {
         border-top-right-radius: 0px;
     }
@@ -63,7 +60,6 @@
         top: 0;
         left: 5px;
     }
-
     .input-group-btn-vertical > .form-control {
         display: block;
         height: 25px;
@@ -103,7 +99,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-    <section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
+<section class="parallax-window" id="short" data-parallax="scroll" data-image-src="<?php echo base_url()?>public/img/sub_header_cart.jpg" data-natural-width="1400" data-natural-height="350">
     <div id="subheader">
         <div id="sub_content">
 
@@ -194,101 +190,100 @@
             <div class="box_style_2" id="order_process">
                 <h2 class="inner">Your order details</h2>
                 <?php
-
                 ?>
                 <form method="post" action="<?php echo base_url()?>Items/checkoutguest" onsubmit="return registration()">
-                <div class="form-group">
-                    <label> Name</label>
-                    <p><font color="red"> <?php echo form_error('Name'); ?></font></p>
-                    <input type="text" class="form-control" id="Name" value="<?php echo set_value('Name'); ?>" name="Name" placeholder="Full Name" required>
-                </div>
-                <div class="form-group">
-                    <label>Telephone/mobile</label>
-                    <p><font color="red"> <?php echo form_error('phone'); ?></font></p>
-                    <input type="tel" class="form-control" value="<?php echo set_value('phone'); ?>" name="phone" required id="phone" placeholder="Contact No">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <p><font color="red"> <?php echo form_error('email'); ?></font></p>
-                    <input type="email" class="form-control"name="email" id="email" value="<?php echo set_value('email'); ?>" required placeholder="Email">
-                </div>
+                    <div class="form-group">
+                        <label> Name</label>
+                        <p><font color="red"> <?php echo form_error('Name'); ?></font></p>
+                        <input type="text" class="form-control" id="Name" value="<?php echo set_value('Name'); ?>" name="Name" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telephone/mobile</label>
+                        <p><font color="red"> <?php echo form_error('phone'); ?></font></p>
+                        <input type="tel" class="form-control" value="<?php echo set_value('phone'); ?>" name="phone" required id="phone" placeholder="Contact No">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p><font color="red"> <?php echo form_error('email'); ?></font></p>
+                        <input type="email" class="form-control"name="email" id="email" value="<?php echo set_value('email'); ?>" required placeholder="Email">
+                    </div>
 
-                <div class="form-group">
-                    <label>Password</label>
-                    <p><font color="red"> <?php echo form_error('password'); ?></font></p>
-                    <input type="password" class="form-control" value="<?php echo set_value('password'); ?>" name="password" required placeholder="Password"  id="password">
-                </div>
-                <div class="form-group">
-                    <label>Confirm Password</label>
-                    <p><font color="red"> <?php echo form_error('conPassword'); ?></font></p>
-                    <input type="password" class="form-control" value="<?php echo set_value('conPassword'); ?>" name="conPassword" required placeholder="Confirm password"  id="conPassword">
-                </div>
-                <div class="form-group">
-                    <label>Your full address</label>
-                    <p><font color="red"> <?php echo form_error('address'); ?></font></p>
-                    <textarea type="text" id="address" name="address" cols="3" rows="3" class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <select class="form-control" id="city" name="city" required>
-                                <option value="">Your city</option>
-                                <?php foreach ($allCity as $cities){?>
-                                    <option <?php echo set_select('city',  $cities->id, False); ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
-                                <?php } ?>
-                            </select>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <p><font color="red"> <?php echo form_error('password'); ?></font></p>
+                        <input type="password" class="form-control" value="<?php echo set_value('password'); ?>" name="password" required placeholder="Password"  id="password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <p><font color="red"> <?php echo form_error('conPassword'); ?></font></p>
+                        <input type="password" class="form-control" value="<?php echo set_value('conPassword'); ?>" name="conPassword" required placeholder="Confirm password"  id="conPassword">
+                    </div>
+                    <div class="form-group">
+                        <label>Your full address</label>
+                        <p><font color="red"> <?php echo form_error('address'); ?></font></p>
+                        <textarea type="text" id="address" name="address" cols="3" rows="3" class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <select class="form-control" id="city" name="city" required>
+                                    <option value="">Your city</option>
+                                    <?php foreach ($allCity as $cities){?>
+                                        <option <?php echo set_select('city',  $cities->id, False); ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
+                                    <?php } ?>
+                                </select>
 
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>Postal code</label>
+                                <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
+                                <input type="text" id="pcode" value="<?php echo set_value('pcode'); ?>" name="pcode" class="form-control" required placeholder=" Your postal code">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Postal code</label>
-                            <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
-                            <input type="text" id="pcode" value="<?php echo set_value('pcode'); ?>" name="pcode" class="form-control" required placeholder=" Your postal code">
-                        </div>
-                    </div>
-                </div>
-<!--                <hr>-->
-<!--                <div class="row">-->
-<!--                    <div class="col-md-6 col-sm-6">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Delivery Day</label>-->
-<!--                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">-->
-<!--                                <option value="" selected>Select day</option>-->
-<!--                                <option value="Today">Today</option>-->
-<!--                                <option value="Tomorrow">Tomorrow</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="col-md-6 col-sm-6">-->
-<!--                        <div class="form-group">-->
-<!--                            <label>Delivery time</label>-->
-<!--                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">-->
-<!--                                <option value="" selected>Select time</option>-->
-<!--                                <option value="11.30am">11.30am</option>-->
-<!--                                <option value="11.45am">11.45am</option>-->
-<!--                                <option value="12.15am">12.15am</option>-->
-<!--                                <option value="12.30am">12.30am</option>-->
-<!--                                <option value="12.45am">12.45am</option>-->
-<!--                                <option value="01.00pm">01.00pm</option>-->
-<!--                                <option value="01.15pm">01.15pm</option>-->
-<!--                                <option value="01.30pm">01.30pm</option>-->
-<!--                                <option value="01.45pm">01.45pm</option>-->
-<!--                                <option value="02.00pm">02.00pm</option>-->
-<!--                                <option value="07.00pm">07.00pm</option>-->
-<!--                                <option value="07.15pm">07.15pm</option>-->
-<!--                                <option value="07.30pm">07.30pm</option>-->
-<!--                                <option value="07.45pm">07.45pm</option>-->
-<!--                                <option value="08.00pm">08.00pm</option>-->
-<!--                                <option value="08.15pm">08.15pm</option>-->
-<!--                                <option value="08.30pm">08.30pm</option>-->
-<!--                                <option value="08.45pm">08.45pm</option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!---->
-<!--                </div>-->
+                    <!--                <hr>-->
+                    <!--                <div class="row">-->
+                    <!--                    <div class="col-md-6 col-sm-6">-->
+                    <!--                        <div class="form-group">-->
+                    <!--                            <label>Delivery Day</label>-->
+                    <!--                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">-->
+                    <!--                                <option value="" selected>Select day</option>-->
+                    <!--                                <option value="Today">Today</option>-->
+                    <!--                                <option value="Tomorrow">Tomorrow</option>-->
+                    <!--                            </select>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="col-md-6 col-sm-6">-->
+                    <!--                        <div class="form-group">-->
+                    <!--                            <label>Delivery time</label>-->
+                    <!--                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">-->
+                    <!--                                <option value="" selected>Select time</option>-->
+                    <!--                                <option value="11.30am">11.30am</option>-->
+                    <!--                                <option value="11.45am">11.45am</option>-->
+                    <!--                                <option value="12.15am">12.15am</option>-->
+                    <!--                                <option value="12.30am">12.30am</option>-->
+                    <!--                                <option value="12.45am">12.45am</option>-->
+                    <!--                                <option value="01.00pm">01.00pm</option>-->
+                    <!--                                <option value="01.15pm">01.15pm</option>-->
+                    <!--                                <option value="01.30pm">01.30pm</option>-->
+                    <!--                                <option value="01.45pm">01.45pm</option>-->
+                    <!--                                <option value="02.00pm">02.00pm</option>-->
+                    <!--                                <option value="07.00pm">07.00pm</option>-->
+                    <!--                                <option value="07.15pm">07.15pm</option>-->
+                    <!--                                <option value="07.30pm">07.30pm</option>-->
+                    <!--                                <option value="07.45pm">07.45pm</option>-->
+                    <!--                                <option value="08.00pm">08.00pm</option>-->
+                    <!--                                <option value="08.15pm">08.15pm</option>-->
+                    <!--                                <option value="08.30pm">08.30pm</option>-->
+                    <!--                                <option value="08.45pm">08.45pm</option>-->
+                    <!--                            </select>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!---->
+                    <!--                </div>-->
 
 
             </div><!-- End box_style_1 -->
@@ -313,7 +308,6 @@
                     <table id="cart_table" class="table table_summary">
                         <tbody>
                         <?php	$subtotal = 0 ;foreach ($this->cart->contents() as $c) {
-
                             ?>
                             <tr>
                                 <td>
@@ -342,22 +336,21 @@
                                 </td>
                             </tr>
                             <?php
-
                             $subtotal = $subtotal + $c['subtotal'];
                         } ?>
                         </tbody>
                     </table>
                     <hr>
-<!--                    <div class="row" id="options_2">-->
-<!--                        <h4 align="center">Payment Method</h4>-->
-<!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-<!--                            <a href="#0" onclick="takeaway()">	<i class="icon_creditcard"></i><br>Cash</a>-->
-<!---->
-<!--                        </div>-->
-<!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-<!--                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
+                    <!--                    <div class="row" id="options_2">-->
+                    <!--                        <h4 align="center">Payment Method</h4>-->
+                    <!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+                    <!--                            <a href="#0" onclick="takeaway()">	<i class="icon_creditcard"></i><br>Cash</a>-->
+                    <!---->
+                    <!--                        </div>-->
+                    <!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
+                    <!--                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <!-- Edn options 2 -->
 
@@ -416,8 +409,8 @@
                         </tbody>
                     </table>
                     <hr>
-<!--                    <a class="btn_full" onclick="registration()" href="--><?php //echo base_url()?><!--Items/checkout">Go to checkout</a>-->
-<!--                    <a class="btn_full" type="submit">Go to checkout</a>-->
+                    <!--                    <a class="btn_full" onclick="registration()" href="--><?php //echo base_url()?><!--Items/checkout">Go to checkout</a>-->
+                    <!--                    <a class="btn_full" type="submit">Go to checkout</a>-->
                     <input type="submit" class="btn_full" value="Go to checkout">
                     </form>
                     <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
@@ -438,83 +431,70 @@
 <!-- login logout modal-->
 <?php include ('login_logout.php')?>
 <!-- end login logout modal-->
-
-
-<!-- COMMON SCRIPTS -->
-<?php include ('js.php')?>
-
-
-
 </body>
 </html>
-
-
+<!-- COMMON SCRIPTS -->
+<?php include ('js.php')?>
 <script>
-
     function registration() {
-
-
-            var name = document.getElementById('Name').value;
-            var address = document.getElementById('address').value;
-            var city = document.getElementById('city').value;
-            var postcode = document.getElementById('pcode').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            var conPassword = document.getElementById('conPassword').value;
-
-            var phone = document.getElementById('phone').value;
-
-            if (name == "") {
-                alert("Name is Required");
-                return false;
-            }
-
-            if (name.length > 45) {
-                alert("User Name should be less than 45 charecter");
-                return false;
-            }
-            if (address == "") {
-                alert("Address is Required");
-                return false;
-            }
-            if (address.length > 100) {
-                alert("address should be less than 100 charecter");
-                return false;
-            }
+        var name = document.getElementById('Name').value;
+        var address = document.getElementById('address').value;
+        var city = document.getElementById('city').value;
+        var postcode = document.getElementById('pcode').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var conPassword = document.getElementById('conPassword').value;
+        var phone = document.getElementById('phone').value;
+        if (name == "") {
+            alert("Name is Required");
+            return false;
+        }
+        if (name.length > 45) {
+            alert("User Name should be less than 45 charecter");
+            return false;
+        }
+        if (address == "") {
+            alert("Address is Required");
+            return false;
+        }
+        if (address.length > 100) {
+            alert("address should be less than 100 charecter");
+            return false;
+        }
 //            if (postcode == "") {
 //                alert("Postal Code is Required");
 //                return false;
 //            }
-            if (postcode.length > 11) {
-                alert("Post Code should be less than 11 charecter");
-                return false;
-            }
+        if (postcode.length > 11) {
+            alert("Post Code should be less than 11 charecter");
+            return false;
+        }
         if (city == "") {
             alert("City is Required");
             return false;
         }
-            var chk = /^[0-9]*$/;
-            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-            if (!phone.match(chk)) {
-                alert('Please enter a valid Phone number!!');
-                return false;
-            }
+        var chk = /^[0-9]*$/;
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!phone.match(chk)) {
+            alert('Please enter a valid Phone number!!');
+            return false;
+        }
         if (phone == "") {
             alert("Phone is Required");
             return false;
         }
-            if (phone.length > 18) {
-                alert('Phone number must be less than 18 charecter!!');
-                return false;
-            }
+        if (phone.length > 18) {
+            alert('Phone number must be less than 18 charecter!!');
+            return false;
+        }
         if (email == "") {
             alert("Email is Required");
             return false;
         }
-            if (!email.match(mailformat)) {
-                alert("You have entered an invalid email address!");
-                return false;
-            }
+        if (!email.match(mailformat)) {
+            alert("You have entered an invalid email address!");
+            return false;
+        }
         if (password == "") {
             alert("Password is Required");
             return false;
@@ -523,31 +503,21 @@
             alert("Confirm Password is Required");
             return false;
         }
-
-            if (password!=conPassword){
-                alert('Password and confirm Password does not match');
-                return false;
-            }
-            else {
-
-                return true;
-            }
-
-
+        if (password!=conPassword){
+            alert('Password and confirm Password does not match');
+            return false;
+        }
+        else {
+            return true;
+        }
     }
-
 </script>
-
 <script>
-
     function minus(x) {
-
         var btn = $(x).data('panel-id');
         var x = parseInt(document.getElementById(btn).value);
         var newx= x-1;
-
         document.getElementById(btn).value = newx;
-
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/updateCart/")?>' + btn,
@@ -559,18 +529,12 @@
                 $('#cart_table').load(document.URL +  ' #cart_table');
                 $('#total_table').load(document.URL +  ' #total_table');
             }
-
         });
-
     }
     function plus(x) {
-
         var btn = $(x).data('panel-id');
-
         var x = parseInt(document.getElementById(btn).value);
         var newx= x+1;
-
-
         document.getElementById(btn).value = newx;
         $.ajax({
             type: 'POST',
@@ -581,52 +545,38 @@
                 // $('#txt').html(data);
                 $('#cart_table').load(document.URL +  ' #cart_table');
                 $('#total_table').load(document.URL +  ' #total_table');
-
             }
-
         });
-
-
     }
-
     function paymentcreditcard() {
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Items/paymentcreditcard/")?>',
             cache: false,
             success:function(data)
             {
-
-               // $('#checkOut').load(document.URL +  ' #checkOut');
+                // $('#checkOut').load(document.URL +  ' #checkOut');
             }
-
         });
-
     }
     function paymentcash() {
-
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Items/paymentcash/")?>',
             cache: false,
             success:function(data)
             {
-               // $('#checkOut').load(document.URL +  ' #checkOut');
+                // $('#checkOut').load(document.URL +  ' #checkOut');
             }
-
         });
-
     }
     $(function() {  $(window).scroll(function() {
         var scroll = $(window).scrollTop();
-
         if (scroll >= 250) {
             document.getElementById("logo").style.display = "block";
         } else {
             document.getElementById("logo").style.display = "none";
         }
-
     });
     });
 </script>
