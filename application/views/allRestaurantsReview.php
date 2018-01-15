@@ -8,7 +8,7 @@
                     <input type="text" name="name"  class="form-control form-black"  required  placeholder="Give your name ..........." />
                 </div>
                 <div class="form-group">
-                    <textarea name="review_text" id="review_text" class="form-control form-black" style="height:100px" placeholder="write review about Restaurant..........." ></textarea>
+                    <textarea name="review_text" id="review_text" class="form-control form-black" rows="5" placeholder="write review about Restaurant..........." ></textarea>
                 </div>
                 <input type="submit" style="color: red" class="form-control form-black"  value="Submit" >
             </form>
