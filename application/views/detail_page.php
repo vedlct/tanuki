@@ -107,7 +107,7 @@
 <!-- End Header =============================================== -->
 
 <!-- SubHeader =============================================== -->
-<section  style="width: 100%; height: 470px; background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;background-size:cover;">
+<section  style="width: 100%;  background-image:url('<?php echo base_url()?>public/img/sub_header_2.jpg');background-repeat:no-repeat;background-size:cover;">
     <div id="subheader">
         <div id="sub_content">
             <div id=""><img src="<?php echo base_url()?>public/img/tanuki.png"  height="190px" alt=""></div>
@@ -539,7 +539,7 @@
     window.onscroll = function() {scrollFunction()};
 
     function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
             document.getElementById("myBtn").style.display = "block";
         } else {
             document.getElementById("myBtn").style.display = "none";
@@ -557,7 +557,7 @@
 
     $.fn.scrollView = function () {
         return this.each(function () {
-            $('html, body').animate({
+            $('html').animate({
                 scrollTop: $(this).offset().top
             }, 1000);
         });

@@ -44,7 +44,6 @@
 	z-index: 999
 }
 .layer-is-visible {
-	display: block;
 	-webkit-animation: fade-in-layer .3s;
 	-moz-animation: fade-in-layer .3s;
 	-ms-animation: fade-in-layer .3s;
@@ -3624,6 +3623,8 @@ thead {
         z-index: 9999;
     }
     
+
+    
     #sub_content h1 {
         font-size: 42px
     }
@@ -3865,6 +3866,15 @@ thead {
         font-size: 12px;
         padding: 0 15px
     }
+    #subheader {
+        background-color: rgba(0, 0, 0, 0.7);
+        background-size: cover;
+        color: #fff;
+        display: table;
+        height: 240px ! important;
+        text-align: center;
+        width: 100%;
+    }
     #sub_content h1 {
         font-size: 20px
     }
@@ -3920,6 +3930,15 @@ thead {
     #custom-search-input,
     #custom-search-input .search-query {
         width: 260px
+    }
+    #subheader {
+        background-color: rgba(0, 0, 0, 0.7);
+        background-size: cover;
+        color: #fff;
+        display: table;
+        height: 240px ! important;
+        text-align: center;
+        width: 100%;
     }
 }
 
