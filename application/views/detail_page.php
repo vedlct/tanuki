@@ -347,7 +347,7 @@
         
         <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
-        <div class="ordercart" style="position:fixed; top:0; left: 62%; cursor:pointer;">
+        <div  id="ordert" class="ordercart" style="position:fixed; top:0; left: 62%; cursor:pointer;">
             <i class="icon_cart_alt"></i> <span id="topcart">(<?php echo $this->cart->total_items();?>)</span>
         </div>
         
