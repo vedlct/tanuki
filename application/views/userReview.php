@@ -95,13 +95,13 @@
 
                 <div class="review_strip_single">
 
-                    <p>
+                    
                     <h2><?php echo $f->itemName ?></h2>
                     <h4><?php echo $f->name ?> Said</h4>
 
 
                     <small>  - <?php echo $f->feedbackTime ?></small>
-                    </p>
+
 
 
                     <p><?php echo $f->feedback ?></p>
