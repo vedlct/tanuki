@@ -1,11 +1,11 @@
 <!-- Header ================================================== -->
-<header>
+<header style="z-index: 1111">
     <div  class="container-fluid">
         <div class="row">
             <div class="col--md-4 col-sm-4 col-xs-4">
                 <a href="<?php echo base_url()?>Items" id="logo"  style="display: none">
-                    <img style="margin-top:-15px; padding: 0px" src="<?php echo base_url()?>public/img/logo.png" width="70"  alt="" data-retina="true" class="hidden-xs">
-                    <img src="<?php echo base_url()?>public/img/logo_mobile.png" width="50" height="23" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
+                    <img style="margin-top:-14px; padding: 0px" src="<?php echo base_url()?>public/img/logo.png" width="70"  alt="" data-retina="true" class="hidden-xs">
+                    <img src="<?php echo base_url()?>public/img/logo_mobile.png" width="32" height="25" alt="" data-retina="true" class="hidden-lg hidden-md hidden-sm">
                 </a>
             </div>
             <nav class="col--md-8 col-sm-8 col-xs-8">
@@ -23,7 +23,7 @@
                         <li>
 
 
-                            <button class="btn btn-sm default" href="#0"   onclick="selectid1(this)" >Restaurant Review</button>
+                            <button class="btn btn-sm default" href="#0"  onclick="selectid1(this)" >Restaurant Review</button>
 
                         </li>
                         <?php if($this->session->userdata('loggedin')=="true"){
