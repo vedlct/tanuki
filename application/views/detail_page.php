@@ -565,7 +565,8 @@
     
     $('.ordercart').click(function (event) {
         event.preventDefault();
-        $('#sidebar').scrollView();
+        //$('#sidebar').scrollView();
+        $('#sidebar')[0].scrollIntoView(true);
     });
     
 </script>
