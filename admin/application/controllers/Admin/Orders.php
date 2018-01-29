@@ -30,8 +30,6 @@ class Orders extends CI_Controller
             $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
             $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
-            //print_r($this->data['orders']);
-
 
             $this->load->view('Admin/allOrders', $this->data);
         } else {
