@@ -32,6 +32,7 @@ class Items extends CI_Controller
             $textbox = $this->input->post('textbox[]');
             $textprice = $this->input->post('textprice[]');
             $itemsizeStatus = $this->input->post('itemsizeStatus[]');
+            $ImageName = $catId.time();
 
             if ($itemImage !=null){
 
@@ -43,15 +44,16 @@ class Items extends CI_Controller
                     'overwrite' => TRUE,
                     'remove_spaces' => FALSE,
                     'mod_mime_fix' => FALSE,
+                    'file_name'=>$ImageName.".".pathinfo($itemImage, PATHINFO_EXTENSION),
                 );
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('itemPhoto')) {
                     // if something need after image upload
-                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'60','60');
+                    thumb('images/itemImages/'.$ImageName.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'60','60');
                     $itemdata = array(
                         'fkCatagory' => $catId,
                         'itemName' => $itemname,
-                        'image' => $itemImage,
+                        'image' => $ImageName.".".pathinfo($itemImage, PATHINFO_EXTENSION),
                         'description' => $itemDescription,
                         'fkInsertBy' => $userid,
                         'insertDate' => date('Y-m-d H:i:s'),
@@ -199,6 +201,7 @@ class Items extends CI_Controller
             $itemDescription=$this->input->post('itemDescription');
             $itemStatus=$this->input->post('itemStatus');
             $itemImage = $_FILES["itemPhoto"]["name"];
+            $ImageName = $catId.time();
             if ($itemImage!=null){
                 $this->load->library('upload');
                 $config = array(
@@ -208,14 +211,15 @@ class Items extends CI_Controller
                     'overwrite' => TRUE,
                     'remove_spaces' => FALSE,
                     'mod_mime_fix' => FALSE,
+                    'file_name'=>$ImageName.".".pathinfo($itemImage, PATHINFO_EXTENSION),
                 );
                 $this->upload->initialize($config);
                 if ($this->upload->do_upload('itemPhoto')) {
-                    thumb('images/itemImages/'.$itemImage.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'60','60');
+                    thumb('images/itemImages/'.$ImageName.'.'.pathinfo($itemImage, PATHINFO_EXTENSION),'60','60');
                     $itemdata = array(
                         'fkCatagory' => $catId,
                         'itemName' => $itemName,
-                        'image' => $itemImage,
+                        'image' => $ImageName.".".pathinfo($itemImage, PATHINFO_EXTENSION),
                         'description' => $itemDescription,
                         'itemStatus' => $itemStatus,
                     );
