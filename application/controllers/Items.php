@@ -257,7 +257,12 @@ class Items extends CI_Controller {
                     $orderstatus = $re->id;
                     $deliveryfee = $this->session->userdata('deliverfee');
                     $vat = $this->session->userdata('vat');
-                    $paymenttype = $this->session->userdata('paymentMethod');
+                    if ($this->session->userdata('paymentMethod')=="cash"){
+                        $paymenttype = "cs";
+                    }else if($this->session->userdata('paymentMethod')=="credit") {
+                        $paymenttype = "crd";
+                    }
+
                     $user = $this->session->userdata('id');
                     $ordertaker = null;
                     $data = array(
@@ -298,7 +303,14 @@ class Items extends CI_Controller {
         $orderstatus = $re->id;
         $deliveryfee = $this->session->userdata('deliverfee');
         $vat = $this->session->userdata('vat');
-        $paymenttype = $this->session->userdata('paymentMethod');
+
+        if ($this->session->userdata('paymentMethod')=="cash"){
+            $paymenttype = "cs";
+        }else if($this->session->userdata('paymentMethod')=="credit") {
+            $paymenttype = "crd";
+        }
+
+        //$paymenttype = $this->session->userdata('paymentMethod');
         $user = $this->session->userdata('id');
         $ordertaker = $this->session->userdata('id');
         $memberid = $this->session->userdata('memberuserid');

@@ -429,7 +429,7 @@ class Orders extends CI_Controller
 
     public function insertNewOrderStatus()
     {
-        if ($this->session->userdata('userType') == "Admin") {
+        if ($this->session->userdata('userType') == "Admin"){
 
             $sequence = $this->input->post('sequence');
             $statusTitle = $this->input->post('statusTitle');
@@ -467,7 +467,7 @@ class Orders extends CI_Controller
             $status_id = $this->input->post('id');
             $data['orderstatusinfo'] = $this->Ordersm->getOrderStatusId($status_id);
             $data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
-            //print_r($this->data['ordersStatus']);
+
             $this->load->view('Admin/updateOrderstatus', $data);
 
         } else {
@@ -483,7 +483,6 @@ class Orders extends CI_Controller
             $data = array(
                 'sequece' => $this->input->post('sequence'),
                 'statusTitle' => $this->input->post('statusTitle')
-
 
             );
 

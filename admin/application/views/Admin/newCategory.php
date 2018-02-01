@@ -7,7 +7,8 @@
 
                             <label class="control-label col-md-3"> Catagory Name<span class="required"> * </span></label>
                             <div class="col-md-5">
-                                <input type="text" name="catagoryname" placeholder="enter catagory name" required class="form-control input-height" />
+                                <p id="duplicateCat" style="display: none;color: red">Category Already Existed!! Please Enter Another Name</p>
+                                <input type="text" name="catagoryname" placeholder="enter catagory name" id="catagoryname"  required class="form-control input-height" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -32,13 +33,45 @@
                                 <div class="row">
 
                                     <div class="col-md-offset-3 col-md-4">
-                                        <button type="submit" class="btn btn-info">Submit</button>
+                                        <button type="submit" id="submit" class="btn btn-info">Submit</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
+
+                <script>
+                    
+                    $("#catagoryname").on('input', function(){
+                        var catName =document.getElementById('catagoryname').value;
+
+
+                            $.ajax({
+                                type:'POST',
+                                url:'<?php echo base_url("Admin/Category/checkCategory")?>',
+                                data:{'catName': catName},
+                                cache: false,
+                                success:function(data) {
+
+                                    if (data=="1")
+                                    {
+
+                                        document.getElementById('submit').disabled= true;
+                                        document.getElementById('duplicateCat').style.display='block';
+
+                                    }
+                                    else {
+                                        document.getElementById('duplicateCat').style.display='none';
+                                        document.getElementById('submit').disabled= false;
+                                    }
+
+
+                                }
+                            });
+                    });
+
+                </script>
 
 
         

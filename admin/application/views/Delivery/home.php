@@ -2,19 +2,23 @@
 <html lang="en">
 
 <head>
-    <?php include("head.php"); ?>
+    <?php $this->load->view('header-footer/head') ?>
 </head>
 <body class="page-header-fixed sidemenu-closed-hidelogo page-container-bg-solid page-content-white page-md">
 
 <div class="page-wrapper">
 
-    <?php include('topNavigation.php') ?>
+
+    <?php $this->load->view('navigation/topNavigation') ?>
+
+
 
     <div class="clearfix"> </div>
     <!-- start page container -->
     <div class="page-container">
 
-        <?php include ('leftNavigation.php')?>
+
+        <?php $this->load->view('navigation/leftNavigation') ?>
         <!-- start page content -->
         <div class="page-content-wrapper">
             <div class="page-content">
@@ -101,7 +105,8 @@
         <!-- end page content -->
     </div>
     <!-- end page container -->
-    <?php include ("footer.php") ?>
+
+    <?php $this->load->view('header-footer/footer') ?>
 
 
 </div>
@@ -109,55 +114,4 @@
 </body>
 
 </html>
-
-<?php include ("js.php") ?>
-
-<script>
-    var i = setInterval(function(){
-        $.ajax({
-            url: "<?php echo base_url('Admin/User/getTotalUser') ?>",
-            cache: false,
-            success: function (data) {
-                $("#results").text(data);
-            }
-        });
-    },6000 , 60);
-    var i = setInterval(function(){
-        $.ajax({
-            url: "<?php echo base_url('Admin/Report/getTotaltransactiondetail') ?>",
-            cache: false,
-            success: function (data) {
-                $("#resultts2").text(data);
-            }
-        });
-    },6000, 60);
-    var i = setInterval(function(){
-        $.ajax({
-            url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
-            cache: false,
-            success: function (data) {
-                $("#resultts3").text(data);
-            }
-        });
-    },6000, 60);
-    var i = setInterval(function(){
-        $.ajax({
-            url: "<?php echo base_url('Admin/Orders/getTotalOrder') ?>",
-            cache: false,
-            success: function (data) {
-                $("#resultts1").text(data);
-            }
-        });
-    },6000, 60);
-
-    var i = setInterval(function(){
-        $.ajax({
-            url: "<?php echo base_url('Admin/Home/getAllTodaysOrder') ?>",
-            cache: false,
-            success: function (data) {
-                $("#todayOrder").html(data);
-            }
-        });
-    },6000, 60);
-
-</script>
+<?php $this->load->view('css-js/js') ?>

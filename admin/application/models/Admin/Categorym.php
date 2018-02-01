@@ -43,6 +43,14 @@ class Categorym extends CI_Model
 
         return $query->result();
     }
+    public function checkCategoryName($catName)
+    {
+        $this->db->from('catagory');
+        $this->db->where('name',$catName);
+        $query = $this->db->get();
+
+        return $query->result();
+    }
 
 
     public function updateCategoryById($id, $data)

@@ -1,13 +1,13 @@
 
-<?php if ($this->session->userdata('userType')!="Admin"){
-echo "<script type=\"text/javascript\">
-        alert(\"Login First\");
-        
-        window.location.href='". base_url() ."';
-        </script>";
-}
-else
-    {
+<?php //if ($this->session->userdata('userType')!="Admin"){
+//echo "<script type=\"text/javascript\">
+//        alert(\"Login First\");
+//
+//        window.location.href='". base_url() ."';
+//        </script>";
+//}
+//else
+//    {
         $this->db->select('COUNT(id) as total');
         $this->db->from('orders');
         $this->db->where('orderNotifications',"0");
@@ -19,6 +19,7 @@ else
      }
 ?>
 
+        <?php if ($this->session->userdata('userType')=="Admin"){?>
 <!-- start sidebar menu -->
 <div class="sidebar-container">
     <div class="sidemenu-container navbar-collapse collapse fixed-menu">
@@ -149,6 +150,44 @@ else
     </div>
 </div>
 <!-- end sidebar menu -->
+
+
+            <?php } elseif($this->session->userdata('userType')=="Deli"){ ?>
+
+            <!-- start sidebar menu -->
+            <div class="sidebar-container">
+                <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+                    <div id="remove-scroll">
+                        <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                            <li class="sidebar-toggler-wrapper hide">
+                                <div class="sidebar-toggler">
+                                    <span></span>
+                                </div>
+                            </li>
+                            <li class="nav-item start active open">
+                                <a href="<?php echo base_url() ?>Admin/Home" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="<?php echo base_url()?>Delivery-Orders" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                                    <span class="title">Order</span><span id="output1" style="color:#FFF;;margin: 1px;font-size: 13px;"></span>
+                                </a>
+                            </li>
+
+
+
+
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end sidebar menu -->
+
+
+
+            <?php } ?>
 <script>
     var old_notification = "<?php echo $ordernotification?>";
 
@@ -178,4 +217,4 @@ else
 
 </script>
 
-<?php }?>
+<?php //}?>

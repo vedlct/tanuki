@@ -7,7 +7,7 @@
 
             <label class="control-label col-md-3"> Enter Sequnce<span class="required"> * </span></label>
             <div class="col-md-5">
-                <input type="text" name="sequence" placeholder="enter Sequence" value="<?php echo $orderinfo->sequece ?>" required class="form-control input-height" />
+                <input type="text" name="sequence" placeholder="enter Sequence" value="<?php echo $orderinfo->sequece?>" required class="form-control input-height" />
             </div>
 
         </div>
@@ -22,7 +22,7 @@
 
                     <?php foreach ($ordersStatus as $Status){?>
 
-                        <option <?php if (!empty($orderinfo->id) && $orderinfo->id==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->id?>"><?php echo $Status->statusTitle?></option>
+                        <option <?php if (!empty($orderinfo->id) && $orderinfo->id==$Status->id) echo 'selected = "selected"';?>value="<?php echo $Status->statusTitle?>"><?php echo $Status->statusTitle?></option>
                     <?php }?>
 
 

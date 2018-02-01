@@ -82,3 +82,8 @@ $route['Admin-EditOrderItem/(:any)'] = 'Admin/Orders/updateOrderItemById/$1';
 
 $route['Admin-AddOrderedItem/(:any)'] = 'Admin/Orders/addNewOrderItems/$1';
 
+
+/* Delivery */
+
+$route['Delivery-Orders'] = 'Delivery/Orders/allOrders';
+

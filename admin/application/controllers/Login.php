@@ -49,10 +49,10 @@ class Login extends CI_Controller
                 redirect('Admin/Home');
             }
 
-//            elseif ($this->session->userdata('userType') == "cus")
-//            {
-//                redirect('../Items');
-//            }
+            elseif ($this->session->userdata('userType') == "Deli")
+            {
+                redirect('Delivery/Home');
+            }
             //print_r($result);
 
         }
