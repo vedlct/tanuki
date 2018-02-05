@@ -255,7 +255,7 @@ class Items extends CI_Controller {
                     $orderdate = date("Y-m-d H:i");
                     $re = $this->Itemsm->getorderstatus();
                     $orderstatus = $re->id;
-                    $deliveryfee = $this->session->userdata('deliverfee');
+                    $deliveryfee = $this->session->userdata('deliveryfee');
                     $vat = $this->session->userdata('vat');
                     if ($this->session->userdata('paymentMethod')=="cash"){
                         $paymenttype = "cs";
@@ -301,7 +301,7 @@ class Items extends CI_Controller {
         $orderdate = date("Y-m-d H:i");
         $re = $this->Itemsm->getorderstatus();
         $orderstatus = $re->id;
-        $deliveryfee = $this->session->userdata('deliverfee');
+        $deliveryfee = $this->session->userdata('deliveryfee');
         $vat = $this->session->userdata('vat');
 
         if ($this->session->userdata('paymentMethod')=="cash"){
