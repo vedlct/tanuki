@@ -42,6 +42,7 @@ class Category extends CI_Controller {
 
     public  function  addCategory()
     {
+
         if ($this->session->userdata('userType') == "Admin")
         {
 
@@ -91,12 +92,31 @@ class Category extends CI_Controller {
         }
     }
 
+    public function checkCategory()
+    {
+        if ($this->session->userdata('userType') == "Admin") {
+
+            $catName = $this->input->post('catName');
+            $data['categoryInfo'] = $this->Categorym->checkCategoryName($catName);
+            if (empty($data['categoryInfo'])){
+                echo "0";
+            }
+            else{
+                echo "1";
+            }
+            //$this->load->view('Admin/updateCategory',$data);
+
+        } else {
+            redirect('Login');
+        }
+    }
+
     public function updateCategoryById($id)
     {
         if ($this->session->userdata('userType') == "Admin") {
 
             $data = array(
-                'name'=> $this->input->post('catagoryname'),
+            'name'=> $this->input->post('catagoryname'),
             'description'=> $this->input->post('description'),
             'categoryStatus'=> $this->input->post('catStatus'),
 

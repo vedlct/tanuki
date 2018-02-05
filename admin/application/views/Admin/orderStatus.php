@@ -69,10 +69,10 @@
                                                     <i class="fa fa-pencil"></i>
                                                 </button>
 
-                                                <button type="button" data-panel-id="<?php echo $os->id ?>" onclick="selectid3(this)"class="btn btn-danger btn-xs">
-
-                                                    <i class="fa fa-trash-o "></i>
-                                                </button>
+<!--                                                <button type="button" data-panel-id="--><?php //echo $os->id ?><!--" onclick="selectid3(this)"class="btn btn-danger btn-xs">-->
+<!---->
+<!--                                                    <i class="fa fa-trash-o "></i>-->
+<!--                                                </button>-->
                                             </td>
                                         </tr>
 
