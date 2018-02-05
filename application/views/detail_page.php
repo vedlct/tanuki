@@ -476,8 +476,18 @@
                                 if ($this->session->userdata('orderType') == "home"){
                                     foreach ($charges as $char){
                                         $dfee = $char->deliveryfee;
-                                    } } else?>
-                                <?php echo $dfee ; ?></span>
+                                    }
+                                    $data = array(
+                                        'deliveryfee' => $dfee ,
+                                    );
+                                    $this->session->set_userdata($data);
+                                } else?>
+                                <?php echo $dfee ;
+                                $data = array(
+                                    'deliveryfee' => $dfee ,
+                                );
+                                $this->session->set_userdata($data);
+                                ?></span>
                             </td>
                         </tr>
 
