@@ -121,7 +121,7 @@
 
     var i = setInterval(function(){
         $.ajax({
-            url: "<?php echo base_url('Delivery/Home/getAllTodaysOrder') ?>",
+            url: "<?php echo base_url('Waiter/Home/getAllTodaysOrder') ?>",
             cache: false,
             success: function (data) {
                 $("#todayOrder").html(data);
@@ -131,7 +131,7 @@
 
     var i = setInterval(function(){
         $.ajax({
-            url: "<?php echo base_url('Delivery/Orders/getTotalOrder') ?>",
+            url: "<?php echo base_url('Waiter/Orders/getTotalOrder') ?>",
             cache: false,
             success: function (data) {
                 $("#resultts1").text(data);

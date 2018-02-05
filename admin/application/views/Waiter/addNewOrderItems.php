@@ -1,4 +1,4 @@
-<form action="<?php echo base_url()?>Admin-AddOrderedItem/<?php echo $orderId?>"  method="post" id="form_sample_1" class="form-horizontal">
+<form action="<?php echo base_url()?>Waiter-AddOrderedItem/<?php echo $orderId?>"  method="post" id="form_sample_1" class="form-horizontal">
     <div class="form-body">
 
         <div class="form-group">

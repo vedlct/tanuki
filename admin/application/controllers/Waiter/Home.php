@@ -6,14 +6,15 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Delivery/Ordersm');
+        $this->load->model('Waiter/Ordersm');
+
 
     }
 
     public function index()
     {
 
-        $this->load->view('Delivery/home');
+        $this->load->view('Waiter/home');
     }
 
     public function getAllTodaysOrder()
@@ -23,7 +24,7 @@ class Home extends CI_Controller
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
         $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
-        $this->load->view('Delivery/todaysOrder',$this->data);
+        $this->load->view('Waiter/todaysOrder',$this->data);
 
     }
 }

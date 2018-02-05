@@ -49,7 +49,9 @@
                 </li>
                 <!-- end manage user dropdown -->
             </ul>
-<!--            <a href="--><?php //echo base_url()?><!--../Items"> <button class="btn btn-skype" style="margin-top: 10px; float: right">Place Order</button></a>-->
+            <?php if ($this->session->userdata('userType')!="Deli"){?>
+            <a href="<?php echo base_url()?>../Items"> <button class="btn btn-skype" style="margin-top: 10px; float: right">Place Order</button></a>
+            <?php } ?>
         </div>
     </div>
 </div>

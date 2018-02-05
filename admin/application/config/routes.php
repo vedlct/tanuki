@@ -87,3 +87,10 @@ $route['Admin-AddOrderedItem/(:any)'] = 'Admin/Orders/addNewOrderItems/$1';
 
 $route['Delivery-Orders'] = 'Delivery/Orders/allOrders';
 
+
+/* Waiter */
+
+$route['Waiter-Orders'] = 'Waiter/Orders/allOrders';
+$route['Waiter-EditOrderItem/(:any)'] = 'Waiter/Orders/updateOrderItemById/$1';
+$route['Waiter-AddOrderedItem/(:any)'] = 'Waiter/Orders/addNewOrderItems/$1';
+

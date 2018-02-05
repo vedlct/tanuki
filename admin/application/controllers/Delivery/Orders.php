@@ -131,4 +131,20 @@ class Orders extends CI_Controller
             redirect('Login');
         }
     }
+
+    public function getTotalOrder()
+    {
+        if ($this->session->userdata('userType') == "Deli") {
+
+
+            $result = $this->Ordersm->getTotalOrder();
+
+            echo $result;
+
+        } else {
+
+            redirect('Login');
+        }
+
+    }
 }

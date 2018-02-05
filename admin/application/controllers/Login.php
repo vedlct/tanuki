@@ -53,6 +53,10 @@ class Login extends CI_Controller
             {
                 redirect('Delivery/Home');
             }
+            elseif ($this->session->userdata('userType') == "wter")
+            {
+                redirect('Waiter/Home');
+            }
             //print_r($result);
 
         }

@@ -45,7 +45,35 @@
                                     </div>
                                 </li>
 
-                            <?php }else{?>
+                            <?php }elseif ($usertype=="Deli"){?>
+
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?php echo base_url()?>admin/Delivery/Home">Delivery Panel</a></li>
+                                            <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            <?php } elseif ($usertype=="wter"){?>
+
+                                <li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>
+                                            <span class="caret"></span></button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="<?php echo base_url()?>admin/Waiter/Home">Waiter Panel</a></li>
+                                            <li><a href="<?php echo base_url()?>Login/logout">Log Out</a></li>
+
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            <?php } else{?>
                                 <li>
                                     <div class="dropdown">
                                         <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><?php echo $username ?>

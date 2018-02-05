@@ -32,7 +32,7 @@ class PdfMaker extends CI_Controller
 
     public function OrderBillPdf($orderId)
     {
-        if ($this->session->userdata('userType') == "Admin" || $this->session->userdata('userType') == "Deli" ) {
+        if ($this->session->userdata('userType') == "Admin" || $this->session->userdata('userType') == "Deli" || $this->session->userdata('userType') == "wter") {
 
             $this->load->model('Admin/Ordersm');
             $this->load->model('Admin/Chargem');
