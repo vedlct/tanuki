@@ -109,6 +109,28 @@ class Loginm extends CI_Model{
 
     }
 
+    public function customerRegisterFromResturant($data)
+    {
+        $this->security->xss_clean($data) ;
+
+        $this->db->insert('users',$data);
+
+
+            $customerId=$this->db->insert_id();
+
+            $data1=array(
+                'memberCardNo'=>$customerId,
+            );
+
+            $this->db->where('id',$customerId);
+            $this->db->update('users',$data1);
+
+            return $customerId;
+
+
+
+    }
+
 
 
 
