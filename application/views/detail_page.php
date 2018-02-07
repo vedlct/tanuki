@@ -432,8 +432,14 @@
 
                                 <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
                             </div>
+
                             <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-                           <input type="button" value="New User">
+
+
+                            <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+<!--                           <input type="button" value="New User">-->
+                                <button class="btn btn-sm default" href="#0" onclick="newUser(this)">New User</button>
+
                             </div>
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
@@ -770,3 +776,37 @@
             });
         })(jQuery);
     </script>-->
+
+<script>
+    var modal = document.getElementById('myModal');
+    var span = document.getElementsByClassName("close")[0];
+
+    function newUser(x)
+    {
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("admin/Login/showNewUserReg")?>',
+            data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+            }
+
+        });
+        modal.style.display = "block";
+    }
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+</script>

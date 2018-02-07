@@ -14,6 +14,10 @@ class Login extends CI_Controller
     {
         $this->load->view('login');
     }
+    public function showNewUserReg()
+    {
+        $this->load->view('newUserRegistration');
+    }
 
 
     public function check_user()
@@ -82,6 +86,45 @@ class Login extends CI_Controller
 
         redirect('../Items');
     }
+
+    public function newUserRegFromResturant()
+    {
+
+
+            $name = $this->input->post('Name');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $postal = $this->input->post('pcode');
+            $email = $this->input->post('email');
+            $password = $this->input->post('password');
+           // $conPassword = $this->input->post('conPassword');
+            $phone = $this->input->post('phone');
+
+                $data=array(
+                    'name'=>$name,
+                    'address'=>$address,
+                    'postalCode'=>$postal,
+                    'fkCity'=>$city,
+                    'contactNo'=>$phone,
+                    'email'=>$email,
+                    'password'=>$password,
+                    'userActivationStatus'=>'1',
+                    'fkUserType'=>'cus',
+                );
+                $this->data['error']=$this->loginm->customerRegisterFromResturant($data);
+                if (empty($this->data['error'])) {
+                    $this->session->set_flashdata('successMessage','Customer Created Successfully');
+                    redirect('Login/showRegitration');
+                } else {
+                    $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Login/showRegitration');
+                }
+
+
+
+    }
+
+
 
 
 
