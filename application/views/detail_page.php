@@ -432,7 +432,7 @@
 
                                 <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
                             </div>
-                            <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                            <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
                            <input type="button" value="New User">
                             </div>
                         </div>
