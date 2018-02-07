@@ -1,7 +1,7 @@
 
 <div class="row">
                 <h3 style="text-align: center" class="dark-grey">Registration</h3>
-                <form action="<?php echo base_url()?>admin/Login/newUserRegFromResturant" onsubmit="return newUserregistration()">
+                <form method="post" id="newUserRegFromResturant" action="<?php echo base_url()?>Login/newUserRegFromResturant" onsubmit="return newUserregistration()" >
 
                 <div class="form-group col-lg-12">
                     <label>Username</label><span style="color: red" class="required">*</span>
@@ -31,7 +31,8 @@
 
                 <div class="form-group col-lg-12">
                     <label>Email</label><span style="color: red" class="required">*</span>
-                    <input type="email" class="form-control"name="email" id="email" required placeholder="Email">
+                    <p id="WrongEmail" style="display: none;color: red">Email Already Existed!!</p>
+                    <input type="email" class="form-control"name="email" id="email" required placeholder="Email" onchange="checkEmail()">
                 </div>
 
                 <div class="form-group col-lg-6">
@@ -49,13 +50,14 @@
 <!--                </div>-->
 
                 <div class="col-md-12">
-                    <button type="submit" class="btn btn-submit">Register</button>
+                    <button type="submit" id="submit" class="btn btn-submit">Register</button>
                 </div>
 </form>
 
 </div>
 
 <script>
+
 
     function newUserregistration() {
 
@@ -103,11 +105,42 @@
             }
             if (password ==""){
                 alert('Password can not be empty!!');
+                return false;
             }
             else {
                 return true;
+
+
             }
-//        }
+
+
+    }
+
+    function checkEmail() {
+
+        var email = document.getElementById('email').value;
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("admin/Admin/User/checkEmail")?>',
+            data:{'email':email},
+            cache: false,
+            success:function(data) {
+
+                if (data=="0")
+                {
+
+                    document.getElementById('submit').disabled= true;
+                    document.getElementById('WrongEmail').style.display='block';
+
+                }
+                else {
+                    document.getElementById('WrongEmail').style.display='none';
+                    document.getElementById('submit').disabled= false;
+                }
+
+            }
+        });
 
     }
 

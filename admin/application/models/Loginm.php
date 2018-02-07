@@ -37,40 +37,7 @@ class Loginm extends CI_Model{
 
     }
 
-    public function customerRegisterFromResturant($data)
-    {
-        $this->security->xss_clean($data) ;
 
-        $error=$this->db->insert('users',$data);
-
-
-        if (empty($error))
-        {
-            return $this->db->error();
-        }
-        else
-        {
-            $customerId=$this->db->insert_id();
-
-            $data1=array(
-                'memberCardNo'=>$customerId,
-            );
-
-            $this->db->where('id',$customerId);
-            $error=$this->db->update('users',$data1);
-
-            if (empty($error))
-            {
-                return $this->db->error();
-            }
-            else {
-
-                return $error = null;
-            }
-        }
-
-
-    }
 
 
 

@@ -430,7 +430,11 @@
                             <div style="text-align: center; " class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6">Membership ID :</label>
 
+                            <?php if ($this->session->userdata('memberuserid') !=null){?>
+                                <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="<?php echo $this->session->userdata('memberuserid');?>" name="option_2" >
+                                <?php }else{ ?>
                                 <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
+                                <?php } ?>
                             </div>
                             <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 <!--                           <input type="button" value="New User">-->
@@ -781,7 +785,7 @@
 
         $.ajax({
             type:'POST',
-            url:'<?php echo base_url("admin/Login/showNewUserReg")?>',
+            url:'<?php echo base_url("Login/showNewUserReg")?>',
             data:{},
             cache: false,
             success:function(data)

@@ -98,4 +98,42 @@ class Login extends CI_Controller
             }
         }
     }
+
+    public function newUserRegFromResturant()
+    {
+
+        $name = $this->input->post('Name');
+        $address = $this->input->post('address');
+        $city = $this->input->post('city');
+        $postal = $this->input->post('pcode');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        // $conPassword = $this->input->post('conPassword');
+        $phone = $this->input->post('phone');
+
+        $data=array(
+            'name'=>$name,
+            'address'=>$address,
+            'postalCode'=>$postal,
+            'fkCity'=>$city,
+            'contactNo'=>$phone,
+            'email'=>$email,
+            'password'=>$password,
+            'userActivationStatus'=>'1',
+            'fkUserType'=>'cus',
+        );
+        $this->data['customerId']=$this->loginm->customerRegisterFromResturant($data);
+
+        $data = array(
+            'memberuserid' => $this->data['customerId'],
+        );
+        $this->session->set_userdata($data);
+        redirect('Items');
+
+    }
+
+    public function showNewUserReg()
+    {
+        $this->load->view('newUserRegistration');
+    }
 }
