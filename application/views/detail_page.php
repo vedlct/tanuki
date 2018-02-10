@@ -537,7 +537,7 @@
 
                     <div id="ordertypediv">
                         <?php if($this->session->userdata('orderType') != null ){ ?>
-                            <a class="btn_full" href="<?php echo base_url()?>Items/cart">Order now</a>
+                            <a class="btn_full" onclick=" return test()" href="<?php echo base_url()?>Items/cart">Order now</a>
                         <?php }else { ?>
                             <a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
                         <?php } ?>
@@ -564,6 +564,13 @@
 </html>
 
 <?php include ('js.php')?>
+
+<script>
+    test = function(event) {
+        alert("Your code here");
+        return false;
+    }
+</script>
 
 
 <script>
@@ -814,3 +821,4 @@
 
 
 </script>
+

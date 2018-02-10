@@ -20,9 +20,11 @@
 ?>
 
         <?php if ($this->session->userdata('userType')=="Admin"){?>
+
 <!-- start sidebar menu -->
 <div class="sidebar-container">
     <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+
         <div id="remove-scroll">
             <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
                 <li class="sidebar-toggler-wrapper hide">
@@ -143,6 +145,24 @@
 
                     </ul>
                 </li>
+                <li class="nav-item  ">
+                    <a href="#" class="nav-link nav-toggle"> <i class="fa fa-gift"></i>
+                        <span class="title">Promotions</span> <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin/Promotions/addPromotions" class="nav-link "> <span class="title">Add Promotion</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="<?php echo base_url()?>Admin/Promotions/allPromotions" class="nav-link "> <span class="title">All Promotion</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </li>
+
 
 
             </ul>
@@ -214,7 +234,9 @@
 
 
 
+
                         </ul>
+
                     </div>
                 </div>
             </div>
@@ -235,11 +257,16 @@
             success : function(datan){
 
                 if (parseFloat(datan) > old_unseen) {
+                   // alert('hellow');
                     new_unseen=new_unseen+1;
                     $('#output1').html(" ("+new_unseen+")"),
                         old_unseen = datan;
-//                    var snd = new Audio("file.wav"); // buffers automatically when created
-//                    snd.play();
+
+
+                    var song = new Audio();
+                    song.src = '<?php echo base_url()?>public/notification_sound.mp3';
+                    song.play();
+
 
                 }else {
                     $('#output1').html(" ("+old_unseen+")")

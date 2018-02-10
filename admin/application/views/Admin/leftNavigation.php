@@ -144,7 +144,10 @@ else
                 </li>
 
 
+
             </ul>
+
+
         </div>
     </div>
 </div>
@@ -168,12 +171,17 @@ else
 //                    var snd = new Audio("file.wav"); // buffers automatically when created
 //                    snd.play();
 
+                    var song = new Audio();
+                    song.src = '<?php echo base_url()?>public/notification_sound.mp3';
+                    song.play()
                 }else {
                     $('#output1').html(" ("+old_unseen+")")
                 }
             }
         });
     },2000);
+
+
 
 
 </script>
