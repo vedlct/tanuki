@@ -340,7 +340,15 @@
                         } ?>
                         </tbody>
                     </table>
+
                     <hr>
+                    <label class="">commnet: </label><br>
+                    <div class="row">
+
+                    <textarea class="col-sm-12"></textarea>
+                    </div>
+                        <hr>
+
                     <!--                    <div class="row" id="options_2">-->
                     <!--                        <h4 align="center">Payment Method</h4>-->
                     <!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->

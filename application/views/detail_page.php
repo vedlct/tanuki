@@ -576,6 +576,25 @@
 <!--    }-->
 <!--</script>-->
 
+<script>
+    test = function(event) {
+        //  alert("Your code here");
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/checkdesert/")?>' ,
+            data: {},
+            cache: false,
+            success: function (data) {
+               alert(data)
+                // $('#cart_table').load(document.URL + ' #cart_table');
+               // $('#total_table').load(document.URL + ' #total_table');
+               // $('#topcart').load(document.URL + ' #topcart');
+            }
+        });
+    }
+</script>
+
+
 
 <script>
     // When the user scrolls down 20px from the top of the document, show the button
