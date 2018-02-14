@@ -286,6 +286,9 @@
                         </tbody>
                     </table>
                     <hr>
+                    <label>commnet</label>
+                    <textarea></textarea>
+                    <hr>
 
 
                     <table class="table table_summary" id="total_table">

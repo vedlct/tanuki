@@ -345,6 +345,14 @@ class Items extends CI_Controller {
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }
+
+
+    public function checkdesert(){
+
+        foreach ($this->cart->contents() as $c){
+           echo $c['name'];
+        }
+    }
     public function usepoints(){
         $userid = $this->session->userdata('id');
         $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
