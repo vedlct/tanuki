@@ -154,6 +154,8 @@
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
                 <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+                <span><h4>OR</h4></span>
+                <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
             </div>
             <div class="box_style_1">
 
@@ -537,7 +539,8 @@
 
                     <div id="ordertypediv">
                         <?php if($this->session->userdata('orderType') != null ){ ?>
-                            <a class="btn_full" onclick=" return test()" href="<?php echo base_url()?>Items/cart">Order now</a>
+<!--                            <a class="btn_full" onclick="return test()" href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
+                            <a class="btn_full"  href="<?php echo base_url()?>Items/cart">Order now</a>
                         <?php }else { ?>
                             <a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
                         <?php } ?>
@@ -558,6 +561,7 @@
 <div class="layer"></div><!-- Mobile menu overlay mask -->
 
 <?php include ('login_logout.php')?>
+<?php include ('emailToResturant.php')?>
 <!-- COMMON SCRIPTS -->
 
 </body>
@@ -565,12 +569,12 @@
 
 <?php include ('js.php')?>
 
-<script>
-    test = function(event) {
-        alert("Your code here");
-        return false;
-    }
-</script>
+<!--<script>-->
+<!--    test = function(event) {-->
+<!--        alert("Your code here");-->
+<!--        return false;-->
+<!--    }-->
+<!--</script>-->
 
 
 <script>
