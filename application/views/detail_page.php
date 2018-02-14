@@ -154,9 +154,12 @@
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
                 <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
-                <span><h4>OR</h4></span>
-                <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
+
             </div>
+            <div class="box_style_1 hidden-xs" id="help">
+                <button class="btn btn-sm btn-info" style="width: 100%" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
+            </div>
+
             <div class="box_style_1">
 
 
