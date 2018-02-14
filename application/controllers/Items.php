@@ -209,7 +209,9 @@ class Items extends CI_Controller {
     public function checkoutguest(){
         $this->load->library('form_validation');
         if (!$this->form_validation->run('userRes')) {
-            $this->load->view('cartforguest');
+            $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
+            $this->load->view('cartforguest',$this->data);
         }
         else {
             $this->load->model('loginm');
@@ -265,6 +267,7 @@ class Items extends CI_Controller {
 
                     $user = $this->session->userdata('id');
                     $ordertaker = null;
+                    $orderRemark = $this->input->post('orderRemark');
                     $data = array(
                         'orderType' => $ordertype,
                         'orderDate' => $orderdate,
@@ -274,6 +277,7 @@ class Items extends CI_Controller {
                         'paymentType' => $paymenttype,
                         'fkUserId' => $user,
                         'fkOrderTaker' => $ordertaker,
+                        'orderRemarks' => $orderRemark,
                     );
                     $orderId=$this->Itemsm->checkoutInsertForGuest($data);
                     $this->mailInvoice($orderId);
@@ -314,6 +318,8 @@ class Items extends CI_Controller {
         $user = $this->session->userdata('id');
         $ordertaker = $this->session->userdata('id');
         $memberid = $this->session->userdata('memberuserid');
+        $orderRemark = $this->input->post('orderRemark');
+
         if ($this->session->userdata('orderType') == "have") {
             $data = array(
                 'orderType' => $ordertype,
@@ -324,10 +330,10 @@ class Items extends CI_Controller {
                 'paymentType' => $paymenttype,
                 'fkUserId' => $memberid,
                 'fkOrderTaker' => $ordertaker,
+                'orderRemarks' => $orderRemark,
             );
             $this->Itemsm->checkoutInsert($data);
-        }
-        else {
+        } else {
             $data = array(
                 'orderType' => $ordertype,
                 'orderDate' => $orderdate,
@@ -337,6 +343,7 @@ class Items extends CI_Controller {
                 'paymentType' => $paymenttype,
                 'fkUserId' => $user,
                 'fkOrderTaker' => null,
+                'orderRemarks' => $orderRemark,
             );
             $orderId=$this->Itemsm->checkoutInsert($data);
             $this->mailInvoice($orderId);

@@ -33,7 +33,7 @@
         </div>
         </div>
 
-        <div style=";border: 2px solid green;" class="col-md-12">
+        <div style="border: 2px solid green;" class="col-md-12">
 
 
                 <div class="panel-body">
@@ -58,6 +58,18 @@
 
                     </div>
                 </div>
+            <hr style="margin: 0px;border: 1px solid green;">
+            <div class="panel-body">
+                <div class="panel-heading">  <h4 style="text-align: center"><b>Order Remarks</b></h4></div>
+                <div class="col-md-6 col-xs-6 col-sm-6 col-lg-6" >
+
+                    <ul class="container details" >
+                        <?php echo $information->orderRemarks; ?>
+                    </ul>
+
+
+                </div>
+            </div>
 
         </div>
 

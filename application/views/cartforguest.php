@@ -153,6 +153,8 @@
                 <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
+                <span><h4>OR</h4></span>
+                <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
 
             </div>
             <div align="center" class="box_style_2 hidden-xs info">
@@ -340,13 +342,14 @@
                         } ?>
                         </tbody>
                     </table>
-
                     <hr>
-                    <label class="">commnet: </label><br>
-                    <div class="row">
-
-                    <textarea class="col-sm-12"></textarea>
+                    <div align="center">
+                    <label>Add Order Remarks :</label>
                     </div>
+                    <div class="row">
+                    <textarea class="col-sm-12" id="orderRemark" name="orderRemark"></textarea>
+                    </div>
+
                         <hr>
 
                     <!--                    <div class="row" id="options_2">-->
@@ -438,6 +441,7 @@
 
 <!-- login logout modal-->
 <?php include ('login_logout.php')?>
+<?php include ('emailToResturant.php')?>
 <!-- end login logout modal-->
 </body>
 </html>

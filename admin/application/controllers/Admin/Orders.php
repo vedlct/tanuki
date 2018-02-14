@@ -589,7 +589,7 @@ class Orders extends CI_Controller
 
 
 
-        $message = $this->load->view('Admin/invoiceMail', $this->data);
+        $message = $this->load->view('Admin/invoiceMail', $this->data,true);
 
         $this->email->message($message);
         $this->email->send();

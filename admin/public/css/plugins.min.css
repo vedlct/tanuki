@@ -936,13 +936,13 @@ Bootstrap Wizard
     filter: none
 }
 
-.table-checkable tr>td:first-child,
-.table-checkable tr>th:first-child {
-    text-align: center;
-    max-width: 50px;
+.table-checkable tr > td:first-child, .table-checkable tr > th:first-child {
     min-width: 40px;
+    overflow: hidden;
+    overflow-wrap: break-word;
     padding-left: 0;
-    padding-right: 0
+    padding-right: 0;
+    text-align: center;
 }
 
 table.dataTable thead td,

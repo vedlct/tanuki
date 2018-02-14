@@ -153,6 +153,8 @@
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
                 <!--                <small>Monday to Friday 9.00am - 7.30pm</small>-->
+                <span><h4>OR</h4></span>
+                <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
             </div>
             <div align="center" class="box_style_2 hidden-xs info">
                 <h4 class="nomargin_top">Open Hours<i style="float: right" class="icon_clock_alt "></i></h4>
@@ -286,8 +288,13 @@
                         </tbody>
                     </table>
                     <hr>
-                    <label>commnet</label>
-                    <textarea></textarea>
+                    <form action="<?php echo base_url()?>Items/checkout" method="post">
+                    <div align="center">
+                        <label>Add Order Remarks :</label>
+                    </div>
+                    <div class="row">
+                        <textarea class="col-sm-12" id="orderRemark" name="orderRemark"></textarea>
+                    </div>
                     <hr>
 
 
@@ -367,7 +374,7 @@
 
 
                          <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
-                             <a class="btn_full" href="<?php echo base_url()?>Items/checkout">Go to checkout</a>
+                             <input type="submit" class="btn_full" value="Go to checkout">
                          <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
                              <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
 
@@ -377,6 +384,7 @@
                          <?php } ?>
 
                         </span>
+                    </form>
                     <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
             </div><!-- End theiaStickySidebar -->
@@ -394,6 +402,7 @@
 
 <!-- login logout modal-->
 <?php include ('login_logout.php')?>
+<?php include ('emailToResturant.php')?>
 <!-- end login logout modal-->
 
 </body>

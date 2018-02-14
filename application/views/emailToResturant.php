@@ -15,7 +15,7 @@
                     </div>
                 </div>
 
-                <textarea type="text" id="details" name="details"  class="form-control form-white"  required placeholder="Your Query"></textarea>
+                <textarea type="text" id="details" name="details"  style="min-height: 150px;overflow: hidden" class="form-control form-white"  required placeholder="Your Query"></textarea>
 
                 <button type="submit" class="btn btn-submit">Submit</button>
             </form>

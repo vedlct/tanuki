@@ -409,12 +409,14 @@
                                 <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px;height: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
-                    <?php }else {
-                        $data = array(
-                            'orderType' => "have",
-                        );
-                        $this->session->set_userdata($data);
-                    } ?>
+                    <?php }
+//                    else {
+//                        $data = array(
+//                            'orderType' => "have",
+//                        );
+//                        $this->session->set_userdata($data);
+//                    }
+                    ?>
 
 
                     <hr>
@@ -431,7 +433,6 @@
                         <div class="row" id="options_2">
                             <div style="text-align: center; " class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6">Membership ID :</label>
-
                             <?php if ($this->session->userdata('memberuserid') !=null){?>
                                 <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="<?php echo $this->session->userdata('memberuserid');?>" name="option_2" >
                                 <?php }else{ ?>
@@ -439,13 +440,9 @@
                                 <?php } ?>
                             </div>
 
-                            <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
-
 
                             <div style="text-align: center" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-<!--                           <input type="button" value="New User">-->
-                                <button class="btn btn-sm default" href="#0" onclick="newUser(this)">New User</button>
-
+                                <button style="padding: 5px 5px" class="btn btn-sm btn-info" href="#0" onclick="newUser(this)">New User</button>
                             </div>
                         </div>
                     <?php } else if ($this->session->userdata('userType') == null) { ?>
