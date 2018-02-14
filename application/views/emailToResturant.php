@@ -3,7 +3,7 @@
     <div style="max-width: 60%" class="modal-dialog">
         <div class="modal-content modal-popup">
             <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
-            <form action="<?php echo base_url()?>Login/check_user" class="popup-form" style="max-width: 100%" id="myLogin" method="post">
+            <form action="<?php echo base_url()?>Email/userEmailToResturant" class="popup-form" style="max-width: 100%" id="myLogin" method="post">
 
                 <div class="login_icon"><i class="icon_mail_alt"></i></div>
                 <div class="row">

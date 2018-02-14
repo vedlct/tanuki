@@ -153,9 +153,11 @@
                 <h2 class="inner">Need <span>Help?</span></h2>
                 <i class="icon_lifesaver"></i>
                 <a href="tel://+1 703-723-8952" class="phone">+1 703-723-8952</a>
-                <span><h4>OR</h4></span>
-                <button class="btn btn-sm btn-info" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
 
+
+            </div>
+            <div class="box_style_1 hidden-xs" id="help">
+                <button class="btn btn-sm btn-info" style="width: 100%" href="#0" data-toggle="modal" data-target="#emailResturant">Email Us</button>
             </div>
             <div align="center" class="box_style_2 hidden-xs info">
                 <h4 class="nomargin_top">Open Hours<i style="margin-left:30px;" class="icon_clock_alt "></i></h4>
