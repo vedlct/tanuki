@@ -582,9 +582,9 @@ class Orders extends CI_Controller
         }
 
         $this->email->set_mailtype("html");
-        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to($email);
-        $this->email->subject('Subject');
+        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($email,'tanukisupport@teknovisual.com');
+        $this->email->subject('Delivery Time Set');
 
 
 

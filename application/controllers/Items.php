@@ -30,7 +30,7 @@ class Items extends CI_Controller {
                 'price' => $item->price,
                 'name' => $item->itemName,
                 'coupon' => 0,
-                'options' => array('Size' => $item->itemSize)
+                'options' => array('Size' => $item->itemSize,'CategoryName'=>$item->categoryName)
             );
             $this->cart->insert($data);
         }
@@ -55,7 +55,7 @@ class Items extends CI_Controller {
                 'price' => $itemsize->price,
                 'name' => $itemsize->itemName,
                 'coupon' => 0,
-                'options' => array('Size' => $itemsize->itemSize)
+                'options' => array('Size' => $itemsize->itemSize,'CategoryName'=>$itemsize->categoryName)
             );
             $this->cart->insert($data);
         }
@@ -356,8 +356,23 @@ class Items extends CI_Controller {
 
     public function checkdesert(){
 
+        $dessertCheck=array();
+
         foreach ($this->cart->contents() as $c){
-           echo $c['name'];
+
+           if ($c['options']['CategoryName'] == "DESSERT"){
+
+               $dessertCheck="There is an Dessert Item";
+
+           }else{
+
+           }
+        }
+        if ($dessertCheck != null){
+            echo "0";
+        }
+        else{
+            echo "1";
         }
     }
     public function usepoints(){
@@ -390,15 +405,15 @@ class Items extends CI_Controller {
         $this->load->library(array('email'));
         $this->load->model('Userorderm');
         $this->email->set_mailtype("html");
-        $this->email->from('sakibrahman@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to($this->session->userdata('email'));
-        $this->email->subject('Subject');
+        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($this->session->userdata('email'),'tanukisupport@teknovisual.com');
+        $this->email->subject('New Order');
         $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
         $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItemsForPrint($orderId);
         $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
         $this->data['charge'] = $this->Userorderm->getAllCharge();
         $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
-        $message = $this->load->view('invoicePdf', $this->data , true);
+        $message = $this->load->view('invoicePdf', $this->data,true);
         $this->email->message($message);
         $this->email->send();
     }

@@ -337,10 +337,8 @@
                                                                                                 <?php foreach ($orders as $allOrder){?>
                                                                                                     <h2 style="font-size: 20px;"><?php echo $allOrder->userName?></h2>
                                                                                                     <br>
-                                                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p> <br>
-                                                                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Has been the industry's standard dummy text ever since the 1500s.</p> <br>
 
-                                                                                                    <p>Thanks For shopping with us.</p> <br>
+                                                                                                    <p>Thanks For Ordering From Us.</p> <br>
                                                                                                     <p>Regard <br> Tanuki Team</p>
                                                                                                 <?php } ?>
                                                                                             </div>
@@ -632,7 +630,7 @@
                                                                                     <td>
                                                                                         <div class='contentEditableContainer contentTextEditable'>
                                                                                             <div class='contentEditable' style='text-align: left;'>
-                                                                                                <p style="font-size: 15px; text-align: center;">&copy; Tanuki 2017. All rights reserved</p>
+                                                                                                <p style="font-size: 15px; text-align: center;">&copy; Tanuki 2018. All rights reserved</p>
 
                                                                                             </div>
 

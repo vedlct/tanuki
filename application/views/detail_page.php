@@ -204,7 +204,7 @@
                             <?php break;}}?>
 
 
-                    <?php foreach ($allitem as $item) { ?>
+                    <?php foreach ($allitem as $item) {?>
                         <?php if ($item->fkCatagory == $cate->id){?>
 
                             <tr>
@@ -538,9 +538,11 @@
                     </table>
 
                     <div id="ordertypediv">
-                        <?php if($this->session->userdata('orderType') != null ){ ?>
-<!--                            <a class="btn_full" onclick="return test()" href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
-                            <a class="btn_full"  href="<?php echo base_url()?>Items/cart">Order now</a>
+                        <?php $orderType = $this->session->userdata('orderType'); if($this->session->userdata('orderType') != null ){ ?>
+
+                            <a class="btn_full" data-panel-id="<?php echo $orderType?>" onclick="test(this)">Order now</a>
+<!--                            <a class="btn_full" onclick="test()" href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
+<!--                            <a class="btn_full"  href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
                         <?php }else { ?>
                             <a class="btn_full" style="cursor: pointer" onclick="orderwarning()">Order now</a>
                         <?php } ?>
@@ -577,15 +579,26 @@
 <!--</script>-->
 
 <script>
-    test = function(event) {
-        //  alert("Your code here");
+    function test(x) {
+
+        var orderType = $(x).data('panel-id');
+
+      //  alert(orderType);
+
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/checkdesert/")?>' ,
             data: {},
             cache: false,
             success: function (data) {
-               alert(data)
+               if (data == '0' && orderType == "home" ){
+
+                   alert("Sorry, We don't Home Delivery Dessert Item ! Please Delet The Dessert Item From Cart,Then CheckOut");
+
+               }else {
+
+                    window.location ='<?php echo base_url()?>Items/cart';
+               }
                 // $('#cart_table').load(document.URL + ' #cart_table');
                // $('#total_table').load(document.URL + ' #total_table');
                // $('#topcart').load(document.URL + ' #topcart');
