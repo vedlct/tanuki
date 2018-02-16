@@ -53,3 +53,4 @@ $route['default_controller'] = 'Items/itemShow';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['Items'] = 'Items/itemShow';
+$route['OnlinePayment'] = 'AuthorizeNet/Payment';

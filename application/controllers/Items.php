@@ -5,7 +5,7 @@ class Items extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('Itemsm');
-//        $this->load->moedel('feedbackm');
+
     }
     public function index()
     {
