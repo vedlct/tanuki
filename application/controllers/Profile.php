@@ -18,6 +18,13 @@ class Profile extends CI_Controller
         $this->data['city']=$this->Profilem->getAllCity();
         $this->load->view('userProfile', $this->data);
     }
+    public function changeUserDeliveryAddress()
+    {
+        $AddressId =$this->input->post('id');
+        $userId =$this->input->post('userId');
+        $this->data['profile'] = $this->Profilem->changeUserDeliveryAddress($userId,$AddressId);
+
+    }
 
     public function update_user(){
 

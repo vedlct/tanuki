@@ -191,90 +191,94 @@
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
 
-            <div class="box_style_2">
+            <div id="Address" class="box_style_2">
                 <h2 class="inner">Delivery Address</h2>
 
-                <div class="form-group">
-                    <label> Name</label>
-                    <p><font color="red"> <?php echo form_error('Name'); ?></font></p>
-                    <input type="text" class="form-control" id="Name" value="<?php echo $this->session->userdata('name')?>" name="Name" placeholder="Full Name" required>
+                <div id="DeliveriAddress">
+
+                <?php $user = $this->session->userdata('id');
+                $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                $this->db->from('userdeliveryaddress');
+                $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                $this->db->where('userdeliveryaddress.userId',$user);
+                $this->db->where('userdeliveryaddress.status',"1");
+                $query = $this->db->get();
+                $userDefaultDelivery=$query->result();
+                foreach ($userDefaultDelivery as $deliveryLocation){?>
+                <div>
+                    <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
                 </div>
-                <div class="form-group">
-                    <label>Telephone/mobile</label>
-                    <p><font color="red"> <?php echo form_error('phone'); ?></font></p>
-                    <input type="tel" class="form-control" value="<?php echo set_value('phone'); ?>" name="phone" required id="phone" placeholder="Contact No">
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <p><font color="red"> <?php echo form_error('email'); ?></font></p>
-                    <input type="email" class="form-control"name="email" id="email" value="<?php echo $this->session->userdata('name')?>" required placeholder="Email">
+                    <div> <button style="float: right; margin-top: -40px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
+                    </div>
+                <?php }?>
                 </div>
 
-                <div class="form-group">
-                    <label>Your full address</label>
-                    <p><font color="red"> <?php echo form_error('address'); ?></font></p>
-                    <textarea type="text" id="address" name="address" cols="3" rows="3" class="form-control"  required placeholder=" Your full address"><?php echo set_value('address'); ?></textarea>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>City</label>
-                            <?php
-                            $this->db->select('id, name ');
-                            $this->db->from('city');
-                            $query = $this->db->get();
-                             $allCity=$query->result();?>
-                            <select class="form-control" id="city" name="city" required>
-                                <option value="">Your city</option>
-                                <?php foreach ($allCity as $cities){?>
-                                    <option <?php echo set_select('city',  $cities->id, False); ?> value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
-                                <?php } ?>
-                            </select>
+                <div id="allDeliveryAddressByUser" style="display: none">
 
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="form-group">
-                            <label>Postal code</label>
-                            <p><font color="red"> <?php echo form_error('pcode'); ?></font></p>
-                            <input type="text" id="pcode" value="<?php echo set_value('pcode'); ?>" name="pcode" class="form-control" required placeholder=" Your postal code">
-                        </div>
-                    </div>
+                    <?php $user = $this->session->userdata('id');
+                    $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                    $this->db->from('userdeliveryaddress');
+                    $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                    $this->db->where('userdeliveryaddress.userId',$user);
+                    // $this->db->where('userdeliveryaddress.status',"1");
+                    $query = $this->db->get();
+                    $userDefaultDelivery=$query->result();
+                    foreach ($userDefaultDelivery as $deliveryLocation){?>
+
+                            <a herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a>
+                            <br>
+
+                    <?php }?>
+
                 </div>
 
             </div>
 
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
-                <form action="#">
+                <form action="<?php echo base_url()?>AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">
                     <div class="form-group">
-                        <label for="email">Card Holder Name:</label>
-                        <input type="email" class="form-control" id="email" placeholder="" name="email">
+                        <label for="cardHolderName">Card Holder Name:</label>
+                        <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name" name="cardHolderName">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Card Number:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
+                        <input required type="text" class="form-control" id="cardNumber" placeholder="" name="cardNumber">
                     </div>
                     <div class="form-group">
-                        <label for="pwd">Security Code:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="" name="pwd">
+                        <label for="securityCode">Security Code:</label>
+                        <input required type="text" class="form-control" id="securityCode" placeholder="" name="securityCode">
                     </div>
 
                     <div class="form-group">
                         <label for="sel1">Expiry Date:</label> <br>
-                        <select style="width:30%; float: left; margin-right: 20px;" class="form-control">
-                            <option>Month</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select>
+                        <select id="expMonth" required style="width:30%; float: left; margin-right: 20px;" class="form-control">
+                            <option value="" selected>Month</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
 
-                        <select style="width:30%; float: left;" class="form-control">
-                            <option>Year</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                        </select> <br>
+                        </select>
+                        <?php $curYear= date("Y"); ?>
+
+                        <select id="expYear" required style="width:30%; float: left;" class="form-control">
+                            <option selected value="">Year</option>
+
+                            <?php for ($i=$curYear;($i<($curYear+15));$i++){?>
+                                <option value="<?php echo $i?>"><?php echo $i?></option>
+                            <?php } ?>
+
+                        </select>
+                        <br>
                     </div>
                     <button type="submit" class="btn_full" >Submit</button>
                 </form>
@@ -312,4 +316,41 @@
         }
     });
     });
+
+    function changeAddress() {
+
+
+        document.getElementById("DeliveriAddress").style.display = "none";
+        document.getElementById("allDeliveryAddressByUser").style.display = "block";
+
+    }
+
+    function selectDeliveryAddress(x) {
+
+
+        btn = $(x).data('panel-id');
+        var userId='<?php echo $this->session->userdata('id');?>'
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Profile/changeUserDeliveryAddress")?>',
+            data:{id:btn,'userId':userId},
+            cache: false,
+            success:function(data) {
+
+                $('#Address').load(document.URL +  ' #Address');
+
+            }
+        });
+
+    }
+
+    function checkcreditCardForm() {
+        var cardHolderName=document.getElementById('cardHolderName').value;
+        var cardNumber=document.getElementById('cardNumber').value;
+        var securityCode=document.getElementById('securityCode').value;
+        var expMonth=document.getElementById('expMonth').value;
+        var expYear=document.getElementById('expYear').value;
+
+    }
 </script>

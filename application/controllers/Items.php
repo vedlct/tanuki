@@ -259,15 +259,12 @@ class Items extends CI_Controller {
                     $orderstatus = $re->id;
                     $deliveryfee = $this->session->userdata('deliveryfee');
                     $vat = $this->session->userdata('vat');
-                    if ($this->session->userdata('paymentMethod')=="cash"){
-                        $paymenttype = "cs";
-                    }else if($this->session->userdata('paymentMethod')=="credit") {
-                        $paymenttype = "crd";
-                    }
-
                     $user = $this->session->userdata('id');
                     $ordertaker = null;
                     $orderRemark = $this->input->post('orderRemark');
+                    if ($this->session->userdata('paymentMethod') == "cash") {
+                        $paymenttype = "cs";
+
                     $data = array(
                         'orderType' => $ordertype,
                         'orderDate' => $orderdate,
@@ -279,11 +276,18 @@ class Items extends CI_Controller {
                         'fkOrderTaker' => $ordertaker,
                         'orderRemarks' => $orderRemark,
                     );
-                    $orderId=$this->Itemsm->checkoutInsertForGuest($data);
+                    $orderId = $this->Itemsm->checkoutInsertForGuest($data);
                     $this->mailInvoice($orderId);
                     $this->cart->destroy();
-                    $this->session->set_flashdata('successMessage','CheckOut Successfully');
+                    $this->session->set_flashdata('successMessage', 'CheckOut Successfully');
                     redirect('Items');
+                }
+                else if($this->session->userdata('paymentMethod')=="credit") {
+                        $paymenttype = "crd";
+
+                        redirect("OnlinePayment");
+
+                }
                 } else {
                     $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
                     redirect('Items');

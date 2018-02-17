@@ -6,6 +6,7 @@ class Payment extends CI_Controller {
 
     public function index()
     {
+
         $this->load->view('AuthorizeNet/paymentPage');
     }
 }

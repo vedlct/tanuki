@@ -11,14 +11,42 @@ class Profilem extends CI_Model
 
     public function getuser($userId){
 
-    $this->db->select(['id', 'name', 'address', ' postalCode', ' fkCity', 'memberCardNo', ' contactNo ', 'email ', 'password ', 'userActivationStatus', 'fkUserType']);
-//        $this->db->from('users ');
-
-//        $this->db->select('u.id,u.name as name,u.address,u.postalCode,u.fkCity as fkCity,u.memberCardNo,u.contactNo,u.email,u.password,u.userActivationStatus,u.fkUserType, c.name as fkcity');
+        $this->db->select(['id', 'name', 'address', ' postalCode', ' fkCity', 'memberCardNo', ' contactNo ', 'email ', 'password ', 'userActivationStatus', 'fkUserType']);
         $this->db->from('users');
         $this->db->where('id', $userId);
         $query = $this->db->get();
         return $query->result();
+    }
+
+    public function changeUserDeliveryAddress($userId,$AddressId){
+
+        $this->db->select(['id']);
+        $this->db->from('userdeliveryaddress');
+        $this->db->where('userId', $userId);
+        $this->db->where('status', "1");
+        $query = $this->db->get();
+        foreach ($query->result() as $userId){
+            $id=$userId->id;
+        }
+        $data1=array(
+            'status'=>"0"
+        );
+
+        $data1 = $this->security->xss_clean($data1);
+        $this->db->where('id',$id);
+
+        $this->db->update('userdeliveryaddress', $data1);
+
+        $data = array(
+
+            'status'=>"1"
+
+        );
+        $data = $this->security->xss_clean($data);
+        $this->db->where('id', $AddressId);
+        $this->db->where('userId',$userId);
+        $this->db->update('userdeliveryaddress', $data);
+
     }
 
 
