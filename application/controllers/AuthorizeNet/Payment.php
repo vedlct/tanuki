@@ -6,7 +6,7 @@ class Payment extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('Profilem');
+        $this->load->model('profilem');
 
 
     }
@@ -23,7 +23,7 @@ class Payment extends CI_Controller {
 
         $this->load->model('Itemsm');
         $this->load->model('Userorderm');
-        $this->load->model('profilem');
+       // $this->load->model('profilem');
 
         $cardHolderName = $this->input->post('cardHolderName');
         $cardNumber = $this->input->post('cardNumber');
@@ -32,6 +32,7 @@ class Payment extends CI_Controller {
         $expYear = $this->input->post('expYear');
         $user = $this->session->userdata('id');
         $this->data['info']=$this->profilem->getCustomerInfo($user);
+
         foreach ($this->data['info'] as $CustomerData){
             $Name=$CustomerData->name;
             $address=$CustomerData->address;
@@ -64,7 +65,7 @@ class Payment extends CI_Controller {
         $this->authorize_net->setData($auth_net);
 
         // Try to AUTH_CAPTURE
-        if( $this->authorize_net->authorizeAndCapture() )
+        if( $this->authorize_net->authorizeAndCapture())
         {
             $paymenttype = "crd";
             $orderdate = date("Y-m-d H:i");
@@ -99,12 +100,12 @@ class Payment extends CI_Controller {
         }
         else
         {
-           // echo '<h2>Fail!</h2>';
+            echo '<h2>Fail!</h2>';
 
             $this->session->set_flashdata('errorMessage','<p>' . $this->authorize_net->getError() . '</p>');
             redirect('Items');
             // Get error
-          //  echo '<p>' . $this->authorize_net->getError() . '</p>';
+           //echo '<p>' . $this->authorize_net->getError() . '</p>';
             // Show debug data
             //$this->authorize_net->debug();
         }

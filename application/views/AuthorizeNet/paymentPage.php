@@ -208,7 +208,7 @@
                 <div>
                     <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
                 </div>
-                    <div> <button style="float: right; margin-top: -40px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
+                    <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
                     </div>
                 <?php }?>
                 </div>
@@ -225,13 +225,14 @@
                     $userDefaultDelivery=$query->result();?>
                     <table>
 
-                    <?php
-                    foreach ($userDefaultDelivery as $deliveryLocation){?>
+                    <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
+                            
+                        <tr ><td style="border: 1px solid #ddd; padding: 10px 280px; cursor: pointer;" ><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td></tr>
 
-                            <tr><td><a herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a>
-                                </td></tr>
+
 
                     <?php }?>
+                    </table>
 
                     </table>
 
@@ -257,7 +258,9 @@
 
                     <div class="form-group">
                         <label for="sel1">Expiry Date:</label> <br>
-                        <select id="expMonth" name="expMonth" required style="width:30%; float: left; margin-right: 20px;" class="form-control">
+
+                        <select id="expMonth" name="expMonth" required style="width:30%; float: left; margin-right: 20px; margin-bottom:15px;" class="form-control">
+
                             <option value="" selected>Month</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
