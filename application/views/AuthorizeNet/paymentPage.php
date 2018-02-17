@@ -222,13 +222,18 @@
                     $this->db->where('userdeliveryaddress.userId',$user);
                     // $this->db->where('userdeliveryaddress.status',"1");
                     $query = $this->db->get();
-                    $userDefaultDelivery=$query->result();
+                    $userDefaultDelivery=$query->result();?>
+                    <table>
+
+                    <?php
                     foreach ($userDefaultDelivery as $deliveryLocation){?>
 
-                            <a herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a>
-                            <br>
+                            <tr><td><a herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a>
+                                </td></tr>
 
                     <?php }?>
+
+                    </table>
 
                 </div>
 
@@ -252,7 +257,7 @@
 
                     <div class="form-group">
                         <label for="sel1">Expiry Date:</label> <br>
-                        <select id="expMonth" required style="width:30%; float: left; margin-right: 20px;" class="form-control">
+                        <select id="expMonth" name="expMonth" required style="width:30%; float: left; margin-right: 20px;" class="form-control">
                             <option value="" selected>Month</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -270,7 +275,7 @@
                         </select>
                         <?php $curYear= date("Y"); ?>
 
-                        <select id="expYear" required style="width:30%; float: left;" class="form-control">
+                        <select id="expYear" name="expYear" required style="width:30%; float: left;" class="form-control">
                             <option selected value="">Year</option>
 
                             <?php for ($i=$curYear;($i<($curYear+15));$i++){?>
@@ -346,11 +351,35 @@
     }
 
     function checkcreditCardForm() {
+
         var cardHolderName=document.getElementById('cardHolderName').value;
         var cardNumber=document.getElementById('cardNumber').value;
         var securityCode=document.getElementById('securityCode').value;
         var expMonth=document.getElementById('expMonth').value;
         var expYear=document.getElementById('expYear').value;
+
+        var chk=/^[0-9]*$/;
+
+        if (cardHolderName==''){
+            alert("card Holder Name Can not be empty");
+            return false;
+        }
+        if (cardNumber == ''){
+            alert("card Number Can not be empty");
+            return false;
+        }
+        if(!cardNumber.match(chk)) {
+            alert( 'Please enter a valid Card number!!' );
+            return false;
+        }
+        if (expMonth == ''){
+            alert("Expiry Month Can not be empty");
+            return false;
+        }
+        if (expYear == ''){
+            alert("card Expiry Year Can not be empty");
+            return false;
+        }
 
     }
 </script>

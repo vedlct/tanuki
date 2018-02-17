@@ -20,8 +20,9 @@ class Loginm extends CI_Model{
 
     }
 
-    public function loginInfo($data1){
+    public function loginInfo($data1,$data3){
 
+        $this->db->insert('userdeliveryaddress',$data3);
         $this->db->insert('logininfo',$data1);
         $insert_id = $this->db->insert_id();
         return $insert_id;

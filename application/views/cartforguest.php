@@ -416,7 +416,11 @@
                         </tr>
                         <tr>
                             <td class="total">
-                                TOTAL <span class="pull-right"><?php echo $subtotal+$dfee+$vatt-$totaldis?></span>
+                                TOTAL <span class="pull-right"><?php echo $total=$subtotal+$dfee+$vatt-$totaldis?></span>
+                                <?php $data = array(
+                                    'amount' => $total,
+                                );
+                                $this->session->set_userdata($data); ?>
                             </td>
                         </tr>
                         </tbody>

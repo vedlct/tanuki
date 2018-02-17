@@ -243,7 +243,17 @@ class Items extends CI_Controller {
                         'fkUserId' => $this->session->userdata('id'),
                         'browser' => $this->agent->browser()
                     );
-                    $loginId = $this->loginm->loginInfo($data1);
+                    $data3=array(
+                        'address' => $address,
+                        'postalCode' => $postal,
+                        'fkCity' => $city,
+                        'contactNo' => $phone,
+                        'country' => "US",
+                        'status' => "1",
+                        'userId' => $this->session->userdata('id'),
+
+                    );
+                    $loginId = $this->loginm->loginInfo($data1,$data3);
                     $data = array(
                         'name' => $name,
                         'email' => $email,
@@ -283,8 +293,6 @@ class Items extends CI_Controller {
                     redirect('Items');
                 }
                 else if($this->session->userdata('paymentMethod')=="credit") {
-                        $paymenttype = "crd";
-
                         redirect("OnlinePayment");
 
                 }
@@ -325,6 +333,7 @@ class Items extends CI_Controller {
         $orderRemark = $this->input->post('orderRemark');
 
         if ($this->session->userdata('orderType') == "have") {
+
             $data = array(
                 'orderType' => $ordertype,
                 'orderDate' => $orderdate,
