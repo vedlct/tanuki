@@ -438,12 +438,13 @@
                         <hr>
                         <div class="row" id="options_2">
                             <div style="text-align: center; " class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                <label class="col-lg-6 col-md-6 col-sm-6 col-xs-6">Membership ID :</label>
+                                <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Membership ID :</label>
                             <?php if ($this->session->userdata('memberuserid') !=null){?>
                                 <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="<?php echo $this->session->userdata('memberuserid');?>" name="option_2" >
                                 <?php }else{ ?>
-                                <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"  onfocusout="membershipid()" >
+                                <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2"   >
                                 <?php } ?>
+                                <input type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="membershipid()" value="Add  ">
                             </div>
 
 
@@ -808,7 +809,8 @@
 
                     alert("Membership Id is not valid ,Please Insert a correct memshipId ");
                     var mId= document.getElementById("memberid");
-                    mId.value == "";
+                   // mId.value == '';
+                    $("#memberid").val("");
 
 
                 }
