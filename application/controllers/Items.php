@@ -162,6 +162,12 @@ class Items extends CI_Controller {
             }
         }
     }
+    public function have(){
+        $data = array(
+            'orderType' => "have",
+        );
+        $this->session->set_userdata($data);
+    }
     public function takeaway(){
         $data = array(
             'orderType' => "take",
