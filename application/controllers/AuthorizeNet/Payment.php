@@ -42,6 +42,20 @@ class Payment extends CI_Controller {
             $contactNo=$CustomerData->contactNo;
             $email=$CustomerData->email;
         }
+
+
+        $this->data['userDeliveryAddress']=$this->profilem->userDeliveryAddress($user);
+
+        foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress){
+
+            $DeliveryAddress=$CustomerDeliveryAddress->address;
+            $DeliveryPostalCode=$CustomerDeliveryAddress->postalCode;
+            $DeliveryCityName=$CustomerDeliveryAddress->cityName;
+            $DeliveryCountry=$CustomerDeliveryAddress->cityName;
+            $DeliveryContactNo=$CustomerDeliveryAddress->contactNo;
+
+        }
+
         $amount = $this->session->userdata('amount');
 
         $this->load->library('authorize_net');
@@ -62,6 +76,23 @@ class Payment extends CI_Controller {
             'x_phone'				=> $contactNo,
             'x_email'				=> $email,
             'x_customer_ip'			=> $this->input->ip_address(),
+//            'x_ship_to_first_name'	=> $this->input->ip_address(),
+//            'x_ship_to_last_name'	=> $this->input->ip_address(),
+//            'x_ship_to_company'			=> $this->input->ip_address(),
+            'x_ship_to_address'			=> $DeliveryAddress,
+            'x_ship_to_city'			=> $DeliveryCityName,
+            'x_ship_to_zip'			=> $DeliveryPostalCode,
+//            'x_ship_to_state'			=> $this->input->ip_address(),
+            'x_ship_to_country'			=> $DeliveryCountry,
+
+
+
+
+
+
+
+
+
         );
         $this->authorize_net->setData($auth_net);
 

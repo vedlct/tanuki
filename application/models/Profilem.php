@@ -28,6 +28,17 @@ class Profilem extends CI_Model
         return $query->result();
     }
 
+    public function userDeliveryAddress($user){
+
+        $this->db->select(['address', 'postalCode','city.name as cityName','country','contactNo']);
+        $this->db->from('userdeliveryaddress');
+        $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+        $this->db->where('userId', $user);
+        $this->db->where('status', "1");
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function changeUserDeliveryAddress($userId,$AddressId){
 
         $this->db->select(['id']);

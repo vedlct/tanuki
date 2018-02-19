@@ -229,7 +229,7 @@
                             
                         <tr >
                             <td style="border: 1px solid #ddd; cursor: pointer;"><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
-                            <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="selectid(this)">Edit</a></td>
+                            <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
                         </tr>
 
                     <?php }?>
@@ -396,6 +396,25 @@
             type:'POST',
             url:'<?php echo base_url("Userorder/addNewDeliveryAddress" )?>',
             data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+            }
+
+        });
+        modal.style.display = "block";
+    }
+
+    function EditDeliveryAddress(x)
+    {
+        btn = $(x).data('panel-id');
+
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Userorder/EditDeliveryAddress" )?>',
+            data:{id:btn},
             cache: false,
             success:function(data)
             {

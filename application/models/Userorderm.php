@@ -88,6 +88,23 @@ class Userorderm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+    public  function getLastDeliveryAddress($deliveryAddressId)
+    {
+        $this->db->select('address,postalCode,contactNo,country,fkCity,id');
+        $this->db->from('userdeliveryaddress');
+        $this->db->where('id',$deliveryAddressId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function EditSelectedDeliveryAddress($id,$data)
+    {
+
+
+        $this->db->where('id',$id);
+        $this->db->update('userdeliveryaddress', $data);
+
+    }
     public  function getUsedPoint()
     {
         $this->db->select('expedPoints, fkOrderId');

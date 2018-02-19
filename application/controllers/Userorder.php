@@ -34,5 +34,32 @@ class Userorder extends CI_Controller
         $this->load->view('newDeliveryAddress');
 
     }
+    public function EditDeliveryAddress()
+    {
+        $this->load->model('Itemsm');
+        $deliveryAddressId = $this->input->post('id');
+
+        $this->data['deliverAddress'] = $this->Userorderm->getLastDeliveryAddress($deliveryAddressId);
+        $this->data['allCity'] = $this->Itemsm->getAllCity();
+
+        $this->load->view('EditDeliveryAddress',$this->data);
+
+    }
+
+    public function EditSelectedDeliveryAddress($id)
+    {
+        $data=array(
+            'contactNo'=>$this->input->post('phone'),
+            'address'=>$this->input->post('address'),
+            'fkCity'=>$this->input->post('city'),
+            'postalCode'=>$this->input->post('pcode'),
+        );
+
+
+        $this->data['deliverAddress'] = $this->Userorderm->EditSelectedDeliveryAddress($id,$data);
+
+        redirect('OnlinePayment');
+
+    }
 
 }
