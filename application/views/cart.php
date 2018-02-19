@@ -290,7 +290,7 @@
                         </tbody>
                     </table>
                     <hr>
-                    <form action="<?php echo base_url()?>Items/checkout" method="post">
+                    <form  method="post">
                     <div align="center">
                         <label>Add Order Remarks :</label>
                     </div>
@@ -376,9 +376,10 @@
 
 
                          <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
-                             <input type="submit" class="btn_full" value="Go to checkout">
+                             <input type="submit" formaction="<?php echo base_url()?>Items/checkout" class="btn_full" value="Go to checkout">
                          <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
-                             <a class="btn_full" href="<?php echo base_url()?>Items/checkoutforcredit" >Go to checkout</a>
+<!--                             <a class="btn_full" href="--><?php //echo base_url()?><!--OnlinePayment" >Go to checkout</a>-->
+                             <input type="submit" formaction="<?php echo base_url()?>OnlinePayment" class="btn_full" value="Go to checkout">
 
                          <?php } else { ?>
 

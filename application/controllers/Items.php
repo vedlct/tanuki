@@ -401,12 +401,12 @@ class Items extends CI_Controller {
         }
     }
 
-    public function checkoutforcredit()
-    {
-        
-
-
-    }
+//    public function checkoutforcredit()
+//    {
+//        redirect("OnlinePayment");
+//
+//
+//    }
 
     public function usepoints(){
         $userid = $this->session->userdata('id');
