@@ -97,5 +97,17 @@ class Userorderm extends CI_Model
         return $query->result();
     }
 
+    public function insertNewAddress($phone, $address, $city, $pcode, $userid) {
+        $data = array(
+            'userId' => $userid,
+            'address' => $address,
+            'postalCode' => $pcode,
+            'contactNo' => $phone,
+            'fkCity' => $city,
+            'status' => 0,
+        );
+        $this->db->insert('userdeliveryaddress', $data);
+    }
+
 
 }

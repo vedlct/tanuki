@@ -32,6 +32,7 @@ class Payment extends CI_Controller {
         $expYear = $this->input->post('expYear');
         $user = $this->session->userdata('id');
 
+
         $this->data['info']=$this->profilem->getCustomerInfo($user);
 
         foreach ($this->data['info'] as $CustomerData){
