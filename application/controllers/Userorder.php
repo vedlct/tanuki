@@ -7,6 +7,7 @@ class Userorder extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Userorderm');
+        $this->load->model('Itemsm');
 
 
     }
@@ -31,7 +32,8 @@ class Userorder extends CI_Controller
     public function addNewDeliveryAddress()
     {
 
-        $this->load->view('newDeliveryAddress');
+        $this->data['allCity'] = $this->Itemsm->getAllCity();
+        $this->load->view('newDeliveryAddress' , $this->data);
 
     }
     public function EditDeliveryAddress()
@@ -60,6 +62,27 @@ class Userorder extends CI_Controller
 
         redirect('OnlinePayment');
 
+    }
+
+    public function insertNewAddress()
+    {
+
+        $this->load->library('form_validation');
+        if (!$this->form_validation->run('newAddress')) {
+           // $this->data['charges'] = $this->Itemsm->getcharges();
+           // $this->data['allCity'] = $this->Itemsm->getAllCity();
+           // $this->load->view('cartforguest', $this->data);
+        } else {
+            $phone = $this->input->post('phone');
+            $address = $this->input->post('address');
+            $city = $this->input->post('city');
+            $pcode = $this->input->post('pcode');
+            $userid = $this->session->userdata('id');
+            // $mobile = $this->input->post('');
+
+            $this->Userorderm->insertNewAddress($phone, $address, $city, $pcode, $userid);
+        }
+        redirect('OnlinePayment');
     }
 
 }

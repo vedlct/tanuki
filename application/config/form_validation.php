@@ -51,5 +51,28 @@ $config = array (
             'rules' => 'required|max_length[18]|numeric|xss_clean|htmlspecialchars'
         ),
     ),
+    'newAddress' => array (
+
+        array(
+            'field' => 'address',
+            'label' => 'Address',
+            'rules' => 'required|max_length[100]|xss_clean|htmlspecialchars'
+        ),
+        array(
+            'field' => 'city',
+            'label' => 'City',
+            'rules' => 'required|max_length[11]|xss_clean|htmlspecialchars'
+        ),
+        array(
+            'field' => 'pcode',
+            'label' => 'Post Code',
+            'rules' => 'required|max_length[11]|xss_clean|htmlspecialchars'
+        ),
+        array(
+            'field' => 'phone',
+            'label' => 'Phone',
+            'rules' => 'required|max_length[18]|numeric|xss_clean|htmlspecialchars'
+        ),
+    ),
 
 );

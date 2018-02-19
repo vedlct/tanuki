@@ -196,6 +196,7 @@
 
                 <div id="DeliveriAddress">
 
+                    
                 <?php $user = $this->session->userdata('id');
                 $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
                 $this->db->from('userdeliveryaddress');
