@@ -28,5 +28,11 @@ class Userorder extends CI_Controller
 
 
     }
+    public function addNewDeliveryAddress()
+    {
+
+        $this->load->view('newDeliveryAddress');
+
+    }
 
 }

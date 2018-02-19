@@ -401,14 +401,18 @@ class Items extends CI_Controller {
         }
     }
 
-//    public function checkoutforcredit()
-//    {
-//        redirect("OnlinePayment");
-//
-//
-//    }
+    public function orderRemarkForCrd()
+    {
+        $remarks = $this->input->post('remark');
+        $data = array(
+            'orderRemark' => "$remarks",
+        );
+        $this->session->set_userdata($data);
 
-    public function usepoints(){
+    }
+
+    public function usepoints()
+    {
         $userid = $this->session->userdata('id');
         $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
         $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
@@ -433,7 +437,8 @@ class Items extends CI_Controller {
         }
         echo $newtotal;
     }
-    public function mailInvoice($orderId){
+    public function mailInvoice($orderId)
+    {
         $this->load->helper(array('email'));
         $this->load->library(array('email'));
         $this->load->model('Userorderm');

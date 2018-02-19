@@ -378,8 +378,8 @@
                          <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
                              <input type="submit" formaction="<?php echo base_url()?>Items/checkout" class="btn_full" value="Go to checkout">
                          <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
-<!--                             <a class="btn_full" href="--><?php //echo base_url()?><!--OnlinePayment" >Go to checkout</a>-->
-                             <input type="submit" formaction="<?php echo base_url()?>OnlinePayment" class="btn_full" value="Go to checkout">
+                             <a class="btn_full" href="<?php echo base_url()?>OnlinePayment" onclick="orderRemarks()">Go to checkout</a>
+<!--                             <input type="submit" formaction="--><?php //echo base_url()?><!--OnlinePayment" onsubmit="orderRemarks()" class="btn_full" value="Go to checkout">-->
 
                          <?php } else { ?>
 
@@ -507,6 +507,25 @@
         }
     });
     });
+</script>
+<script>
+    function orderRemarks() {
+        var orderRemark=document.getElementById('orderRemark').value;
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/orderRemarkForCrd")?>' ,
+            data: {'remark':orderRemark,},
+            cache: false,
+            success: function (data) {
+
+            }
+        });
+
+
+
+
+    }
 </script>
 <!--<script>-->
 <!--    (function($) {-->
