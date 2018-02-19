@@ -31,6 +31,7 @@ class Payment extends CI_Controller {
         $expMonth = $this->input->post('expMonth');
         $expYear = $this->input->post('expYear');
         $user = $this->session->userdata('id');
+
         $this->data['info']=$this->profilem->getCustomerInfo($user);
 
         foreach ($this->data['info'] as $CustomerData){
@@ -85,7 +86,7 @@ class Payment extends CI_Controller {
                 'paymentType' => $paymenttype,
                 'fkUserId' => $user,
                 'fkOrderTaker' => $ordertaker,
-                //'orderRemarks' => $orderRemark,
+                'orderRemarks' => $this->session->userdata('orderRemark'),
             );
             $orderId = $this->Itemsm->checkoutInsertForGuest($data);
             $this->mailInvoice($orderId);

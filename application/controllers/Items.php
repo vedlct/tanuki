@@ -208,7 +208,8 @@ class Items extends CI_Controller {
 //        $ordertaker = $this->session->userdata('id');
     public function checkoutguest(){
         $this->load->library('form_validation');
-        if (!$this->form_validation->run('userRes')) {
+        if (!$this->form_validation->run('userRes'))
+        {
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->data['allCity'] = $this->Itemsm->getAllCity();
             $this->load->view('cartforguest',$this->data);
@@ -253,7 +254,7 @@ class Items extends CI_Controller {
                         'userId' => $this->session->userdata('id'),
 
                     );
-                    $loginId = $this->loginm->loginInfo($data1,$data3);
+                    $loginId = $this->loginm->loginInfoForRegisterUser($data1,$data3);
                     $data = array(
                         'name' => $name,
                         'email' => $email,
@@ -271,7 +272,12 @@ class Items extends CI_Controller {
                     $vat = $this->session->userdata('vat');
                     $user = $this->session->userdata('id');
                     $ordertaker = null;
+
                     $orderRemark = $this->input->post('orderRemark');
+                    $data=array(
+                        'orderRemark' => $orderRemark,
+                        );
+                    $this->session->set_userdata($data);
                     if ($this->session->userdata('paymentMethod') == "cash") {
                         $paymenttype = "cs";
 
@@ -284,7 +290,7 @@ class Items extends CI_Controller {
                         'paymentType' => $paymenttype,
                         'fkUserId' => $user,
                         'fkOrderTaker' => $ordertaker,
-                        'orderRemarks' => $orderRemark,
+                        'orderRemarks' => $this->session->userdata('orderRemark'),
                     );
                     $orderId = $this->Itemsm->checkoutInsertForGuest($data);
                     $this->mailInvoice($orderId);
@@ -330,7 +336,13 @@ class Items extends CI_Controller {
         $user = $this->session->userdata('id');
         $ordertaker = $this->session->userdata('id');
         $memberid = $this->session->userdata('memberuserid');
+        //$orderRemark = $this->input->post('orderRemark');
+
         $orderRemark = $this->input->post('orderRemark');
+        $data=array(
+            'orderRemark' => $orderRemark,
+        );
+        $this->session->set_userdata($data);
 
         if ($this->session->userdata('orderType') == "have") {
 
@@ -343,7 +355,7 @@ class Items extends CI_Controller {
                 'paymentType' => $paymenttype,
                 'fkUserId' => $memberid,
                 'fkOrderTaker' => $ordertaker,
-                'orderRemarks' => $orderRemark,
+                'orderRemarks' => $this->session->userdata('orderRemark'),
             );
             $this->Itemsm->checkoutInsert($data);
         } else {
@@ -356,7 +368,7 @@ class Items extends CI_Controller {
                 'paymentType' => $paymenttype,
                 'fkUserId' => $user,
                 'fkOrderTaker' => null,
-                'orderRemarks' => $orderRemark,
+                'orderRemarks' => $this->session->userdata('orderRemark'),
             );
             $orderId=$this->Itemsm->checkoutInsert($data);
             $this->mailInvoice($orderId);
@@ -388,6 +400,14 @@ class Items extends CI_Controller {
             echo "1";
         }
     }
+
+    public function checkoutforcredit()
+    {
+        
+
+
+    }
+
     public function usepoints(){
         $userid = $this->session->userdata('id');
         $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
