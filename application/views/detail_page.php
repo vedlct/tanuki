@@ -425,10 +425,13 @@
                     <hr>
                     <?php if ($this->session->userdata('userType') != "cus" && $this->session->userdata('userType') != null  ) { ?>
                         <div class="row" id="options_2">
-                            <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div align="center" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a style="cursor: pointer" onclick="have()"><img style="width: 40px; height: 40px" src="<?php echo base_url()?>public/img/have.png"><br>Resturant</a>
+                            </div>
+                            <div align="center" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <a style="cursor: pointer" onclick="takeaway()"><img style="width: 40px; height: 40px" src="<?php echo base_url()?>public/img/takeaway.jpg"><br>Pick Up</a>
                             </div>
-                            <div align="center" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div align="center" class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                 <a style="cursor: pointer;" onclick="homedelivary()"><img style="width: 40px;height: 40px; " src="<?php echo base_url()?>public/img/homedeli.png"><br>Delivery</a>
                             </div>
                         </div>
@@ -596,8 +599,14 @@
                    alert("Sorry, We don't Home Delivery Dessert Item ! Please Delet The Dessert Item From Cart,Then CheckOut");
 
                }else {
+                   if (document.getElementById('memberid').value ==""){
 
-                    window.location ='<?php echo base_url()?>Items/cart';
+                       alert("If Customer Is not Registered Yet,Please Register New Customer First!");
+                   }
+                   else {
+
+                       window.location = '<?php echo base_url()?>Items/cart';
+                   }
                }
                 // $('#cart_table').load(document.URL + ' #cart_table');
                // $('#total_table').load(document.URL + ' #total_table');
@@ -745,6 +754,19 @@
                     $('#total_table').load(document.URL +  ' #total_table');
                     $('#topcart').load(document.URL +  ' #topcart');
                 }
+            }
+        });
+    }
+    function have() {
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/have/")?>' ,
+            cache: false,
+            success: function (data) {
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+                $('#topcart').load(document.URL +  ' #topcart');
             }
         });
     }

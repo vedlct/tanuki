@@ -196,7 +196,7 @@
 
                 <div id="DeliveriAddress">
 
-                    
+
                 <?php $user = $this->session->userdata('id');
                 $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
                 $this->db->from('userdeliveryaddress');
@@ -206,7 +206,7 @@
                 $query = $this->db->get();
                 $userDefaultDelivery=$query->result();
                 foreach ($userDefaultDelivery as $deliveryLocation){?>
-                <div>
+                <div >
                     <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
                 </div>
                     <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
@@ -229,8 +229,10 @@
                     <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
                             
                         <tr >
+
                             <td style="border: 1px solid #ddd; cursor: pointer;"><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
                             <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
+
                         </tr>
 
                     <?php }?>

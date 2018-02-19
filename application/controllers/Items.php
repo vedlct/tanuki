@@ -93,7 +93,14 @@ class Items extends CI_Controller {
     {
         $userType = $this->session->userdata('userType');
 
-        if ($userType =="cus") {
+        if ($userType ==""){
+
+            $this->data['charges'] = $this->Itemsm->getcharges();
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
+            $this->load->view('cartforguest', $this->data);
+
+        }
+        else if ($userType =="cus") {
             $userid = $this->session->userdata('id');
             if ($userid == "") {
                 $this->data['charges'] = $this->Itemsm->getcharges();
@@ -106,7 +113,8 @@ class Items extends CI_Controller {
                 $this->data['charges'] = $this->Itemsm->getcharges();
                 $this->load->view('cart', $this->data);
             }
-        }else{
+        }
+        else{
             $memberId = $this->session->userdata('memberuserid');
 
             $this->data['userdata'] = $this->Itemsm->getUserdata($memberId);
@@ -174,6 +182,12 @@ class Items extends CI_Controller {
                 $this->cart->update($data);
             }
         }
+    }
+    public function have(){
+        $data = array(
+            'orderType' => "have",
+        );
+        $this->session->set_userdata($data);
     }
     public function takeaway(){
         $data = array(
