@@ -804,10 +804,18 @@
             data: {'memberid': memberid},
             cache: false,
             success: function (data) {
+                if (data == "0"){
+
+                    alert("Membership Id is not valid ,Please Insert a correct memshipId ");
+                    var mId= document.getElementById("memberid");
+                    mId.value == "";
+
+
+                }
                 //   $('#cart_table').load(document.URL +  ' #cart_table');
                 //  $('#total_table').load(document.URL +  ' #total_table');
                 //  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
-                // alert(data);
+
             }
         });
     }

@@ -213,16 +213,21 @@ class Items extends CI_Controller {
         );
         $this->session->set_userdata($data);
     }
-    public function membershipid(){
+    public function membershipid()
+    {
         $memberid = $this->input->post('memberid');
         $this->data['memberid'] = $this->Itemsm->getuserdatabymemberid($memberid);
-        foreach ($this->data['memberid'] as $member){
-            $m = $member->id;
+        if (!empty($this->data['memberid'])) {
+            foreach ($this->data['memberid'] as $member) {
+                $m = $member->id;
+            }
+            $data = array(
+                'memberuserid' => $m,
+            );
+            $this->session->set_userdata($data);
+        }else{
+            echo "0";
         }
-        $data = array(
-            'memberuserid' => $m,
-        );
-        $this->session->set_userdata($data);
     }
 //        $ordertype= $this->session->userdata('orderType');
 //        $orderdate= date("Y-m-d H:i");
@@ -460,6 +465,8 @@ class Items extends CI_Controller {
 //            $this->mailInvoice($orderId);
 //        }
         $this->cart->destroy();
+
+        $this->session->unset_userdata('memberuserid');
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }
