@@ -225,6 +225,7 @@ class Items extends CI_Controller {
                 'memberuserid' => $m,
             );
             $this->session->set_userdata($data);
+            echo "1";
         }else{
             echo "0";
         }
