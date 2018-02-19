@@ -91,17 +91,30 @@ class Items extends CI_Controller {
     }
     public function cart()
     {
-        $userid = $this->session->userdata('id');
-        if ($userid == "") {
-            $this->data['charges'] = $this->Itemsm->getcharges();
-            $this->data['allCity'] = $this->Itemsm->getAllCity();
-            $this->load->view('cartforguest', $this->data);
-        } else {
-            $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
-            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
-            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
+        $userType = $this->session->userdata('userType');
+
+        if ($userType =="cus") {
+            $userid = $this->session->userdata('id');
+            if ($userid == "") {
+                $this->data['charges'] = $this->Itemsm->getcharges();
+                $this->data['allCity'] = $this->Itemsm->getAllCity();
+                $this->load->view('cartforguest', $this->data);
+            } else {
+                $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
+                $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
+                $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
+                $this->data['charges'] = $this->Itemsm->getcharges();
+                $this->load->view('cart', $this->data);
+            }
+        }else{
+            $memberId = $this->session->userdata('memberuserid');
+
+            $this->data['userdata'] = $this->Itemsm->getUserdata($memberId);
+            $this->data['earnpoint'] = $this->Itemsm->getearnPoint($memberId);
+            $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($memberId);
             $this->data['charges'] = $this->Itemsm->getcharges();
             $this->load->view('cart', $this->data);
+
         }
     }
     public function payment(){
@@ -333,10 +346,12 @@ class Items extends CI_Controller {
         }
 
         //$paymenttype = $this->session->userdata('paymentMethod');
-        $user = $this->session->userdata('id');
+
         $ordertaker = $this->session->userdata('id');
-        $memberid = $this->session->userdata('memberuserid');
+        //$memberid = $this->session->userdata('memberuserid');
         //$orderRemark = $this->input->post('orderRemark');
+
+
 
         $orderRemark = $this->input->post('orderRemark');
         $data=array(
@@ -344,21 +359,12 @@ class Items extends CI_Controller {
         );
         $this->session->set_userdata($data);
 
-        if ($this->session->userdata('orderType') == "have") {
+        $userType = $this->session->userdata('userType');
 
-            $data = array(
-                'orderType' => $ordertype,
-                'orderDate' => $orderdate,
-                'fkOrderStatus' => $orderstatus,
-                'deliveryfee' => $deliveryfee,
-                'vat' => $vat,
-                'paymentType' => $paymenttype,
-                'fkUserId' => $memberid,
-                'fkOrderTaker' => $ordertaker,
-                'orderRemarks' => $this->session->userdata('orderRemark'),
-            );
-            $this->Itemsm->checkoutInsert($data);
-        } else {
+        if ($userType =="cus"){
+
+            $user = $this->session->userdata('id');
+
             $data = array(
                 'orderType' => $ordertype,
                 'orderDate' => $orderdate,
@@ -372,7 +378,73 @@ class Items extends CI_Controller {
             );
             $orderId=$this->Itemsm->checkoutInsert($data);
             $this->mailInvoice($orderId);
+
         }
+        else{
+            $memberid = $this->session->userdata('memberuserid');
+
+//            if ($this->session->userdata('orderType') == "have") {
+
+                $data = array(
+                    'orderType' => $ordertype,
+                    'orderDate' => $orderdate,
+                    'fkOrderStatus' => $orderstatus,
+                    'deliveryfee' => $deliveryfee,
+                    'vat' => $vat,
+                    'paymentType' => $paymenttype,
+                    'fkUserId' => $memberid,
+                    'fkOrderTaker' => $ordertaker,
+                    'orderRemarks' => $this->session->userdata('orderRemark'),
+                );
+            $orderId=$this->Itemsm->checkoutInsert($data);
+//            }
+//            else {
+//                $data = array(
+//                    'orderType' => $ordertype,
+//                    'orderDate' => $orderdate,
+//                    'fkOrderStatus' => $orderstatus,
+//                    'deliveryfee' => $deliveryfee,
+//                    'vat' => $vat,
+//                    'paymentType' => $paymenttype,
+//                    'fkUserId' => $user,
+//                    'fkOrderTaker' => null,
+//                    'orderRemarks' => $this->session->userdata('orderRemark'),
+//                );
+//                $orderId=$this->Itemsm->checkoutInsert($data);
+                $this->mailInvoice($orderId);
+//            }
+        }
+
+//        if ($this->session->userdata('orderType') == "have") {
+//
+//            $data = array(
+//                'orderType' => $ordertype,
+//                'orderDate' => $orderdate,
+//                'fkOrderStatus' => $orderstatus,
+//                'deliveryfee' => $deliveryfee,
+//                'vat' => $vat,
+//                'paymentType' => $paymenttype,
+//                'fkUserId' => $memberid,
+//                'fkOrderTaker' => $ordertaker,
+//                'orderRemarks' => $this->session->userdata('orderRemark'),
+//            );
+//            $this->Itemsm->checkoutInsert($data);
+//        }
+//        else {
+//            $data = array(
+//                'orderType' => $ordertype,
+//                'orderDate' => $orderdate,
+//                'fkOrderStatus' => $orderstatus,
+//                'deliveryfee' => $deliveryfee,
+//                'vat' => $vat,
+//                'paymentType' => $paymenttype,
+//                'fkUserId' => $user,
+//                'fkOrderTaker' => null,
+//                'orderRemarks' => $this->session->userdata('orderRemark'),
+//            );
+//            $orderId=$this->Itemsm->checkoutInsert($data);
+//            $this->mailInvoice($orderId);
+//        }
         $this->cart->destroy();
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');

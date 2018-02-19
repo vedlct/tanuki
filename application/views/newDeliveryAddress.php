@@ -36,5 +36,5 @@
                 <hr>
 
 
-                <input type="submit" class="btn_full" value="Go to checkout">
+    <input type="submit" class="btn_full" value="Submit">
 </form>
