@@ -191,7 +191,10 @@
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
 
-            <div id="Address" class="box_style_2">
+            <div id="Address">
+
+            <div  class="box_style_2">
+
                 <h2 class="inner">Delivery Address</h2>
 
                 <div id="DeliveriAddress">
@@ -214,24 +217,24 @@
                 <?php }?>
                 </div>
 
-                <div id="allDeliveryAddressByUser" style="display: none">
+                <div id="allDeliveryAddressByUser" style="display: none;"align="center">
 
                     <?php $user = $this->session->userdata('id');
-                    $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                    $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,status ,city.name as cityName,country');
                     $this->db->from('userdeliveryaddress');
                     $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
                     $this->db->where('userdeliveryaddress.userId',$user);
                     // $this->db->where('userdeliveryaddress.status',"1");
                     $query = $this->db->get();
                     $userDefaultDelivery=$query->result();?>
-                    <table>
+                    <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
 
                     <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
                             
                         <tr >
 
-                            <td style="border: 1px solid #ddd; cursor: pointer;"><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
-                            <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
+                            <td style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; cursor: pointer;"><a <?php if ($deliveryLocation->status == "1"){echo 'style="color: blue"';}?>class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
+                            <td ><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
 
                         </tr>
 
@@ -245,21 +248,22 @@
                 </div>
 
             </div>
+            </div>
 
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <form action="<?php echo base_url()?>AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">
                     <div class="form-group">
                         <label for="cardHolderName">Card Holder Name:</label>
-                        <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name" name="cardHolderName">
+                        <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name Max 20 Charecter" name="cardHolderName">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Card Number:</label>
-                        <input required type="text" class="form-control" id="cardNumber" placeholder="" name="cardNumber">
+                        <input required type="text" class="form-control" id="cardNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="" name="cardNumber">
                     </div>
                     <div class="form-group">
                         <label for="securityCode">Security Code:</label>
-                        <input required type="text" class="form-control" id="securityCode" placeholder="" name="securityCode">
+                        <input required type="text" class="form-control" id="securityCode" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="" name="securityCode">
                     </div>
 
                     <div class="form-group">
@@ -371,6 +375,10 @@
 
         if (cardHolderName==''){
             alert("card Holder Name Can not be empty");
+            return false;
+        }
+        if (cardHolderName.length >20 ){
+            alert("card Holder Name Can not more than 20 charecter ");
             return false;
         }
         if (cardNumber == ''){
