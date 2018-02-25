@@ -170,5 +170,22 @@ class Itemsm extends CI_Model {
         $query = $this->db->get();
         return $query->result();
     }
+
+    public function checkoutInsertForCardPay($data){
+        $this->db->insert('orders', $data);
+        $orderid = $this->db->insert_id();
+        foreach ($this->cart->contents() as $c){
+            $data2 = array(
+                'fkOrderId' => $orderid,
+                'fkItemSizeId' => $c['id'],
+                'quantity' => $c['qty'],
+                'rate' => $c['price'],
+                'discount' => $c['coupon'],
+            );
+            $this->db->insert('orderitems', $data2);
+        }
+        return $orderid;
+    }
+
 }
 ?>

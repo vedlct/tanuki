@@ -30,7 +30,7 @@ class Profilem extends CI_Model
 
     public function userDeliveryAddress($user){
 
-        $this->db->select(['address', 'postalCode','city.name as cityName','country','contactNo']);
+        $this->db->select(['address','id', 'postalCode','city.name as cityName','country','contactNo']);
         $this->db->from('userdeliveryaddress');
         $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
         $this->db->where('userId', $user);

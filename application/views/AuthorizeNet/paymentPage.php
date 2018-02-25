@@ -191,6 +191,9 @@
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
 
+            <?php $ordertype = $this->session->userdata('orderType');$userType = $this->session->userdata('userType');
+            if ($userType=="cus" && ($ordertype=="home" || $ordertype=="take")){?>
+
             <div id="Address">
 
             <div  class="box_style_2">
@@ -208,13 +211,29 @@
                 $this->db->where('userdeliveryaddress.status',"1");
                 $query = $this->db->get();
                 $userDefaultDelivery=$query->result();
+                if (empty($userDefaultDelivery)){
+
+                    $this->db->select('address,postalCode,contactNo,city.name as cityName,country');
+                    $this->db->from('users');
+                    $this->db->join('city ','city.id = users.fkCity ','left');
+                    $this->db->where('users.id',$user);
+                    $query = $this->db->get();
+                    $userDefaultDelivery=$query->result();
+
+                    foreach ($userDefaultDelivery as $deliveryLocation){?>
+                        <div >
+                            <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                        </div>
+                    <?php }?>
+                    <a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a>
+                    <?php }else{
                 foreach ($userDefaultDelivery as $deliveryLocation){?>
                 <div >
                     <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
                 </div>
                     <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
                     </div>
-                <?php }?>
+                <?php }}?>
                 </div>
 
                 <div id="allDeliveryAddressByUser" style="display: none;"align="center">
@@ -227,6 +246,7 @@
                     // $this->db->where('userdeliveryaddress.status',"1");
                     $query = $this->db->get();
                     $userDefaultDelivery=$query->result();?>
+
                     <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
 
                     <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
@@ -245,10 +265,96 @@
 
                     </table>
 
+
                 </div>
 
             </div>
             </div>
+            <?php }elseif (($userType=="Admin" || $userType=="wter")  && ($ordertype=="home" || $ordertype=="take")){ ?>
+
+                <div id="Address">
+
+                    <div  class="box_style_2">
+
+                        <h2 class="inner">Delivery Address</h2>
+
+                        <div id="DeliveriAddress">
+
+
+                            <?php $memberid = $this->session->userdata('memberuserid');
+                            $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                            $this->db->from('userdeliveryaddress');
+                            $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                            $this->db->where('userdeliveryaddress.userId',$memberid);
+                            $this->db->where('userdeliveryaddress.status',"1");
+                            $query = $this->db->get();
+                            $userDefaultDelivery=$query->result();
+                            if (empty($userDefaultDelivery)){
+
+                                $this->db->select('address,postalCode,contactNo,city.name as cityName,country');
+                                $this->db->from('users');
+                                $this->db->join('city ','city.id = users.fkCity ','left');
+                                $this->db->where('users.id',$memberid);
+                                //$this->db->where('userdeliveryaddress.status',"1");
+                                $query = $this->db->get();
+                                $userDefaultDelivery=$query->result();
+
+                                foreach ($userDefaultDelivery as $deliveryLocation){?>
+                                    <div >
+                                        <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                                    </div>
+
+                                <?php } ?>
+
+                                <a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a>
+
+                            <?php }else{
+                            foreach ($userDefaultDelivery as $deliveryLocation){?>
+                                <div >
+                                    <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                                </div>
+                                <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
+                                </div>
+                            <?php }}?>
+                        </div>
+
+                        <div id="allDeliveryAddressByUser" style="display: none;"align="center">
+
+                            <?php $memberid = $this->session->userdata('memberuserid');
+                            $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,status ,city.name as cityName,country');
+                            $this->db->from('userdeliveryaddress');
+                            $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                            $this->db->where('userdeliveryaddress.userId',$memberid);
+                            // $this->db->where('userdeliveryaddress.status',"1");
+                            $query = $this->db->get();
+                            $userDefaultDelivery=$query->result();?>
+                            <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
+
+                                <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
+
+                                    <tr >
+
+                                        <td style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; cursor: pointer;"><a <?php if ($deliveryLocation->status == "1"){echo 'style="color: blue"';}?>class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
+                                        <td ><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
+
+                                    </tr>
+
+                                <?php }?>
+                                <tr>
+                                    <td><a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a></td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            <?php } ?>
 
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>

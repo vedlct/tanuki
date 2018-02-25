@@ -125,6 +125,7 @@ class Orders extends CI_Controller
             $orderId = $this->input->post('id');
             
             $this->data['orderInformation'] = $this->Ordersm->getOrderInformation($orderId);
+            //print_r($this->data['orderInformation']);
 
             $this->load->view('Admin/orderInformation', $this->data);
             

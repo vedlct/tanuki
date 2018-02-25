@@ -436,13 +436,13 @@
                             </div>
                         </div>
                         <hr>
-                        <div class="row" id="options_2">
+                        <div class="row" id="membershipIddiv">
                             <div style="text-align: center; " class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                 <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4">Membership ID :</label>
                                 <?php $membershipId=$this->session->userdata('memberuserid');if ($this->session->userdata('memberuserid') !=null){?>
                                     <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="<?php echo $this->session->userdata('memberuserid');?>" name="option_2" >
                                 <?php }else{ ?>
-                                    <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox" value="" name="option_2" >
+                                    <input class="col-lg-6 col-md-6 col-sm-6 col-xs-6" id="memberid" type="textbox"  name="option_2" >
                                 <?php } ?>
                                 <input type="button" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" onclick="membershipid()" value="Add  ">
                             </div>
@@ -591,8 +591,10 @@
     function test(x) {
 
         var orderType = $(x).data('panel-id');
+        var memberid=document.getElementById('memberid').value;
+        var userType='<?php $this->session->userdata('userType')?>';
 
-        //  alert(orderType);
+         // alert(memberid);
 
         $.ajax({
             type: 'POST',
@@ -614,9 +616,11 @@
                     else {
 
 
-                        if ((document.getElementById('memberid').value == "" || '<?php echo $membershipId?>' == '') && '<?php echo $userType?>' != 'cus') {
+                        if (memberid == ""  && '<?php echo $userType?>' != 'cus') {
 
                             alert("If Customer Is not Registered Yet,Please Register New Customer First!");
+
+
                         }
                         else {
 
@@ -624,6 +628,7 @@
                         }
                     }
                 }
+
             }
         });
     }
@@ -829,9 +834,11 @@
                     alert("MemberShip verified SuccessFully ");
 
                 }
-                   $('#cart_table').load(document.URL +  ' #cart_table');
-                  $('#total_table').load(document.URL +  ' #total_table');
-                  $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
+                $('#topcart').load(document.URL +  ' #topcart');
+                $('#membershipiddiv').load(document.URL +  ' #membershipiddiv');
 
             }
         });

@@ -23,6 +23,8 @@ class Payment extends CI_Controller {
         if ($this->session->userdata('loggedin') =="true") {
 
 
+
+
             $this->load->model('Itemsm');
             $this->load->model('Userorderm');
             // $this->load->model('profilem');
@@ -32,10 +34,23 @@ class Payment extends CI_Controller {
             $securityCode = $this->input->post('securityCode');
             $expMonth = $this->input->post('expMonth');
             $expYear = $this->input->post('expYear');
-            $user = $this->session->userdata('id');
+
+            $amount = $this->session->userdata('amount');
+
+            $this->load->library('authorize_net');
+
+            $userType = $this->session->userdata('userType');
+
+            if ($userType=="cus"){
+                $user = $this->session->userdata('id');
+            }elseif($userType=="Admin" || $userType=="wter"){
+                $user = $this->session->userdata('memberuserid');
+            }
+            //$user = $this->session->userdata('id');
 
 
             $this->data['info'] = $this->profilem->getCustomerInfo($user);
+
 
             foreach ($this->data['info'] as $CustomerData) {
                 $Name = $CustomerData->name;
@@ -45,23 +60,45 @@ class Payment extends CI_Controller {
                 $contactNo = $CustomerData->contactNo;
                 $email = $CustomerData->email;
             }
+            $ordertype = $this->session->userdata('orderType');
+            if ($ordertype=="home" || $ordertype=="take") {
 
+                $this->data['userDeliveryAddress'] = $this->profilem->userDeliveryAddress($user);
 
-            $this->data['userDeliveryAddress'] = $this->profilem->userDeliveryAddress($user);
+                if (!empty($this->data['userDeliveryAddress'])) {
 
-            foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress) {
+                    foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress) {
 
-                $DeliveryAddress = $CustomerDeliveryAddress->address;
-                $DeliveryPostalCode = $CustomerDeliveryAddress->postalCode;
-                $DeliveryCityName = $CustomerDeliveryAddress->cityName;
-                $DeliveryCountry = $CustomerDeliveryAddress->cityName;
-                $DeliveryContactNo = $CustomerDeliveryAddress->contactNo;
+                        $DeliveryAddress = $CustomerDeliveryAddress->address;
+                        $DeliveryAddressID = $CustomerDeliveryAddress->id;
+                        $DeliveryPostalCode = $CustomerDeliveryAddress->postalCode;
+                        $DeliveryCityName = $CustomerDeliveryAddress->cityName;
+                        $DeliveryCountry = $CustomerDeliveryAddress->country;
+                        $DeliveryContactNo = $CustomerDeliveryAddress->contactNo;
+
+                    }
+                }
+                else {
+                    $DeliveryAddressID = null;
+                    $DeliveryAddress = $address;
+                    $DeliveryPostalCode = $postalCode;
+                    $DeliveryCityName = $cityName;
+                    $DeliveryCountry = "US";
+                    $DeliveryContactNo = $contactNo;
+
+                }
+            }
+            else{
+                $DeliveryAddressID=null;
+                $DeliveryAddress = $address;
+                $DeliveryPostalCode = $postalCode;
+                $DeliveryCityName = $cityName;
+                $DeliveryCountry = "US";
+                $DeliveryContactNo = $contactNo;
 
             }
 
-            $amount = $this->session->userdata('amount');
 
-            $this->load->library('authorize_net');
 
             $auth_net = array(
                 'x_card_num' => $cardNumber,
@@ -94,6 +131,7 @@ class Payment extends CI_Controller {
 
             // Try to AUTH_CAPTURE
             if ($this->authorize_net->authorizeAndCapture()) {
+
                 $paymenttype = "crd";
                 $orderdate = date("Y-m-d H:i");
                 $ordertype = $this->session->userdata('orderType');
@@ -101,20 +139,47 @@ class Payment extends CI_Controller {
                 $orderstatus = $re->id;
                 $deliveryfee = $this->session->userdata('deliveryfee');
                 $vat = $this->session->userdata('vat');
-                $ordertaker = null;
 
-                $data = array(
-                    'orderType' => $ordertype,
-                    'orderDate' => $orderdate,
-                    'fkOrderStatus' => $orderstatus,
-                    'deliveryfee' => $deliveryfee,
-                    'vat' => $vat,
-                    'paymentType' => $paymenttype,
-                    'fkUserId' => $user,
-                    'fkOrderTaker' => $ordertaker,
-                    'orderRemarks' => $this->session->userdata('orderRemark'),
-                );
-                $orderId = $this->Itemsm->checkoutInsertForGuest($data);
+                if ($userType=="cus"){
+                    $user = $this->session->userdata('id');
+                    $ordertaker = null;
+
+                    $data = array(
+                        'orderType' => $ordertype,
+                        'orderDate' => $orderdate,
+                        'fkOrderStatus' => $orderstatus,
+                        'deliveryfee' => $deliveryfee,
+                        'vat' => $vat,
+                        'paymentType' => $paymenttype,
+                        'fkUserId' => $user,
+                        'fkOrderTaker' => $ordertaker,
+                        'orderRemarks' => $this->session->userdata('orderRemark'),
+                        'deliveryAddressId' => $DeliveryAddressID,
+                    );
+                }
+                elseif($userType=="Admin" || $userType=="wter"){
+                    $user = $this->session->userdata('memberuserid');
+                    $ordertaker = $this->session->userdata('id');
+
+                    $data = array(
+                        'orderType' => $ordertype,
+                        'orderDate' => $orderdate,
+                        'fkOrderStatus' => $orderstatus,
+                        'deliveryfee' => $deliveryfee,
+                        'vat' => $vat,
+                        'paymentType' => $paymenttype,
+                        'fkUserId' => $user,
+                        'fkOrderTaker' => $ordertaker,
+                        'orderRemarks' => $this->session->userdata('orderRemark'),
+                        'deliveryAddressId' => $DeliveryAddressID,
+                    );
+                }
+
+
+               // $ordertaker = null;
+
+
+                $orderId = $this->Itemsm->checkoutInsertForCardPay($data);
                 $this->mailInvoice($orderId);
                 $this->cart->destroy();
 

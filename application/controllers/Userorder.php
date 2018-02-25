@@ -77,7 +77,13 @@ class Userorder extends CI_Controller
             $address = $this->input->post('address');
             $city = $this->input->post('city');
             $pcode = $this->input->post('pcode');
-            $userid = $this->session->userdata('id');
+            $userType = $this->session->userdata('userType');
+            if ($userType=="cus"){
+                $userid = $this->session->userdata('id');
+            }elseif($userType=="Admin" || $userType=="wter"){
+                $userid = $this->session->userdata('memberuserid');
+            }
+
             // $mobile = $this->input->post('');
 
             $this->Userorderm->insertNewAddress($phone, $address, $city, $pcode, $userid);
