@@ -76,7 +76,7 @@ class Ordersm extends CI_Model
     public  function getOrderInformation($orderId)
     {
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,
+        $this->db->select('o.id ,o.deliveryAddressId,o.orderRemarks,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,
         ,u.name as userName,us.name as orderTaker, u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
         $this->db->from('orders o');
 
