@@ -8,6 +8,10 @@ RewriteCond %{REQUEST_FILENAME} !-d
  
 RewriteRule ^(.*)$ index.php?$1
 
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ http://%1%{REQUEST_URI} [R=301,QSA,NC,L]
+
 # Leverage Browser Caching
 <IfModule mod_expires.c>
   ExpiresActive On
@@ -26,6 +30,6 @@ RewriteRule ^(.*)$ index.php?$1
   </FilesMatch>
 </IfModule>
 
-<IfModule mod_headers.c>
-    Header set Access-Control-Allow-Origin "*"
-</IfModule>
+#<IfModule mod_headers.c>
+ #   Header set Access-Control-Allow-Origin "*"
+#</IfModule>
