@@ -25,3 +25,7 @@ RewriteRule ^(.*)$ index.php?$1
     Header append Vary: Accept-Encoding
   </FilesMatch>
 </IfModule>
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+</IfModule>

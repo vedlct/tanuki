@@ -193,7 +193,7 @@ class Payment extends CI_Controller {
                 echo '<h2>Fail!</h2>';
 
                 $this->session->set_flashdata('errorMessage', '<p>' . $this->authorize_net->getError() . '</p>');
-                redirect('Items');
+                redirect('OnlinePayment');
                 // Get error
                 //echo '<p>' . $this->authorize_net->getError() . '</p>';
                 // Show debug data

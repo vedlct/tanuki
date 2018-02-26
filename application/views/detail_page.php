@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<!--[if IE 9]><html class="ie ie9"> <![endif]-->
-<html>
+<!--[if IE 9]-->
+<html class="ie ie9">
+<!--[endif]-->
+
 <head>
 
     <?php include ('head.php') ?>
@@ -591,8 +593,13 @@
     function test(x) {
 
         var orderType = $(x).data('panel-id');
-        var memberid=document.getElementById('memberid').value;
+
         var userType='<?php $this->session->userdata('userType')?>';
+        if (userType != ''){
+            var memberid=document.getElementById('memberid').value;
+        }else{
+
+        }
 
          // alert(memberid);
 
