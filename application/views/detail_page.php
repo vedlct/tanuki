@@ -614,7 +614,13 @@
                     alert("Sorry, We don't Home Delivery Dessert Item ! Please Delet The Dessert Item From Cart,Then CheckOut");
 
                 }
-                else {
+                else if(data == "2"){
+
+                    alert("Your Cart is Empty! Please Order Some Item First!");
+
+                }
+                else if(data == "1"){
+
                     if ('<?php echo $userType?>' == ''){
 
                         window.location = '<?php echo base_url()?>Items/cart';
@@ -634,6 +640,7 @@
                             window.location = '<?php echo base_url()?>Items/cart';
                         }
                     }
+
                 }
 
             }
