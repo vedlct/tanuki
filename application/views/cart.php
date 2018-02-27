@@ -290,7 +290,7 @@
                         </tbody>
                     </table>
                     <hr>
-                    <form  method="post">
+                    <form  id="cartcheckout" action="<?php echo base_url()?>Items/checkout" method="post">
                     <div align="center">
                         <label>Add Order Remarks :</label>
                     </div>
@@ -376,9 +376,11 @@
 
 
                          <?php  if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "cash"){ ?>
-                             <input type="submit" formaction="<?php echo base_url()?>Items/checkout" class="btn_full" value="Go to checkout">
+
+<!--                             <input type="submit" formaction="--><?php //echo base_url()?><!--Items/checkout" class="btn_full" value="Go to checkout">-->
+                             <a class="btn_full" onclick="check()">Go to checkout</a>
                          <?php }else if ($this->session->userdata('paymentMethod') != null && $this->session->userdata('paymentMethod') == "credit"){ ?>
-                             <a class="btn_full" href="<?php echo base_url()?>OnlinePayment" onclick="orderRemarks()">Go to checkout</a>
+                             <a class="btn_full" onclick="orderRemarksandCheckout()">Go to checkout</a>
 <!--                             <input type="submit" formaction="--><?php //echo base_url()?><!--OnlinePayment" onsubmit="orderRemarks()" class="btn_full" value="Go to checkout">-->
 
                          <?php } else { ?>
@@ -422,6 +424,26 @@
 <!--    });-->
 <!--</script>-->
 <script>
+
+    function check() {
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/checkCartItems")?>',
+            data: {},
+            cache: false,
+            success: function (data) {
+                if (data == "0"){
+                    alert("Your Cart is Empty! Please Order Some Item First!");
+                }else {
+                    document.getElementById("cartcheckout").submit();
+                }
+            }
+        });
+
+
+    }
+
     function paymentcreditcard() {
         $.ajax({
             type:'POST',
@@ -509,20 +531,34 @@
     });
 </script>
 <script>
-    function orderRemarks() {
-        var orderRemark=document.getElementById('orderRemark').value;
+    function orderRemarksandCheckout() {
 
         $.ajax({
             type: 'POST',
-            url: '<?php echo base_url("Items/orderRemarkForCrd")?>' ,
-            data: {'remark':orderRemark,},
+            url: '<?php echo base_url("Items/checkCartItems")?>',
+            data: {},
             cache: false,
             success: function (data) {
+                if (data == "0"){
+                    alert("Your Cart is Empty! Please Order Some Item First!");
+                }else {
 
+                    var orderRemark=document.getElementById('orderRemark').value;
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '<?php echo base_url("Items/orderRemarkForCrd")?>' ,
+                        data: {'remark':orderRemark,},
+                        cache: false,
+                        success: function (data) {
+
+                            window.location = '<?php echo base_url()?>OnlinePayment';
+
+                        }
+                    });
+                }
             }
         });
-
-
 
 
     }

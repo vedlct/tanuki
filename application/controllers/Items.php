@@ -125,6 +125,16 @@ class Items extends CI_Controller {
 
         }
     }
+    public function checkCartItems(){
+
+        if (empty($this->cart->contents())){
+
+            echo "0";
+
+        }else{
+            echo "1";
+        }
+    }
     public function payment(){
         $this->data['charges'] = $this->Itemsm->getcharges();
         $this->load->view('cart_2', $this->data);
@@ -475,24 +485,32 @@ class Items extends CI_Controller {
 
     public function checkdesert(){
 
-        $dessertCheck=array();
+        if (empty($this->cart->contents())){
 
-        foreach ($this->cart->contents() as $c){
+            echo "2";
 
-           if ($c['options']['CategoryName'] == "DESSERT"){
+        }else{
+            $dessertCheck=array();
 
-               $dessertCheck="There is an Dessert Item";
+            foreach ($this->cart->contents() as $c){
 
-           }else{
+                if ($c['options']['CategoryName'] == "DESSERT"){
 
-           }
+                    $dessertCheck="There is an Dessert Item";
+
+                }else{
+
+                }
+            }
+            if ($dessertCheck != null){
+                echo "0";
+            }
+            else{
+                echo "1";
+            }
         }
-        if ($dessertCheck != null){
-            echo "0";
-        }
-        else{
-            echo "1";
-        }
+
+
     }
 
     public function orderRemarkForCrd()
