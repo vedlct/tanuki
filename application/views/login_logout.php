@@ -25,7 +25,7 @@
             <span id="wrongEmail"style="display: none;color:white">Your Email Doesn't Match! ,Please Input The Registered Email Address</span>
             <form action="<?php echo base_url()?>Login/forgetPassMail" class="popup-form" id="forgetPassMail" method="post">
                 <div class="login_icon"><i class="icon_lock_alt"></i></div>
-                <input type="email" class="form-control form-white" required name="email" id="email" placeholder="Email">
+                <input type="email" class="form-control form-white" required name="forgetemail" id="email" placeholder="Email">
                 <div class="text-left">
                     <a style="cursor: pointer" onclick="UserLogin()">User Login</a>
                 </div>
@@ -177,9 +177,7 @@
                         document.getElementById("forgetPassMail").submit();
                     }
                     else {
-
-                        $('#wrongEmail').style.display='block';
-
+                        $('#wrongEmail').show();
 
                     }
                     

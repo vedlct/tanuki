@@ -549,22 +549,5 @@ class Items extends CI_Controller {
         }
         echo $newtotal;
     }
-    public function mailInvoice($orderId)
-    {
-        $this->load->helper(array('email'));
-        $this->load->library(array('email'));
-        $this->load->model('Userorderm');
-        $this->email->set_mailtype("html");
-        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
-        $this->email->to($this->session->userdata('email'),'tanukisupport@teknovisual.com');
-        $this->email->subject('New Order');
-        $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
-        $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItemsForPrint($orderId);
-        $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
-        $this->data['charge'] = $this->Userorderm->getAllCharge();
-        $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
-        $message = $this->load->view('invoicePdf', $this->data,true);
-        $this->email->message($message);
-        $this->email->send();
-    }
+    
 }

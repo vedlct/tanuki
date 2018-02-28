@@ -137,9 +137,70 @@ class Login extends CI_Controller
         $this->load->view('newUserRegistration');
     }
 
+//    public function test(){
+//
+//        date_default_timezone_set("Asia/Dhaka");
+//        $now = date('Y-m-d H:i:s');
+//        echo $now."<br>";
+//        $newtimestamp = strtotime('+30 minutes', strtotime($now));
+//        echo date('Y-m-d H:i:s', $newtimestamp);
+//
+//        if ($now < $newtimestamp){
+//            echo 1;
+//        }
+//    }
+    public function ChangePassword($userId)
+    {
+        $nowDate=date('Y-m-d H:i:s');
+        $this->data['customerPassChangeReq']=$this->loginm->customerpassChangeReq($userId);
+        if (!empty($this->data['customerPassChangeReq'])){
+            foreach ($this->data['customerPassChangeReq'] as $changeReq){
+                $requestDate=$changeReq->passwordChangeRequestTime;
+                $requestId=$changeReq->userId;
+            }
+            $newtimestamp = strtotime('+30 minutes', strtotime($requestDate));
+            if ($nowDate < $newtimestamp){
+
+                $this->load->view('newUserRegistration');
+
+            }
+        }
+
+    }
+
     public function forgetPassMail()
     {
-        $this->load->view('newUserRegistration');
+        $forgetemail = $this->input->post('forgetemail');
+        $customerEmail=$this->loginm->checkCustomerEmailAvailabe($forgetemail);
+       // echo $customerEmail->userId;
+
+        if (!empty($customerEmail)){
+            $this->loginm->passwordChangeRequestSubmit($forgetemail);
+
+            $this->load->helper(array('email'));
+            $this->load->library(array('email'));
+
+            $this->email->set_mailtype("html");
+            $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+            $this->email->to($forgetemail);
+            $this->email->subject('Forget PassWord Request');
+            $message = "Dear User,<br /><br />Please click on the below activation link to Change your password.<br /><br /> <a href='".base_url()."Login/ChangePassword/" .$customerEmail->userId."'>ChangePass For -" .$forgetemail."</a><br /><br /><br />Thanks<br />[Tanuki Team]";
+//        $message = $this->load->view('invoicePdf', $this->data,true);
+            $this->email->message($message);
+            //$this->email->send();
+
+            if ($this->email->send()){
+
+                $this->session->set_flashdata('successMessage','Forget PassWord Request Sent SuccessFully');
+                redirect('Items');
+
+            }else{
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Items');
+            }
+
+        }
+
     }
     
     public function CheckUser()
@@ -158,4 +219,19 @@ class Login extends CI_Controller
 
 
     }
+
+//    public function mailInvoice($forgetemail)
+//    {
+//        $this->load->helper(array('email'));
+//        $this->load->library(array('email'));
+//        $this->load->model('Userorderm');
+//        $this->email->set_mailtype("html");
+//        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+//        $this->email->to($forgetemail);
+//        $this->email->subject('Forget PassWord Request');
+//        $message = "Dear User,<br /><br />Please click on the below activation link to update your password.<br /><br /> <a href='".base_url()."Login/ChangePass/" . $forgetemail ."'>ChangePass-" .$forgetemail."</a><br /><br /><br />Thanks<br />[Tanuki Team]";
+////        $message = $this->load->view('invoicePdf', $this->data,true);
+//        $this->email->message($message);
+//        $this->email->send();
+//    }
 }
