@@ -20,6 +20,19 @@ class Loginm extends CI_Model{
 
     }
 
+    public function checkCustomerEmailAvailabe($userEmail){
+
+
+        $this->db->select('u.id as userId');
+        $this->db->where('u.email',$userEmail);
+        $this->db->where('u.userActivationStatus',"1");
+        $this->db->where('fkUserType',"cus");
+        $this->db->from('users u');
+        $query = $this->db->get();
+        return $query->row();
+
+    }
+
     public function loginInfo($data1){
 
 

@@ -541,7 +541,8 @@
             success: function (data) {
                 if (data == "0"){
                     alert("Your Cart is Empty! Please Order Some Item First!");
-                }else {
+                }
+                else {
 
                     var orderRemark=document.getElementById('orderRemark').value;
 
