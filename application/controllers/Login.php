@@ -136,4 +136,26 @@ class Login extends CI_Controller
     {
         $this->load->view('newUserRegistration');
     }
+
+    public function forgetPassMail()
+    {
+        $this->load->view('newUserRegistration');
+    }
+    
+    public function CheckUser()
+    {
+        $userEmail=$this->input->post('mail');
+        $this->data['customerEmail']=$this->loginm->checkCustomerEmailAvailabe($userEmail);
+        
+        if (!empty($this->data['customerEmail'])){
+            
+            echo "1";
+            
+        }
+        else{
+            echo "0";
+        }
+
+
+    }
 }

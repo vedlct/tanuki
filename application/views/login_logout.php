@@ -8,10 +8,30 @@
                 <input type="email" class="form-control form-white" name="email" placeholder="Email">
                 <input type="password" class="form-control form-white" name="password" placeholder="Password">
                 <div class="text-left">
-                    <a href="#">Forgot Password?</a>
+                    <a style="cursor: pointer" onclick="forgetPassWord()">Forgot Password?</a>
                 </div>
                 <button type="submit" class="btn btn-submit">Submit</button>
             </form>
+        </div>
+    </div>
+</div>
+<!-- End modal -->
+
+<!-- ForgetPass modal -->
+<div class="modal fade" id="forgetPass" tabindex="-1" role="dialog" aria-labelledby="forgetPass" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content modal-popup">
+            <a href="#" class="close-link"><i class="icon_close_alt2"></i></a>
+            <span id="wrongEmail"style="display: none;color:white">Your Email Doesn't Match! ,Please Input The Registered Email Address</span>
+            <form action="<?php echo base_url()?>Login/forgetPassMail" class="popup-form" id="forgetPassMail" method="post">
+                <div class="login_icon"><i class="icon_lock_alt"></i></div>
+                <input type="email" class="form-control form-white" required name="email" id="email" placeholder="Email">
+                <div class="text-left">
+                    <a style="cursor: pointer" onclick="UserLogin()">User Login</a>
+                </div>
+                <a type="button" onclick="forgetPassWordValidate()" class="btn btn-submit">Submit</a>
+            </form>
+<!--            <button onclick="forgetPassWordValidate()" class="btn btn-submit">Submit</button>-->
         </div>
     </div>
 </div>
@@ -120,5 +140,57 @@
         }
 
     }
+    function forgetPassWord() {
+
+        $('#login_2').modal('hide');
+        $('#forgetPass').modal('show');
+
+    }
+
+    function UserLogin() {
+
+        $('#forgetPass').modal('hide');
+        $('#login_2').modal('show');
+
+    }
+
+    function forgetPassWordValidate() {
+
+        var Email=document.getElementById('email');
+
+        if (Email.value == ""){
+            alert("Email Field Can not be empty!!");
+            return false;
+        }
+        else {
+            var UserEmail=Email.value;
+
+            $.ajax({
+                type:'POST',
+                url:'<?php echo base_url("Login/CheckUser")?>',
+                data:{'mail':UserEmail},
+                cache: false,
+                success:function(data)
+                {
+                    if (data == "1"){
+
+                        document.getElementById("forgetPassMail").submit();
+                    }
+                    else {
+
+                        $('#wrongEmail').style.display='block';
+
+
+                    }
+                    
+                }
+            });
+            
+        }
+
+
+
+    }
+
 
 </script>
