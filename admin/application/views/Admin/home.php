@@ -121,7 +121,7 @@
                 $("#results").text(data);
             }
         });
-    },600 , 60);
+    },6000 , 60);
     var i = setInterval(function(){
         $.ajax({
             url: "<?php echo base_url('Admin/Report/getTotaltransactiondetail') ?>",
@@ -130,7 +130,7 @@
                 $("#resultts2").text(data);
             }
         });
-    },600, 60);
+    },6000, 60);
     var i = setInterval(function(){
         $.ajax({
             url: "<?php echo base_url('Admin/Feedback/totalFeedback') ?>",
@@ -139,7 +139,7 @@
                 $("#resultts3").text(data);
             }
         });
-    },600, 60);
+    },6000, 60);
     var i = setInterval(function(){
         $.ajax({
             url: "<?php echo base_url('Admin/Orders/getTotalOrder') ?>",
@@ -148,7 +148,7 @@
                 $("#resultts1").text(data);
             }
         });
-    },600, 60);
+    },6000, 60);
 
     var i = setInterval(function(){
         $.ajax({
@@ -158,6 +158,6 @@
                 $("#todayOrder").html(data);
             }
         });
-    },600, 60);
+    },6000, 60);
 
 </script>
