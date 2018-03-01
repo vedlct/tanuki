@@ -31,7 +31,7 @@
                 </div>
                 <a type="button" onclick="forgetPassWordValidate()" class="btn btn-submit">Submit</a>
             </form>
-<!--            <button onclick="forgetPassWordValidate()" class="btn btn-submit">Submit</button>-->
+            <!--            <button onclick="forgetPassWordValidate()" class="btn btn-submit">Submit</button>-->
         </div>
     </div>
 </div>
@@ -56,14 +56,14 @@
                         <select class="form-control form-white" id="city" name="city" required>
                             <option value="">Your city</option>
                             <?php foreach ($query1->result() as $cities){?>
-                            <option value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
+                                <option value="<?php echo $cities->id?>"><?php echo $cities->name?></option>
                             <?php } ?>
                         </select>
 
                     </div>
                     <div class="col-md-6 col-sm-6">
 
-                    <input type="text" id="pcode" name="pcode" class="form-control form-white" value=""  required placeholder=" Your postal code">
+                        <input type="text" id="pcode" name="pcode" class="form-control form-white" value=""  required placeholder=" Your postal code">
 
                     </div>
                 </div>
@@ -86,16 +86,13 @@
 </div><!-- End Register modal -->
 
 <script>
-
     function registration() {
-
         var checkbox=document.getElementById('check_2').checked;
         if (!checkbox){
             alert('Please click the checkbox');
             return false;
         }
         else {
-
             var name = document.getElementById('Name').value;
             var address = document.getElementById('address').value;
             var city = document.getElementById('city').value;
@@ -104,7 +101,6 @@
             var password = document.getElementById('password').value;
             var conPassword = document.getElementById('conPassword').value;
             var phone = document.getElementById('phone').value;
-
             if (name.length > 45) {
                 alert("User Name should be less than 45 charecter");
                 return false;
@@ -138,33 +134,23 @@
                 return true;
             }
         }
-
     }
     function forgetPassWord() {
-
         $('#login_2').modal('hide');
         $('#forgetPass').modal('show');
-
     }
-
     function UserLogin() {
-
         $('#forgetPass').modal('hide');
         $('#login_2').modal('show');
-
     }
-
     function forgetPassWordValidate() {
-
         var Email=document.getElementById('email');
-
         if (Email.value == ""){
             alert("Email Field Can not be empty!!");
             return false;
         }
         else {
             var UserEmail=Email.value;
-
             $.ajax({
                 type:'POST',
                 url:'<?php echo base_url("Login/CheckUser")?>',
@@ -173,22 +159,15 @@
                 success:function(data)
                 {
                     if (data == "1"){
-
                         document.getElementById("forgetPassMail").submit();
                     }
                     else {
                         $('#wrongEmail').show();
-
                     }
-                    
+
                 }
             });
-            
+
         }
-
-
-
     }
-
-
 </script>
