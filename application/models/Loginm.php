@@ -33,6 +33,19 @@ class Loginm extends CI_Model{
 
     }
 
+    public function customerpassChangeReq($userId){
+
+
+        $this->db->select('u.id as userId, u.passwordChangeRequestTime');
+        $this->db->where('u.id',$userId);
+        $this->db->where('u.userActivationStatus',"1");
+        $this->db->where('fkUserType',"cus");
+        $this->db->from('users u');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
     public function loginInfo($data1){
 
 
@@ -58,6 +71,15 @@ class Loginm extends CI_Model{
     {
         $this->db->where('id',$id);
         $this->db->update('logininfo',$data);
+
+    }
+    public function passwordChangeRequestSubmit($forgetemail)
+    {
+        $data=array(
+            'passwordChangeRequestTime'=>date('Y-m-d H:i:s'),
+        );
+        $this->db->where('email',$forgetemail);
+        $this->db->update('users',$data);
 
     }
 
