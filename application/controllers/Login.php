@@ -101,7 +101,6 @@ class Login extends CI_Controller
 
     public function newUserRegFromResturant()
     {
-
         $name = $this->input->post('Name');
         $address = $this->input->post('address');
         $city = $this->input->post('city');
@@ -132,6 +131,8 @@ class Login extends CI_Controller
 
     }
 
+
+
     public function showNewUserReg()
     {
         $this->load->view('newUserRegistration');
@@ -156,13 +157,80 @@ class Login extends CI_Controller
         if (!empty($this->data['customerPassChangeReq'])){
             foreach ($this->data['customerPassChangeReq'] as $changeReq){
                 $requestDate=$changeReq->passwordChangeRequestTime;
-                $requestId=$changeReq->userId;
+                $this->data['requestId']=$changeReq->userId;
             }
-            $newtimestamp = strtotime('+30 minutes', strtotime($requestDate));
-            if ($nowDate < $newtimestamp){
+            if (empty($requestDate)){
 
-                $this->load->view('newUserRegistration');
+                $this->session->set_flashdata('errorMessage', 'You have already changed your password');
+                redirect('Items');
 
+            }else {
+
+                $newtimestamp = strtotime('+30 minutes', strtotime($requestDate));
+                if ($nowDate < $newtimestamp) {
+                    $this->load->view('passwordChange', $this->data);
+                } else {
+
+                    $this->session->set_flashdata('errorMessage', 'Time Epired !!');
+                    redirect('Items');
+
+                }
+            }
+        }
+
+    }
+
+    public function updateNewPass($userId)
+    {
+        $this->load->library('form_validation');
+        if (!$this->form_validation->run('passChange')) {
+
+            $this->data['requestId']=$userId;
+            $this->load->view('passwordChange',$this->data);
+
+        }
+        else {
+
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+
+            $this->data['customerPassChangeReq']=$this->loginm->customerpassChangeReq($userId);
+            if (!empty($this->data['customerPassChangeReq'])) {
+                foreach ($this->data['customerPassChangeReq'] as $changeReq) {
+                    $requestEmail = $changeReq->email;
+                }
+
+                if ($password == $conPassword) {
+
+                    $data = array(
+                        'password' => $password,
+                        'passwordChangeRequestTime' => null,
+                    );
+
+                }
+                $this->data['error'] = $this->loginm->updateNewPassword($userId, $data);
+
+                if (empty($this->data['error'])) {
+                    $this->session->set_flashdata('successMessage', 'Password Updated Successfully');
+
+                    $this->load->helper(array('email'));
+                    $this->load->library(array('email'));
+
+                    $this->email->set_mailtype("html");
+                    $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+                    $this->email->to($requestEmail);
+                    $this->email->subject('Tanuki PassWord Updated SuccessFully');
+                    $message = "Dear User,<br /><br />You have Successfully Updated Your Password .<br /><br /><br /><br /><br />Thanks<br />[Tanuki Team]";
+                    $this->email->message($message);
+                    $this->email->send();
+
+                    $this->session->set_flashdata('successMessage','Tanuki PassWord Updated SuccessFully');
+                    redirect('Items');
+
+                } else {
+                    $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Items');
+                }
             }
         }
 
