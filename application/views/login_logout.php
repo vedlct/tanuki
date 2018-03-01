@@ -178,7 +178,7 @@
                     }
                     else {
 
-                        $('#wrongEmail').style.display='block';
+                        $('#wrongEmail').show();
 
 
                     }

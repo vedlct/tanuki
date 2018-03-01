@@ -200,7 +200,7 @@ function desktopnotification() {
         // Let's check if the user is okay to get some notification
         else if (Notification.permission === "granted") {
             // If it's okay let's create a notification
-            var notification = new Notification(title, {icon:'<?php echo base_url()?>images/logo/logo.png',body: desc});
+            var notification = new Notification(title, {icon:'<?php echo base_url()?>images/logo/logo.png',body: desc ,  requireInteraction: true});
         }
 
         // Otherwise, we need to ask the user for permission
@@ -216,7 +216,7 @@ function desktopnotification() {
 
                 // If the user is okay, let's create a notification
                 if (permission === "granted") {
-                    var notification = new Notification(title, {icon:'<?php echo base_url()?>images/logo/logo.png"',body: desc});
+                    var notification = new Notification(title, {icon:'<?php echo base_url()?>images/logo/logo.png"',body: desc,  requireInteraction: true});
 
 
 
@@ -224,7 +224,7 @@ function desktopnotification() {
 
 
             });
-            setTimeout(notification.close, 200);
+
         }
 
         // At last, if the user already denied any notification, and you
