@@ -271,7 +271,7 @@ $config['log_file_permissions'] = 0644;
 | codes to set your own date formatting
 |
 */
-date_default_timezone_set('Asia/Dhaka');
+
 $config['log_date_format'] = 'Y-m-d H:i:s';
 
 /*
@@ -489,7 +489,9 @@ $config['compress_output'] = FALSE;
 | helper' page of the user guide for information regarding date handling.
 |
 */
-$config['time_reference'] = 'local';
+//$config['time_reference'] = 'local';
+date_default_timezone_set('America/New_York');
+$config['time_reference'] = 'America/New_York';
 
 /*
 |--------------------------------------------------------------------------
