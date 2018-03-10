@@ -195,7 +195,7 @@
                 <h2 class="inner">Your order details</h2>
                 <?php
                 ?>
-                <form method="post" action="<?php echo base_url()?>Items/checkoutguest" onsubmit="return registration()">
+                <form id="checkOutGuest" method="post" action="<?php echo base_url()?>Items/checkoutguest" onsubmit="return registration1()">
                     <div class="form-group">
                         <label> Name</label>
                         <p><font color="red"> <?php echo form_error('Name'); ?></font></p>
@@ -426,9 +426,10 @@
                         </tbody>
                     </table>
                     <hr>
-                    <!--                    <a class="btn_full" onclick="registration()" href="--><?php //echo base_url()?><!--Items/checkout">Go to checkout</a>-->
+                                        <a class="btn_full" onclick="check()">Go to checkout</a>
                     <!--                    <a class="btn_full" type="submit">Go to checkout</a>-->
-                    <input type="submit" class="btn_full" value="Go to checkout">
+<!--                    <input type="submit" class="btn_full" value="Go to checkout">-->
+
                     </form>
                     <a class="btn_full_outline" href="<?php echo base_url()?>Items"><i class="icon-right"></i> Add other items</a>
                 </div><!-- End cart_box -->
@@ -453,8 +454,31 @@
 </html>
 <!-- COMMON SCRIPTS -->
 <?php include ('js.php')?>
+
 <script>
-    function registration() {
+
+    function check() {
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/checkCartItems")?>',
+            data: {},
+            cache: false,
+            success: function (data) {
+                if (data == "0"){
+                    alert("Your Cart is Empty! Please Order Some Item First!");
+                }else {
+                    document.getElementById("checkOutGuest").submit();
+                }
+            }
+        });
+
+
+    }
+
+
+    function registration1() {
+
         var name = document.getElementById('Name').value;
         var address = document.getElementById('address').value;
         var city = document.getElementById('city').value;
@@ -525,8 +549,15 @@
             alert('Password and confirm Password does not match');
             return false;
         }
+//        if ('<?php //count($this->cart->contents())?>//'.length <= 0){
+//
+//            alert("Your Cart is Empty! Please Order Some Item First!");
+//            return false;
+//
+//        }
         else {
             return true;
+
         }
     }
 </script>
@@ -598,25 +629,3 @@
     });
     });
 </script>
-<!--<script>-->
-<!--    (function($) {-->
-<!--        var element = $('.scrolldiv'),-->
-<!--            originalY = element.offset().top;-->
-<!---->
-<!--        // Space between element and top of screen (when scrolling)-->
-<!--        var topMargin = 40;-->
-<!---->
-<!--        // Should probably be set in CSS; but here just for emphasis-->
-<!--        element.css('position', 'relative');-->
-<!---->
-<!--        $(window).on('scroll', function(event) {-->
-<!--            var scrollTop = $(window).scrollTop();-->
-<!---->
-<!--            element.stop(false, false).animate({-->
-<!--                top: scrollTop < originalY-->
-<!--                    ? 0-->
-<!--                    : scrollTop - originalY + topMargin-->
-<!--            }, 300);-->
-<!--        });-->
-<!--    })(jQuery);-->
-<!--</script>-->

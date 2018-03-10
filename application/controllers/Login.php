@@ -101,7 +101,6 @@ class Login extends CI_Controller
 
     public function newUserRegFromResturant()
     {
-
         $name = $this->input->post('Name');
         $address = $this->input->post('address');
         $city = $this->input->post('city');
@@ -132,8 +131,175 @@ class Login extends CI_Controller
 
     }
 
+
+
     public function showNewUserReg()
     {
         $this->load->view('newUserRegistration');
     }
+
+//    public function test(){
+//
+//        date_default_timezone_set("Asia/Dhaka");
+//        $now = date('Y-m-d H:i:s');
+//        echo $now."<br>";
+//        $newtimestamp = strtotime('+30 minutes', strtotime($now));
+//        echo date('Y-m-d H:i:s', $newtimestamp);
+//
+//        if ($now < $newtimestamp){
+//            echo 1;
+//        }
+//    }
+    public function ChangePassword($userId)
+    {
+        $nowDate=date('Y-m-d H:i:s');
+        $this->data['customerPassChangeReq']=$this->loginm->customerpassChangeReq($userId);
+        if (!empty($this->data['customerPassChangeReq'])){
+            foreach ($this->data['customerPassChangeReq'] as $changeReq){
+                $requestDate=$changeReq->passwordChangeRequestTime;
+                $this->data['requestId']=$changeReq->userId;
+            }
+            if (empty($requestDate)){
+
+                $this->session->set_flashdata('errorMessage', 'You have already changed your password');
+                redirect('Items');
+
+            }else {
+
+                $newtimestamp = strtotime('+30 minutes', strtotime($requestDate));
+                if ($nowDate < $newtimestamp) {
+                    $this->load->view('passwordChange', $this->data);
+                } else {
+
+                    $this->session->set_flashdata('errorMessage', 'Time Epired !!');
+                    redirect('Items');
+
+                }
+            }
+        }
+
+    }
+
+    public function updateNewPass($userId)
+    {
+        $this->load->library('form_validation');
+        if (!$this->form_validation->run('passChange')) {
+
+            $this->data['requestId']=$userId;
+            $this->load->view('passwordChange',$this->data);
+
+        }
+        else {
+
+            $password = $this->input->post('password');
+            $conPassword = $this->input->post('conPassword');
+
+            $this->data['customerPassChangeReq']=$this->loginm->customerpassChangeReq($userId);
+            if (!empty($this->data['customerPassChangeReq'])) {
+                foreach ($this->data['customerPassChangeReq'] as $changeReq) {
+                    $requestEmail = $changeReq->email;
+                }
+
+                if ($password == $conPassword) {
+
+                    $data = array(
+                        'password' => $password,
+                        'passwordChangeRequestTime' => null,
+                    );
+
+                }
+                $this->data['error'] = $this->loginm->updateNewPassword($userId, $data);
+
+                if (empty($this->data['error'])) {
+                    $this->session->set_flashdata('successMessage', 'Password Updated Successfully');
+
+                    $this->load->helper(array('email'));
+                    $this->load->library(array('email'));
+
+                    $this->email->set_mailtype("html");
+                    $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+                    $this->email->to($requestEmail);
+                    $this->email->subject('Tanuki PassWord Updated SuccessFully');
+                    $message = "Dear User,<br /><br />You have Successfully Updated Your Password .<br /><br /><br /><br /><br />Thanks<br />[Tanuki Team]";
+                    $this->email->message($message);
+                    $this->email->send();
+
+                    $this->session->set_flashdata('successMessage','Tanuki PassWord Updated SuccessFully');
+                    redirect('Items');
+
+                } else {
+                    $this->session->set_flashdata('errorMessage', 'Some thing Went Wrong !! Please Try Again!!');
+                    redirect('Items');
+                }
+            }
+        }
+
+    }
+
+    public function forgetPassMail()
+    {
+        $forgetemail = $this->input->post('forgetemail');
+        $customerEmail=$this->loginm->checkCustomerEmailAvailabe($forgetemail);
+       // echo $customerEmail->userId;
+
+        if (!empty($customerEmail)){
+            $this->loginm->passwordChangeRequestSubmit($forgetemail);
+
+            $this->load->helper(array('email'));
+            $this->load->library(array('email'));
+
+            $this->email->set_mailtype("html");
+            $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+            $this->email->to($forgetemail);
+            $this->email->subject('Forget PassWord Request');
+            $message = "Dear User,<br /><br />Please click on the below activation link to Change your password.<br /><br /> <a href='".base_url()."Login/ChangePassword/" .$customerEmail->userId."'>ChangePass For -" .$forgetemail."</a><br /><br /><br />Thanks<br />[Tanuki Team]";
+//        $message = $this->load->view('invoicePdf', $this->data,true);
+            $this->email->message($message);
+            //$this->email->send();
+
+            if ($this->email->send()){
+
+                $this->session->set_flashdata('successMessage','Forget PassWord Request Sent SuccessFully');
+                redirect('Items');
+
+            }else{
+                $this->session->set_flashdata('errorMessage','Some thing Went Wrong !! Please Try Again!!');
+                redirect('Items');
+            }
+
+        }
+
+    }
+    
+    public function CheckUser()
+    {
+        $userEmail=$this->input->post('mail');
+        $this->data['customerEmail']=$this->loginm->checkCustomerEmailAvailabe($userEmail);
+        
+        if (!empty($this->data['customerEmail'])){
+            
+            echo "1";
+            
+        }
+        else{
+            echo "0";
+        }
+
+
+    }
+
+//    public function mailInvoice($forgetemail)
+//    {
+//        $this->load->helper(array('email'));
+//        $this->load->library(array('email'));
+//        $this->load->model('Userorderm');
+//        $this->email->set_mailtype("html");
+//        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+//        $this->email->to($forgetemail);
+//        $this->email->subject('Forget PassWord Request');
+//        $message = "Dear User,<br /><br />Please click on the below activation link to update your password.<br /><br /> <a href='".base_url()."Login/ChangePass/" . $forgetemail ."'>ChangePass-" .$forgetemail."</a><br /><br /><br />Thanks<br />[Tanuki Team]";
+////        $message = $this->load->view('invoicePdf', $this->data,true);
+//        $this->email->message($message);
+//        $this->email->send();
+//    }
 }

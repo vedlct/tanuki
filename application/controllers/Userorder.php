@@ -36,6 +36,33 @@ class Userorder extends CI_Controller
         $this->load->view('newDeliveryAddress' , $this->data);
 
     }
+    public function EditDeliveryAddress()
+    {
+        $this->load->model('Itemsm');
+        $deliveryAddressId = $this->input->post('id');
+
+        $this->data['deliverAddress'] = $this->Userorderm->getLastDeliveryAddress($deliveryAddressId);
+        $this->data['allCity'] = $this->Itemsm->getAllCity();
+
+        $this->load->view('EditDeliveryAddress',$this->data);
+
+    }
+
+    public function EditSelectedDeliveryAddress($id)
+    {
+        $data=array(
+            'contactNo'=>$this->input->post('phone'),
+            'address'=>$this->input->post('address'),
+            'fkCity'=>$this->input->post('city'),
+            'postalCode'=>$this->input->post('pcode'),
+        );
+
+
+        $this->data['deliverAddress'] = $this->Userorderm->EditSelectedDeliveryAddress($id,$data);
+
+        redirect('OnlinePayment');
+
+    }
 
     public function insertNewAddress()
     {
@@ -50,7 +77,13 @@ class Userorder extends CI_Controller
             $address = $this->input->post('address');
             $city = $this->input->post('city');
             $pcode = $this->input->post('pcode');
-            $userid = $this->session->userdata('id');
+            $userType = $this->session->userdata('userType');
+            if ($userType=="cus"){
+                $userid = $this->session->userdata('id');
+            }elseif($userType=="Admin" || $userType=="wter"){
+                $userid = $this->session->userdata('memberuserid');
+            }
+
             // $mobile = $this->input->post('');
 
             $this->Userorderm->insertNewAddress($phone, $address, $city, $pcode, $userid);

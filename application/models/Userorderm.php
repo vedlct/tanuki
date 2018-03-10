@@ -88,6 +88,23 @@ class Userorderm extends CI_Model
         $query=$this->db->get();
         return $query->result();
     }
+    public  function getLastDeliveryAddress($deliveryAddressId)
+    {
+        $this->db->select('address,postalCode,contactNo,country,fkCity,id');
+        $this->db->from('userdeliveryaddress');
+        $this->db->where('id',$deliveryAddressId);
+
+        $query=$this->db->get();
+        return $query->result();
+    }
+    public  function EditSelectedDeliveryAddress($id,$data)
+    {
+
+
+        $this->db->where('id',$id);
+        $this->db->update('userdeliveryaddress', $data);
+
+    }
     public  function getUsedPoint()
     {
         $this->db->select('expedPoints, fkOrderId');
@@ -98,13 +115,32 @@ class Userorderm extends CI_Model
     }
 
     public function insertNewAddress($phone, $address, $city, $pcode, $userid) {
+
+        $this->db->select(['id']);
+        $this->db->from('userdeliveryaddress');
+        $this->db->where('userId', $userid);
+        $this->db->where('status', "1");
+        $query = $this->db->get();
+        if (!empty($query->result())) {
+            foreach ($query->result() as $userId) {
+                $id = $userId->id;
+            }
+            $data1 = array(
+                'status' => "0"
+            );
+
+            $data1 = $this->security->xss_clean($data1);
+            $this->db->where('id', $id);
+
+            $this->db->update('userdeliveryaddress', $data1);
+        }
         $data = array(
             'userId' => $userid,
             'address' => $address,
             'postalCode' => $pcode,
             'contactNo' => $phone,
             'fkCity' => $city,
-            'status' => 0,
+            'status' => "1",
         );
         $this->db->insert('userdeliveryaddress', $data);
     }

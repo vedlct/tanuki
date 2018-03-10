@@ -191,7 +191,13 @@
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
 
-            <div id="Address" class="box_style_2">
+            <?php $ordertype = $this->session->userdata('orderType');$userType = $this->session->userdata('userType');
+            if ($userType=="cus" && ($ordertype=="home" || $ordertype=="take")){?>
+
+            <div id="Address">
+
+            <div  class="box_style_2">
+
                 <h2 class="inner">Delivery Address</h2>
 
                 <div id="DeliveriAddress">
@@ -205,25 +211,42 @@
                 $this->db->where('userdeliveryaddress.status',"1");
                 $query = $this->db->get();
                 $userDefaultDelivery=$query->result();
+                if (empty($userDefaultDelivery)){
+
+                    $this->db->select('address,postalCode,contactNo,city.name as cityName,country');
+                    $this->db->from('users');
+                    $this->db->join('city ','city.id = users.fkCity ','left');
+                    $this->db->where('users.id',$user);
+                    $query = $this->db->get();
+                    $userDefaultDelivery=$query->result();
+
+                    foreach ($userDefaultDelivery as $deliveryLocation){?>
+                        <div >
+                            <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                        </div>
+                    <?php }?>
+                    <a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a>
+                    <?php }else{
                 foreach ($userDefaultDelivery as $deliveryLocation){?>
                 <div >
                     <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
                 </div>
                     <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
                     </div>
-                <?php }?>
+                <?php }}?>
                 </div>
 
-                <div id="allDeliveryAddressByUser" style="display: none">
+                <div id="allDeliveryAddressByUser" style="display: none;"align="center">
 
                     <?php $user = $this->session->userdata('id');
-                    $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                    $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,status ,city.name as cityName,country');
                     $this->db->from('userdeliveryaddress');
                     $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
                     $this->db->where('userdeliveryaddress.userId',$user);
                     // $this->db->where('userdeliveryaddress.status',"1");
                     $query = $this->db->get();
                     $userDefaultDelivery=$query->result();?>
+<<<<<<< HEAD
                     <table style="border-collapse: separate;border-spacing: 15px 15px;">
 
                     <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
@@ -231,6 +254,18 @@
                         <tr class="ordreaddrs" style="margin-top: 5px;" >
                             <td style="border: 1px solid #ddd; cursor: pointer; padding:17px; width: 90%"><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>" onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
                             <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="selectid(this)">Edit</a></td>
+=======
+
+                    <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
+
+                    <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
+                            
+                        <tr >
+
+                            <td style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; cursor: pointer;"><a <?php if ($deliveryLocation->status == "1"){echo 'style="color: blue"';}?>class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
+                            <td ><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
+
+>>>>>>> 52fe0121ab689ba3aa1bbb7499ef3021d599c3a8
                         </tr>
 
                     <?php }?>
@@ -240,24 +275,111 @@
 
                     </table>
 
+
                 </div>
 
             </div>
+            </div>
+            <?php }elseif (($userType=="Admin" || $userType=="wter")  && ($ordertype=="home" || $ordertype=="take")){ ?>
+
+                <div id="Address">
+
+                    <div  class="box_style_2">
+
+                        <h2 class="inner">Delivery Address</h2>
+
+                        <div id="DeliveriAddress">
+
+
+                            <?php $memberid = $this->session->userdata('memberuserid');
+                            $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,city.name as cityName,country');
+                            $this->db->from('userdeliveryaddress');
+                            $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                            $this->db->where('userdeliveryaddress.userId',$memberid);
+                            $this->db->where('userdeliveryaddress.status',"1");
+                            $query = $this->db->get();
+                            $userDefaultDelivery=$query->result();
+                            if (empty($userDefaultDelivery)){
+
+                                $this->db->select('address,postalCode,contactNo,city.name as cityName,country');
+                                $this->db->from('users');
+                                $this->db->join('city ','city.id = users.fkCity ','left');
+                                $this->db->where('users.id',$memberid);
+                                //$this->db->where('userdeliveryaddress.status',"1");
+                                $query = $this->db->get();
+                                $userDefaultDelivery=$query->result();
+
+                                foreach ($userDefaultDelivery as $deliveryLocation){?>
+                                    <div >
+                                        <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                                    </div>
+
+                                <?php } ?>
+
+                                <a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a>
+
+                            <?php }else{
+                            foreach ($userDefaultDelivery as $deliveryLocation){?>
+                                <div >
+                                    <?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?>
+                                </div>
+                                <div> <button style="float: right; margin-top: -30px" class="btn btn-sm btn-success" onclick="changeAddress()">Change</button>
+                                </div>
+                            <?php }}?>
+                        </div>
+
+                        <div id="allDeliveryAddressByUser" style="display: none;"align="center">
+
+                            <?php $memberid = $this->session->userdata('memberuserid');
+                            $this->db->select('userdeliveryaddress.id,address,postalCode,contactNo,status ,city.name as cityName,country');
+                            $this->db->from('userdeliveryaddress');
+                            $this->db->join('city ','city.id = userdeliveryaddress.fkCity ','left');
+                            $this->db->where('userdeliveryaddress.userId',$memberid);
+                            // $this->db->where('userdeliveryaddress.status',"1");
+                            $query = $this->db->get();
+                            $userDefaultDelivery=$query->result();?>
+                            <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
+
+                                <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
+
+                                    <tr >
+
+                                        <td style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; cursor: pointer;"><a <?php if ($deliveryLocation->status == "1"){echo 'style="color: blue"';}?>class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
+                                        <td ><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
+
+                                    </tr>
+
+                                <?php }?>
+                                <tr>
+                                    <td><a class="btn" href="#0" onclick="addNewDeliveryAddress()">Add New Address</a></td>
+                                </tr>
+
+                            </table>
+
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+            <?php } ?>
 
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <form action="<?php echo base_url()?>AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">
                     <div class="form-group">
                         <label for="cardHolderName">Card Holder Name:</label>
-                        <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name" name="cardHolderName">
+                        <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name Max 20 Charecter" name="cardHolderName">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Card Number:</label>
-                        <input required type="text" class="form-control" id="cardNumber" placeholder="" name="cardNumber">
+                        <input required type="text" class="form-control" id="cardNumber" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="" name="cardNumber">
                     </div>
                     <div class="form-group">
                         <label for="securityCode">Security Code:</label>
-                        <input required type="text" class="form-control" id="securityCode" placeholder="" name="securityCode">
+                        <input required type="text" class="form-control" id="securityCode" oninput="this.value = this.value.replace(/[^0-9]/g, '');" placeholder="" name="securityCode">
                     </div>
 
                     <div class="form-group">
@@ -371,6 +493,10 @@
             alert("card Holder Name Can not be empty");
             return false;
         }
+        if (cardHolderName.length >20 ){
+            alert("card Holder Name Can not more than 20 charecter ");
+            return false;
+        }
         if (cardNumber == ''){
             alert("card Number Can not be empty");
             return false;
@@ -397,6 +523,25 @@
             type:'POST',
             url:'<?php echo base_url("Userorder/addNewDeliveryAddress" )?>',
             data:{},
+            cache: false,
+            success:function(data)
+            {
+                $('#txtHint').html(data);
+            }
+
+        });
+        modal.style.display = "block";
+    }
+
+    function EditDeliveryAddress(x)
+    {
+        btn = $(x).data('panel-id');
+
+
+        $.ajax({
+            type:'POST',
+            url:'<?php echo base_url("Userorder/EditDeliveryAddress" )?>',
+            data:{id:btn},
             cache: false,
             success:function(data)
             {

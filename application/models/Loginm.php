@@ -20,13 +20,38 @@ class Loginm extends CI_Model{
 
     }
 
+    public function checkCustomerEmailAvailabe($userEmail){
+
+
+        $this->db->select('u.id as userId');
+        $this->db->where('u.email',$userEmail);
+        $this->db->where('u.userActivationStatus',"1");
+        $this->db->where('fkUserType',"cus");
+        $this->db->from('users u');
+        $query = $this->db->get();
+        return $query->row();
+
+    }
+
+    public function customerpassChangeReq($userId){
+
+
+        $this->db->select('u.id as userId,u.email, u.passwordChangeRequestTime');
+        $this->db->where('u.id',$userId);
+        $this->db->where('u.userActivationStatus',"1");
+        $this->db->where('fkUserType',"cus");
+        $this->db->from('users u');
+        $query = $this->db->get();
+        return $query->result();
+
+    }
+
     public function loginInfo($data1){
 
 
         $this->db->insert('logininfo',$data1);
         $insert_id = $this->db->insert_id();
         return $insert_id;
-
 
     }
     public function loginInfoForRegisterUser($data1,$data3){
@@ -45,6 +70,31 @@ class Loginm extends CI_Model{
     {
         $this->db->where('id',$id);
         $this->db->update('logininfo',$data);
+
+    }
+    public function passwordChangeRequestSubmit($forgetemail)
+    {
+        $data=array(
+            'passwordChangeRequestTime'=>date('Y-m-d H:i:s'),
+        );
+        $this->db->where('email',$forgetemail);
+        $this->db->update('users',$data);
+
+    }
+
+    public function updateNewPassword($userId,$data)
+    {
+        $this->db->where('id',$userId);
+        $error=$this->db->update('users',$data);
+
+        if (empty($error))
+        {
+            return $this->db->error();
+        }
+        else{
+            
+            return $error = null;
+        }
 
     }
 

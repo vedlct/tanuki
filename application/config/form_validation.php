@@ -75,4 +75,18 @@ $config = array (
         ),
     ),
 
+    'passChange' => array (
+
+        array(
+            'field' => 'password',
+            'label' => 'New PassWord',
+            'rules' => 'required|max_length[255]|xss_clean|htmlspecialchars'
+        ),
+        array(
+            'field' => 'conPassword',
+            'label' => 'Confirm New Password',
+            'rules' => 'required|max_length[255]|xss_clean|matches[password]|htmlspecialchars'
+        ),
+    ),
+
 );
