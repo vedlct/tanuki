@@ -383,7 +383,18 @@
             <i class="icon_cart_alt"></i> <span id="topcart">(<?php echo $this->cart->total_items();?>)</span>
         </div>
 
+        <div id="waringmodal" class="modal1">
+            <br/><br/><br/>
+            <!-- Modal content -->
+            <div class="modal1-content">
+                <span class="close">×</span>
 
+             <h1>we are close today</h1>
+
+            </div>
+
+
+        </div>
 
         <div style="position: sticky; top: 70px;" class="col-md-3 " id="sidebar">
             <div class="theiaStickySidebar scrolldiv cf">
@@ -576,7 +587,7 @@
                     <div id="ordertypediv">
                         <?php $orderType = $this->session->userdata('orderType'); if($this->session->userdata('orderType') != null ){ ?>
 
-                            <a class="btn_full" data-panel-id="<?php echo $orderType?>" onclick="test(this)">Order now</a>
+                            <a class="btn_full" data-panel-id="<?php echo $orderType?>" onclick="ordernow(this)">Order now</a>
                             <!--                            <a class="btn_full" onclick="test()" href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
                             <!--                            <a class="btn_full"  href="--><?php //echo base_url()?><!--Items/cart">Order now</a>-->
                         <?php }else { ?>
@@ -615,7 +626,7 @@
 <!--</script>-->
 
 <script>
-    function test(x) {
+    function ordernow(x) {
 
         var orderType = $(x).data('panel-id');
 
@@ -827,7 +838,26 @@
             }
         });
     }
+    var modal2 = document.getElementById('waringmodal');
+    var span2 = document.getElementsByClassName("close")[0];
     function takeaway() {
+
+        var d = new Date();
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        var n = weekday[d.getDay()];
+        if (n == "Tuesday"){
+            modal2.style.display = "block";
+          
+        }
+
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/takeaway/")?>' ,
@@ -839,6 +869,16 @@
                 $('#topcart').load(document.URL +  ' #topcart');
             }
         });
+    }
+    span2.onclick = function() {
+        modal2.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal2) {
+            modal2.style.display = "none";
+        }
     }
     function homedelivary() {
         $.ajax({
