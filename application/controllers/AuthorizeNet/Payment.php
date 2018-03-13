@@ -23,8 +23,6 @@ class Payment extends CI_Controller {
         if ($this->session->userdata('loggedin') =="true") {
 
 
-
-
             $this->load->model('Itemsm');
             $this->load->model('Userorderm');
             // $this->load->model('profilem');
@@ -43,23 +41,55 @@ class Payment extends CI_Controller {
 
             if ($userType=="cus"){
                 $user = $this->session->userdata('id');
-            }elseif($userType=="Admin" || $userType=="wter"){
+
+                $this->data['info'] = $this->profilem->getCustomerInfo($user);
+
+                foreach ($this->data['info'] as $CustomerData) {
+                    $Name = $CustomerData->name;
+                    $address = $CustomerData->address;
+                    $postalCode = $CustomerData->postalCode;
+                    $cityName = $CustomerData->cityName;
+                    $contactNo = $CustomerData->contactNo;
+                    $email = $CustomerData->email;
+                }
+
+            }
+            elseif($userType=="Admin" || $userType=="wter"){
+
                 $user = $this->session->userdata('memberuserid');
+
+                if (!empty($user)){
+
+                    $this->data['info'] = $this->profilem->getCustomerInfo($user);
+
+                    foreach ($this->data['info'] as $CustomerData) {
+                        $Name = $CustomerData->name;
+                        $address = $CustomerData->address;
+                        $postalCode = $CustomerData->postalCode;
+                        $cityName = $CustomerData->cityName;
+                        $contactNo = $CustomerData->contactNo;
+                        $email = $CustomerData->email;
+                    }
+
+
+                }
+                else{
+
+                    $Name = null;
+                    $address = null;
+                    $postalCode = null;
+                    $cityName = null;
+                    $contactNo = null;
+                    $email = null;
+
+                }
             }
-            //$user = $this->session->userdata('id');
 
 
-            $this->data['info'] = $this->profilem->getCustomerInfo($user);
 
 
-            foreach ($this->data['info'] as $CustomerData) {
-                $Name = $CustomerData->name;
-                $address = $CustomerData->address;
-                $postalCode = $CustomerData->postalCode;
-                $cityName = $CustomerData->cityName;
-                $contactNo = $CustomerData->contactNo;
-                $email = $CustomerData->email;
-            }
+
+
             $ordertype = $this->session->userdata('orderType');
             if ($ordertype=="home" || $ordertype=="take") {
 
