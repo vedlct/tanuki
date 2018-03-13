@@ -412,6 +412,11 @@ class Items extends CI_Controller {
         }
         else{
             $memberid = $this->session->userdata('memberuserid');
+            if (empty($memberid)){
+                $userId=$ordertaker;
+            }else{
+                $userId=$memberid;
+            }
 
 //            if ($this->session->userdata('orderType') == "have") {
 
@@ -422,7 +427,7 @@ class Items extends CI_Controller {
                     'deliveryfee' => $deliveryfee,
                     'vat' => $vat,
                     'paymentType' => $paymenttype,
-                    'fkUserId' => $memberid,
+                    'fkUserId' => $userId,
                     'fkOrderTaker' => $ordertaker,
                     'orderRemarks' => $this->session->userdata('orderRemark'),
                 );
@@ -478,6 +483,7 @@ class Items extends CI_Controller {
         $this->cart->destroy();
 
         $this->session->unset_userdata('memberuserid');
+        $this->session->unset_userdata('orderType');
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }
@@ -548,6 +554,24 @@ class Items extends CI_Controller {
             $this->session->set_userdata($data);
         }
         echo $newtotal;
+    }
+
+    public function mailInvoice($orderId){
+        $this->load->helper(array('email'));
+        $this->load->library(array('email'));
+        $this->load->model('Userorderm');
+        $this->email->set_mailtype("html");
+        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+        $this->email->to($this->session->userdata('email'),'tanukisupport@teknovisual.com');
+        $this->email->subject('New Order');
+        $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
+        $this->data['ordersItems'] = $this->Userorderm->getAllOrdersItemsForPrint($orderId);
+        $this->data['ordersStatus'] = $this->Userorderm->getAllOrdersStatus();
+        $this->data['charge'] = $this->Userorderm->getAllCharge();
+        $this->data['pointUsed'] = $this->Userorderm->getUsedPointForOrder($orderId);
+        $message = $this->load->view('invoicePdf', $this->data,true);
+        $this->email->message($message);
+        $this->email->send();
     }
     
 }

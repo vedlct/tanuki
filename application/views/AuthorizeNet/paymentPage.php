@@ -246,15 +246,15 @@
                     // $this->db->where('userdeliveryaddress.status',"1");
                     $query = $this->db->get();
                     $userDefaultDelivery=$query->result();?>
-<<<<<<< HEAD
-                    <table style="border-collapse: separate;border-spacing: 15px 15px;">
 
-                    <?php foreach ($userDefaultDelivery as $deliveryLocation){?>
-                            
-                        <tr class="ordreaddrs" style="margin-top: 5px;" >
-                            <td style="border: 1px solid #ddd; cursor: pointer; padding:17px; width: 90%"><a class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>" onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
-                            <td><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="selectid(this)">Edit</a></td>
-=======
+<!--                    <table style="border-collapse: separate;border-spacing: 15px 15px;">-->
+<!---->
+<!--                    --><?php //foreach ($userDefaultDelivery as $deliveryLocation){?>
+<!--                            -->
+<!--                        <tr class="ordreaddrs" style="margin-top: 5px;" >-->
+<!--                            <td style="border: 1px solid #ddd; cursor: pointer; padding:17px; width: 90%"><a class="addressbox" herf="#0" data-panel-id="--><?php //echo $deliveryLocation->id?><!--" onclick="selectDeliveryAddress(this)">--><?php //echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?><!--</a></td>-->
+<!--                            <td><a class="btn" href="#0" data-panel-id="--><?php //echo $deliveryLocation->id ?><!--"  onclick="selectid(this)">Edit</a></td>-->
+<!---->
 
                     <table style="border-collapse: separate;border-spacing: 15px 15px; text-align: center">
 
@@ -265,7 +265,7 @@
                             <td style="border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; cursor: pointer;"><a <?php if ($deliveryLocation->status == "1"){echo 'style="color: blue"';}?>class="addressbox" herf="#0" data-panel-id="<?php echo $deliveryLocation->id?>"onclick="selectDeliveryAddress(this)"><?php echo $deliveryLocation->address.$deliveryLocation->postalCode.$deliveryLocation->cityName.",".$deliveryLocation->country?></a></td>
                             <td ><a class="btn" href="#0" data-panel-id="<?php echo $deliveryLocation->id ?>"  onclick="EditDeliveryAddress(this)">Edit</a></td>
 
->>>>>>> 52fe0121ab689ba3aa1bbb7499ef3021d599c3a8
+
                         </tr>
 
                     <?php }?>

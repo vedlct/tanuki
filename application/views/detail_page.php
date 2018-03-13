@@ -641,7 +641,7 @@
                 }
                 else if(data == "1"){
 
-                    if ('<?php echo $userType?>' == ''){
+                    if ('<?php echo $userType ?>' == ''){
 
                         window.location = '<?php echo base_url()?>Items/cart';
 
@@ -649,7 +649,7 @@
                     else {
 
 
-                        if (memberid == ""  && '<?php echo $userType?>' != 'cus') {
+                        if (memberid == ""  && '<?php echo $userType ?>' != 'cus') {
 
                             alert("If Customer Is not Registered Yet,Please Register New Customer First!");
 

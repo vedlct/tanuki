@@ -35,9 +35,10 @@
 
         <div style="border: 2px solid green;" class="col-md-12">
 
-
+            <?php if ($information->fkUserId != $information->fkOrderTaker){?>
                 <div class="panel-body">
                     <div class="panel-heading">  <h4 style="text-align: center"><b>Client Info</b></h4></div>
+
                     <div class="col-md-6 col-xs-6 col-sm-6 col-lg-4" >
                         <h2><?php echo $information->userName?></h2>
                         <p>Member Card No :<?php echo $information->memberCardNo?></p>
@@ -57,8 +58,9 @@
 
 
                     </div>
-                </div>
 
+                </div>
+            <?php } ?>
             <?php if (!empty($information->deliveryAddressId)){
 
 
@@ -91,7 +93,6 @@
                         </li>
                         <li><p><span class="glyphicon glyphicon-phone" style="width:50px;"></span><?php echo $userDeliveryAddress->contactNo?></p></li>
                     </ul>
-
 
                 </div>
             </div>

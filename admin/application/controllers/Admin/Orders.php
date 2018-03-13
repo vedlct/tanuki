@@ -49,14 +49,15 @@ class Orders extends CI_Controller
                     $this->data['orderInfo'] = $this->Ordersm->getDeliveredOrderInfo($orderId);
                     $this->data['orderItemsInfo'] = $this->Ordersm->getDeliveredOrderItemsInfo($orderId);
                     $this->data['pointUsedForOrder'] = $this->Ordersm->getUsedPointForParticularOrder($orderId);
-                    $totalPoint=0;
+                    $totalPoint=0;$pointTomoney=0;
                     foreach ($this->data['orderInfo'] as $orderInfo) {
                         $data1 = array(
                             'fkOrderId' => $orderInfo->id,
                             'vatTotal' => $orderInfo->vat,
+                            'tip' => $orderInfo->tip,
                             'transDate' => date('Y-m-d'),
                         );
-                        $totalPoint=($orderInfo->vat+$orderInfo->deliveryfee);
+                        $totalPoint=($orderInfo->vat+$orderInfo->deliveryfee+$orderInfo->tip);
                         $transectionId = $this->Ordersm->insertdeliveredOrdered($data1);
                         foreach ($this->data['orderItemsInfo'] as $orderedItems) {
                             $data2 = array(
@@ -70,7 +71,7 @@ class Orders extends CI_Controller
                             foreach ($this->data['pointUsedForOrder'] as $pointUsed){
                                 $pointTomoney = ($pointUsed->expedPoints/10);
                             }
-                            $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)-$pointTomoney);
+                            $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)- $pointTomoney);
                         }
                         $data3 = array(
                             'fkTransId' => $transectionId,
@@ -519,7 +520,7 @@ class Orders extends CI_Controller
         $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
         $this->data['pointUsed'] = $this->Ordersm->getUsedPoint();
 
-        $this->load->view('Waiter/OrderSearchFilterByOrderId', $this->data);
+        $this->load->view('Admin/OrderSearchFilterByOrderId', $this->data);
     }
 
 

@@ -169,7 +169,7 @@
                                                     <?php $total=$total+$price;}}} ?>
                                                     <tr>
 
-                                                        <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
+                                                        <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0;$tip=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?> + tip :$<?php if (!empty($orders->tip)){echo $tip=$orders->tip;}else{echo $tip;}?>
 
                                                             <?php foreach ($pointUsed as $pu){
                                                                 if ($pu->fkOrderId == $orders->id ){
@@ -194,7 +194,7 @@
                                                                 }
 
                                                             }?>
-                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+                                                            <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat+$tip)-$pointToMoney);?>
 
                                                         </td>
                                                         <td>
@@ -251,7 +251,7 @@
                                                                         <?php $total=$total+$price;}}} ?>
                                                             <tr>
 
-                                                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
+                                                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0;$tip=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?> + tip :$<?php if (!empty($orders->tip)){echo $tip=$orders->tip;}else{echo $tip;}?>
 
                                                                     <?php foreach ($pointUsed as $pu){
                                                                         if ($pu->fkOrderId == $orders->id ){
@@ -276,7 +276,7 @@
                                                                         }
 
                                                                     }?>
-                                                                    <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+                                                                    <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat+$tip)-$pointToMoney);?>
 
                                                                 </td>
 
@@ -333,7 +333,7 @@
                                                                         <?php $total=$total+$price;}}} ?>
                                                             <tr>
 
-                                                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?>
+                                                                <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0;$tip=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $orders->vat?> + tip :$<?php if (!empty($orders->tip)){echo $tip=$orders->tip;}else{echo $tip;}?>
 
                                                                     <?php foreach ($pointUsed as $pu){
                                                                         if ($pu->fkOrderId == $orders->id ){
@@ -358,7 +358,7 @@
                                                                         }
 
                                                                     }?>
-                                                                    <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+                                                                    <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat+$tip)-$pointToMoney);?>
 
                                                                 </td>
 
