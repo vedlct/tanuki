@@ -191,8 +191,13 @@
                 <p> Sun 12:00pm-9:00pm <br></p>
                 <p>Mon <b>Closed</b></p>
                 </p>
+                <h4 class="nomargin_top">Happy Hours<i style="float: right" class="icon_clock_alt "></i></h4>
 
-        </div>
+                <p>Tue-Thur  <br>
+                    04.30pm-6.30pm <br></p>
+
+
+            </div>
 
 
         </div><!-- End col-md-3 -->
