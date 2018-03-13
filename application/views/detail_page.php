@@ -843,6 +843,7 @@
     function takeaway() {
 
         var d = new Date();
+
         var weekday = new Array(7);
         weekday[0] = "Sunday";
         weekday[1] = "Monday";
@@ -853,33 +854,37 @@
         weekday[6] = "Saturday";
 
         var n = weekday[d.getDay()];
-        if (n == "Tuesday"){
-            modal2.style.display = "block";
-          
-        }
+        if (n == "Tuesday") {
+            $('#warninmodal2').modal('toggle');
+//
+//            modal2.style.display = "block";
+//            span2.onclick = function() {
+//                modal2.style.display = "none";
+//            }
+//
+//            // When the user clicks anywhere outside of the modal, close it
+//            window.onclick = function(event) {
+//                if (event.target == modal2) {
+//                    modal2.style.display = "none";
+//                }
+//            }
+        } else {
 
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Items/takeaway/")?>' ,
-            cache: false,
-            success: function (data) {
-                $('#cart_table').load(document.URL +  ' #cart_table');
-                $('#total_table').load(document.URL +  ' #total_table');
-                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
-                $('#topcart').load(document.URL +  ' #topcart');
-            }
-        });
-    }
-    span2.onclick = function() {
-        modal2.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal2) {
-            modal2.style.display = "none";
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Items/takeaway/")?>',
+                cache: false,
+                success: function (data) {
+                    $('#cart_table').load(document.URL + ' #cart_table');
+                    $('#total_table').load(document.URL + ' #total_table');
+                    $('#ordertypediv').load(document.URL + ' #ordertypediv');
+                    $('#topcart').load(document.URL + ' #topcart');
+                }
+            });
         }
     }
+
+
     function homedelivary() {
         $.ajax({
             type: 'POST',
