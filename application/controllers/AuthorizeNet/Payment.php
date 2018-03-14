@@ -212,6 +212,8 @@ class Payment extends CI_Controller {
                 $orderId = $this->Itemsm->checkoutInsertForCardPay($data);
                 $this->mailInvoice($orderId);
                 $this->cart->destroy();
+                $this->session->unset_userdata('memberuserid');
+                $this->session->unset_userdata('orderType');
 
                 // echo '<h2>Success!</h2>';
                 // echo '<p>Transaction ID: ' . $this->authorize_net->getTransactionId() . '</p>';

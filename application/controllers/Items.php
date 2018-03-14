@@ -413,7 +413,7 @@ class Items extends CI_Controller {
         else{
             $memberid = $this->session->userdata('memberuserid');
             if (empty($memberid)){
-                $userId=$ordertaker;
+                $userId=null;
             }else{
                 $userId=$memberid;
             }

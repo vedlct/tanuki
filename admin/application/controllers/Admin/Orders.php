@@ -73,12 +73,14 @@ class Orders extends CI_Controller
                             }
                             $totalPoint=($totalPoint+(($orderedItems->quantity*$orderedItems->rate)-$orderedItems->discount)- $pointTomoney);
                         }
-                        $data3 = array(
-                            'fkTransId' => $transectionId,
-                            'fkUserId' => $orderInfo->fkUserId,
-                            'earnedPoints' => $totalPoint,
-                        );
-                        $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
+                        if (!empty($orderInfo->fkUserId)) {
+                            $data3 = array(
+                                'fkTransId' => $transectionId,
+                                'fkUserId' => $orderInfo->fkUserId,
+                                'earnedPoints' => $totalPoint,
+                            );
+                            $this->Ordersm->insertIntoPointFordeliveredOrdered($data3);
+                        }
                     }
                 }
 //                else {
