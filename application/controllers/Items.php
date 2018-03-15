@@ -380,17 +380,6 @@ class Items extends CI_Controller {
         );
         $this->session->set_userdata($data);
 
-
-//        $ordertype= $this->session->userdata('orderType');
-//        $orderdate= date("Y-m-d H:i");
-//        $re = $this->Itemsm->getorderstatus();
-//        $orderstatus= $re->id;
-//        $deliveryfee=$this->session->userdata('deliverfee');
-//        $vat= $this->session->userdata('vat');
-//        $paymenttype=$this->session->userdata('paymentMethod');
-//        $user=$this->session->userdata('id');
-//        $ordertaker = $this->session->userdata('id');
-
         $ordertype = $this->session->userdata('orderType');
         $orderdate = date("Y-m-d H:i");
         $re = $this->Itemsm->getorderstatus();
@@ -404,11 +393,10 @@ class Items extends CI_Controller {
             $paymenttype = "crd";
         }
 
-        //$paymenttype = $this->session->userdata('paymentMethod');
+
 
         $ordertaker = $this->session->userdata('id');
-        //$memberid = $this->session->userdata('memberuserid');
-        //$orderRemark = $this->input->post('orderRemark');
+
 
 
 
@@ -420,7 +408,7 @@ class Items extends CI_Controller {
 
         $userType = $this->session->userdata('userType');
 
-        if ($userType =="cus"){
+        if ($userType == "cus"){
 
             $user = $this->session->userdata('id');
 
@@ -439,8 +427,7 @@ class Items extends CI_Controller {
             $orderId=$this->Itemsm->checkoutInsert($data);
             $this->mailInvoice($orderId);
 
-        }
-        else{
+        }else{
             $memberid = $this->session->userdata('memberuserid');
             if (empty($memberid)){
                 $userId=null;
@@ -450,17 +437,20 @@ class Items extends CI_Controller {
                      $this->data['charges'] = $this->Itemsm->getcharges();
                      $this->data['allCity'] = $this->Itemsm->getAllCity();
 
+                    $this->data['earnpoint'] = $this->Itemsm->getearnPoint($memberid);
+                    $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($memberid);
+
                      $this->load->view('cart', $this->data);
-                } else {
+                }else {
 
                     $phone = $this->input->post('phone');
                     $address = $this->input->post('address');
                     $city = $this->input->post('city');
                     $pcode = $this->input->post('pcode');
-                    $userid=$userId;
-                    // $mobile = $this->input->post('');
+                    $userid=null;
                     $this->load->model('Userorderm');
                     $addressId=$this->Userorderm->insertNewAddressForCashCheckout($phone, $address, $city, $pcode, $userid);
+
                 }
 
             }else{
@@ -470,8 +460,6 @@ class Items extends CI_Controller {
             {
                 $addressId=null;
             }
-
-//            if ($this->session->userdata('orderType') == "have") {
 
                 $data = array(
                     'orderType' => $ordertype,
@@ -486,55 +474,11 @@ class Items extends CI_Controller {
                     'deliveryAddressId'=>$addressId,
                     'orderRemarks' => $this->session->userdata('orderRemark'),
                 );
+
             $orderId=$this->Itemsm->checkoutInsert($data);
-//            }
-//            else {
-//                $data = array(
-//                    'orderType' => $ordertype,
-//                    'orderDate' => $orderdate,
-//                    'fkOrderStatus' => $orderstatus,
-//                    'deliveryfee' => $deliveryfee,
-//                    'vat' => $vat,
-//                    'paymentType' => $paymenttype,
-//                    'fkUserId' => $user,
-//                    'fkOrderTaker' => null,
-//                    'orderRemarks' => $this->session->userdata('orderRemark'),
-//                );
-//                $orderId=$this->Itemsm->checkoutInsert($data);
-                $this->mailInvoice($orderId);
-//            }
         }
 
-//        if ($this->session->userdata('orderType') == "have") {
-//
-//            $data = array(
-//                'orderType' => $ordertype,
-//                'orderDate' => $orderdate,
-//                'fkOrderStatus' => $orderstatus,
-//                'deliveryfee' => $deliveryfee,
-//                'vat' => $vat,
-//                'paymentType' => $paymenttype,
-//                'fkUserId' => $memberid,
-//                'fkOrderTaker' => $ordertaker,
-//                'orderRemarks' => $this->session->userdata('orderRemark'),
-//            );
-//            $this->Itemsm->checkoutInsert($data);
-//        }
-//        else {
-//            $data = array(
-//                'orderType' => $ordertype,
-//                'orderDate' => $orderdate,
-//                'fkOrderStatus' => $orderstatus,
-//                'deliveryfee' => $deliveryfee,
-//                'vat' => $vat,
-//                'paymentType' => $paymenttype,
-//                'fkUserId' => $user,
-//                'fkOrderTaker' => null,
-//                'orderRemarks' => $this->session->userdata('orderRemark'),
-//            );
-//            $orderId=$this->Itemsm->checkoutInsert($data);
-//            $this->mailInvoice($orderId);
-//        }
+
         $this->cart->destroy();
 
         $this->session->unset_userdata('memberuserid');
@@ -578,8 +522,10 @@ class Items extends CI_Controller {
     public function orderRemarkForCrd()
     {
         $remarks = $this->input->post('remark');
+        $tipAmount = $this->input->post('tip');
         $data = array(
             'orderRemark' => "$remarks",
+            'tip' => "$tipAmount",
         );
         $this->session->set_userdata($data);
 

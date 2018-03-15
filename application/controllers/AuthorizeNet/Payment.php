@@ -11,9 +11,9 @@ class Payment extends CI_Controller {
 
     }
 
-
     public function index()
     {
+
         $this->load->model('Itemsm');
         $this->data['allCity'] = $this->Itemsm->getAllCity();
         $this->load->view('AuthorizeNet/paymentPage',$this->data);
@@ -26,7 +26,6 @@ class Payment extends CI_Controller {
 
             $this->load->model('Itemsm');
             $this->load->model('Userorderm');
-            // $this->load->model('profilem');
 
             $cardHolderName = $this->input->post('cardHolderName');
             $cardNumber = $this->input->post('cardNumber');
@@ -40,8 +39,8 @@ class Payment extends CI_Controller {
             $this->load->library('authorize_net');
 
             $userType = $this->session->userdata('userType');
-
-            if ($userType=="cus"){
+            $ordertype = $this->session->userdata('orderType');
+            if ($userType == "cus" && ($ordertype=="home" || $ordertype == "take")){
                 $user = $this->session->userdata('id');
 
                 $this->data['info'] = $this->profilem->getCustomerInfo($user);
@@ -55,8 +54,31 @@ class Payment extends CI_Controller {
                     $email = $CustomerData->email;
                 }
 
+                $this->data['userDeliveryAddress'] = $this->profilem->userDeliveryAddress($user);
+
+                if (!empty($this->data['userDeliveryAddress'])) {
+
+                    foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress) {
+
+                        $DeliveryAddress = $CustomerDeliveryAddress->address;
+                        $DeliveryAddressID = $CustomerDeliveryAddress->id;
+                        $DeliveryPostalCode = $CustomerDeliveryAddress->postalCode;
+                        $DeliveryCityName = $CustomerDeliveryAddress->cityName;
+                        $DeliveryCountry = $CustomerDeliveryAddress->country;
+                        $DeliveryContactNo = $CustomerDeliveryAddress->contactNo;
+
+                    }
+                }else{
+
+                    $DeliveryAddress = $address;
+                    $DeliveryAddressID = null;
+                    $DeliveryPostalCode = $postalCode;
+                    $DeliveryCityName = $cityName;
+                    $DeliveryCountry = "US";
+                    $DeliveryContactNo = $contactNo;
+                }
             }
-            elseif($userType=="Admin" || $userType=="wter"){
+            elseif(($userType=="Admin" || $userType=="wter")&& ($ordertype=="home" || $ordertype=="take")){
 
                 $user = $this->session->userdata('memberuserid');
 
@@ -73,44 +95,6 @@ class Payment extends CI_Controller {
                         $email = $CustomerData->email;
                     }
 
-
-                }
-                else{
-
-                    $Name = null;
-                    $address = null;
-                    $postalCode = null;
-                    $cityName = null;
-                    $contactNo = null;
-                    $email = null;
-
-                }
-            }
-
-
-
-
-
-
-            $ordertype = $this->session->userdata('orderType');
-            if ($ordertype=="home" || $ordertype=="take") {
-
-                $this->data['userDeliveryAddress'] = $this->profilem->userDeliveryAddress($user);
-
-                if (!empty($this->data['userDeliveryAddress'])) {
-
-                    foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress) {
-
-                        $DeliveryAddress = $CustomerDeliveryAddress->address;
-                        $DeliveryAddressID = $CustomerDeliveryAddress->id;
-                        $DeliveryPostalCode = $CustomerDeliveryAddress->postalCode;
-                        $DeliveryCityName = $CustomerDeliveryAddress->cityName;
-                        $DeliveryCountry = $CustomerDeliveryAddress->country;
-                        $DeliveryContactNo = $CustomerDeliveryAddress->contactNo;
-
-                    }
-                }
-                else {
                     $DeliveryAddressID = null;
                     $DeliveryAddress = $address;
                     $DeliveryPostalCode = $postalCode;
@@ -118,17 +102,111 @@ class Payment extends CI_Controller {
                     $DeliveryCountry = "US";
                     $DeliveryContactNo = $contactNo;
 
+
+                }
+                else{
+
+
+
+                    $phone = $this->input->post('phone');
+                    $address = $this->input->post('address');
+                    $city = $this->input->post('city');
+                    $pcode = $this->input->post('pcode');
+                    $userid=null;
+
+                    $this->load->model('Userorderm');
+                    $addressId=$this->Userorderm->insertNewAddressForCashCheckout($phone, $address, $city, $pcode, $userid);
+
+
+                    $DeliveryAddressID = $addressId;
+                    $DeliveryAddress = $address;
+                    $DeliveryPostalCode = $pcode;
+                    $DeliveryCityName = $city;
+                    $DeliveryCountry = "US";
+                    $DeliveryContactNo = $phone;
+
+                    $Name = null;
+
+                    $postalCode = $pcode;
+                    $cityName = $city;
+                    $contactNo = $phone;
+                    $email = null;
+
                 }
             }
+//            elseif (($userType=="Admin" || $userType=="wter")&& ($ordertype=="have")){
+//
+//                    $Name = null;
+//                    $address = null;
+//                    $postalCode = null;
+//                    $cityName = null;
+//                    $contactNo = null;
+//                    $email = null;
+//
+//
+//            }
             else{
-                $DeliveryAddressID=null;
-                $DeliveryAddress = $address;
-                $DeliveryPostalCode = $postalCode;
-                $DeliveryCityName = $cityName;
-                $DeliveryCountry = "US";
-                $DeliveryContactNo = $contactNo;
+                $DeliveryAddressID = null;
+                $Name = null;
+                $address = null;
+                $postalCode = null;
+                $cityName = null;
+                $contactNo = null;
+                $email = null;
+
 
             }
+//            $ordertype = $this->session->userdata('orderType');
+//            if ($ordertype=="home" || $ordertype=="take") {
+//
+//
+//                $this->data['userDeliveryAddress'] = $this->profilem->userDeliveryAddress($user);
+//
+//                if (!empty($this->data['userDeliveryAddress'])) {
+//
+//                    foreach ($this->data['userDeliveryAddress'] as $CustomerDeliveryAddress) {
+//
+//                        $DeliveryAddress = $CustomerDeliveryAddress->address;
+//                        $DeliveryAddressID = $CustomerDeliveryAddress->id;
+//                        $DeliveryPostalCode = $CustomerDeliveryAddress->postalCode;
+//                        $DeliveryCityName = $CustomerDeliveryAddress->cityName;
+//                        $DeliveryCountry = $CustomerDeliveryAddress->country;
+//                        $DeliveryContactNo = $CustomerDeliveryAddress->contactNo;
+//
+//                    }
+//                }
+//                else {
+//
+//
+//
+//                    $phone = $this->input->post('phone');
+//                    $address = $this->input->post('address');
+//                    $city = $this->input->post('city');
+//                    $pcode = $this->input->post('pcode');
+//                    $userid=null;
+//
+//                    $this->load->model('Userorderm');
+//                    $addressId=$this->Userorderm->insertNewAddressForCashCheckout($phone, $address, $city, $pcode, $userid);
+//
+//
+//                    $DeliveryAddressID = $addressId;
+//                    $DeliveryAddress = $address;
+//                    $DeliveryPostalCode = $pcode;
+//                    $DeliveryCityName = $city;
+//                    $DeliveryCountry = "US";
+//                    $DeliveryContactNo = $phone;
+//
+//                }
+//            }
+//            else{
+//                $DeliveryAddressID=null;
+//                $DeliveryAddress = $address;
+//                $DeliveryPostalCode = $postalCode;
+//                $DeliveryCityName = $cityName;
+//                $DeliveryCountry = "US";
+//                $DeliveryContactNo = $contactNo;
+//
+//            }
 
 
 
@@ -237,6 +315,8 @@ class Payment extends CI_Controller {
                 //$this->authorize_net->debug();
             }
         }
+
+
 
 
     }

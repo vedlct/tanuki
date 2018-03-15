@@ -499,7 +499,9 @@
                     alert("Your Cart is Empty! Please Order Some Item First!");
                 }else {
                     var userType = '<?php echo $this->session->userdata('userType')?>';
-                    if (userType != 'cus') {
+                    var memberuserid = '<?php echo $this->session->userdata('memberuserid')?>';
+                    var orderType = '<?php echo $this->session->userdata('orderType')?>';
+                    if (userType != 'cus' && (orderType == 'home' || orderType == 'take') && memberuserid=="" ) {
                         var phone = document.getElementById('phone').value;
                         var address = document.getElementById('address').value;
                         var city = document.getElementById('city').value;
@@ -651,11 +653,12 @@
                 else {
 
                     var orderRemark=document.getElementById('orderRemark').value;
+                    var tip=document.getElementById('tip').value;
 
                     $.ajax({
                         type: 'POST',
                         url: '<?php echo base_url("Items/orderRemarkForCrd")?>' ,
-                        data: {'remark':orderRemark,},
+                        data: {'remark':orderRemark,'tip':tip},
                         cache: false,
                         success: function (data) {
 
