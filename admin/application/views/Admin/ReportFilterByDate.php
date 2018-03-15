@@ -67,10 +67,11 @@
             <td style="color: red" colspan="4">sales tax:<?php echo $v = $ar->vatTotal;?>
                 + delivery fee : <?php echo $d =$ar->deliveryfee;?>
             </td>
-            <td><?php echo $sumtotal+ $v+$d ?></td>
+            <td><?php echo $t=$sumtotal+ $v+$d;?></td>
 
         </tr>
         <?php  $count++;} ?>
+
 
     </tbody>
 </table>

@@ -14,7 +14,7 @@
     </thead>
     <tbody>
 
-    <?php $count = 1; foreach ($allreport as $ar) {
+    <?php $count = 1;$totalAmount=0; foreach ($allreport as $ar) {
 
         ?>
 
@@ -74,7 +74,7 @@
                                 }
 
                             }?>
-                            <?php echo $Ftotal=(($sumtotal+$ar->deliveryfee+$ar->vatTotal+$tip)-$pointToMoney);?>
+                            <?php echo $Ftotal=(($sumtotal+$ar->deliveryfee+$ar->vatTotal+$tip)-$pointToMoney);$totalAmount=$Ftotal+$totalAmount?>
 
                         </td>
 
@@ -101,6 +101,13 @@
             <td class="center"><?php echo $ar->transDate ?></td>
         </tr>
         <?php  $count++;} ?>
+
+    <tr>
+        <td class="center"colspan="2"></td>
+        <td style="color: red" class="center">Total Amount = $ <?php echo " ". $totalAmount ?></td>
+
+
+    </tr>
 
     </tbody>
 </table>
