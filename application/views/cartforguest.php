@@ -253,46 +253,6 @@
                             </div>
                         </div>
                     </div>
-                    <!--                <hr>-->
-                    <!--                <div class="row">-->
-                    <!--                    <div class="col-md-6 col-sm-6">-->
-                    <!--                        <div class="form-group">-->
-                    <!--                            <label>Delivery Day</label>-->
-                    <!--                            <select class="form-control" name="delivery_schedule_day" id="delivery_schedule_day">-->
-                    <!--                                <option value="" selected>Select day</option>-->
-                    <!--                                <option value="Today">Today</option>-->
-                    <!--                                <option value="Tomorrow">Tomorrow</option>-->
-                    <!--                            </select>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!--                    <div class="col-md-6 col-sm-6">-->
-                    <!--                        <div class="form-group">-->
-                    <!--                            <label>Delivery time</label>-->
-                    <!--                            <select class="form-control" name="delivery_schedule_time" id="delivery_schedule_time">-->
-                    <!--                                <option value="" selected>Select time</option>-->
-                    <!--                                <option value="11.30am">11.30am</option>-->
-                    <!--                                <option value="11.45am">11.45am</option>-->
-                    <!--                                <option value="12.15am">12.15am</option>-->
-                    <!--                                <option value="12.30am">12.30am</option>-->
-                    <!--                                <option value="12.45am">12.45am</option>-->
-                    <!--                                <option value="01.00pm">01.00pm</option>-->
-                    <!--                                <option value="01.15pm">01.15pm</option>-->
-                    <!--                                <option value="01.30pm">01.30pm</option>-->
-                    <!--                                <option value="01.45pm">01.45pm</option>-->
-                    <!--                                <option value="02.00pm">02.00pm</option>-->
-                    <!--                                <option value="07.00pm">07.00pm</option>-->
-                    <!--                                <option value="07.15pm">07.15pm</option>-->
-                    <!--                                <option value="07.30pm">07.30pm</option>-->
-                    <!--                                <option value="07.45pm">07.45pm</option>-->
-                    <!--                                <option value="08.00pm">08.00pm</option>-->
-                    <!--                                <option value="08.15pm">08.15pm</option>-->
-                    <!--                                <option value="08.30pm">08.30pm</option>-->
-                    <!--                                <option value="08.45pm">08.45pm</option>-->
-                    <!--                            </select>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-                    <!---->
-                    <!--                </div>-->
 
 
             </div><!-- End box_style_1 -->
@@ -359,18 +319,12 @@
 
                         <hr>
 
-                    <!--                    <div class="row" id="options_2">-->
-                    <!--                        <h4 align="center">Payment Method</h4>-->
-                    <!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-                    <!--                            <a href="#0" onclick="takeaway()">	<i class="icon_creditcard"></i><br>Cash</a>-->
-                    <!---->
-                    <!--                        </div>-->
-                    <!--                        <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">-->
-                    <!--                            <a href="#0" onclick="homedelivary()"><i class="icon_wallet"></i><br>Card</a>-->
-                    <!--                        </div>-->
-                    <!--                    </div>-->
-
-                    <!-- Edn options 2 -->
+                    <div align="row">
+                        <label class="col-md-4">Tip($) :</label>
+                        <input class="col-md-8" id="tip"  onfocusout="tipfunc()"  type="number" name="tip"  required>
+                    </div>
+                    <br>
+                    <hr>
 
                     <table class="table table_summary" id="total_table">
                         <tbody>
@@ -421,11 +375,14 @@
                         </tr>
                         <tr>
                             <td class="total">
-                                TOTAL <span class="pull-right"><?php echo $total=$subtotal+$dfee+$vatt-$totaldis?></span>
-                                <?php $data = array(
-                                    'amount' => $total,
-                                );
-                                $this->session->set_userdata($data); ?>
+                                <span id="total">
+                                    <?php $tip = (int)$this->session->userdata('tip'); ?>
+                                    TOTAL <span class="pull-right" ><?php echo $total = $subtotal+$dfee+$vatt+$tip-$totaldis?></span>
+                                    <?php $data = array(
+                                        'amount' => $total,
+                                    );
+                                    $this->session->set_userdata($data); ?>
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -479,6 +436,26 @@
         });
 
 
+    }
+
+    function tipfunc() {
+        var tip = document.getElementById("tip").value;
+        if(tip <0 ){
+            alert("you can not give tip in minus");
+            return false;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/Tip")?>',
+            data: {tip: tip},
+            cache: false,
+            success: function (data) {
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#total').load(document.URL +  ' #total');
+            }
+        });
     }
 
 

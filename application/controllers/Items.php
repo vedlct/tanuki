@@ -211,6 +211,14 @@ class Items extends CI_Controller {
         );
         $this->session->set_userdata($data);
     }
+    public  function Tip(){
+        $amount = $this->input->post('tip');
+
+        $data = array(
+            'tip' => $amount,
+        );
+        $this->session->set_userdata($data);
+    }
     public function paymentcreditcard(){
         $data = array(
             'paymentMethod' => "credit",
