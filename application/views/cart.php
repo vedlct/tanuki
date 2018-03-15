@@ -498,20 +498,25 @@
                 if (data == "0"){
                     alert("Your Cart is Empty! Please Order Some Item First!");
                 }else {
-                    var phone=document.getElementById('phone').value;
-                    var address=document.getElementById('address').value;
-                    var city=document.getElementById('city').value;
-                    var pcode=document.getElementById('pcode').value;
-                    if (phone ==""){
-                        alert('please enter delivery phone number');
-                    }else if (address ==""){
-                        alert('please enter delivery Address');
-                    }else if (city ==""){
-                        alert('please enter delivery City Name');
-                    }else if (pcode ==""){
-                        alert('please enter delivery Post Code');
-                    }
-                    else {
+                    var userType = '<?php echo $this->session->userdata('userType')?>';
+                    if (userType != 'cus') {
+                        var phone = document.getElementById('phone').value;
+                        var address = document.getElementById('address').value;
+                        var city = document.getElementById('city').value;
+                        var pcode = document.getElementById('pcode').value;
+                        if (phone == "") {
+                            alert('please enter delivery phone number');
+                        } else if (address == "") {
+                            alert('please enter delivery Address');
+                        } else if (city == "") {
+                            alert('please enter delivery City Name');
+                        } else if (pcode == "") {
+                            alert('please enter delivery Post Code');
+                        }
+                        else {
+                            document.getElementById("cartcheckout").submit();
+                        }
+                    }else {
                         document.getElementById("cartcheckout").submit();
                     }
 
