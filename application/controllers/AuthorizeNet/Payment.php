@@ -34,6 +34,7 @@ class Payment extends CI_Controller {
             $expYear = $this->input->post('expYear');
 
             $amount = $this->session->userdata('amount');
+            $tipAmount = $this->session->userdata('tip');
 
             $this->load->library('authorize_net');
 
@@ -180,6 +181,7 @@ class Payment extends CI_Controller {
                         'fkOrderStatus' => $orderstatus,
                         'deliveryfee' => $deliveryfee,
                         'vat' => $vat,
+                        'tip'=>$tipAmount,
                         'paymentType' => $paymenttype,
                         'fkUserId' => $user,
                         'fkOrderTaker' => $ordertaker,
@@ -197,6 +199,7 @@ class Payment extends CI_Controller {
                         'fkOrderStatus' => $orderstatus,
                         'deliveryfee' => $deliveryfee,
                         'vat' => $vat,
+                        'tip'=>$tipAmount,
                         'paymentType' => $paymenttype,
                         'fkUserId' => $user,
                         'fkOrderTaker' => $ordertaker,
@@ -214,6 +217,7 @@ class Payment extends CI_Controller {
                 $this->cart->destroy();
                 $this->session->unset_userdata('memberuserid');
                 $this->session->unset_userdata('orderType');
+                $this->session->unset_userdata('tip');
 
                 // echo '<h2>Success!</h2>';
                 // echo '<p>Transaction ID: ' . $this->authorize_net->getTransactionId() . '</p>';

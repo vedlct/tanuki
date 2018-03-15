@@ -267,6 +267,13 @@ class Items extends CI_Controller {
             $this->load->view('cartforguest',$this->data);
         }
         else {
+            $tip =  $this->input->post('tip');
+
+            $data = array(
+                'tip' => $tip,
+            );
+            $this->session->set_userdata($data);
+
             $this->load->model('loginm');
             $this->load->library('user_agent');
             $name = $this->input->post('Name');
@@ -338,6 +345,7 @@ class Items extends CI_Controller {
                         'orderDate' => $orderdate,
                         'fkOrderStatus' => $orderstatus,
                         'deliveryfee' => $deliveryfee,
+                        'tip' =>$tip,
                         'vat' => $vat,
                         'paymentType' => $paymenttype,
                         'fkUserId' => $user,
@@ -347,6 +355,8 @@ class Items extends CI_Controller {
                     $orderId = $this->Itemsm->checkoutInsertForGuest($data);
                     $this->mailInvoice($orderId);
                     $this->cart->destroy();
+                    $this->session->unset_userdata('orderType');
+                    $this->session->unset_userdata('tip');
                     $this->session->set_flashdata('successMessage', 'CheckOut Successfully');
                     redirect('Items');
                 }
@@ -364,6 +374,12 @@ class Items extends CI_Controller {
     public function checkout(){
 
          $tip =  $this->input->post('tip');
+
+        $data = array(
+            'tip' => $tip,
+        );
+        $this->session->set_userdata($data);
+
 
 //        $ordertype= $this->session->userdata('orderType');
 //        $orderdate= date("Y-m-d H:i");
@@ -523,6 +539,7 @@ class Items extends CI_Controller {
 
         $this->session->unset_userdata('memberuserid');
         $this->session->unset_userdata('orderType');
+        $this->session->unset_userdata('tip');
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }
