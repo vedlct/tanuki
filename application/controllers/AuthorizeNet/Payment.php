@@ -14,8 +14,9 @@ class Payment extends CI_Controller {
 
     public function index()
     {
-
-        $this->load->view('AuthorizeNet/paymentPage');
+        $this->load->model('Itemsm');
+        $this->data['allCity'] = $this->Itemsm->getAllCity();
+        $this->load->view('AuthorizeNet/paymentPage',$this->data);
     }
 
     public function insertCreditPay()

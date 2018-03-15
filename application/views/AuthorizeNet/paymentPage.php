@@ -191,6 +191,8 @@
                 <div class="alert alert-success" align="center"><strong><?php echo $this->session->flashdata('successMessage');?></strong></div>
             <?php }?>
 
+            <form action="<?php echo base_url()?>AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">
+
             <?php $ordertype = $this->session->userdata('orderType');$userType = $this->session->userdata('userType');$memberid = $this->session->userdata('memberuserid');
             if ($userType=="cus" && ($ordertype=="home" || $ordertype=="take")){?>
 
@@ -329,7 +331,7 @@
 
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
-                <form action="<?php echo base_url()?>AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">
+<!--                <form action="--><?php //echo base_url()?><!--AuthorizeNet/Payment/insertCreditPay" method="post" onsubmit="return checkcreditCardForm()">-->
                     <div class="form-group">
                         <label for="cardHolderName">Card Holder Name:</label>
                         <input required type="text" class="form-control" id="cardHolderName" placeholder="card Holder Name Max 20 Charecter" name="cardHolderName">
