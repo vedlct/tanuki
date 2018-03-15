@@ -2,21 +2,23 @@
 class Reportm extends CI_Model
 {
     public function viewAllReport(){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, vatTotal, deliveryfee ');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType, vatTotal,transactionmaster.tip, deliveryfee ');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
         $this->db->from('transactionmaster');
+        $this->db->order_by('transactionmaster.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
     public function viewAllReportBydate($startdate, $enddate){
-        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer , u.name as waiter , paymentType , orderType ,vatTotal, deliveryfee');
+        $this->db->select('transactionmaster.id as tid,transactionmaster.*, users.name as customer ,transactionmaster.tip, u.name as waiter , paymentType , orderType ,vatTotal, deliveryfee');
         $this->db->join('orders', 'orders.id = transactionmaster.fkOrderId ', 'left');
         $this->db->join('users', 'orders.fkUserId = users.id ', 'left');
         $this->db->join('users u', 'orders.fkOrderTaker = u.id ', 'left');
         $this->db->where('transDate BETWEEN "'. date('Y-m-d', strtotime($startdate)). '" and "'. date('Y-m-d', strtotime($enddate)).'"');
         $this->db->from('transactionmaster');
+        $this->db->order_by('transactionmaster.id', 'DESC');
         $query = $this->db->get();
         return $query->result();
     }
