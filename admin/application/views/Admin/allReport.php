@@ -102,7 +102,6 @@
                                             <th width="" class="center"> SL </th>
                                             <th width="" class="center"> OrderId </th>
                                             <th width="" class="center"> Items </th>
-
                                             <th width="" class="center"> Customer</th>
                                             <th width="" class="center"> Order Taken</th>
                                             <th width="" class="center"> Order Type</th>
@@ -130,7 +129,7 @@
                                                             <th >total</th>
                                                         </tr>
 
-                                                        <?php $sumtotal = 0; foreach ($allItemreport as $air) {
+                                                        <?php $sumtotal = 0;$tip=0; foreach ($allItemreport as $air) {
                                                             if ( $ar->tid == $air->fkTransId) { ?>
                                                                 <tr>
                                                                     <td><?php echo  $air->itemName ?></td>
@@ -147,7 +146,7 @@
 <!--                                                            </td>-->
 <!--                                                            <td>--><?php //echo $sumtotal+ $v+$d ?><!--</td>-->
 
-                                                            <td style="color: red" colspan="4">Total=(<?php $delivaryFee=0; if (!empty($ar->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$ar->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $ar->vatTotal?>
+                                                            <td style="color: red" colspan="4">Total=(<?php $delivaryFee=0; if (!empty($ar->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$ar->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + sales tax:$<?php echo $ar->vatTotal?> + tip :$<?php if (!empty($ar->tip)){echo $tip=$ar->tip;}else{echo $tip;}?>
 
                                                                 <?php foreach ($pointUsed as $pu){
                                                                     if ($pu->fkOrderId == $ar->fkOrderId ){
@@ -172,7 +171,7 @@
                                                                     }
 
                                                                 }?>
-                                                                <?php echo $Ftotal=(($sumtotal+$ar->deliveryfee+$ar->vatTotal)-$pointToMoney);?>
+                                                                <?php echo $Ftotal=(($sumtotal+$ar->deliveryfee+$ar->vatTotal+$tip)-$pointToMoney);?>
 
                                                             </td>
 
@@ -185,8 +184,18 @@
 
                                                 <td class="center"><?php echo $ar->customer ?></td>
                                                 <td class="center"><?php echo $ar->waiter ?></td>
-                                                <td class="center"><?php echo $ar->orderType ?></td>
-                                                <td class="center"><?php echo $ar->paymentType ?></td>
+                                                <td class="center">
+<!--                                                    --><?php //echo $ar->orderType ?>
+                                                    <?php  if ($ar->orderType=="have"){echo "Restaurant";}
+                                                    elseif($ar->orderType=="take"){echo "Pick Up";}
+                                                    elseif($ar->orderType=="home"){echo "Home Delivery";}?>
+                                                </td>
+                                                <td class="center">
+<!--                                                    --><?php //echo $ar->paymentType ?>
+                                                    <?php if ($ar->paymentType=="cs"){echo "Cash";}
+                                                    elseif($ar->paymentType=="crd"){echo "Card";}
+                                                    ?>
+                                                </td>
                                                 <td class="center"><?php echo $ar->transDate ?></td>
                                             </tr>
                                             <?php  $count++;} ?>
