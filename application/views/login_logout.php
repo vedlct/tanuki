@@ -39,7 +39,7 @@
 <div class="modal fade" id="warninmodal2" tabindex="-1" role="dialog" aria-labelledby="forgetPass" aria-hidden="true">
 
     <div class="modal-dialog">
-        
+
                   <img src="<?php echo base_url()?>public/img/warning.jpg">
 
     </div>

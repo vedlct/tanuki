@@ -172,6 +172,11 @@
                 <p> Sun 12:00pm-9:00pm <br></p>
                 <p>Mon <b>Closed</b></p>
                 </p>
+                <h4 class="nomargin_top">Happy Hours<i style="float: right" class="icon_clock_alt "></i></h4>
+
+                <p>Tue-Thur  <br>
+                    04.30pm-6.30pm <br></p>
+
 
             </div>
             <!-- End box_style_1 -->
@@ -293,13 +298,17 @@
                     <form  id="cartcheckout" action="<?php echo base_url()?>Items/checkout" method="post">
                     <div align="center">
                         <label>Add Order Remarks :</label>
-                    </div>
+
                     <div class="row">
                         <textarea class="col-sm-12" id="orderRemark" name="orderRemark"></textarea>
                     </div>
-                    <hr>
-
-
+                        <br>
+                        <div align="row">
+                            <label class="col-md-4">Tip ($) :</label>
+                            <input class="col-md-8" id="tip" name="tip">
+                        </div>
+                        <br>
+                        <hr>
                     <table class="table table_summary" id="total_table">
                         <tbody>
                         <tr>
@@ -560,7 +569,6 @@
                 }
             }
         });
-
 
     }
 </script>

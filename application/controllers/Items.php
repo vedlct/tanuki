@@ -353,6 +353,8 @@ class Items extends CI_Controller {
         }
     }
     public function checkout(){
+
+         $tip =  $this->input->post('tip');
 //        $ordertype= $this->session->userdata('orderType');
 //        $orderdate= date("Y-m-d H:i");
 //        $re = $this->Itemsm->getorderstatus();
@@ -401,6 +403,7 @@ class Items extends CI_Controller {
                 'fkOrderStatus' => $orderstatus,
                 'deliveryfee' => $deliveryfee,
                 'vat' => $vat,
+                'tip' =>$tip,
                 'paymentType' => $paymenttype,
                 'fkUserId' => $user,
                 'fkOrderTaker' => null,
@@ -426,6 +429,7 @@ class Items extends CI_Controller {
                     'fkOrderStatus' => $orderstatus,
                     'deliveryfee' => $deliveryfee,
                     'vat' => $vat,
+                    'tip' =>$tip,
                     'paymentType' => $paymenttype,
                     'fkUserId' => $userId,
                     'fkOrderTaker' => $ordertaker,

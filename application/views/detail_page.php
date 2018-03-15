@@ -826,6 +826,8 @@
         });
     }
     function have() {
+
+
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/have/")?>' ,
@@ -840,6 +842,7 @@
     }
     var modal2 = document.getElementById('waringmodal');
     var span2 = document.getElementsByClassName("close")[0];
+
     function takeaway() {
 
         var d = new Date();
@@ -854,20 +857,9 @@
         weekday[6] = "Saturday";
 
         var n = weekday[d.getDay()];
-        if (n == "Tuesday") {
+        if (n == "Monday") {
             $('#warninmodal2').modal('toggle');
-//
-//            modal2.style.display = "block";
-//            span2.onclick = function() {
-//                modal2.style.display = "none";
-//            }
-//
-//            // When the user clicks anywhere outside of the modal, close it
-//            window.onclick = function(event) {
-//                if (event.target == modal2) {
-//                    modal2.style.display = "none";
-//                }
-//            }
+
         } else {
 
             $.ajax({
@@ -886,17 +878,35 @@
 
 
     function homedelivary() {
-        $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url("Items/homedelivary/")?>' ,
-            cache: false,
-            success: function (data) {
-                $('#cart_table').load(document.URL +  ' #cart_table');
-                $('#total_table').load(document.URL +  ' #total_table');
-                $('#ordertypediv').load(document.URL +  ' #ordertypediv');
-                $('#topcart').load(document.URL +  ' #topcart');
-            }
-        });
+
+        var d = new Date();
+
+        var weekday = new Array(7);
+        weekday[0] = "Sunday";
+        weekday[1] = "Monday";
+        weekday[2] = "Tuesday";
+        weekday[3] = "Wednesday";
+        weekday[4] = "Thursday";
+        weekday[5] = "Friday";
+        weekday[6] = "Saturday";
+
+        var n = weekday[d.getDay()];
+        if (n == "Monday") {
+            $('#warninmodal2').modal('toggle');
+
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url("Items/homedelivary/")?>',
+                cache: false,
+                success: function (data) {
+                    $('#cart_table').load(document.URL + ' #cart_table');
+                    $('#total_table').load(document.URL + ' #total_table');
+                    $('#ordertypediv').load(document.URL + ' #ordertypediv');
+                    $('#topcart').load(document.URL + ' #topcart');
+                }
+            });
+        }
     }
     function membershipid() {
         var memberid = document.getElementById("memberid").value;
