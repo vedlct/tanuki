@@ -35,7 +35,7 @@
 
         <div style="border: 2px solid green;" class="col-md-12">
 
-<!--            --><?php //if ($information->fkUserId != $information->fkOrderTaker){?>
+<!--            --><?php //if (!empty($information->fkUserId) && ){?>
                 <div class="panel-body">
                     <div class="panel-heading">  <h4 style="text-align: center"><b>Client Info</b></h4></div>
 

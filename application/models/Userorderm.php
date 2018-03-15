@@ -145,5 +145,20 @@ class Userorderm extends CI_Model
         $this->db->insert('userdeliveryaddress', $data);
     }
 
+    public function insertNewAddressForCashCheckout($phone, $address, $city, $pcode, $userid) {
+
+        $data = array(
+            'userId' => $userid,
+            'address' => $address,
+            'postalCode' => $pcode,
+            'contactNo' => $phone,
+            'fkCity' => $city,
+            'country' => 'US',
+            'status' => "1",
+        );
+        $this->db->insert('userdeliveryaddress', $data);
+        return $this->db->insert_id();
+    }
+
 
 }

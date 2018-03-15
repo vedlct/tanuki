@@ -107,6 +107,7 @@ class Items extends CI_Controller {
                 $this->data['allCity'] = $this->Itemsm->getAllCity();
                 $this->load->view('cartforguest', $this->data);
             } else {
+
                 $this->data['userdata'] = $this->Itemsm->getUserdata($userid);
                 $this->data['earnpoint'] = $this->Itemsm->getearnPoint($userid);
                 $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($userid);
@@ -116,7 +117,7 @@ class Items extends CI_Controller {
         }
         else{
             $memberId = $this->session->userdata('memberuserid');
-
+            $this->data['allCity'] = $this->Itemsm->getAllCity();
             $this->data['userdata'] = $this->Itemsm->getUserdata($memberId);
             $this->data['earnpoint'] = $this->Itemsm->getearnPoint($memberId);
             $this->data['exensepoint'] = $this->Itemsm->getexpensePoint($memberId);
@@ -363,6 +364,7 @@ class Items extends CI_Controller {
     public function checkout(){
 
          $tip =  $this->input->post('tip');
+
 //        $ordertype= $this->session->userdata('orderType');
 //        $orderdate= date("Y-m-d H:i");
 //        $re = $this->Itemsm->getorderstatus();
@@ -372,6 +374,7 @@ class Items extends CI_Controller {
 //        $paymenttype=$this->session->userdata('paymentMethod');
 //        $user=$this->session->userdata('id');
 //        $ordertaker = $this->session->userdata('id');
+
         $ordertype = $this->session->userdata('orderType');
         $orderdate = date("Y-m-d H:i");
         $re = $this->Itemsm->getorderstatus();
@@ -425,8 +428,31 @@ class Items extends CI_Controller {
             $memberid = $this->session->userdata('memberuserid');
             if (empty($memberid)){
                 $userId=null;
+                $this->load->library('form_validation');
+                if (!$this->form_validation->run('newAddress')) {
+
+                     $this->data['charges'] = $this->Itemsm->getcharges();
+                     $this->data['allCity'] = $this->Itemsm->getAllCity();
+
+                     $this->load->view('cart', $this->data);
+                } else {
+
+                    $phone = $this->input->post('phone');
+                    $address = $this->input->post('address');
+                    $city = $this->input->post('city');
+                    $pcode = $this->input->post('pcode');
+                    $userid=$userId;
+                    // $mobile = $this->input->post('');
+                    $this->load->model('Userorderm');
+                    $addressId=$this->Userorderm->insertNewAddressForCashCheckout($phone, $address, $city, $pcode, $userid);
+                }
+
             }else{
                 $userId=$memberid;
+            }
+            if (empty($addressId))
+            {
+                $addressId=null;
             }
 
 //            if ($this->session->userdata('orderType') == "have") {
@@ -441,6 +467,7 @@ class Items extends CI_Controller {
                     'paymentType' => $paymenttype,
                     'fkUserId' => $userId,
                     'fkOrderTaker' => $ordertaker,
+                    'deliveryAddressId'=>$addressId,
                     'orderRemarks' => $this->session->userdata('orderRemark'),
                 );
             $orderId=$this->Itemsm->checkoutInsert($data);

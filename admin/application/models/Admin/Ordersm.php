@@ -43,7 +43,7 @@ class Ordersm extends CI_Model
     {
 
         $this->db->select('o.id,o.deliveryAddressId ,o.orderType,o.orderRemarks,o.orderDate,o.fkOrderStatus,o.paymentType,
-        ,u.name as userName,us.name as orderTaker, o.fkUserId,o.fkOrderTaker,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
+        ,u.name as userName,us.name as orderTaker, o.fkUserId,o.fkOrderTaker,o.deliveryAddressId,u.address,u.postalCode,u.fkCity as city,u.memberCardNo,u.contactNo,u.email, c.name as cityName');
         $this->db->from('orders o');
 
         $this->db->join('users u','u.id = o.fkUserId','left');
