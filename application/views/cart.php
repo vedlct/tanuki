@@ -305,7 +305,7 @@
                         <br>
                         <div align="row">
                             <label class="col-md-4">Tip ($) :</label>
-                            <input class="col-md-8" id="tip" name="tip">
+                            <input class="col-md-8" id="tip"  onfocusout="tipfunc()" name="tip" >
                         </div>
                         <br>
                         <hr>
@@ -357,11 +357,14 @@
                         </tr>
                         <tr>
                             <td class="total">
-                                TOTAL <span class="pull-right"><?php echo $total = $subtotal+$dfee+$vatt-$totaldis?></span>
+                                <span id="total">
+                                    <?php $tip = $this->session->userdata('expensepoint'); ?>
+                                TOTAL <span class="pull-right" ><?php echo $total = $subtotal+$dfee+$vatt+$tip-$totaldis?></span>
                                 <?php $data = array(
                                     'amount' => $total,
                                 );
                                 $this->session->set_userdata($data); ?>
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -451,6 +454,21 @@
         });
 
 
+    }
+    
+    function tipfunc() {
+        var tip = document.getElementById("tip").value;
+       
+        $.ajax({
+            type: 'POST',
+            url: '<?php echo base_url("Items/Tip")?>',
+            data: {tip: tip},
+            cache: false,
+            success: function (data) {
+                alert(data);
+               // $('#total').load(document.URL +  ' #total');
+            }
+        });
     }
 
     function paymentcreditcard() {
