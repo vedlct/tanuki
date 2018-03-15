@@ -304,8 +304,8 @@
                     </div>
                         <br>
                         <div align="row">
-                            <label class="col-md-4">Tip ($) :</label>
-                            <input class="col-md-8" id="tip"  onfocusout="tipfunc()" name="tip" >
+                            <label class="col-md-4">Tip($) :</label>
+                            <input class="col-md-8" id="tip"  onfocusout="tipfunc()"  type="number" name="tip"  required>
                         </div>
                         <br>
                         <hr>
@@ -358,7 +358,7 @@
                         <tr>
                             <td class="total">
                                 <span id="total">
-                                    <?php $tip = $this->session->userdata('expensepoint'); ?>
+                                    <?php $tip = (int)$this->session->userdata('tip'); ?>
                                 TOTAL <span class="pull-right" ><?php echo $total = $subtotal+$dfee+$vatt+$tip-$totaldis?></span>
                                 <?php $data = array(
                                     'amount' => $total,
@@ -458,15 +458,20 @@
     
     function tipfunc() {
         var tip = document.getElementById("tip").value;
-       
+        if(tip <0 ){
+            alert("you can not give tip in minus");
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
             url: '<?php echo base_url("Items/Tip")?>',
             data: {tip: tip},
             cache: false,
             success: function (data) {
-                alert(data);
-               // $('#total').load(document.URL +  ' #total');
+                $('#cart_table').load(document.URL +  ' #cart_table');
+                $('#total_table').load(document.URL +  ' #total_table');
+                $('#total').load(document.URL +  ' #total');
             }
         });
     }

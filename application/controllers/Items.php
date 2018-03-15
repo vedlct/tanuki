@@ -213,11 +213,11 @@ class Items extends CI_Controller {
     }
     public  function Tip(){
         $amount = $this->input->post('tip');
-        echo $amount;
-//        $data = array(
-//            'tip' => $amount,
-//        );
-//        $this->session->set_userdata($data);
+
+        $data = array(
+            'tip' => $amount,
+        );
+        $this->session->set_userdata($data);
     }
     public function paymentcreditcard(){
         $data = array(
