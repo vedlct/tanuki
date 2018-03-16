@@ -355,7 +355,11 @@
                         <br>
                         <div align="row">
                             <label class="col-md-4">Tip($) :</label>
+                            <?php $tip = $this->session->userdata('tip'); if($this->session->userdata('tip') == null ){ ?>
                             <input class="col-md-8" id="tip"  onfocusout="tipfunc()"  type="number" name="tip"  required>
+                            <?php }else{ ?>
+                                <input class="col-md-8" id="tip"  onfocusout="tipfunc()"  type="number" name="tip"  value="<?php echo $tip ?>" required>
+                            <?php } ?>
                         </div>
                         <br>
                         <hr>
