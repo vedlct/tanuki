@@ -215,8 +215,12 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $id = $this->input->post('id');
+            $orderid = $this->input->post('orderid');
 
             $this->Ordersm->deleteOrderItemsById($id);
+
+             $this->Ordersm->updatevat($orderid);
+
 
         } else {
             redirect('Login');

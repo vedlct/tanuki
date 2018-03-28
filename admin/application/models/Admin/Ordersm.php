@@ -424,6 +424,48 @@ public function  updateOrderById($id, $data)
     }
 
 
+    public function updatevat($orderid){
+        $this->db->select('quantity , fkItemSizeId, rate, discount');
+        $this->db->where('fkOrderId =',$orderid);
+        $this->db->from('orderitems');
+        $query1 = $this->db->get();
+
+        $this->db->select('vat');
+        $this->db->from('charges');
+        $query2 = $this->db->get();
+
+        $total = 0;
+        foreach ($query1->result() as $itm){
+            $item = ($itm->quantity * $itm->rate)-$itm->discount;
+
+            $total = $total + $item;
+
+
+        }
+
+
+
+
+        foreach ($query2->result() as $charge){
+            $vat = $charge->vat;
+
+
+
+
+        }
+        $totalvat = round((($total * $vat)/100),2);
+
+
+
+        $data2=array
+        (
+            'vat'=>$totalvat,
+        );
+
+        $this->db->update('orders',$data2);
+        $this->db->where('orders.id =',$orderid);
+
+    }
 
 
 }

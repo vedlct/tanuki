@@ -876,7 +876,6 @@
         }
     }
 
-
     function homedelivary() {
 
         var d = new Date();
@@ -891,7 +890,7 @@
         weekday[6] = "Saturday";
 
         var n = weekday[d.getDay()];
-        if (n == "Monday") {
+        if (n == "Monday" ) {
             $('#warninmodal2').modal('toggle');
 
         } else {
@@ -908,6 +907,7 @@
             });
         }
     }
+
     function membershipid() {
         var memberid = document.getElementById("memberid").value;
         $.ajax({
@@ -937,6 +937,7 @@
             }
         });
     }
+
     function orderwarning() {
         var orderType ='<?php echo $this->session->userdata('orderType')?>';
         if (orderType == "" ) {
