@@ -7,6 +7,7 @@
             <label class="control-label col-md-3"> Quantity<span class="required"> * </span></label>
             <div class="col-md-5">
                 <input type="text" name="itemQuantity" placeholder="enter Quantity" required value="<?php echo $oI->quantity?>" class="form-control input-height" />
+           <input type="hidden" name="orderid" value="<?php echo $orderid?>">
             </div>
 
         </div>

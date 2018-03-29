@@ -112,7 +112,9 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $itemId = $this->input->post('id');
+            $orderid = $this->input->post('orderid');
             $this->data['ordersItem'] = $this->Ordersm->getOrderItemForEdit($itemId);
+            $this->data['orderid'] = $orderid;
 
             $this->load->view('Admin/orderItemsEdit', $this->data);
         } else {
@@ -187,6 +189,7 @@ class Orders extends CI_Controller
         if ($this->session->userdata('userType') == "Admin") {
 
             $itemQuantity = $this->input->post('itemQuantity');
+            $orderid = $this->input->post('orderid');
 
             $data = array(
                 'quantity' => $itemQuantity,
@@ -197,7 +200,7 @@ class Orders extends CI_Controller
             if (empty($this->data['error'])) {
 
                 $this->session->set_flashdata('successMessage', 'Ordered Items Quantity Updated Successfully');
-
+                $this->Ordersm->updatevat($orderid);
                 redirect('Admin-Orders');
 
             } else {
@@ -267,7 +270,7 @@ class Orders extends CI_Controller
             if (empty($this->data['error'])) {
 
                 $this->session->set_flashdata('successMessage', 'Item Ordered Successfully');
-
+                $this->Ordersm->updatevat($orderId);
                 redirect('Admin-Orders');
 
             } else {

@@ -153,7 +153,7 @@
                                                             <td><?php echo $discount=$orderItem->discount?></td>
                                                             <td><?php echo $price=(($orderItem->quantity*$orderItem->rate)-$discount)?></td>
                                                             <td width="20%">
-                                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>" onclick="editOrderItemsId(this)">
+                                                                <button  class="btn btn-primary btn-xs"  data-panel-id="<?php echo $orderItem->id ?>"  data-panel-id2="<?php echo $orders->id ?>" onclick="editOrderItemsId(this)">
 
                                                                     <i class="fa fa-edit"></i>
                                                                 </button>
@@ -578,11 +578,12 @@
     function editOrderItemsId(x)
     {
         btn = $(x).data('panel-id');
+        orderid = $(x).data('panel-id2');
 
         $.ajax({
             type:'POST',
             url:'<?php echo base_url("Admin/Orders/editOrderItems" )?>',
-            data:{id:btn},
+            data:{id:btn , orderid : orderid},
             cache: false,
             success:function(data)
             {
@@ -607,7 +608,7 @@
                 cache: false,
                 success: function (data) {
 
-                    
+
                     alert(' Selected Order Item deleted Successfully');
                     location.reload();
 
