@@ -317,7 +317,7 @@ public function  updateOrderById($id, $data)
     {
 
 
-        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.fkUserId,u.name as userName,us.name as orderTaker');
+        $this->db->select('o.id ,o.orderType,o.orderDate,o.fkOrderStatus,o.paymentType,o.deliveryfee as deliveryfee,o.vat,o.tip,o.fkUserId,u.name as userName,us.name as orderTaker');
         $this->db->from('orders o');
         $this->db->where('DATE(o.orderDate)',date('Y-m-d'));
         $this->db->join('users u','u.id = o.fkUserId','left');

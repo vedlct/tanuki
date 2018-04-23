@@ -29,6 +29,8 @@ class Home extends CI_Controller {
 
     public function getAllTodaysOrder()
     {
+        $this->data['StatusCancel'] = $this->Ordersm->cancelOrderId();
+
         $this->data['orders'] = $this->Ordersm->getAllTodaysOrders();
         $this->data['ordersItems'] = $this->Ordersm->getAllOrdersItems();
         $this->data['ordersStatus'] = $this->Ordersm->getAllOrdersStatus();
