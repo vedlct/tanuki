@@ -4011,7 +4011,10 @@ thead {
         width: 100%;
     }
 }
-
+.form-control.form-white {
+	color: transparent;
+	text-shadow: 0 0 0 #000;
+}
 /* end responsive css */
 
 /* start elegent font min css */
