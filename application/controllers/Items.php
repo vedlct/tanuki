@@ -357,6 +357,7 @@ class Items extends CI_Controller {
                     $this->cart->destroy();
                     $this->session->unset_userdata('orderType');
                     $this->session->unset_userdata('tip');
+                    $this->session->unset_userdata('paymentMethod');
                     $this->session->set_flashdata('successMessage', 'CheckOut Successfully');
                     redirect('Items');
                 }
@@ -484,6 +485,7 @@ class Items extends CI_Controller {
         $this->session->unset_userdata('memberuserid');
         $this->session->unset_userdata('orderType');
         $this->session->unset_userdata('tip');
+        $this->session->unset_userdata('paymentMethod');
         $this->session->set_flashdata('successMessage','CheckOut Successfully');
         redirect('Items');
     }

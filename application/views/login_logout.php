@@ -40,7 +40,9 @@
 
     <div class="modal-dialog">
 
-                  <img src="<?php echo base_url()?>public/img/warning.jpg">
+
+                  <img class="img-responsive" src="<?php echo base_url()?>public/img/warning.jpg">
+
 
     </div>
 </div>

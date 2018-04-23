@@ -151,7 +151,6 @@ class Payment extends CI_Controller {
             }
             elseif (($userType=="Admin" || $userType=="wter")&& ($ordertype=="have")){
 
-
                 if (!empty($user)) {
 
                     $this->data['info'] = $this->profilem->getCustomerInfo($user);
@@ -363,6 +362,7 @@ class Payment extends CI_Controller {
                 $this->session->unset_userdata('memberuserid');
                 $this->session->unset_userdata('orderType');
                 $this->session->unset_userdata('tip');
+                $this->session->unset_userdata('paymentMethod');
 
                 // echo '<h2>Success!</h2>';
                 // echo '<p>Transaction ID: ' . $this->authorize_net->getTransactionId() . '</p>';

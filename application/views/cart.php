@@ -243,13 +243,13 @@
             <div class="box_style_2">
                 <h2 class="inner">Payment methods</h2>
                 <div class="payment_select">
-                    <label><input type="radio" value="1" onclick="paymentcreditcard()"  name="payment_method" class="">Credit card</label>
+                    <label><input type="radio" value="1" onclick="paymentcreditcard()" <?php if($this->session->userdata('paymentMethod')=='credit'){ ?> checked=checked <?php } ?> name="payment_method" class="">Credit card</label>
                     <i class="icon_creditcard"></i>
                 </div>
                 <!--End row -->
 
                 <div class="payment_select nomargin">
-                    <label><input type="radio" value="2" onclick="paymentcash()" name="payment_method" class="">Pay with cash</label>
+                    <label><input type="radio" value="2" onclick="paymentcash()" <?php if($this->session->userdata('paymentMethod')=='cash'){ ?> checked=checked <?php } ?> name="payment_method" class="">Pay with cash</label>
                     <i class="icon_wallet"></i>
                 </div>
             </div>
