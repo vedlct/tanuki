@@ -89,7 +89,7 @@
 <!--                                    <td style="color: red" colspan="5">Total-(including delevery fee & vat): --><?php //echo $orders->deliveryfee; ?><!--$+--><?php //echo $orders->vat?><!--$ : </td>-->
 <!--                                    <td colspan="1">--><?php //echo $totalWithDelevery=($total+$orders->deliveryfee+$orders->vat)?><!--</td>-->
 
-                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + Sales Tax:$<?php echo $orders->vat?>
+                                    <td style="color: red" colspan="5">Total=(<?php $delivaryFee=0;$tip=0; if (!empty($orders->deliveryfee)){?>delevery fee:$<?php echo $delivaryFee=$orders->deliveryfee;}else{?>delevery fee:$<?php echo $delivaryFee; }?> + Sales Tax:$<?php echo $orders->vat?> + tip :$<?php if (!empty($orders->tip)){echo $tip=$orders->tip;}else{echo $tip;}?>
 
                                         <?php foreach ($pointUsed as $pu){
                                             if ($pu->fkOrderId == $orders->id ){
@@ -113,7 +113,7 @@
                                             }
 
                                         }?>
-                                        <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat)-$pointToMoney);?>
+                                        <?php echo $Ftotal=(($total+$orders->deliveryfee+$orders->vat+$tip)-$pointToMoney);?>
 
                                     </td>
 
@@ -129,14 +129,18 @@
 
 
 
+                        <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$StatusCancel->id){?>
 
+                        <?php echo "Cancelled";
+                        }else{
 
-                                <?php foreach ($ordersStatus as $Status){?>
+                                 foreach ($ordersStatus as $Status){?>
 
                                     <?php if (!empty($orders->fkOrderStatus) && $orders->fkOrderStatus==$Status->id){?>
 
                                     <?php echo $Status->statusTitle?>
-                                <?php }}?>
+
+                                <?php }}} ?>
 
 
 

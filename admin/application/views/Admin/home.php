@@ -156,6 +156,7 @@
             cache: false,
             success: function (data) {
                 $("#todayOrder").html(data);
+               // alert(data);
             }
         });
     },6000, 60);

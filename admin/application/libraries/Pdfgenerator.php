@@ -40,6 +40,7 @@ class Pdfgenerator {
 //    }
       /*----*/
 
+
       $dompdf->stream($filename,array('Attachment'=>0));
   }
 
