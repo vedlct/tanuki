@@ -24,7 +24,7 @@ class Email extends CI_Controller {
         $this->load->library(array('email'));
 
         $this->email->set_mailtype("html");
-        $this->email->from('tanukiva@host16.registrar-servers.com',$name);
+        $this->email->from('tanukiva@host62.registrar-servers.com',$name);
         $this->email->to("support@teknovisual.com");
         $this->email->subject('Customer Inquery');
 

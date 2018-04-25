@@ -565,7 +565,7 @@ class Items extends CI_Controller {
         $this->load->library(array('email'));
         $this->load->model('Userorderm');
         $this->email->set_mailtype("html");
-        $this->email->from('tanukiva@host16.registrar-servers.com', 'Tanuki');
+        $this->email->from('tanukiva@host62.registrar-servers.com', 'Tanuki');
         $this->email->to($this->session->userdata('email'),'support@teknovisual.com');
         $this->email->subject('New Order');
         $this->data['orders'] = $this->Userorderm->viewOrderInfoByOrderIdForPrint($orderId);
